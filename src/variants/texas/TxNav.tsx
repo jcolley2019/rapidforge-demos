@@ -1,11 +1,8 @@
-import { content } from '../../content/content'
+import { siteContent as site } from '../../brief/current'
+import { navLinks } from '../../brief/site-helpers'
+import TxBrand from './TxBrand'
 
-const links = [
-  { href: '#services', label: 'Services' },
-  { href: '#technology', label: 'Technology' },
-  { href: '#team', label: 'Team' },
-  { href: '#contact', label: 'Contact' },
-]
+const links = navLinks(site)
 
 export default function TxNav() {
   return (
@@ -15,7 +12,7 @@ export default function TxNav() {
     >
       <div className="tx-container flex items-center justify-between gap-4 py-3">
         <a href="#top" className="tx-display text-xl" style={{ color: 'var(--tx-black)' }}>
-          Brittain <span style={{ color: 'var(--tx-orange)' }}>&amp;</span> Crawford
+          <TxBrand />
         </a>
         <div className="tx-label hidden items-center gap-8 md:flex" style={{ letterSpacing: '0.14em' }}>
           {links.map((l) => (
@@ -24,11 +21,8 @@ export default function TxNav() {
             </a>
           ))}
         </div>
-        <a
-          href={`mailto:${content.contact.quoteEmail}`}
-          className="tx-btn tx-btn-orange !px-5 !py-2 text-sm"
-        >
-          Get a Quote
+        <a href={site.cta.href} className="tx-btn tx-btn-orange !px-5 !py-2 text-sm">
+          {site.cta.label}
         </a>
       </div>
     </nav>

@@ -2,18 +2,19 @@ import '@fontsource-variable/outfit'
 import './aerial.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
+import { usePageTitle } from '../usePageTitle'
 import AerialTopBar from './AerialTopBar'
 import AerialHero from './AerialHero'
 import AltitudeInterlude from './AltitudeInterlude'
 import AerialCapabilities from './AerialCapabilities'
-import GroundServices from './GroundServices'
-import AerialStats from './AerialStats'
-import AerialTeam from './AerialTeam'
-import AerialTrustedBy from './AerialTrustedBy'
+import AerialServices from './AerialServices'
+import AerialReviews from './AerialReviews'
+import AerialHours from './AerialHours'
 import AerialQuoteCta from './AerialQuoteCta'
 import AerialFooter from './AerialFooter'
 
 export default function AerialPage() {
+  usePageTitle('aerial')
   return (
     <div className="aerial" id="top">
       <BackToConceptsLink />
@@ -22,10 +23,9 @@ export default function AerialPage() {
         <AerialHero />
         <AltitudeInterlude />
         <AerialCapabilities />
-        <GroundServices />
-        <AerialStats />
-        <AerialTeam />
-        <AerialTrustedBy />
+        <AerialServices />
+        <AerialReviews />
+        <AerialHours />
         <AerialQuoteCta />
       </main>
       <AerialFooter />

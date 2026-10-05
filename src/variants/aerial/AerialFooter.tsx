@@ -1,4 +1,7 @@
-import { content } from '../../content/content'
+import { siteContent as site } from '../../brief/current'
+import { localityLine, navLinks } from '../../brief/site-helpers'
+
+const links = navLinks(site)
 
 export default function AerialFooter() {
   return (
@@ -6,66 +9,49 @@ export default function AerialFooter() {
       <div className="ae-wrap">
         <div className="ae-footer-grid">
           <div>
-            <p className="ae-footer-heading">{content.name}</p>
+            <p className="ae-footer-heading">{site.name}</p>
             <address>
-              {content.contact.address}
-              <br />
-              <a href={content.contact.phoneHref} className="ae-link">
-                {content.contact.phone}
-              </a>
+              {site.address && (
+                <>
+                  {site.address}
+                  <br />
+                </>
+              )}
+              {site.phoneHref && (
+                <a href={site.phoneHref} className="ae-link">
+                  {site.phone}
+                </a>
+              )}
             </address>
           </div>
           <div>
-            <p className="ae-footer-heading">Clients</p>
+            <p className="ae-footer-heading">Get in touch</p>
             <ul className="ae-footer-list">
               <li>
-                <a
-                  href={content.contact.clientPortal}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="ae-link"
-                >
-                  Client portal
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${content.contact.quoteEmail}`} className="ae-link">
-                  {content.contact.quoteEmail}
+                <a href={site.cta.href} className="ae-link">
+                  {site.cta.label}
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <p className="ae-footer-heading">Elsewhere</p>
+            <p className="ae-footer-heading">On this page</p>
             <ul className="ae-footer-list">
-              <li>
-                <a
-                  href={content.contact.facebook}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="ae-link"
-                >
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a
-                  href={content.contact.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="ae-link"
-                >
-                  LinkedIn
-                </a>
-              </li>
+              {links.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="ae-link">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         <div className="ae-footer-bottom">
           <span>
-            &copy; {new Date().getFullYear()} {content.name}
+            &copy; {new Date().getFullYear()} {site.name}
           </span>
-          <span>Serving {content.serviceArea}</span>
+          <span>{localityLine(site)}</span>
         </div>
       </div>
     </footer>

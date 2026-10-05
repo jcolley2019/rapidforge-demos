@@ -1,18 +1,22 @@
-import { content } from '../../content/content'
+import { Fragment } from 'react'
+import { siteContent as site } from '../../brief/current'
+import { localityLine } from '../../brief/site-helpers'
 import Reveal from './Reveal'
 
+/** Orange statement band: the service list, read as one line. */
 export default function TxBanner() {
-  const crews = content.stats.find((s) => s.label.includes('field crews'))
-  const gnss = content.stats.find((s) => s.label.includes('GNSS'))
-  const cad = content.stats.find((s) => s.label.includes('AutoCAD'))
+  const items = [...site.services.map((s) => s.title), localityLine(site)]
   return (
     <section className="tx-on-orange" style={{ background: 'var(--tx-orange)', color: 'var(--tx-black)' }}>
       <div className="tx-container py-14">
         <Reveal>
-          <p className="tx-display tx-num" style={{ fontSize: 'var(--tx-t3)', lineHeight: 1.25 }}>
-            {crews?.value} two-man field crews &middot; {gnss?.value} GNSS systems on the Texas
-            State Plane &middot; {cad?.value} AutoCAD drafting technicians &middot; every survey
-            sealed by a licensed RPLS
+          <p className="tx-display" style={{ fontSize: 'var(--tx-t3)', lineHeight: 1.25 }}>
+            {items.map((item, i) => (
+              <Fragment key={item}>
+                {i > 0 && ' · '}
+                {item}
+              </Fragment>
+            ))}
           </p>
         </Reveal>
       </div>

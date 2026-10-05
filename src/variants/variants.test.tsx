@@ -2,12 +2,12 @@ import { describe, expect, it } from 'vitest'
 import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
-import { content } from '../content/content'
+import { siteContent } from '../brief/current'
 import { variants } from './variants'
 
 /**
  * Regression net: every registered variant must mount through its route
- * without throwing and must render the company name from the content seam.
+ * without throwing and must render the business name from the brief.
  */
 describe('variants', () => {
   it('registers at least one variant', () => {
@@ -23,7 +23,18 @@ describe('variants', () => {
           </MemoryRouter>,
         ),
       ).not.toThrow()
-      expect(document.body.textContent).toContain(content.name)
+      expect(document.body.textContent).toContain(siteContent.name)
+      expect(document.title).toBe(`${siteContent.name} — ${variant.name}`)
     })
   }
+
+  it('renders the picker with the business name on every card', () => {
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <App />
+      </MemoryRouter>,
+    )
+    const hits = document.body.textContent?.split(siteContent.name).length ?? 0
+    expect(hits - 1).toBeGreaterThanOrEqual(variants.length)
+  })
 })

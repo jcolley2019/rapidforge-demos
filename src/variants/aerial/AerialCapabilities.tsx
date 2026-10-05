@@ -1,9 +1,10 @@
-import { content } from '../../content/content'
+import { siteContent as site } from '../../brief/current'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from './Reveal'
 
-/** The three aerial capabilities: last three services in content.ts. */
-const AERIAL_SERVICES = content.services.slice(6)
+/** Up to three featured services get the full-bleed treatment. */
+export const FEATURED_COUNT = 3
+const FEATURED = site.services.slice(0, FEATURED_COUNT)
 
 const PANEL_TONES = [
   { from: '#26375a', to: '#131c2b', seed: 41 },
@@ -12,14 +13,15 @@ const PANEL_TONES = [
 ]
 
 /**
- * The showcase: three tall full-bleed panels, each an aspect-stable
- * imagery slot (real drone footage drops in later with zero layout
- * shift) with a parallax depth offset and a bottom-edge scrim.
+ * The showcase: tall full-bleed panels, each an aspect-stable imagery
+ * slot (real photos drop in later with zero layout shift) with a parallax
+ * depth offset and a bottom-edge scrim.
  */
 export default function AerialCapabilities() {
+  if (FEATURED.length === 0) return null
   return (
-    <section className="ae-cap" id="aerial" aria-label="Aerial capabilities">
-      {AERIAL_SERVICES.map((service, i) => {
+    <section className="ae-cap" id="featured" aria-label="Featured services">
+      {FEATURED.map((service, i) => {
         const tone = PANEL_TONES[i % PANEL_TONES.length]
         return (
           <article key={service.title} className="ae-cap-panel">
@@ -32,7 +34,7 @@ export default function AerialCapabilities() {
                   lineColor="#e8a552"
                   lineOpacity={0.32}
                   seed={tone.seed}
-                  label="Drone imagery placeholder"
+                  label="Photo placeholder"
                   labelColor="#aab4c5"
                   className="h-full"
                 />
@@ -41,11 +43,9 @@ export default function AerialCapabilities() {
             <div className="ae-cap-scrim">
               <Reveal>
                 <div className="ae-cap-inner">
-                  <span className="ae-cap-index">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
+                  <span className="ae-cap-index">{String(i + 1).padStart(2, '0')}</span>
                   <h2 className="ae-cap-title">{service.title}</h2>
-                  <p className="ae-cap-desc">{service.description}</p>
+                  {service.blurb && <p className="ae-cap-desc">{service.blurb}</p>}
                 </div>
               </Reveal>
             </div>

@@ -3,19 +3,19 @@ import '@fontsource-variable/archivo'
 import './texas.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
+import { usePageTitle } from '../usePageTitle'
 import TxTopBar from './TxTopBar'
 import TxNav from './TxNav'
 import TxHero from './TxHero'
-import TxStats from './TxStats'
 import TxServices from './TxServices'
 import TxBanner from './TxBanner'
-import TxTechnology from './TxTechnology'
-import TxTeam from './TxTeam'
-import TxTrustedBy from './TxTrustedBy'
+import TxReviews from './TxReviews'
+import TxHours from './TxHours'
 import TxQuoteCta from './TxQuoteCta'
 import TxFooter from './TxFooter'
 
 export default function TexasPage() {
+  usePageTitle('texas')
   return (
     <div className="texas" id="top">
       <BackToConceptsLink />
@@ -23,12 +23,10 @@ export default function TexasPage() {
       <TxNav />
       <main>
         <TxHero />
-        <TxStats />
         <TxServices />
         <TxBanner />
-        <TxTechnology />
-        <TxTeam />
-        <TxTrustedBy />
+        <TxReviews />
+        <TxHours />
         <TxQuoteCta />
       </main>
       <TxFooter />

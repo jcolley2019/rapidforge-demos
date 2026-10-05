@@ -1,4 +1,7 @@
-import { content } from '../../content/content'
+import { siteContent as site } from '../../brief/current'
+import { localityLine, navLinks } from '../../brief/site-helpers'
+
+const links = navLinks(site, 'Hours & Contact')
 
 export default function HeritageFooter() {
   return (
@@ -6,68 +9,44 @@ export default function HeritageFooter() {
       <div className="mx-auto max-w-6xl px-5 py-14">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <p className="h-display text-xl font-semibold">{content.shortName}</p>
-            <p className="mt-2 text-sm text-(--ink-soft)">{content.taglines.primary}</p>
-            <p className="mt-4 text-sm text-(--ink-soft)">{content.contact.address}</p>
+            <p className="h-display text-xl font-semibold">{site.shortName}</p>
+            <p className="mt-2 text-sm text-(--ink-soft)">{localityLine(site)}</p>
+            {site.address && <p className="mt-4 text-sm text-(--ink-soft)">{site.address}</p>}
           </div>
           <div>
             <p className="h-eyebrow">Contact</p>
             <ul className="mt-4 space-y-2.5 text-sm">
+              {site.phoneHref && (
+                <li>
+                  <a href={site.phoneHref} className="h-quiet-link h-num">
+                    {site.phone}
+                  </a>
+                </li>
+              )}
               <li>
-                <a href={content.contact.phoneHref} className="h-quiet-link h-num">
-                  {content.contact.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`mailto:${content.contact.quoteEmail}`}
-                  className="h-quiet-link"
-                >
-                  {content.contact.quoteEmail}
+                <a href={site.cta.href} className="h-quiet-link">
+                  {site.cta.label}
                 </a>
               </li>
             </ul>
           </div>
           <div>
-            <p className="h-eyebrow">Elsewhere</p>
+            <p className="h-eyebrow">On this page</p>
             <ul className="mt-4 space-y-2.5 text-sm">
-              <li>
-                <a
-                  href={content.contact.clientPortal}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-quiet-link"
-                >
-                  Client portal (ShareFile)
-                </a>
-              </li>
-              <li>
-                <a
-                  href={content.contact.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-quiet-link"
-                >
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a
-                  href={content.contact.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-quiet-link"
-                >
-                  LinkedIn
-                </a>
-              </li>
+              {links.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="h-quiet-link">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
         <hr className="h-rule mt-12" />
         <p className="h-num mt-6 text-center text-xs tracking-wide text-(--ink-faint)">
-          &copy; {new Date().getFullYear()} {content.name}. Serving{' '}
-          {content.serviceArea}.
+          &copy; {new Date().getFullYear()} {site.name}
+          {site.city ? ` · ${site.city}` : ''}
         </p>
       </div>
     </footer>

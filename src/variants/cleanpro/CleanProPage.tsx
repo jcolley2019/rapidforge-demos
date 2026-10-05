@@ -2,20 +2,18 @@ import '@fontsource-variable/figtree'
 import './cleanpro.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
+import { usePageTitle } from '../usePageTitle'
 import AnnouncementBar from './AnnouncementBar'
 import CleanNav from './CleanNav'
 import CleanHero from './CleanHero'
-import TrustedByStrip from './TrustedByStrip'
 import CleanServices from './CleanServices'
-import WhyUs from './WhyUs'
-import Process from './Process'
-import StatsBand from './StatsBand'
-import CleanTeam from './CleanTeam'
-import TrackRecord from './TrackRecord'
+import CleanReviews from './CleanReviews'
+import CleanHours from './CleanHours'
 import CleanQuoteCta from './CleanQuoteCta'
 import CleanFooter from './CleanFooter'
 
 export default function CleanProPage() {
+  usePageTitle('cleanpro')
   return (
     <div className="cleanpro" id="top">
       <BackToConceptsLink />
@@ -23,13 +21,9 @@ export default function CleanProPage() {
       <CleanNav />
       <main>
         <CleanHero />
-        <TrustedByStrip />
         <CleanServices />
-        <WhyUs />
-        <Process />
-        <StatsBand />
-        <CleanTeam />
-        <TrackRecord />
+        <CleanReviews />
+        <CleanHours />
         <CleanQuoteCta />
       </main>
       <CleanFooter />

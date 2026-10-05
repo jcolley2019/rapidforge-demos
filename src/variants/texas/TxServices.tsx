@@ -1,4 +1,4 @@
-import { content } from '../../content/content'
+import { siteContent as site } from '../../brief/current'
 import Reveal from './Reveal'
 
 export default function TxServices() {
@@ -10,14 +10,14 @@ export default function TxServices() {
             Services
           </p>
           <h2 className="tx-display mt-3 max-w-[18ch]" style={{ fontSize: 'var(--tx-t5)' }}>
-            Nine ways we put a boundary on it
+            What we do
           </h2>
         </Reveal>
         <div
           className="mt-12 grid md:grid-cols-2"
           style={{ borderTop: '1px solid var(--tx-black)', borderLeft: '1px solid var(--tx-black)' }}
         >
-          {content.services.map((service, i) => (
+          {site.services.map((service, i) => (
             <Reveal
               key={service.title}
               className="tx-reveal-stagger"
@@ -40,9 +40,9 @@ export default function TxServices() {
                   <h3 className="tx-display" style={{ fontSize: 'var(--tx-t2)' }}>
                     {service.title}
                   </h3>
-                  <p className="tx-cell-desc mt-3 text-[0.9375rem]">
-                    {service.description}
-                  </p>
+                  {service.blurb && (
+                    <p className="tx-cell-desc mt-3 text-[0.9375rem]">{service.blurb}</p>
+                  )}
                 </div>
               </div>
             </Reveal>
