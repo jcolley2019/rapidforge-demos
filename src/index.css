@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+/* No page may scroll sideways on a phone; each variant also clips its
+   own root, this is the backstop. */
+html,
+body {
+  overflow-x: clip;
+}

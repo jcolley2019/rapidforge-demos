@@ -16,7 +16,7 @@
   min-height: 100dvh;
   background-color: var(--pk-ink);
   color: var(--pk-text);
-  font-family: 'Archivo Variable', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -41,18 +41,8 @@
 }
 
 /* Head ------------------------------------------------------------------ */
-.pk-coords {
-  font-family: 'JetBrains Mono', Consolas, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
-  color: var(--pk-mark);
-  margin: 0;
-}
-
 .pk-title {
-  margin: 1.25rem 0 0;
+  margin: 0;
   font-size: clamp(1.9rem, 1.1rem + 2.6vw, 3.1rem);
   font-weight: 600;
   line-height: 1.1;
@@ -125,7 +115,7 @@
 
 .pk-card-index {
   margin: 0;
-  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
   font-variant-numeric: tabular-nums;

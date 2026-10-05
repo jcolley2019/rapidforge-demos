@@ -48,6 +48,8 @@ export interface SiteContent {
   phoneHref: string | null
   address: string | null
   cta: SiteCta
+  /** photo_urls from the brief, in order. Empty when the audit found none. */
+  photos: string[]
   /** current_site_problem — kept for the picker, shown nowhere on the site. */
   problemLine: string
 }
@@ -194,6 +196,7 @@ export function toSiteContent(brief: DesignBrief): SiteContent {
     phoneHref,
     address: brief.address?.trim() || null,
     cta,
+    photos: brief.photo_urls.map((u) => u.trim()).filter(Boolean),
     problemLine: brief.current_site_problem,
   }
 }

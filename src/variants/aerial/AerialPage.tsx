@@ -1,34 +1,32 @@
 import '@fontsource-variable/outfit'
+import '@fontsource-variable/figtree'
 import './aerial.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
 import { usePageTitle } from '../usePageTitle'
-import AerialTopBar from './AerialTopBar'
-import AerialHero from './AerialHero'
-import AltitudeInterlude from './AltitudeInterlude'
-import AerialCapabilities from './AerialCapabilities'
-import AerialServices from './AerialServices'
-import AerialReviews from './AerialReviews'
-import AerialHours from './AerialHours'
-import AerialQuoteCta from './AerialQuoteCta'
-import AerialFooter from './AerialFooter'
+import WsNav from './WsNav'
+import WsHero from './WsHero'
+import WsServices from './WsServices'
+import WsReviews from './WsReviews'
+import WsHours from './WsHours'
+import WsQuoteCta from './WsQuoteCta'
+import WsFooter from './WsFooter'
 
+/** Warm Story — preset `warm-story` (illustrated storybook). */
 export default function AerialPage() {
   usePageTitle('aerial')
   return (
     <div className="aerial" id="top">
       <BackToConceptsLink />
-      <AerialTopBar />
+      <WsNav />
       <main>
-        <AerialHero />
-        <AltitudeInterlude />
-        <AerialCapabilities />
-        <AerialServices />
-        <AerialReviews />
-        <AerialHours />
-        <AerialQuoteCta />
+        <WsHero />
+        <WsServices />
+        <WsReviews />
+        <WsHours />
+        <WsQuoteCta />
       </main>
-      <AerialFooter />
+      <WsFooter />
     </div>
   )
 }

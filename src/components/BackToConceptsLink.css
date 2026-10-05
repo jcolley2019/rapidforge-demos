@@ -1,4 +1,4 @@
-/* The persistent way back to the concept index. It sits on top of five
+/* The persistent way back to the direction index. It sits on top of five
    very different pages, so it takes its colours from whichever variant
    is hosting it and falls back to a neutral chip. */
 
@@ -44,46 +44,47 @@
   transform: translateY(0);
 }
 
-/* Per-variant chip, so it reads as part of the page it is sitting on. */
+/* Per-variant chip, from each preset's palette, so it reads as part of
+   the page it is sitting on. */
 .heritage {
-  --bc-bg: #f7f3ea;
-  --bc-fg: #5d4d3b;
-  --bc-fg-strong: #2b2119;
-  --bc-border: rgba(166, 124, 61, 0.55);
-  --bc-accent: #a67c3d;
-  --bc-radius: 2px;
+  --bc-bg: #fbf6ec;
+  --bc-fg: #6e6253;
+  --bc-fg-strong: #1e1a14;
+  --bc-border: rgba(193, 95, 60, 0.5);
+  --bc-accent: #c15f3c;
+  --bc-radius: 999px;
 }
 .geospatial {
-  --bc-bg: #0f1714;
-  --bc-fg: #96a69d;
-  --bc-fg-strong: #e4ede8;
-  --bc-border: rgba(61, 220, 151, 0.35);
-  --bc-accent: #3ddc97;
-  --bc-radius: 3px;
+  --bc-bg: rgba(22, 59, 61, 0.92);
+  --bc-fg: #9db5b2;
+  --bc-fg-strong: #f2f4f0;
+  --bc-border: rgba(232, 116, 58, 0.4);
+  --bc-accent: #e8743a;
+  --bc-radius: 2px;
 }
 .cleanpro {
   --bc-bg: #ffffff;
-  --bc-fg: #4b5a74;
-  --bc-fg-strong: #16243d;
-  --bc-border: #e3e8f0;
-  --bc-accent: #1d6fe0;
+  --bc-fg: #6b7385;
+  --bc-fg-strong: #1c2230;
+  --bc-border: rgba(43, 91, 215, 0.35);
+  --bc-accent: #2b5bd7;
   --bc-radius: 999px;
 }
 .texas {
   --bc-bg: #141414;
-  --bc-fg: #f4f1ec;
-  --bc-fg-strong: #f66b0e;
-  --bc-border: #f66b0e;
-  --bc-accent: #f66b0e;
+  --bc-fg: #f2f2f0;
+  --bc-fg-strong: #ffffff;
+  --bc-border: #141414;
+  --bc-accent: #d8432f;
   --bc-radius: 0;
 }
 .aerial {
-  --bc-bg: rgba(11, 17, 32, 0.94);
-  --bc-fg: #aab4c5;
-  --bc-fg-strong: #f2eee6;
-  --bc-border: rgba(232, 165, 82, 0.35);
-  --bc-accent: #e8a552;
-  --bc-radius: 999px;
+  --bc-bg: #ffffff;
+  --bc-fg: #5f6b62;
+  --bc-fg-strong: #1e2a22;
+  --bc-border: rgba(47, 82, 51, 0.4);
+  --bc-accent: #2f5233;
+  --bc-radius: 8px;
 }
 
 @media (prefers-reduced-motion: reduce) {
