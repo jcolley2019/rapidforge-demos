@@ -1,35 +1,35 @@
-import '@fontsource-variable/oswald'
-import '@fontsource-variable/archivo'
+import '@fontsource/playfair-display/400.css'
+import '@fontsource/playfair-display/700.css'
+import '@fontsource/playfair-display/900.css'
+import '@fontsource-variable/inter'
 import './texas.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
 import { usePageTitle } from '../usePageTitle'
-import TxTopBar from './TxTopBar'
-import TxNav from './TxNav'
-import TxHero from './TxHero'
-import TxServices from './TxServices'
-import TxBanner from './TxBanner'
-import TxReviews from './TxReviews'
-import TxHours from './TxHours'
-import TxQuoteCta from './TxQuoteCta'
-import TxFooter from './TxFooter'
+import IsNav from './IsNav'
+import IsHero from './IsHero'
+import IsServices from './IsServices'
+import IsReviews from './IsReviews'
+import IsHours from './IsHours'
+import IsQuoteCta from './IsQuoteCta'
+import IsFooter from './IsFooter'
 
+/** Ink Split — preset `ink-split` (dither mono). */
 export default function TexasPage() {
   usePageTitle('texas')
   return (
     <div className="texas" id="top">
+      <div className="is-grain" aria-hidden="true" />
       <BackToConceptsLink />
-      <TxTopBar />
-      <TxNav />
+      <IsNav />
       <main>
-        <TxHero />
-        <TxServices />
-        <TxBanner />
-        <TxReviews />
-        <TxHours />
-        <TxQuoteCta />
+        <IsHero />
+        <IsServices />
+        <IsReviews />
+        <IsHours />
+        <IsQuoteCta />
       </main>
-      <TxFooter />
+      <IsFooter />
     </div>
   )
 }

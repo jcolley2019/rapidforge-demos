@@ -1,32 +1,32 @@
+import '@fontsource-variable/eb-garamond'
 import '@fontsource-variable/figtree'
 import './cleanpro.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
 import { usePageTitle } from '../usePageTitle'
-import AnnouncementBar from './AnnouncementBar'
-import CleanNav from './CleanNav'
-import CleanHero from './CleanHero'
-import CleanServices from './CleanServices'
-import CleanReviews from './CleanReviews'
-import CleanHours from './CleanHours'
-import CleanQuoteCta from './CleanQuoteCta'
-import CleanFooter from './CleanFooter'
+import ClNav from './ClNav'
+import ClHero from './ClHero'
+import ClServices from './ClServices'
+import ClReviews from './ClReviews'
+import ClHours from './ClHours'
+import ClQuoteCta from './ClQuoteCta'
+import ClFooter from './ClFooter'
 
+/** Classic Light — preset `classic-light` (classical remix). */
 export default function CleanProPage() {
   usePageTitle('cleanpro')
   return (
     <div className="cleanpro" id="top">
       <BackToConceptsLink />
-      <AnnouncementBar />
-      <CleanNav />
+      <ClNav />
       <main>
-        <CleanHero />
-        <CleanServices />
-        <CleanReviews />
-        <CleanHours />
-        <CleanQuoteCta />
+        <ClHero />
+        <ClServices />
+        <ClReviews />
+        <ClHours />
+        <ClQuoteCta />
       </main>
-      <CleanFooter />
+      <ClFooter />
     </div>
   )
 }

@@ -1,0 +1,30 @@
+import Stars from '../../components/Stars'
+import { siteContent as site } from '../../brief/current'
+import Reveal from '../../components/Reveal'
+
+export default function WsReviews() {
+  if (site.reviews.length === 0) return null
+  return (
+    <section id="reviews" className="ws-section" style={{ background: '#efe4d2' }}>
+      <div className="ws-wrap">
+        <Reveal>
+          <p className="ws-eyebrow">Reviews</p>
+          <h2 className="ws-display ws-h2">
+            Told by our <span className="ws-warm">neighbors.</span>
+          </h2>
+        </Reveal>
+        <div className="ws-cards">
+          {site.reviews.map((review, i) => (
+            <Reveal key={i} delay={(i % 3) * 90}>
+              <figure className="ws-card">
+                <Stars rating={review.rating} className="ws-stars" />
+                <blockquote className="ws-quote">&ldquo;{review.text}&rdquo;</blockquote>
+                {review.author && <figcaption className="ws-mono mt-5">{review.author}</figcaption>}
+              </figure>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

@@ -50,6 +50,12 @@ describe('toSiteContent', () => {
     expect(site.city).toBeNull()
   })
 
+  it('carries photo_urls through as photos', () => {
+    expect(toSiteContent(acmeBrief).photos).toEqual([])
+    const withPhotos = toSiteContent({ ...acmeBrief, photo_urls: ['https://img.example/a.jpg', ' '] })
+    expect(withPhotos.photos).toEqual(['https://img.example/a.jpg'])
+  })
+
   it('is deterministic: the same brief twice gives the same headline and subhead', () => {
     const a = toSiteContent(acmeBrief)
     const b = toSiteContent(acmeBrief)

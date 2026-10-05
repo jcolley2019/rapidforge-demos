@@ -1,374 +1,548 @@
-/* Geospatial variant — dark instrument palette, type, and primitives.
-   Everything is scoped to .geospatial so other variants are untouched. */
+/* Dusk Horizon (preset: dusk-horizon) — vast quiet cinematic.
+   Deep teal dusk, mist, extreme negative space, tiny centered sans
+   labels, a two-tone headline and one ember call to action.
+   Scoped to .geospatial so other variants are untouched. */
 
 .geospatial {
-  --geo-base: #0a0f0d;
-  --geo-base-deep: #060a08;
-  --geo-panel: #0f1714;
-  --geo-panel-2: #14201a;
-  --geo-line: rgba(61, 220, 151, 0.16);
-  --geo-line-strong: rgba(61, 220, 151, 0.55);
-  --geo-accent: #3ddc97;
-  --geo-accent-bright: #55e8a8;
-  --geo-amber: #f5a524;
-  --geo-text: #e4ede8;
-  --geo-text-dim: #96a69d;
-  --geo-text-faint: #5f6f66;
-  --geo-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --dh-bg: #0f2a2c;
+  --dh-surface: #163b3d;
+  --dh-text: #f2f4f0;
+  --dh-muted: #9db5b2;
+  --dh-accent: #e8743a;
+  --dh-accent2: #2e4a46;
+  --dh-line: rgba(157, 181, 178, 0.18);
+  --dh-line-strong: rgba(157, 181, 178, 0.4);
+  --dh-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --dh-mono: ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace;
 
-  background-color: var(--geo-base);
-  color: var(--geo-text);
-  font-family: 'Archivo Variable', 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--dh-bg);
+  color: var(--dh-text);
+  font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 350;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
 .geospatial ::selection {
-  background: var(--geo-accent);
-  color: var(--geo-base-deep);
+  background: var(--dh-accent);
+  color: var(--dh-bg);
 }
-
-/* Keyboard focus — the instrument's own accent, square corners */
 .geospatial :focus-visible {
-  outline: 2px solid var(--geo-accent);
+  outline: 2px solid var(--dh-accent);
   outline-offset: 3px;
-  border-radius: 2px;
 }
-
-/* Anchor targets clear the sticky nav */
 .geospatial [id] {
-  scroll-margin-top: 6rem;
+  scroll-margin-top: 5rem;
 }
-
 .geospatial h1,
 .geospatial h2,
 .geospatial h3 {
   text-wrap: balance;
 }
 
-/* Monospace is reserved for readings: coordinates, serials, spec values. */
-.g-mono {
-  font-family: 'JetBrains Mono', Consolas, monospace;
-  font-variant-numeric: tabular-nums;
+.dh-wrap {
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .dh-wrap {
+    padding-inline: 2.5rem;
+  }
 }
 
-.g-num {
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: 'tnum' 1;
-}
-
-/* Small monospace metadata labels — coordinates, section numbers, serials */
-.g-eyebrow {
-  font-family: 'JetBrains Mono', Consolas, monospace;
+/* Type at extremes: whisper labels and monumental headlines. */
+.dh-label {
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--geo-accent);
+  color: var(--dh-muted);
+  text-align: center;
 }
-
-.g-meta {
-  font-family: 'JetBrains Mono', Consolas, monospace;
+.dh-mono {
+  font-family: var(--dh-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   font-variant-numeric: tabular-nums;
-  color: var(--geo-text-faint);
+  color: var(--dh-muted);
 }
-.g-meta-amber {
-  color: var(--geo-amber);
+.dh-display {
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
 }
-
-.g-panel {
-  background: var(--geo-panel);
-  border: 1px solid var(--geo-line);
+.dh-display strong {
+  font-weight: 500;
+  color: var(--dh-text);
 }
-
-/* Instrument matrix: cells share hairlines instead of floating as cards,
-   so the service list reads as one continuous readout. */
-.g-matrix {
-  display: grid;
-  gap: 1px;
-  background: var(--geo-line);
-  border: 1px solid var(--geo-line);
+.dh-display .dh-tone {
+  color: var(--dh-muted);
 }
-.g-matrix-cell {
-  position: relative;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  background: var(--geo-panel);
-  padding: 1.5rem;
-  transition:
-    background-color 0.5s var(--geo-ease),
-    box-shadow 0.5s var(--geo-ease);
-}
-.g-matrix-cell:hover {
-  background: var(--geo-panel-2);
-  box-shadow: inset 0 0 0 1px var(--geo-line-strong);
+.dh-num {
+  font-variant-numeric: tabular-nums;
 }
 
-.g-glow {
-  text-shadow: 0 0 14px rgba(61, 220, 151, 0.45);
-}
-
-/* Buttons */
-.g-btn {
+/* Buttons — quiet, square, one of them ember */
+.dh-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 0.8rem 1.5rem;
-  font-family: 'JetBrains Mono', Consolas, monospace;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  border-radius: 3px;
+  padding: 0.9rem 1.6rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  border-radius: 2px;
   transition:
-    background-color 0.4s var(--geo-ease),
-    color 0.4s var(--geo-ease),
-    border-color 0.4s var(--geo-ease),
-    box-shadow 0.4s var(--geo-ease),
-    transform 0.4s var(--geo-ease);
+    background-color 0.4s var(--dh-ease),
+    color 0.4s var(--dh-ease),
+    border-color 0.4s var(--dh-ease),
+    transform 0.4s var(--dh-ease);
 }
-.g-btn:active {
+.dh-btn:active {
   transform: scale(0.98);
 }
-
-.g-btn-accent {
-  background: var(--geo-accent);
-  color: #06120c;
-  border: 1px solid var(--geo-accent);
+.dh-btn-ember {
+  background: var(--dh-accent);
+  color: #1a0f08;
+  border-color: var(--dh-accent);
 }
-.g-btn-accent:hover,
-.g-btn-accent:focus-visible {
-  box-shadow: 0 6px 24px -6px rgba(61, 220, 151, 0.45);
-  background: var(--geo-accent-bright);
+.dh-btn-ember:hover,
+.dh-btn-ember:focus-visible {
+  background: #f08a52;
+  border-color: #f08a52;
 }
-
-.g-btn-outline {
-  background: transparent;
-  color: var(--geo-accent);
-  border: 1px solid rgba(61, 220, 151, 0.4);
+.dh-btn-ghost {
+  background: rgba(15, 42, 44, 0.35);
+  color: var(--dh-text);
+  border-color: var(--dh-line-strong);
+  backdrop-filter: blur(6px);
 }
-.g-btn-outline:hover,
-.g-btn-outline:focus-visible {
-  border-color: var(--geo-accent);
-  background: rgba(61, 220, 151, 0.08);
+.dh-btn-ghost:hover,
+.dh-btn-ghost:focus-visible {
+  border-color: var(--dh-text);
 }
 
-/* Inline + list links */
-.g-inline-link {
-  color: var(--geo-accent);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+/* Nav — transparent over the dusk, a soft bar once scrolled */
+.dh-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid transparent;
   transition:
-    color 0.35s var(--geo-ease),
-    text-decoration-thickness 0.35s var(--geo-ease);
+    background-color 0.5s var(--dh-ease),
+    border-color 0.5s var(--dh-ease);
 }
-.g-inline-link:hover,
-.g-inline-link:focus-visible {
-  color: var(--geo-text);
-  text-decoration-thickness: 2px;
+.dh-nav-solid {
+  background: rgba(15, 42, 44, 0.86);
+  border-color: var(--dh-line);
+  backdrop-filter: blur(10px);
 }
-
-.g-quiet-link {
-  color: var(--geo-text-dim);
-  transition: color 0.35s var(--geo-ease);
+.dh-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.9rem;
 }
-.g-quiet-link:hover,
-.g-quiet-link:focus-visible {
-  color: var(--geo-accent);
+.dh-nav-links {
+  display: none;
+  gap: 2rem;
 }
-
-/* Nav links */
-.g-navlink {
-  position: relative;
-  font-size: 0.78rem;
+@media (min-width: 768px) {
+  .dh-nav-links {
+    display: flex;
+  }
+}
+.dh-navlink {
+  font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--geo-text-dim);
-  padding-bottom: 3px;
-  transition: color 0.35s var(--geo-ease);
+  color: var(--dh-muted);
+  transition: color 0.3s var(--dh-ease);
 }
-.g-navlink::after {
+.dh-navlink:hover,
+.dh-navlink:focus-visible {
+  color: var(--dh-text);
+}
+.dh-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.dh-nav-phone {
+  display: none;
+  font-size: 0.875rem;
+  color: var(--dh-text);
+}
+@media (min-width: 480px) {
+  .dh-nav-phone {
+    display: inline;
+  }
+}
+.dh-nav-cta {
+  padding: 0.6rem 1.05rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Hero — the landscape takes the viewport; type whispers in the sky */
+.dh-hero {
+  position: relative;
+  min-height: 100svh;
+  margin-top: -3.6rem; /* slide under the transparent nav */
+  display: flex;
+  flex-direction: column;
+  overflow: clip;
+  isolation: isolate;
+}
+.dh-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.dh-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Processed, never raw: desaturated and graded to the dusk. */
+  filter: saturate(0.35) contrast(0.95) brightness(0.85);
+}
+.dh-hero-media::after {
+  /* Teal grade + darkened sky at the top-left for the headline */
   content: '';
   position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--geo-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s var(--geo-ease);
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(15, 42, 44, 0.9) 0%, rgba(15, 42, 44, 0.45) 45%, rgba(15, 42, 44, 0.1) 75%, var(--dh-bg) 100%),
+    linear-gradient(to right, rgba(15, 42, 44, 0.55), transparent 60%);
 }
-.g-navlink:hover,
-.g-navlink:focus-visible {
-  color: var(--geo-text);
-}
-.g-navlink:hover::after,
-.g-navlink:focus-visible::after {
-  transform: scaleX(1);
-}
-
-/* Hero backdrop motion — slow drift on the contour layer, scan sweep */
-@keyframes g-drift {
-  from {
-    transform: scale(1.06) translate(0, 0);
-  }
-  to {
-    transform: scale(1.14) translate(-1.5%, 1%);
-  }
-}
-.g-drift {
-  animation: g-drift 46s ease-in-out infinite alternate;
-  will-change: transform;
-}
-
-@keyframes g-scan {
-  from {
-    transform: translateY(-8vh);
-  }
-  to {
-    transform: translateY(108vh);
-  }
-}
-.g-scanline {
+/* Placeholder dusk: dark teal sky, pale fog bank, deep ground. */
+.dh-dusk {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 2.5rem;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(61, 220, 151, 0.1) 55%,
-    rgba(61, 220, 151, 0.35) 98%,
-    rgba(61, 220, 151, 0.6) 100%
-  );
-  animation: g-scan 9s linear infinite;
-  will-change: transform;
+  inset: 0;
+  background:
+    radial-gradient(70% 28% at 50% 66%, rgba(157, 181, 178, 0.55), transparent 70%),
+    radial-gradient(45% 20% at 20% 72%, rgba(157, 181, 178, 0.35), transparent 70%),
+    radial-gradient(55% 22% at 80% 70%, rgba(232, 116, 58, 0.18), transparent 70%),
+    linear-gradient(to bottom, #0b1f21 0%, #123234 42%, #2e4a46 62%, #9db5b2 70%, #2e4a46 78%, #0b1f21 100%);
+}
+.dh-dusk::before {
+  /* a far ridge line as one hard horizon */
+  content: '';
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  top: 72%;
+  height: 40%;
+  background: #0d2325;
+  clip-path: polygon(0 18%, 12% 10%, 24% 16%, 38% 6%, 52% 14%, 66% 4%, 80% 12%, 92% 6%, 100% 12%, 100% 100%, 0 100%);
+  opacity: 0.92;
+}
+.dh-dusk::after {
+  /* film grain over the fog */
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dh-hero-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 7.5rem;
+  padding-bottom: 2rem;
+}
+.dh-hero-h1 {
+  margin-top: 1rem;
+  font-size: clamp(2.6rem, 1.2rem + 6.4vw, 6.4rem);
+  max-width: 13ch;
+}
+.dh-hero-sub {
+  margin-top: 1.5rem;
+  max-width: 30rem;
+  color: var(--dh-muted);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+}
+.dh-hero-actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.dh-hero-eyebrow {
+  text-align: left;
 }
 
-.g-hero-scrim {
-  background: radial-gradient(
-    75% 90% at 22% 50%,
-    rgba(6, 10, 8, 0.86) 0%,
-    rgba(6, 10, 8, 0.6) 42%,
-    transparent 78%
-  );
+/* Bottom edge: scroll cue and the service ticker */
+.dh-hero-foot {
+  border-top: 1px solid var(--dh-line);
+  background: rgba(15, 42, 44, 0.55);
+  backdrop-filter: blur(4px);
 }
-
-/* Graticule over the hero backdrop. This is a measurement overlay
-   on a map surface — the reference frame the contours are read against —
-   not a decorative grid, and it appears on this one surface only. */
-.g-grid {
-  background-image:
-    linear-gradient(to right, rgba(61, 220, 151, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(61, 220, 151, 0.05) 1px, transparent 1px);
-  background-size: 72px 72px;
+.dh-hero-foot-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.25rem;
+  padding-block: 0.8rem;
 }
-
-/* ---------------------------------------------------------------------
-   Motion. This variant reads like an instrument refreshing its display:
-   content resolves under a scan pass rather than sliding in. Native
-   scroll-driven animation is the primary path; the IntersectionObserver
-   in Reveal.tsx is the fallback. Ambient drift and the hero scan sweep
-   are time-based and stay as they are.
---------------------------------------------------------------------- */
-@media (prefers-reduced-motion: no-preference) {
-  /* Fallback: class toggled by Reveal.tsx */
-  .g-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.85s var(--geo-ease),
-      transform 0.85s var(--geo-ease);
+.dh-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+.dh-cue-line {
+  display: inline-block;
+  width: 2.25rem;
+  height: 1px;
+  background: var(--dh-muted);
+}
+.dh-ticker {
+  overflow: hidden;
+  min-width: 0;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.dh-ticker-track {
+  display: flex;
+  width: max-content;
+  gap: 2.5rem;
+  padding-right: 2.5rem;
+  animation: dh-ticker 38s linear infinite;
+}
+.dh-ticker-item {
+  white-space: nowrap;
+  color: var(--dh-text);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.dh-ticker-item::before {
+  content: '·';
+  color: var(--dh-accent);
+  margin-right: 2.5rem;
+}
+@keyframes dh-ticker {
+  to {
+    transform: translateX(-50%);
   }
-  .g-reveal.g-in {
+}
+
+/* Sections — generous breathing room */
+.dh-section {
+  padding-block: clamp(4.5rem, 3rem + 7vw, 9rem);
+}
+.dh-h2 {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: clamp(2rem, 1.3rem + 3vw, 3.75rem);
+}
+
+/* Services — long quiet rows, no icon grid */
+.dh-rows {
+  margin-top: 3.5rem;
+  border-top: 1px solid var(--dh-line);
+}
+.dh-row {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem 1.5rem;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--dh-line);
+  transition: background-color 0.4s var(--dh-ease);
+}
+@media (min-width: 768px) {
+  .dh-row {
+    grid-template-columns: 4rem 1.1fr 1fr;
+    align-items: baseline;
+  }
+}
+.dh-row:hover {
+  background: rgba(22, 59, 61, 0.5);
+}
+.dh-row-title {
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+.dh-row-blurb {
+  grid-column: 2;
+  color: var(--dh-muted);
+  font-size: 0.9375rem;
+}
+@media (min-width: 768px) {
+  .dh-row-blurb {
+    grid-column: auto;
+  }
+}
+
+/* Reviews — single pale panels */
+.dh-panels {
+  margin-top: 3.5rem;
+  display: grid;
+  gap: 1px;
+  background: var(--dh-line);
+  border: 1px solid var(--dh-line);
+}
+@media (min-width: 768px) {
+  .dh-panels {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.dh-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 2rem 1.75rem;
+  background: var(--dh-surface);
+}
+.dh-quote {
+  flex: 1;
+  margin-top: 1rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.dh-stars {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--dh-accent);
+}
+
+/* Hours */
+.dh-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.dh-table th,
+.dh-table td {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--dh-line);
+}
+.dh-table th {
+  text-align: left;
+  font-weight: 400;
+}
+.dh-table td {
+  text-align: right;
+  color: var(--dh-muted);
+  font-variant-numeric: tabular-nums;
+}
+.dh-contact {
+  padding: 2rem 1.75rem;
+  background: var(--dh-surface);
+  border: 1px solid var(--dh-line);
+}
+.dh-contact-phone {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--dh-text);
+  border-bottom: 1px solid var(--dh-accent);
+  transition: color 0.3s var(--dh-ease);
+}
+.dh-contact-phone:hover,
+.dh-contact-phone:focus-visible {
+  color: var(--dh-accent);
+}
+
+/* Quote CTA — the surface band */
+.dh-quote-band {
+  background: var(--dh-surface);
+  border-top: 1px solid var(--dh-line);
+  border-bottom: 1px solid var(--dh-line);
+  text-align: center;
+}
+.dh-quote-phone {
+  color: var(--dh-text);
+  border-bottom: 1px solid var(--dh-muted);
+  transition: color 0.3s var(--dh-ease);
+}
+.dh-quote-phone:hover,
+.dh-quote-phone:focus-visible {
+  color: var(--dh-accent);
+}
+
+/* Footer */
+.dh-footer {
+  padding-block: 3rem;
+}
+.dh-footer-grid {
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 640px) {
+  .dh-footer-grid {
+    grid-template-columns: 1.2fr 1fr 1fr;
+  }
+}
+.dh-quiet {
+  color: var(--dh-muted);
+  transition: color 0.3s var(--dh-ease);
+}
+.dh-quiet:hover,
+.dh-quiet:focus-visible {
+  color: var(--dh-text);
+}
+
+/* Motion — slow, heavy fade-up, like fog lifting */
+@media (prefers-reduced-motion: no-preference) {
+  .geospatial .rv {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 1.1s var(--dh-ease),
+      transform 1.1s var(--dh-ease);
+  }
+  .geospatial .rv.rv-in {
     opacity: 1;
     transform: none;
   }
-
-  /* Arrival, not scroll: the hero readout comes up on load. */
-  .g-load {
-    animation: g-scan-in 0.9s var(--geo-ease) both;
-    animation-delay: var(--g-delay, 0s);
+  .geospatial .dh-load {
+    animation: dh-lift 1.2s var(--dh-ease) both;
+    animation-delay: var(--dh-delay, 0s);
   }
-
   @supports (animation-timeline: view()) {
-    .g-reveal {
+    .geospatial .rv {
       opacity: 1;
       transform: none;
       transition: none;
-      animation: g-scan-in 1s linear both;
+      animation: dh-lift 1s var(--dh-ease) both;
       animation-timeline: view();
-      animation-range: entry 10% entry 52%;
-    }
-
-    /* Staggered range offset within a group: set --g-ar per item */
-    .g-reveal-stagger {
-      animation-range: entry var(--g-ar, 0%) entry calc(var(--g-ar, 0%) + 44%);
-    }
-
-    /* Section tags extend their hairline tail as the section registers */
-    .g-tick-draw {
-      transform-origin: left;
-      animation: g-tick 1s var(--geo-ease) both;
-      animation-timeline: view();
-      animation-range: entry 12% entry 55%;
+      animation-range: entry 10% entry 55%;
     }
   }
-}
-
-/* The scan pass: a horizontal edge sweeps down and the readout resolves
-   behind it. Ends on a negative inset so hover glows are never clipped. */
-@keyframes g-scan-in {
-  from {
-    opacity: 0;
-    clip-path: inset(0 0 100% 0);
-    transform: translateY(12px);
-  }
-  60% {
-    opacity: 1;
-  }
-  to {
-    opacity: 1;
-    clip-path: inset(-40% -40% -40% -40%);
-    transform: none;
-  }
-}
-
-@keyframes g-tick {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .g-drift,
-  .g-scanline {
-    animation: none;
-  }
-  .g-scanline {
-    display: none;
-  }
-  /* Hover and focus still read through colour, border, and glow. */
-  .geospatial .g-btn:active {
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
   .geospatial {
     scroll-behavior: smooth;
+  }
+}
+@keyframes dh-lift {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dh-ticker-track {
+    animation: none;
+  }
+  .geospatial .dh-btn:active {
+    transform: none;
   }
 }

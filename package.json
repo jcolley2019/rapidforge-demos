@@ -12,15 +12,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/eb-garamond": "^5.3.0",
     "@fontsource-variable/figtree": "^5.3.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
     "@fontsource-variable/inter": "^5.3.0",
-    "@fontsource-variable/oswald": "^5.3.0",
     "@fontsource-variable/outfit": "^5.3.0",
-    "@fontsource/jetbrains-mono": "^5.3.0",
     "@fontsource/playfair-display": "^5.3.0",
-    "@fontsource/source-sans-3": "^5.3.0",
-    "@fontsource/space-grotesk": "^5.3.0",
     "@tailwindcss/vite": "^4.3.3",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -36,6 +33,7 @@
     "@vitejs/plugin-react": "^6.0.3",
     "jsdom": "^29.1.1",
     "oxlint": "^1.71.0",
+    "playwright": "^1.63.0",
     "typescript": "~6.0.2",
     "vite": "^8.1.1",
     "vitest": "^5.0.3"
