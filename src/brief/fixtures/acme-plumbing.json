@@ -1,0 +1,86 @@
+{
+  "business_name": "Acme Plumbing",
+  "vertical": "plumbing",
+  "tone_descriptors": [
+    "dependable",
+    "local",
+    "straight-talking",
+    "fast"
+  ],
+  "services": [
+    "Drain cleaning",
+    "Water heater repair and replacement",
+    "Leak detection",
+    "Sewer line repair",
+    "Fixture installation",
+    "Emergency plumbing"
+  ],
+  "review_quotes": [
+    {
+      "text": "Showed up within the hour and had our water heater back on before dinner. Fair price, no upsell.",
+      "rating": 5,
+      "author": "Dana R."
+    },
+    {
+      "text": "Found a slab leak two other companies missed. Explained every step and cleaned up after.",
+      "rating": 5,
+      "author": "Marcus T."
+    },
+    {
+      "text": "Good work on the sewer line. Scheduling took a couple of days, but the crew was great once they arrived.",
+      "rating": 4
+    }
+  ],
+  "photo_urls": [],
+  "hours": [
+    {
+      "day": "Monday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Tuesday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Wednesday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Thursday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Friday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "open": "8:00 AM",
+      "close": "2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "open": null,
+      "close": null
+    }
+  ],
+  "phone": "(208) 555-0142",
+  "address": "1480 Caldwell Blvd, Nampa, ID 83651",
+  "primary_cta": {
+    "label": "Book a Plumber",
+    "kind": "booking",
+    "href": "https://example.com/acme-plumbing/book"
+  },
+  "current_site_problem": "Current site is a single unresponsive page with no click-to-call, no hours, and a contact form that returns a 500 error.",
+  "generated_at": "2026-10-05T16:20:00Z",
+  "source": {
+    "audit_id": "audit_acme_plumbing_0001",
+    "haiku_model": "claude-haiku-4-5-20251001",
+    "template_fallback": false
+  }
+}
