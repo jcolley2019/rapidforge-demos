@@ -1,0 +1,355 @@
+/* Heritage variant — scoped palette, type, and primitives.
+   All colors live on .heritage so other variants are untouched. */
+
+.heritage {
+  --parchment: #f7f3ea;
+  --parchment-deep: #efe6d3;
+  --parchment-dark: #e3d4b6;
+  --ink: #2b2119;
+  --ink-soft: #5d4d3b;
+  --ink-faint: #8a7a63;
+  --brass: #a67c3d;
+  --brass-soft: #c2a066;
+  --sage: #75846d;
+  --flag-red: #96473a;
+  --h-ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+  background-color: var(--parchment);
+  color: var(--ink);
+  font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.heritage ::selection {
+  background: var(--brass);
+  color: var(--parchment);
+}
+
+/* Keyboard focus — brass keyline, square like the rest of the variant */
+.heritage :focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.heritage .h-on-ink :focus-visible {
+  outline-color: var(--brass-soft);
+}
+
+/* Anchor targets clear the sticky masthead */
+.heritage [id] {
+  scroll-margin-top: 6.5rem;
+}
+
+.h-display {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+}
+
+.heritage h1,
+.heritage h2,
+.heritage h3 {
+  text-wrap: balance;
+}
+
+/* Figures set on the letterpress grid: even columns, no wobble */
+.h-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.h-eyebrow {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+/* Thin brass rule that fades at the edges — the letterpress divider */
+.h-rule {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--brass) 18%,
+    var(--brass) 82%,
+    transparent
+  );
+  opacity: 0.55;
+}
+
+/* Short rule that starts hard at the left margin — used under section heads */
+.h-rule-short {
+  width: 10rem;
+  background: linear-gradient(to right, var(--brass), transparent);
+  opacity: 0.7;
+}
+
+/* Buttons — small caps, crisp edges, unhurried transitions */
+.h-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition:
+    background-color 0.45s var(--h-ease),
+    color 0.45s var(--h-ease),
+    border-color 0.45s var(--h-ease),
+    transform 0.45s var(--h-ease);
+}
+.h-btn:active {
+  transform: scale(0.98);
+}
+
+.h-btn-ink {
+  background: var(--ink);
+  color: var(--parchment);
+  border: 1px solid var(--ink);
+}
+.h-btn-ink:hover {
+  background: var(--brass);
+  border-color: var(--brass);
+}
+
+.h-btn-outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--brass);
+}
+.h-btn-outline:hover {
+  background: rgba(166, 124, 61, 0.12);
+}
+
+/* Buttons used on the dark ink band */
+.h-btn-brass {
+  background: var(--brass);
+  color: var(--parchment);
+  border: 1px solid var(--brass);
+}
+.h-btn-brass:hover {
+  background: var(--brass-soft);
+  border-color: var(--brass-soft);
+}
+
+.h-btn-outline-light {
+  background: transparent;
+  color: var(--parchment);
+  border: 1px solid rgba(247, 243, 234, 0.45);
+}
+.h-btn-outline-light:hover {
+  border-color: var(--brass-soft);
+  color: var(--brass-soft);
+}
+
+/* Nav links with a brass underline that draws in */
+.h-navlink {
+  position: relative;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 3px;
+  transition: color 0.4s var(--h-ease);
+}
+.h-navlink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--brass);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--h-ease);
+}
+.h-navlink:hover,
+.h-navlink:focus-visible {
+  color: var(--ink);
+}
+.h-navlink:hover::after,
+.h-navlink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Inline text links — brass underline that thickens on hover */
+.h-inline-link {
+  color: var(--brass);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition:
+    color 0.35s var(--h-ease),
+    text-decoration-thickness 0.35s var(--h-ease);
+}
+.h-inline-link:hover,
+.h-inline-link:focus-visible {
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+}
+.h-on-ink .h-inline-link {
+  color: var(--brass-soft);
+}
+.h-on-ink .h-inline-link:hover,
+.h-on-ink .h-inline-link:focus-visible {
+  color: var(--parchment);
+}
+
+/* Quiet list links (footer, utility) */
+.h-quiet-link {
+  color: var(--ink-soft);
+  transition: color 0.35s var(--h-ease);
+}
+.h-quiet-link:hover,
+.h-quiet-link:focus-visible {
+  color: var(--brass);
+}
+
+/* ---------------------------------------------------------------------
+   Motion. Stately and minimal — this variant does not bounce, scale, or
+   parallax. Type settles onto the page like a press impression: a short
+   lift, a long ease, nothing else. Native scroll-driven animation is the
+   primary path; the IntersectionObserver in Reveal.tsx is the fallback.
+--------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Fallback: class toggled by Reveal.tsx */
+  .h-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 1s var(--h-ease),
+      transform 1s var(--h-ease);
+  }
+  .h-reveal.h-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Arrival, not scroll: the hero settles once on load. */
+  .h-load {
+    animation: h-settle 1.1s var(--h-ease) both;
+    animation-delay: var(--h-delay, 0s);
+  }
+
+  @supports (animation-timeline: view()) {
+    .h-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      animation: h-settle 1s var(--h-ease) both;
+      animation-timeline: view();
+      animation-range: entry 12% entry 58%;
+    }
+
+    /* Staggered range offset within a group: set --h-ar per item */
+    .h-reveal-stagger {
+      animation-range: entry var(--h-ar, 0%) entry calc(var(--h-ar, 0%) + 48%);
+    }
+
+    /* The one authored moment: section rules press in from the left
+       as the heading crosses the fold. */
+    .h-rule-draw {
+      transform-origin: left;
+      animation: h-press 1s var(--h-ease) both;
+      animation-timeline: view();
+      animation-range: entry 15% entry 62%;
+    }
+  }
+}
+
+@keyframes h-settle {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes h-press {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 0.7;
+  }
+}
+
+/* Paper grain — fixed, non-interactive, barely there */
+.h-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Letterpress plate: the numbered header block on catalog entries */
+.h-plate {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid rgba(166, 124, 61, 0.3);
+  background: linear-gradient(
+    to bottom,
+    rgba(227, 212, 182, 0.5),
+    rgba(239, 230, 211, 0.35)
+  );
+}
+.h-plate-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--brass);
+  font-variant-numeric: tabular-nums;
+}
+
+.h-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border: 1px solid rgba(166, 124, 61, 0.4);
+  background: var(--parchment);
+  transition:
+    border-color 0.5s var(--h-ease),
+    box-shadow 0.5s var(--h-ease),
+    transform 0.5s var(--h-ease);
+}
+.h-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--brass);
+  box-shadow: 0 24px 50px -30px rgba(43, 33, 25, 0.45);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .heritage {
+    scroll-behavior: smooth;
+  }
+}
+
+/* With motion reduced, nothing in this variant translates or scales —
+   hover and focus still read through colour, border, and shadow. */
+@media (prefers-reduced-motion: reduce) {
+  .heritage .h-btn:active,
+  .heritage .h-card:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,366 @@
+/* Clean Pro variant — light, airy professional-services design system.
+   Everything is scoped to .cleanpro so other variants are untouched. */
+
+.cleanpro {
+  --cp-white: #ffffff;
+  --cp-gray: #f5f7fa;
+  --cp-navy: #16243d;
+  --cp-navy-soft: #4b5a74;
+  --cp-blue: #1d6fe0;
+  --cp-blue-dark: #1558b8;
+  --cp-blue-tint: #e8f0fc;
+  --cp-blue-tint-2: #d5e5fa;
+  --cp-amber: #e8a020;
+  --cp-border: #e3e8f0;
+  --cp-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --cp-shadow-soft: 0 1px 2px rgba(22, 36, 61, 0.04), 0 8px 24px -6px rgba(22, 36, 61, 0.07);
+  --cp-shadow-lift: 0 2px 6px rgba(22, 36, 61, 0.05), 0 24px 48px -12px rgba(22, 36, 61, 0.16);
+  --cp-radius: 16px;
+  --cp-radius-lg: 24px;
+
+  background-color: var(--cp-white);
+  color: var(--cp-navy);
+  font-family: 'Figtree Variable', 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.cleanpro ::selection {
+  background: var(--cp-blue);
+  color: #ffffff;
+}
+
+.cleanpro :focus-visible {
+  outline: 2px solid var(--cp-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* On the deep-blue band and navy panel, the blue ring disappears */
+.cp-on-blue :focus-visible,
+.cp-on-navy :focus-visible {
+  outline-color: #ffffff;
+}
+
+/* Anchor targets clear the sticky nav */
+.cleanpro [id] {
+  scroll-margin-top: 5.5rem;
+}
+
+.cleanpro h1,
+.cleanpro h2,
+.cleanpro h3 {
+  text-wrap: balance;
+}
+
+.cp-num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Section shell */
+.cp-section {
+  padding: 7rem 1.5rem;
+}
+@media (max-width: 640px) {
+  .cp-section {
+    padding: 4.5rem 1.25rem;
+  }
+}
+
+.cp-container {
+  max-width: 72rem;
+  /* margin-inline, not the margin shorthand: the shorthand would reset the
+     block margins set by utilities on the same element. */
+  margin-inline: auto;
+}
+
+/* Type */
+.cp-eyebrow {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cp-blue);
+  margin-bottom: 0.75rem;
+}
+
+.cp-h1 {
+  font-size: clamp(2.5rem, 1.5rem + 3.2vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  color: var(--cp-navy);
+}
+
+.cp-h2 {
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--cp-navy);
+}
+
+.cp-lead {
+  font-size: 1.0625rem;
+  color: var(--cp-navy-soft);
+  max-width: 42rem;
+}
+
+/* Buttons */
+.cp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 999px;
+  transition:
+    background-color 0.45s var(--cp-ease),
+    color 0.45s var(--cp-ease),
+    border-color 0.45s var(--cp-ease),
+    box-shadow 0.45s var(--cp-ease),
+    transform 0.45s var(--cp-ease);
+}
+.cp-btn:active {
+  transform: scale(0.98);
+}
+
+.cp-btn-primary {
+  background: var(--cp-blue);
+  color: #ffffff;
+  box-shadow: 0 6px 18px -4px rgba(29, 111, 224, 0.4);
+}
+.cp-btn-primary:hover {
+  background: var(--cp-blue-dark);
+  box-shadow: 0 10px 28px -6px rgba(29, 111, 224, 0.5);
+}
+
+/* Nested trailing-icon circle inside pill buttons */
+.cp-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: -0.75rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  transition: transform 0.45s var(--cp-ease);
+}
+.cp-btn:hover .cp-btn-icon {
+  transform: translateX(3px);
+}
+
+.cp-btn-ghost {
+  background: transparent;
+  color: var(--cp-navy);
+  border: 1.5px solid var(--cp-border);
+}
+.cp-btn-ghost:hover,
+.cp-btn-ghost:focus-visible {
+  border-color: var(--cp-blue);
+  color: var(--cp-blue);
+  background: var(--cp-blue-tint);
+}
+
+/* Nav links — CSS-driven hover and focus, no JS colour swapping */
+.cp-navlink {
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--cp-navy-soft);
+  transition: color 0.35s var(--cp-ease);
+}
+.cp-navlink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.4rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cp-blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--cp-ease);
+}
+.cp-navlink:hover,
+.cp-navlink:focus-visible {
+  color: var(--cp-blue);
+}
+.cp-navlink:hover::after,
+.cp-navlink:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Inline text links */
+.cp-inline-link {
+  color: var(--cp-blue);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition:
+    color 0.35s var(--cp-ease),
+    text-decoration-color 0.35s var(--cp-ease);
+}
+.cp-inline-link:hover,
+.cp-inline-link:focus-visible {
+  color: var(--cp-blue-dark);
+  text-decoration-color: currentColor;
+}
+
+/* Quiet list links (footer) */
+.cp-quiet-link {
+  color: var(--cp-navy-soft);
+  transition: color 0.3s var(--cp-ease);
+}
+.cp-quiet-link:hover,
+.cp-quiet-link:focus-visible {
+  color: var(--cp-blue);
+}
+
+/* The in-card action link, with its own arrow motion */
+.cp-cardlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cp-blue);
+  transition: color 0.35s var(--cp-ease);
+}
+.cp-cardlink .cp-cardlink-mark {
+  transition: transform 0.45s var(--cp-ease);
+}
+.cp-cardlink:hover,
+.cp-cardlink:focus-visible {
+  color: var(--cp-blue-dark);
+}
+.cp-card:hover .cp-cardlink-mark,
+.cp-cardlink:hover .cp-cardlink-mark,
+.cp-cardlink:focus-visible .cp-cardlink-mark {
+  transform: translateX(4px);
+}
+
+/* Double-bezel shell: hairline tray around a rounded inner core */
+.cp-bezel {
+  padding: 0.4rem;
+  border-radius: calc(var(--cp-radius-lg) + 0.4rem);
+  background: rgba(22, 36, 61, 0.04);
+  box-shadow: inset 0 0 0 1px rgba(22, 36, 61, 0.06);
+}
+.cp-bezel > * {
+  border-radius: var(--cp-radius-lg);
+}
+
+.cp-btn-white {
+  background: #ffffff;
+  color: var(--cp-navy);
+}
+.cp-btn-white:hover {
+  background: var(--cp-blue-tint);
+}
+
+/* Cards */
+.cp-card {
+  background: var(--cp-white);
+  border: 1px solid var(--cp-border);
+  border-radius: var(--cp-radius);
+  box-shadow: var(--cp-shadow-soft);
+  transition:
+    box-shadow 0.5s var(--cp-ease),
+    transform 0.5s var(--cp-ease),
+    border-color 0.5s var(--cp-ease);
+}
+.cp-card:hover,
+.cp-card:focus-within {
+  box-shadow: var(--cp-shadow-lift);
+  transform: translateY(-3px);
+  border-color: var(--cp-blue-tint-2);
+}
+
+/* ---------------------------------------------------------------------
+   Motion. Soft and brisk — the shortest travel and the quickest resolve
+   of the five variants, so the page feels efficient rather than staged.
+   Native scroll-driven animation is the primary path; the
+   IntersectionObserver in Reveal.tsx is the fallback.
+--------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Fallback: class toggled by Reveal.tsx */
+  .cp-reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.7s var(--cp-ease),
+      transform 0.7s var(--cp-ease);
+  }
+  .cp-reveal.cp-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Arrival, not scroll: the hero resolves out of a soft blur on load. */
+  .cp-load {
+    animation: cp-resolve 0.9s var(--cp-ease) both;
+    animation-delay: var(--cp-delay, 0s);
+  }
+  @keyframes cp-resolve {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    .cp-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      animation: cp-rise 1s var(--cp-ease) both;
+      animation-timeline: view();
+      animation-range: entry 15% entry 50%;
+    }
+    @keyframes cp-rise {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* Staggered range offset within a group: set --cp-ar per item */
+    .cp-reveal-stagger {
+      animation-range: entry var(--cp-ar, 0%) entry calc(var(--cp-ar, 0%) + 40%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cleanpro *,
+  .cleanpro *::before,
+  .cleanpro *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cleanpro {
+    scroll-behavior: smooth;
+  }
+}

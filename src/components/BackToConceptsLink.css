@@ -1,0 +1,98 @@
+/* The persistent way back to the concept index. It sits on top of five
+   very different pages, so it takes its colours from whichever variant
+   is hosting it and falls back to a neutral chip. */
+
+.bc-back {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1rem;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--bc-fg, #f2f4f8);
+  background: var(--bc-bg, #16191f);
+  border: 1px solid var(--bc-border, rgba(255, 255, 255, 0.16));
+  border-radius: var(--bc-radius, 999px);
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.8);
+  transition:
+    background-color 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+    border-color 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+    color 0.4s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.bc-back-mark {
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.bc-back:hover,
+.bc-back:focus-visible {
+  border-color: var(--bc-accent, #c8a06a);
+  color: var(--bc-fg-strong, #ffffff);
+  transform: translateY(-2px);
+}
+.bc-back:hover .bc-back-mark,
+.bc-back:focus-visible .bc-back-mark {
+  transform: translateX(-0.25rem);
+}
+.bc-back:active {
+  transform: translateY(0);
+}
+
+/* Per-variant chip, so it reads as part of the page it is sitting on. */
+.heritage {
+  --bc-bg: #f7f3ea;
+  --bc-fg: #5d4d3b;
+  --bc-fg-strong: #2b2119;
+  --bc-border: rgba(166, 124, 61, 0.55);
+  --bc-accent: #a67c3d;
+  --bc-radius: 2px;
+}
+.geospatial {
+  --bc-bg: #0f1714;
+  --bc-fg: #96a69d;
+  --bc-fg-strong: #e4ede8;
+  --bc-border: rgba(61, 220, 151, 0.35);
+  --bc-accent: #3ddc97;
+  --bc-radius: 3px;
+}
+.cleanpro {
+  --bc-bg: #ffffff;
+  --bc-fg: #4b5a74;
+  --bc-fg-strong: #16243d;
+  --bc-border: #e3e8f0;
+  --bc-accent: #1d6fe0;
+  --bc-radius: 999px;
+}
+.texas {
+  --bc-bg: #141414;
+  --bc-fg: #f4f1ec;
+  --bc-fg-strong: #f66b0e;
+  --bc-border: #f66b0e;
+  --bc-accent: #f66b0e;
+  --bc-radius: 0;
+}
+.aerial {
+  --bc-bg: rgba(11, 17, 32, 0.94);
+  --bc-fg: #aab4c5;
+  --bc-fg-strong: #f2eee6;
+  --bc-border: rgba(232, 165, 82, 0.35);
+  --bc-accent: #e8a552;
+  --bc-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bc-back,
+  .bc-back-mark {
+    transition: none;
+  }
+  .bc-back:hover,
+  .bc-back:focus-visible {
+    transform: none;
+  }
+}

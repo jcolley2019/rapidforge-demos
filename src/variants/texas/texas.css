@@ -1,0 +1,333 @@
+/* Texas Modern variant — heavy-equipment confidence: charcoal, off-white,
+   safety orange, condensed display type, hard edges. Scoped to .texas. */
+
+.texas {
+  --tx-black: #141414;
+  --tx-black-2: #1c1c1c;
+  --tx-paper: #f4f1ec;
+  --tx-paper-2: #ece8e0;
+  --tx-orange: #f66b0e;
+  --tx-orange-deep: #c8530a;
+  --tx-steel-on-dark: #a3a39c;
+  --tx-steel-on-light: #6b6963;
+  --tx-line-on-light: rgba(20, 20, 20, 0.9);
+  --tx-ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Modular type scale (1.25 ratio, clamped at the display end). */
+  --tx-t-1: 0.8125rem;
+  --tx-t0: 1rem;
+  --tx-t1: 1.25rem;
+  --tx-t2: 1.5625rem;
+  --tx-t3: clamp(1.6rem, 1.1rem + 2vw, 1.953rem);
+  --tx-t4: clamp(2rem, 1.2rem + 3.4vw, 3.05rem);
+  --tx-t5: clamp(2.6rem, 1.4rem + 6vw, 4.75rem);
+  --tx-t6: clamp(3.4rem, 1.6rem + 9vw, 7.5rem);
+  --tx-num: clamp(9rem, 4rem + 24vw, 16rem);
+
+  background-color: var(--tx-paper);
+  color: var(--tx-black);
+  font-family: 'Archivo Variable', 'Segoe UI', system-ui, sans-serif;
+  font-size: var(--tx-t0);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.texas ::selection {
+  background: var(--tx-orange);
+  color: var(--tx-black);
+}
+
+.texas :focus-visible {
+  outline: 3px solid var(--tx-orange);
+  outline-offset: 3px;
+}
+.texas .tx-on-orange :focus-visible,
+.texas a.tx-btn-orange:focus-visible {
+  outline-color: var(--tx-black);
+}
+
+.texas [id] {
+  scroll-margin-top: 6rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .texas {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Survey monument: a filled square set before a figure. Used where the
+   variant needs a mark rather than another rule. */
+.tx-monument::before {
+  content: '';
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.625rem;
+  vertical-align: 0.05em;
+  background: var(--tx-orange);
+}
+
+/* Orange-on-dark text links */
+.tx-hot-link {
+  transition: color 0.3s var(--tx-ease);
+}
+.tx-hot-link:hover,
+.tx-hot-link:focus-visible {
+  color: var(--tx-orange);
+}
+
+/* Display type */
+.tx-display {
+  font-family: 'Oswald Variable', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.tx-label {
+  font-family: 'Oswald Variable', 'Arial Narrow', sans-serif;
+  font-weight: 500;
+  font-size: var(--tx-t-1);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+}
+
+.tx-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Layout */
+.tx-container {
+  max-width: 78rem;
+  /* margin-inline, not the margin shorthand: the shorthand would reset the
+     block margins set by utilities on the same element. */
+  margin-inline: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.tx-section {
+  padding-top: 6.5rem;
+  padding-bottom: 6.5rem;
+}
+@media (max-width: 640px) {
+  .tx-section {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
+/* Thick rules — the section grammar of this variant */
+.tx-rule-orange {
+  border-top: 4px solid var(--tx-orange);
+}
+.tx-rule-black {
+  border-top: 3px solid var(--tx-black);
+}
+
+/* Buttons — hard-edged, inversion on hover */
+.tx-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2.25rem;
+  font-family: 'Oswald Variable', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: var(--tx-t0);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 2px solid transparent;
+  transition:
+    background-color 0.35s var(--tx-ease),
+    color 0.35s var(--tx-ease),
+    border-color 0.35s var(--tx-ease);
+}
+
+.tx-btn-orange {
+  background: var(--tx-orange);
+  color: var(--tx-black);
+  border-color: var(--tx-orange);
+}
+.tx-btn-orange:hover {
+  background: transparent;
+  color: var(--tx-orange);
+}
+
+.tx-btn-outline-light {
+  background: transparent;
+  color: var(--tx-paper);
+  border-color: var(--tx-paper);
+}
+.tx-btn-outline-light:hover {
+  background: var(--tx-paper);
+  color: var(--tx-black);
+}
+
+.tx-btn-outline-dark {
+  background: transparent;
+  color: var(--tx-black);
+  border-color: var(--tx-black);
+}
+.tx-btn-outline-dark:hover {
+  background: var(--tx-black);
+  color: var(--tx-paper);
+}
+
+/* Underline-on-hover nav links */
+.tx-navlink {
+  position: relative;
+  transition: color 0.3s var(--tx-ease);
+}
+.tx-navlink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 3px;
+  background: var(--tx-orange);
+  transition: right 0.35s var(--tx-ease);
+}
+.tx-navlink:hover::after {
+  right: 0;
+}
+
+/* Service table cells — invert on hover */
+.tx-cell {
+  transition:
+    background-color 0.4s var(--tx-ease),
+    color 0.4s var(--tx-ease);
+}
+.tx-cell:hover {
+  background: var(--tx-black);
+  color: var(--tx-paper);
+}
+.tx-cell-desc {
+  color: var(--tx-steel-on-light);
+  transition: color 0.4s var(--tx-ease);
+}
+.tx-cell:hover .tx-cell-desc {
+  color: var(--tx-steel-on-dark);
+}
+
+/* ---------------------------------------------------------------------
+   Motion. IntersectionObserver fallback is the base; CSS scroll-driven
+   animations take over under @supports. Everything sits behind
+   prefers-reduced-motion: no-preference.
+--------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Fallback: class toggled by Reveal.tsx */
+  .tx-reveal {
+    opacity: 0;
+    transform: translateY(2rem);
+    transition:
+      opacity 0.75s var(--tx-ease),
+      transform 0.75s var(--tx-ease);
+  }
+  .tx-reveal.tx-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Numeral slide-in flavor */
+  .tx-reveal-slide {
+    transform: translateX(-4rem);
+  }
+  .tx-reveal-slide.tx-in {
+    transform: none;
+  }
+
+  /* Arrival, not scroll: the hero stamps in on load. */
+  .tx-load {
+    animation: tx-rise 0.9s var(--tx-ease) both;
+    animation-delay: var(--tx-delay, 0s);
+  }
+
+  @supports (animation-timeline: view()) {
+    .tx-reveal,
+    .tx-reveal-slide {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      animation: tx-rise 1s var(--tx-ease) both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 55%;
+    }
+    .tx-reveal-slide {
+      animation-name: tx-slide;
+    }
+
+    /* Staggered range offset for grid cells: set --tx-ar per cell */
+    .tx-reveal-stagger {
+      animation-range: entry var(--tx-ar, 0%) entry calc(var(--tx-ar, 0%) + 45%);
+    }
+
+    /* Scroll-linked parallax drift for media panels */
+    .tx-parallax {
+      overflow: clip;
+    }
+    .tx-parallax > * {
+      animation: tx-drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    .tx-parallax-text {
+      animation: tx-drift-slow linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+  }
+}
+
+@keyframes tx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tx-slide {
+  from {
+    opacity: 0;
+    transform: translateX(-5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes tx-drift {
+  from {
+    transform: translateY(-5%) scale(1.12);
+  }
+  to {
+    transform: translateY(5%) scale(1.12);
+  }
+}
+
+@keyframes tx-drift-slow {
+  from {
+    transform: translateY(1.5rem);
+  }
+  to {
+    transform: translateY(-1.5rem);
+  }
+}
+
+/* With motion reduced the cell inversion still carries hover; the
+   underline sweep resolves instantly rather than travelling. */
+@media (prefers-reduced-motion: reduce) {
+  .texas .tx-navlink::after {
+    transition: none;
+  }
+}
