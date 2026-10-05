@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react'
-import { content } from '../../content/content'
+import { siteContent as site } from '../../brief/current'
+import { navLinks } from '../../brief/site-helpers'
+import Brand from './Brand'
 
-const links = [
-  { href: '#services', label: 'Services' },
-  { href: '#why-us', label: 'Why Us' },
-  { href: '#process', label: 'Process' },
-  { href: '#team', label: 'Team' },
-  { href: '#contact', label: 'Contact' },
-]
+const links = navLinks(site, 'Hours & Contact')
 
 export default function CleanNav() {
   const [scrolled, setScrolled] = useState(false)
@@ -25,8 +21,8 @@ export default function CleanNav() {
       style={{ boxShadow: scrolled ? 'var(--cp-shadow-soft)' : 'none' }}
     >
       <div className="cp-container flex items-center justify-between gap-4 px-6 py-4">
-        <a href="#top" className="text-lg font-extrabold tracking-tight" style={{ color: 'var(--cp-navy)' }}>
-          Brittain <span style={{ color: 'var(--cp-blue)' }}>&amp;</span> Crawford
+        <a href="#top" className="text-lg font-extrabold tracking-tight">
+          <Brand />
         </a>
         <div className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
@@ -35,8 +31,8 @@ export default function CleanNav() {
             </a>
           ))}
         </div>
-        <a href={`mailto:${content.contact.quoteEmail}`} className="cp-btn cp-btn-primary !px-5 !py-2.5 text-sm">
-          Get a Quote
+        <a href={site.cta.href} className="cp-btn cp-btn-primary !px-5 !py-2.5 text-sm">
+          {site.cta.label}
         </a>
       </div>
     </nav>

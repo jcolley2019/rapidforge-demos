@@ -57,7 +57,7 @@
   }
 }
 
-/* Survey monument: a filled square set before a figure. Used where the
+/* Monument mark: a filled square set before a figure. Used where the
    variant needs a mark rather than another rule. */
 .tx-monument::before {
   content: '';

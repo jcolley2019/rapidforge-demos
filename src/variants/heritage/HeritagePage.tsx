@@ -6,19 +6,18 @@ import '@fontsource/source-sans-3/600.css'
 import './heritage.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
+import { usePageTitle } from '../usePageTitle'
 import UtilityBar from './UtilityBar'
 import HeritageNav from './HeritageNav'
 import Hero from './Hero'
-import Legacy from './Legacy'
-import StatsBar from './StatsBar'
 import Services from './Services'
-import Technology from './Technology'
-import Team from './Team'
-import TrustedBy from './TrustedBy'
+import Reviews from './Reviews'
+import HoursContact from './HoursContact'
 import QuoteCta from './QuoteCta'
 import HeritageFooter from './HeritageFooter'
 
 export default function HeritagePage() {
+  usePageTitle('heritage')
   return (
     <div className="heritage" id="top">
       <div className="h-grain" aria-hidden="true" />
@@ -27,12 +26,9 @@ export default function HeritagePage() {
       <HeritageNav />
       <main>
         <Hero />
-        <Legacy />
-        <StatsBar />
         <Services />
-        <Technology />
-        <Team />
-        <TrustedBy />
+        <Reviews />
+        <HoursContact />
         <QuoteCta />
       </main>
       <HeritageFooter />

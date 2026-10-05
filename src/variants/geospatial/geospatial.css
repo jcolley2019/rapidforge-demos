@@ -264,7 +264,7 @@
   );
 }
 
-/* Survey graticule over the hero backdrop. This is a measurement overlay
+/* Graticule over the hero backdrop. This is a measurement overlay
    on a map surface — the reference frame the contours are read against —
    not a decorative grid, and it appears on this one surface only. */
 .g-grid {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { content } from '../../content/content'
+import { siteContent as site } from '../../brief/current'
 
 /**
  * Minimal top bar: transparent while the hero is on screen, a soft
@@ -22,14 +22,16 @@ export default function AerialTopBar() {
   return (
     <header className={`ae-topbar ${solid ? 'ae-topbar-solid' : ''}`}>
       <a href="#top" className="ae-wordmark ae-link">
-        {content.shortName}
+        {site.shortName}
       </a>
       <div className="ae-topbar-right">
-        <a href={content.contact.phoneHref} className="ae-topbar-phone ae-link">
-          {content.contact.phone}
-        </a>
-        <a href="#quote" className="ae-topbar-quote">
-          Request a Survey
+        {site.phoneHref && (
+          <a href={site.phoneHref} className="ae-topbar-phone ae-link">
+            {site.phone}
+          </a>
+        )}
+        <a href={site.cta.href} className="ae-topbar-quote">
+          {site.cta.label}
         </a>
       </div>
     </header>

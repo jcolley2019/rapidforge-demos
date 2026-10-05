@@ -1,0 +1,22 @@
+{
+  "business_name": "Sparse Electric",
+  "vertical": "electrician",
+  "tone_descriptors": ["licensed", "careful", "local"],
+  "services": ["Panel upgrades"],
+  "review_quotes": [],
+  "photo_urls": [],
+  "hours": null,
+  "phone": null,
+  "address": null,
+  "primary_cta": {
+    "label": "Request a Quote",
+    "kind": "form",
+    "href": "#quote"
+  },
+  "current_site_problem": "No website found; the only online presence is an unclaimed directory listing with a wrong phone number.",
+  "generated_at": "2026-10-05T17:05:00Z",
+  "source": {
+    "audit_id": "audit_sparse_electric_0002",
+    "template_fallback": true
+  }
+}

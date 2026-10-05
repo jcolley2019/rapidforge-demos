@@ -10,7 +10,7 @@
   --pk-text: #e9ecf1;
   --pk-text-dim: #99a1ae;
   --pk-text-faint: #6c7482;
-  --pk-mark: #c8a06a; /* brass, the one accent — a surveyor's instrument */
+  --pk-mark: #c8a06a; /* brass, the one accent */
   --pk-ease: cubic-bezier(0.32, 0.72, 0, 1);
 
   min-height: 100dvh;

@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react'
-import { content } from '../../content/content'
+import { siteContent as site } from '../../brief/current'
+import { localityLine } from '../../brief/site-helpers'
 import ParallaxLayer from './ParallaxLayer'
 
 /**
@@ -17,7 +18,6 @@ function ContourBand({
   offset: number
   width: number
 }) {
-  // Gentle ridgelines, hand-drawn: each path is the previous nudged down.
   const rows = [0, 46, 96, 152, 214, 282]
   return (
     <svg viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -44,7 +44,6 @@ const delay = (s: number) => ({ '--ae-delay': `${s}s` }) as CSSProperties
 export default function AerialHero() {
   return (
     <section className="ae-hero" aria-label="Introduction">
-      {/* three depth layers: far, mid, near */}
       <div className="ae-hero-layer">
         <ParallaxLayer drift={1.5} style={{ height: '100%' }}>
           <ContourBand stroke="#aab4c5" opacity={0.1} offset={-140} width={0.8} />
@@ -62,22 +61,25 @@ export default function AerialHero() {
       </div>
 
       <div className="ae-hero-content ae-wrap">
-        <p className="ae-eyebrow ae-hero-rise">
-          Aerial &amp; Ground Surveying — Fort Worth, TX
-        </p>
+        <p className="ae-eyebrow ae-hero-rise">{localityLine(site)}</p>
         <h1 className="ae-hero-headline ae-hero-rise" style={delay(0.12)}>
-          {content.taglines.primary}
+          {site.headline}
         </h1>
         <p className="ae-hero-sub ae-hero-rise" style={delay(0.24)}>
-          {content.taglines.secondary}
+          {site.subhead}
         </p>
         <div className="ae-hero-cta-row ae-hero-rise" style={delay(0.36)}>
-          <a href="#quote" className="ae-cta">
-            Request a survey
+          <a href={site.cta.href} className="ae-cta">
+            {site.cta.label}
             <span className="ae-cta-mark" aria-hidden="true">
               &rarr;
             </span>
           </a>
+          {site.phoneHref && (
+            <a href={site.phoneHref} className="ae-quote-phone ae-link">
+              {site.phone}
+            </a>
+          )}
         </div>
       </div>
 
