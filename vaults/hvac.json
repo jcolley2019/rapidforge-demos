@@ -1,0 +1,5442 @@
+{
+  "meta": {
+    "vertical": "hvac",
+    "brick": "RFD.VAULT.4",
+    "generatedAt": "2026-10-06T20:25:53.196Z",
+    "entries": 12,
+    "picks": [
+      {
+        "slug": "a1heating",
+        "company": "A-1 Heating, Air Conditioning & Electric",
+        "segment": "residential",
+        "metro": "Boise",
+        "query": "Boise hvac",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "randrheating",
+        "company": "R&R Heating & Air Conditioning",
+        "segment": "residential",
+        "metro": "Spokane",
+        "query": "Spokane hvac",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "iwantairtoday",
+        "company": "Air Today Heating & Cooling",
+        "segment": "residential",
+        "metro": "Greenville SC",
+        "query": "Greenville SC hvac",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "northtarrantac",
+        "company": "North Tarrant Heat & Air",
+        "segment": "residential",
+        "metro": "Fort Worth",
+        "query": "Fort Worth hvac",
+        "rank": 4,
+        "status": "entry"
+      },
+      {
+        "slug": "tsshvac",
+        "company": "TSS HVAC Services (Total System Services)",
+        "segment": "commercial",
+        "metro": "Boise",
+        "query": "commercial hvac contractor Boise",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "divcoec",
+        "company": "DIVCO",
+        "segment": "commercial",
+        "metro": "Spokane",
+        "query": "commercial hvac contractor Spokane",
+        "rank": 3,
+        "status": "entry"
+      },
+      {
+        "slug": "mtrosehvac",
+        "company": "Mt. Rose Heating & Air Conditioning",
+        "segment": "commercial",
+        "metro": "Reno",
+        "query": "commercial hvac contractor Reno",
+        "rank": 5,
+        "status": "entry"
+      },
+      {
+        "slug": "dynaserviceok",
+        "company": "Dyna Service",
+        "segment": "commercial",
+        "metro": "Tulsa",
+        "query": "commercial hvac contractor Tulsa",
+        "rank": 5,
+        "status": "entry"
+      },
+      {
+        "slug": "a1united",
+        "company": "A-1 United Heating, Air & Electrical",
+        "segment": "new_construction",
+        "metro": "Omaha",
+        "query": "new construction hvac Omaha",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "temp-con",
+        "company": "Temperature Control, Inc.",
+        "segment": "new_construction",
+        "metro": "Tucson",
+        "query": "new construction hvac Tucson",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "bandkservices",
+        "company": "B & K Services",
+        "segment": "new_construction",
+        "metro": "Greenville SC",
+        "query": "new construction hvac Greenville SC",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "arthurhagar",
+        "company": "Arthur Hagar Air Conditioning & Heating",
+        "segment": "new_construction",
+        "metro": "Fort Worth",
+        "query": "new construction hvac Fort Worth",
+        "rank": 2,
+        "status": "entry"
+      }
+    ],
+    "search": {
+      "metros": [
+        "Boise",
+        "Spokane",
+        "Reno",
+        "Tucson",
+        "Omaha",
+        "Tulsa",
+        "Greenville SC",
+        "Fort Worth"
+      ],
+      "queries": {
+        "residential": "<city> hvac",
+        "commercial": "commercial hvac contractor <city>",
+        "new_construction": "new construction hvac <city>"
+      },
+      "rankMethod": "rank = 1-based position of the pick in the WebSearch result list for the exact query string. The unfiltered lists were almost entirely directories, job boards and franchise pages, so each query was re-run with the vertical's blockedDomains filter below; rejected results that still came through count toward the rank.",
+      "blockedDomains": [
+        "yelp.com"
+      ]
+    },
+    "capture": "Playwright Chromium, desktop 1440x900 and mobile 390x844 full-page PNGs; facts from the live DOM (scripts/vault-capture.mjs)",
+    "vision": "claude-sonnet-5-5, effort medium, desktop screenshot strips (scripts/vault-ingest.mjs)",
+    "clustering": {
+      "method": "exhaustive k-medoids on palette/type/hero distance, at least 2 sites per family, k by silhouette",
+      "k": 4,
+      "silhouette": 0.214,
+      "tried": [
+        {
+          "k": 4,
+          "silhouette": 0.214
+        },
+        {
+          "k": 5,
+          "silhouette": 0.041
+        },
+        {
+          "k": 6,
+          "silhouette": -0.008
+        }
+      ]
+    },
+    "familyCopy": "claude-sonnet-5-5, text only, from member entries; House DNA from counted conventions",
+    "contactSheet": "hvac-contact-sheet.jpg"
+  },
+  "conventions": {
+    "sites": 12,
+    "stickyPhone": {
+      "count": 4,
+      "of": 12,
+      "rule": "a phone number or call link stays pinned while scrolling, desktop or mobile (DOM)",
+      "sites": [
+        "iwantairtoday",
+        "tsshvac",
+        "mtrosehvac",
+        "a1united"
+      ]
+    },
+    "stickyHeader": {
+      "count": 5,
+      "of": 12,
+      "rule": "header bar stays pinned at the top while scrolling on desktop (DOM)",
+      "sites": [
+        "a1heating",
+        "iwantairtoday",
+        "tsshvac",
+        "divcoec",
+        "a1united"
+      ]
+    },
+    "phoneFirstMobileScreen": {
+      "count": 10,
+      "of": 12,
+      "rule": "phone number fully visible in the first 390x844 viewport (DOM)",
+      "sites": [
+        "a1heating",
+        "randrheating",
+        "iwantairtoday",
+        "tsshvac",
+        "divcoec",
+        "mtrosehvac",
+        "dynaserviceok",
+        "a1united",
+        "temp-con",
+        "arthurhagar"
+      ]
+    },
+    "callLinkFirstMobileScreen": {
+      "count": 12,
+      "of": 12,
+      "rule": "a tap-to-call link (number or icon) visible in the first 390x844 viewport (DOM)",
+      "sites": [
+        "a1heating",
+        "randrheating",
+        "iwantairtoday",
+        "northtarrantac",
+        "tsshvac",
+        "divcoec",
+        "mtrosehvac",
+        "dynaserviceok",
+        "a1united",
+        "temp-con",
+        "bandkservices",
+        "arthurhagar"
+      ]
+    },
+    "trustBar": {
+      "count": 3,
+      "of": 12,
+      "rule": "dedicated strip of trust badges or claims near the top (vision)",
+      "sites": [
+        "a1heating",
+        "iwantairtoday",
+        "bandkservices"
+      ]
+    },
+    "couponOrFinancing": {
+      "count": 8,
+      "of": 12,
+      "rule": "visible coupon, special-offer or financing block (vision)",
+      "sites": [
+        "a1heating",
+        "randrheating",
+        "iwantairtoday",
+        "northtarrantac",
+        "a1united",
+        "temp-con",
+        "bandkservices",
+        "arthurhagar"
+      ]
+    },
+    "serviceAreaList": {
+      "count": 5,
+      "of": 12,
+      "rule": "visible list or map of towns served (vision)",
+      "sites": [
+        "randrheating",
+        "iwantairtoday",
+        "tsshvac",
+        "a1united",
+        "temp-con"
+      ]
+    },
+    "reviewsWidget": {
+      "count": 7,
+      "of": 12,
+      "rule": "reviews section with ratings or testimonials (vision)",
+      "sites": [
+        "a1heating",
+        "randrheating",
+        "northtarrantac",
+        "tsshvac",
+        "a1united",
+        "temp-con",
+        "bandkservices"
+      ]
+    },
+    "bookingForm": {
+      "count": 3,
+      "of": 12,
+      "rule": "on-page form or embedded scheduler (vision, or a 2+ field form in the DOM)",
+      "sites": [
+        "a1heating",
+        "northtarrantac",
+        "mtrosehvac"
+      ]
+    },
+    "phoneFirst": {
+      "count": 0,
+      "of": 12,
+      "rule": "the page pushes the phone call hardest (vision)",
+      "sites": []
+    },
+    "formOrBookingFirst": {
+      "count": 1,
+      "of": 12,
+      "rule": "the page pushes a form or online booking hardest (vision)",
+      "sites": [
+        "mtrosehvac"
+      ]
+    },
+    "balancedConversion": {
+      "count": 11,
+      "of": 12,
+      "rule": "phone and form/booking pushed about equally (vision)",
+      "sites": [
+        "a1heating",
+        "randrheating",
+        "iwantairtoday",
+        "northtarrantac",
+        "tsshvac",
+        "divcoec",
+        "dynaserviceok",
+        "a1united",
+        "temp-con",
+        "bandkservices",
+        "arthurhagar"
+      ]
+    },
+    "licenseNumberShown": {
+      "count": 2,
+      "of": 12,
+      "rule": "a license/registration number appears in the page text (DOM)",
+      "sites": [
+        "divcoec",
+        "mtrosehvac"
+      ]
+    },
+    "emergency247": {
+      "count": 9,
+      "of": 12,
+      "rule": "24/7 or emergency wording (DOM)",
+      "sites": [
+        "a1heating",
+        "iwantairtoday",
+        "northtarrantac",
+        "tsshvac",
+        "divcoec",
+        "dynaserviceok",
+        "temp-con",
+        "bandkservices",
+        "arthurhagar"
+      ]
+    },
+    "medianCtaLabel": {
+      "label": "call <phone>",
+      "sites": 3,
+      "rule": "most common first action CTA by page position (nav items excluded; any phone-number label = 'call <phone>')"
+    },
+    "ctaLabels": [
+      {
+        "label": "call <phone>",
+        "sites": 4
+      },
+      {
+        "label": "request service",
+        "sites": 3
+      },
+      {
+        "label": "contact us",
+        "sites": 3
+      },
+      {
+        "label": "schedule now",
+        "sites": 2
+      },
+      {
+        "label": "book online",
+        "sites": 2
+      },
+      {
+        "label": "free estimates",
+        "sites": 1
+      },
+      {
+        "label": "call or text",
+        "sites": 1
+      },
+      {
+        "label": "get online quote",
+        "sites": 1
+      },
+      {
+        "label": "book maintenance",
+        "sites": 1
+      },
+      {
+        "label": "get free quote",
+        "sites": 1
+      }
+    ],
+    "paletteHues": {
+      "accent": [
+        {
+          "hue": "red",
+          "sites": 6
+        },
+        {
+          "hue": "orange",
+          "sites": 3
+        },
+        {
+          "hue": "pink",
+          "sites": 1
+        },
+        {
+          "hue": "blue",
+          "sites": 1
+        },
+        {
+          "hue": "yellow",
+          "sites": 1
+        }
+      ],
+      "accent2": [
+        {
+          "hue": "blue",
+          "sites": 7
+        },
+        {
+          "hue": "yellow",
+          "sites": 2
+        },
+        {
+          "hue": "orange",
+          "sites": 1
+        },
+        {
+          "hue": "neutral",
+          "sites": 1
+        },
+        {
+          "hue": "red",
+          "sites": 1
+        }
+      ],
+      "ground": [
+        {
+          "ground": "light",
+          "sites": 12
+        }
+      ]
+    },
+    "displayFonts": [
+      {
+        "font": "Open Sans",
+        "sites": 2
+      },
+      {
+        "font": "Lato",
+        "sites": 1
+      },
+      {
+        "font": "Zilla Slab",
+        "sites": 1
+      },
+      {
+        "font": "Montserrat",
+        "sites": 1
+      },
+      {
+        "font": "Montaga",
+        "sites": 1
+      },
+      {
+        "font": "Work Sans",
+        "sites": 1
+      },
+      {
+        "font": "Eurostile Extended",
+        "sites": 1
+      },
+      {
+        "font": "Gotham",
+        "sites": 1
+      }
+    ],
+    "typeClasses": [
+      {
+        "type": "grotesk sans",
+        "sites": 7
+      },
+      {
+        "type": "geometric sans",
+        "sites": 4
+      },
+      {
+        "type": "slab serif",
+        "sites": 1
+      }
+    ],
+    "heroClasses": [
+      {
+        "hero": "full-bleed photo hero",
+        "sites": 10
+      },
+      {
+        "hero": "video hero",
+        "sites": 1
+      },
+      {
+        "hero": "split hero",
+        "sites": 1
+      }
+    ],
+    "lcpMsMedian": {
+      "desktop": 888,
+      "mobile": 870
+    },
+    "imagesAboveFoldMedian": 3,
+    "platforms": [
+      {
+        "platform": "wordpress",
+        "sites": 11
+      },
+      {
+        "platform": "squarespace",
+        "sites": 2
+      },
+      {
+        "platform": "webflow",
+        "sites": 2
+      },
+      {
+        "platform": "hubspot",
+        "sites": 2
+      }
+    ],
+    "schedulers": [
+      {
+        "vendor": "servicetitan",
+        "sites": 2
+      },
+      {
+        "vendor": "housecallpro",
+        "sites": 1
+      },
+      {
+        "vendor": "scheduleengine",
+        "sites": 1
+      }
+    ]
+  },
+  "families": [
+    {
+      "id": "F1",
+      "name": "Flag Red Full-Bleed",
+      "aesthetic": "Bright white pages under a full-bleed photo hero, with red CTAs, royal or navy blue support, bold geometric sans headings and badge-led trust.",
+      "lead": "hvac/tsshvac",
+      "members": [
+        "hvac/tsshvac",
+        "hvac/iwantairtoday",
+        "hvac/mtrosehvac",
+        "hvac/a1heating",
+        "hvac/randrheating"
+      ],
+      "medoid": "hvac/iwantairtoday",
+      "traits": {
+        "ground": "light ground",
+        "accent": "red",
+        "hero": "full-bleed photo hero",
+        "type": "geometric sans",
+        "darkShare": 0.1
+      },
+      "segments": {
+        "residential": 3,
+        "commercial": 2,
+        "new_construction": 0
+      },
+      "vocabulary": [
+        "full-bleed photo hero",
+        "dark overlay with centered white headline",
+        "red phone CTA button",
+        "navy or royal blue support bars",
+        "badge row trust strip",
+        "white card grid on pale blue panels",
+        "round or tile service icons",
+        "translucent red caption band",
+        "bold caps sans headings",
+        "project or team photo band",
+        "logo wall of brands or clients",
+        "dark footer with service-area list"
+      ],
+      "never": [
+        "Scenic hero photo unrelated to the trade",
+        "Small dense text box over a busy photo",
+        "Light grey body copy on white",
+        "Mixing too many reds and blues",
+        "Repeated outline buttons with weak hierarchy",
+        "Generic stock photos that feel mismatched"
+      ],
+      "risk": "Overlay a translucent red caption band across the bottom of the hero photo, with a row of round icon medallions straddling its edge as service navigation.",
+      "heroImageRecipe": "16:9 wide photo, eye-level, 35mm lens, bright natural daylight with a slight dark gradient. Palette of crisp white, signal red and deep navy accents. [SUBJECT: two uniformed HVAC technicians beside a service van and a condenser unit outside a tidy home]. Keep the left third or lower band calm and uncluttered for a centered white headline and CTA buttons. No text or logos.",
+      "reference": [
+        "TSS HVAC Services (Total System Services), Boise (tsshvac.com)",
+        "Air Today Heating & Cooling, Greenville SC (iwantairtoday.com)",
+        "Mt. Rose Heating & Air Conditioning, Reno (mtrosehvac.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: flag red full-bleed (Bright white pages under a full-bleed photo hero, with red CTAs, royal or navy blue support, bold geometric sans headings and badge-led trust.)\nVocabulary: full-bleed photo hero, dark overlay with centered white headline, red phone CTA button, navy or royal blue support bars, badge row trust strip, white card grid on pale blue panels, round or tile service icons, translucent red caption band, bold caps sans headings, project or team photo band, logo wall of brands or clients, dark footer with service-area list\nReference feel: TSS HVAC Services (Total System Services), Boise (tsshvac.com), Air Today Heating & Cooling, Greenville SC (iwantairtoday.com), Mt. Rose Heating & Air Conditioning, Reno (mtrosehvac.com)\nHouse DNA: Phone number on the first mobile screen (10/12); Coupon or financing block (8/12); Star-rated reviews on the homepage (7/12)\nNever: Scenic hero photo unrelated to the trade, Small dense text box over a busy photo, Light grey body copy on white, Mixing too many reds and blues, Repeated outline buttons with weak hierarchy, Generic stock photos that feel mismatched, Phone number below the first mobile screen (2/12 real sites)\nOne risk: Overlay a translucent red caption band across the bottom of the hero photo, with a row of round icon medallions straddling its edge as service navigation.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide photo, eye-level, 35mm lens, bright natural daylight with a slight dark gradient. Palette of crisp white, signal red and deep navy accents. [SUBJECT: two uniformed HVAC technicians beside a service van and a condenser unit outside a tidy home]. Keep the left third or lower band calm and uncluttered for a centered white headline and CTA buttons. No text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F2",
+      "name": "Navy Hero Yellow Signal",
+      "aesthetic": "Light-ground HVAC pages built on navy-tinted full-bleed hero photos, grotesk or extended caps headlines, and yellow or orange signal buttons with color-blocked service panels.",
+      "lead": "hvac/bandkservices",
+      "members": [
+        "hvac/bandkservices",
+        "hvac/divcoec",
+        "hvac/northtarrantac"
+      ],
+      "medoid": "hvac/bandkservices",
+      "traits": {
+        "ground": "light ground",
+        "accent": "yellow",
+        "hero": "full-bleed photo hero",
+        "type": "grotesk sans",
+        "darkShare": 0.05
+      },
+      "segments": {
+        "residential": 1,
+        "commercial": 1,
+        "new_construction": 1
+      },
+      "vocabulary": [
+        "navy-tinted full-bleed hero",
+        "rounded hero photo",
+        "yellow pill CTA",
+        "navy headline type",
+        "color-coded service panels",
+        "overlapping hero cards",
+        "circular navy stat badges",
+        "white framed card overlap",
+        "duotone mechanical photography",
+        "orange underline rules",
+        "rating badge row",
+        "license number footer block"
+      ],
+      "never": [
+        "Hero overlay that hides headline and offer",
+        "Low-contrast gray buttons over busy photos",
+        "Tiny non-sticky phone number",
+        "Long dense paragraphs with no visual breaks",
+        "Thin review cards with truncated names",
+        "Social proof missing: no reviews or client logos"
+      ],
+      "risk": "Straddle the hero's bottom edge with two oversized colored action cards (red quote, yellow service request) so the primary conversion paths sit half on the photo and half on the white page.",
+      "heroImageRecipe": "16:9 wide-angle photo, [SUBJECT: HVAC technician in navy uniform servicing a rooftop condenser unit, or exposed commercial ductwork overhead], shot at eye level with a 35mm lens in soft overcast daylight, graded with a navy tint and cool shadows, small warm yellow accent in gear or signage, clean uncluttered background, subject placed on the right third with calm dark negative space on the left for a large white headline. No text or logos.",
+      "reference": [
+        "B & K Services, Greenville SC (bandkservices.com)",
+        "DIVCO, Spokane (divcoec.com)",
+        "North Tarrant Heat & Air, Fort Worth (northtarrantac.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: navy hero yellow signal (Light-ground HVAC pages built on navy-tinted full-bleed hero photos, grotesk or extended caps headlines, and yellow or orange signal buttons with color-blocked service panels.)\nVocabulary: navy-tinted full-bleed hero, rounded hero photo, yellow pill CTA, navy headline type, color-coded service panels, overlapping hero cards, circular navy stat badges, white framed card overlap, duotone mechanical photography, orange underline rules, rating badge row, license number footer block\nReference feel: B & K Services, Greenville SC (bandkservices.com), DIVCO, Spokane (divcoec.com), North Tarrant Heat & Air, Fort Worth (northtarrantac.com)\nHouse DNA: Phone number on the first mobile screen (10/12); Coupon or financing block (8/12); Star-rated reviews on the homepage (7/12)\nNever: Hero overlay that hides headline and offer, Low-contrast gray buttons over busy photos, Tiny non-sticky phone number, Long dense paragraphs with no visual breaks, Thin review cards with truncated names, Social proof missing: no reviews or client logos, Phone number below the first mobile screen (2/12 real sites)\nOne risk: Straddle the hero's bottom edge with two oversized colored action cards (red quote, yellow service request) so the primary conversion paths sit half on the photo and half on the white page.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide-angle photo, [SUBJECT: HVAC technician in navy uniform servicing a rooftop condenser unit, or exposed commercial ductwork overhead], shot at eye level with a 35mm lens in soft overcast daylight, graded with a navy tint and cool shadows, small warm yellow accent in gear or signage, clean uncluttered background, subject placed on the right third with calm dark negative space on the left for a large white headline. No text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F3",
+      "name": "Bright Photo Red Accent",
+      "aesthetic": "White-ground HVAC homepages with full-bleed photo heroes, grotesk headlines, crisp red or orange accent buttons and soft grey or cream panels.",
+      "lead": "hvac/dynaserviceok",
+      "members": [
+        "hvac/dynaserviceok",
+        "hvac/temp-con"
+      ],
+      "medoid": "hvac/dynaserviceok",
+      "traits": {
+        "ground": "light ground",
+        "accent": "red",
+        "hero": "full-bleed photo hero",
+        "type": "grotesk sans",
+        "darkShare": 0.04
+      },
+      "segments": {
+        "residential": 0,
+        "commercial": 1,
+        "new_construction": 1
+      },
+      "vocabulary": [
+        "full-bleed photo hero",
+        "red angular polygon shapes",
+        "outlined or pill CTA buttons",
+        "light grey service tiles",
+        "cream panel sections",
+        "frosted glass tiles",
+        "cutout product photography",
+        "bold geometric sans headlines",
+        "dark photo banner cards",
+        "overlapping bordered photo collage",
+        "blueprint line-art background",
+        "badge and rating trust strip"
+      ],
+      "never": [
+        "Thin light-weight headline over busy photo",
+        "Low-contrast ghost buttons as the main CTA",
+        "Mid-page careers block diluting sales message",
+        "Mixing serif accents into a grotesk system",
+        "Trust claims without reviews, badges or license numbers",
+        "Repeating the same CTA after every section"
+      ],
+      "risk": "Let an oversized red angular polygon bleed off the page edge behind a cutout equipment photo, and repeat it as chevron section dividers.",
+      "heroImageRecipe": "16:9 wide hero photo, [SUBJECT: commercial rooftop HVAC condenser units or a technician beside a home's outdoor unit], shot at eye level with a 35mm lens in bright natural daylight, clean white and light grey surfaces with a single saturated red accent, crisp detail, subject placed on the right third with open clear space on the left for headline and buttons, no text or logos.",
+      "reference": [
+        "Dyna Service, Tulsa (dynaserviceok.com)",
+        "Temperature Control, Inc., Tucson (temp-con.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: bright photo red accent (White-ground HVAC homepages with full-bleed photo heroes, grotesk headlines, crisp red or orange accent buttons and soft grey or cream panels.)\nVocabulary: full-bleed photo hero, red angular polygon shapes, outlined or pill CTA buttons, light grey service tiles, cream panel sections, frosted glass tiles, cutout product photography, bold geometric sans headlines, dark photo banner cards, overlapping bordered photo collage, blueprint line-art background, badge and rating trust strip\nReference feel: Dyna Service, Tulsa (dynaserviceok.com), Temperature Control, Inc., Tucson (temp-con.com)\nHouse DNA: Phone number on the first mobile screen (10/12); Coupon or financing block (8/12); Star-rated reviews on the homepage (7/12)\nNever: Thin light-weight headline over busy photo, Low-contrast ghost buttons as the main CTA, Mid-page careers block diluting sales message, Mixing serif accents into a grotesk system, Trust claims without reviews, badges or license numbers, Repeating the same CTA after every section, Phone number below the first mobile screen (2/12 real sites)\nOne risk: Let an oversized red angular polygon bleed off the page edge behind a cutout equipment photo, and repeat it as chevron section dividers.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide hero photo, [SUBJECT: commercial rooftop HVAC condenser units or a technician beside a home's outdoor unit], shot at eye level with a 35mm lens in bright natural daylight, clean white and light grey surfaces with a single saturated red accent, crisp detail, subject placed on the right third with open clear space on the left for headline and buttons, no text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F4",
+      "name": "Dealer Red Banner",
+      "aesthetic": "Corporate HVAC dealer template: full-bleed lifestyle hero, heavy sans caps, bold red or orange block buttons, dark navy and charcoal bands between white sections.",
+      "lead": "hvac/arthurhagar",
+      "members": [
+        "hvac/arthurhagar",
+        "hvac/a1united"
+      ],
+      "medoid": "hvac/arthurhagar",
+      "traits": {
+        "ground": "light ground with dark bands",
+        "accent": "red",
+        "hero": "full-bleed photo hero",
+        "type": "grotesk sans",
+        "darkShare": 0.23
+      },
+      "segments": {
+        "residential": 0,
+        "commercial": 0,
+        "new_construction": 2
+      },
+      "vocabulary": [
+        "full-bleed lifestyle photo hero",
+        "dark overlay on photo",
+        "centered caps hero headline",
+        "heavy grotesk sans caps",
+        "red block CTA buttons",
+        "dark navy or charcoal bands",
+        "manufacturer dealer badge in hero",
+        "equal-width service cards",
+        "phone number top right",
+        "trust badge row",
+        "red underline accent bars",
+        "dark footer with license number"
+      ],
+      "never": [
+        "Extremely long caps H1 with SEO paragraphs",
+        "Generic stock photo unrelated to heating or cooling",
+        "Mixing orange, blue, yellow and black gradients",
+        "Dense text block with no hierarchy at page bottom",
+        "Single unrated review as only social proof",
+        "Relying on button clicks with no lead form"
+      ],
+      "risk": "Set the manufacturer dealer badge and two stacked CTAs directly inside the hero photo, then answer with a full-bleed dark band that restates company heritage.",
+      "heroImageRecipe": "16:9 wide photo, eye-level, soft warm natural window light, shallow depth of field. [SUBJECT: a smiling family relaxing on a sofa in a bright, comfortable living room, with a thermostat or vent subtly visible]. Palette of warm neutrals with muted navy and small red accents, slightly darkened exposure for a overlay look. Keep the center and lower third open and uncluttered for a centered white headline and buttons. No text, logos or watermarks.",
+      "reference": [
+        "Arthur Hagar Air Conditioning & Heating, Fort Worth (arthurhagar.com)",
+        "A-1 United Heating, Air & Electrical, Omaha (a1united.net)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: dealer red banner (Corporate HVAC dealer template: full-bleed lifestyle hero, heavy sans caps, bold red or orange block buttons, dark navy and charcoal bands between white sections.)\nVocabulary: full-bleed lifestyle photo hero, dark overlay on photo, centered caps hero headline, heavy grotesk sans caps, red block CTA buttons, dark navy or charcoal bands, manufacturer dealer badge in hero, equal-width service cards, phone number top right, trust badge row, red underline accent bars, dark footer with license number\nReference feel: Arthur Hagar Air Conditioning & Heating, Fort Worth (arthurhagar.com), A-1 United Heating, Air & Electrical, Omaha (a1united.net)\nHouse DNA: Phone number on the first mobile screen (10/12); Coupon or financing block (8/12); Star-rated reviews on the homepage (7/12)\nNever: Extremely long caps H1 with SEO paragraphs, Generic stock photo unrelated to heating or cooling, Mixing orange, blue, yellow and black gradients, Dense text block with no hierarchy at page bottom, Single unrated review as only social proof, Relying on button clicks with no lead form, Phone number below the first mobile screen (2/12 real sites)\nOne risk: Set the manufacturer dealer badge and two stacked CTAs directly inside the hero photo, then answer with a full-bleed dark band that restates company heritage.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide photo, eye-level, soft warm natural window light, shallow depth of field. [SUBJECT: a smiling family relaxing on a sofa in a bright, comfortable living room, with a thermostat or vent subtly visible]. Palette of warm neutrals with muted navy and small red accents, slightly darkened exposure for a overlay look. Keep the center and lower third open and uncluttered for a centered white headline and buttons. No text, logos or watermarks.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    }
+  ],
+  "entries": [
+    {
+      "id": "hvac/a1heating",
+      "vertical": "hvac",
+      "segment": "residential",
+      "slug": "a1heating",
+      "company": "A-1 Heating, Air Conditioning & Electric",
+      "metro": "Boise",
+      "url": "https://a1heating.com/",
+      "finalUrl": "https://a1heating.com/",
+      "search": {
+        "query": "Boise hvac",
+        "rank": 1,
+        "resultUrl": "https://a1heating.com/"
+      },
+      "aesthetic": "Heritage maroon-and-gold HVAC brand with team photo hero, award-badge strip and long, text-heavy SEO sections on warm grey",
+      "palette": {
+        "bg": "#dddddf",
+        "surface": "#ffffff",
+        "text": "#000000",
+        "accent": "#7a0c2d",
+        "accent2": "#ebaa05"
+      },
+      "typePairing": {
+        "display": "Lato",
+        "body": "Lato",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "promo banner",
+        "hero",
+        "service tiles",
+        "seasonal promo graphic",
+        "appointment form",
+        "award badge strip",
+        "intro with Lennox image",
+        "services list band",
+        "core strengths",
+        "guarantee and testimonial",
+        "service blocks",
+        "emergency service",
+        "training stats",
+        "commercial HVAC",
+        "reviews",
+        "why choose us",
+        "faq",
+        "cta band",
+        "blog",
+        "contact and map",
+        "footer"
+      ],
+      "heroTreatment": "Full-width staff group photo with dark overlay, centered white Lato headline and caps subhead, pill CTAs (Call or Text, Free Estimates, Get Online Quote) below, curved bottom edge.",
+      "trustSignals": [
+        "70+ years, serving Idaho since 1956",
+        "Row of 10 award badges: BBB Torch Award, Best of Meridian, Angi Super Service, Idaho 100, Boise Favorites",
+        "Google reviews widget, EXCELLENT, 3,614 reviews",
+        "100% satisfaction guarantee badge with 5-star rating",
+        "Ranked Top 25 Contractor in North America 15x",
+        "A+ BBB rating",
+        "NATE-certified technicians",
+        "5,705 training hours in 2025",
+        "Dave Lennox Award",
+        "License RCE 873/012266 in footer"
+      ],
+      "ctaPattern": "Primary Schedule Now in header plus Call or Text and Free Estimates in hero; button rows (Book Maintenance, Get Free Quote, Shop Online, View Specials) repeat mid-page; appointment form near top.",
+      "distinctiveMoves": [
+        "Six maroon icon tiles with caps labels overlapping the hero's curved edge as service navigation",
+        "Training-hours stat block (5,705 hours) used as a proof point for technician quality",
+        "Yellow 'Second Opinion? Try Our A-1 Price Check' banner under the header",
+        "Vintage founder truck photo and 'Be Warm. Be Cool. Be Comfy.' tagline for heritage storytelling"
+      ],
+      "weaknesses": [
+        "Very long text-heavy page with dense SEO paragraphs and little visual relief",
+        "Stock family photos and a promo graphic feel dated and generic against the strong brand",
+        "Phone number is small in the utility bar and not pinned on scroll; the chat bubble covers a hero CTA"
+      ],
+      "segmentFit": {
+        "residential": 0.85,
+        "commercial": 0.4,
+        "new_construction": 0.2
+      },
+      "vocabulary": [
+        "maroon and gold palette",
+        "staff group hero photo",
+        "curved hero bottom edge",
+        "icon service tiles",
+        "pill buttons",
+        "award badge strip",
+        "warm grey panels",
+        "maroon gradient bands",
+        "Google review carousel",
+        "seasonal rebate promo graphic",
+        "heritage tagline logo"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": false,
+        "reviewsWidget": true,
+        "bookingForm": true,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 photo of a friendly uniformed crew in matching maroon polos waving outside a company building, [SUBJECT: HVAC and electrical team of 20+ technicians posed in front of a service truck and office], shot at eye level with a 35mm lens, soft overcast daylight, warm neutral palette with maroon accents, slightly desaturated with a dark overlay feel; leave the center and lower-middle open for a large centered headline and buttons; no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:58:33.005Z",
+        "robots": "no matching rule",
+        "title": "Boise HVAC Contractor | A-1 Heating, Air Conditioning & Electric",
+        "metaDescription": "Your one-stop solution for heating, air conditioning, and electrical services in Boise, ID. Contact A-1 Heating Air Conditioning & Electric today for expert service!",
+        "headings": {
+          "h1": [
+            "Top-Rated HVAC Services In Boise, Meridian, Eagle, Nampa & Surrounding Areas"
+          ],
+          "h2": [
+            "AIR QUALITY",
+            "MAINTENANCE PROGRAM",
+            "SCHEDULE AN APPOINTMENT TODAY OR CALL NOW",
+            "Explore Our Heating and Air Conditioning Services",
+            "Our Core Strengths: Trusted Reputation, Energy Efficiency & Technical Skills",
+            "Heating Services",
+            "Cooling Services",
+            "Indoor Air Quality Services in Greater Boise",
+            "Electrical Services in Greater Boise",
+            "Indoor Air Quality Services in Greater Boise",
+            "Electrical Services in Greater Boise",
+            "Emergency HVAC Service in Boise",
+            "We Don’t Just Say We’re The Best — We Train Like It.",
+            "WE’RE ALSO YOUR TRUSTED PARTNER FOR COMMERCIAL HVAC!",
+            "WHY CHOOSE A-1 FOR YOUR HEATING AND COOLING NEEDS?",
+            "Frequently Asked Questions",
+            "Schedule an Appointment for Our Service Today!",
+            "OUR BLOGS"
+          ]
+        },
+        "telHrefs": [
+          "tel:+12085059126",
+          "tel:+12083668050",
+          "tel:12085059126",
+          "tel:2085059126",
+          "tel:12083668050"
+        ],
+        "telLinkCount": 7,
+        "ctaLabels": [
+          {
+            "label": "SCHEDULE NOW",
+            "count": 2,
+            "firstY": 99,
+            "tel": false
+          },
+          {
+            "label": "CALL OR TEXT",
+            "count": 2,
+            "firstY": 740,
+            "tel": true
+          },
+          {
+            "label": "FREE ESTIMATES",
+            "count": 2,
+            "firstY": 737,
+            "tel": false
+          },
+          {
+            "label": "GET ONLINE QUOTE",
+            "count": 2,
+            "firstY": 740,
+            "tel": false
+          },
+          {
+            "label": "BOOK MAINTENANCE",
+            "count": 4,
+            "firstY": 4088,
+            "tel": false
+          },
+          {
+            "label": "GET FREE QUOTE",
+            "count": 4,
+            "firstY": 4093,
+            "tel": false
+          },
+          {
+            "label": "SHOP ONLINE",
+            "count": 4,
+            "firstY": 4093,
+            "tel": false
+          },
+          {
+            "label": "VIEW SPECIALS",
+            "count": 4,
+            "firstY": 4093,
+            "tel": false
+          },
+          {
+            "label": "READ MORE TESTIMONIALS",
+            "count": 2,
+            "firstY": 5559,
+            "tel": false
+          },
+          {
+            "label": "LEAVE US A REVIEW",
+            "count": 2,
+            "firstY": 5842,
+            "tel": false
+          },
+          {
+            "label": "CONTACT US TODAY",
+            "count": 2,
+            "firstY": 10802,
+            "tel": false
+          },
+          {
+            "label": "REQUEST PAYMENT LINK",
+            "count": 1,
+            "firstY": 12060,
+            "tel": false
+          },
+          {
+            "label": "Menu Toggle",
+            "count": 1,
+            "firstY": 215,
+            "tel": false
+          },
+          {
+            "label": "Submit",
+            "count": 1,
+            "firstY": 3575,
+            "tel": false
+          },
+          {
+            "label": "REQUEST PAYMENT",
+            "count": 1,
+            "firstY": 19729,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "SCHEDULE NOW",
+          "mobile": "Menu Toggle"
+        },
+        "fonts": {
+          "body": "Lato, sans-serif",
+          "h1": "Lato, sans-serif",
+          "h2": "Lato, sans-serif",
+          "loaded": [
+            "Lato",
+            "Roboto",
+            "Trustindex Poppins"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#dddddf",
+              "share": 0.386
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.179
+            },
+            {
+              "hex": "#000000",
+              "share": 0.021
+            },
+            {
+              "hex": "#f1f1f1",
+              "share": 0.009
+            },
+            {
+              "hex": "#ebaa05",
+              "share": 0.004
+            },
+            {
+              "hex": "#7a2d3f",
+              "share": 0.002
+            }
+          ],
+          "text": [
+            {
+              "hex": "#000000",
+              "share": 0.62
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.221
+            },
+            {
+              "hex": "#160309",
+              "share": 0.07
+            },
+            {
+              "hex": "#7a0c2d",
+              "share": 0.048
+            },
+            {
+              "hex": "#333333",
+              "share": 0.028
+            },
+            {
+              "hex": "#6b6b6b",
+              "share": 0.006
+            }
+          ],
+          "imageShare": 0.155,
+          "gradientShare": 0.24
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 124,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 124,
+              "phone": false,
+              "text": "ABOUT US SPECIALS SERVICES PRODUCTS FINANCING SHOP SCHEDULE NOW"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 172,
+              "phone": false,
+              "text": "ABOUT US SPECIALS SERVICES PRODUCTS FINANCING SHOP SCHEDULE NOW"
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(208) 343-4445",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Top-Rated HVAC Services In Boise, Meridian, Eagle, Nampa & Surrounding Areas",
+          "mobile": "Top-Rated HVAC Services In Boise, Meridian, Eagle, Nampa & Surrounding Areas"
+        },
+        "lcpMs": {
+          "desktop": 744,
+          "mobile": 828
+        },
+        "lcpElement": {
+          "desktop": "section",
+          "mobile": "section"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 362,
+            "domContentLoaded": 950,
+            "load": 2709
+          },
+          "mobile": {
+            "ttfb": 370,
+            "domContentLoaded": 805,
+            "load": 1898
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "bbb",
+            "guarantee",
+            "certified",
+            "master-license",
+            "years-in-business"
+          ],
+          "coupon": true,
+          "financing": true,
+          "membership": true,
+          "serviceArea": false,
+          "emergency": true,
+          "sameDay": true,
+          "licenseNumber": null,
+          "leadForms": 1,
+          "reviewVendors": [
+            "trustindex"
+          ],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "bbb",
+            "angi",
+            "google",
+            "lennox",
+            "award",
+            "best of",
+            "super service",
+            "nextdoor"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.2",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 12335,
+          "mobileHeight": 20569,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:51.529Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            9600
+          ],
+          [
+            9600,
+            12000
+          ],
+          [
+            12000,
+            12335
+          ]
+        ],
+        "usage": {
+          "input": 19926,
+          "output": 1261
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "hvac/randrheating",
+      "vertical": "hvac",
+      "segment": "residential",
+      "slug": "randrheating",
+      "company": "R&R Heating & Air Conditioning",
+      "metro": "Spokane",
+      "url": "https://www.randrheating.com/",
+      "finalUrl": "https://www.randrheating.com/",
+      "search": {
+        "query": "Spokane hvac",
+        "rank": 1,
+        "resultUrl": "https://www.randrheating.com/"
+      },
+      "aesthetic": "Patriotic blue, red and orange brand palette with Spokane landmark photography, slab-serif caps and angled tab buttons.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#c9d6ec",
+        "text": "#000000",
+        "accent": "#f08207",
+        "accent2": "#13499f"
+      },
+      "typePairing": {
+        "display": "Zilla Slab",
+        "body": "Acumin Pro",
+        "source": "adobe-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "about",
+        "reviews",
+        "blog",
+        "carrier dealer",
+        "careers",
+        "maintenance club",
+        "financing",
+        "service areas",
+        "brands",
+        "footer"
+      ],
+      "heroTreatment": "Full-width Spokane riverfront photo with a branded van, centered slab-serif headline, one orange CTA, and four round red service icons across the bottom.",
+      "trustSignals": [
+        "Carrier Factory Authorized Dealer badge",
+        "Carrier President's Award",
+        "Over 41 years in business",
+        "4.96/5 - 145 reviews",
+        "Customer testimonial carousel",
+        "We service all brands logo wall",
+        "Local Spokane and Coeur d'Alene landmarks"
+      ],
+      "ctaPattern": "Orange angled-tab buttons (Schedule Appointment, Request Service, Request Estimate) repeat after every section, with Book Now, Online Pricing and Financing in the header and two phone numbers at top.",
+      "distinctiveMoves": [
+        "Angled parallelogram tab buttons with a blue shadow edge echo the logo swoosh",
+        "Round red glossy icon medallions overlaid on the hero photo double as service navigation",
+        "Pine-tree silhouette art in the R Club band and footer gives a Pacific Northwest identity",
+        "Oversized brand R mark as a graphic panel behind the reviews carousel"
+      ],
+      "weaknesses": [
+        "No on-page lead form or scheduler, so conversion relies on buttons sending visitors elsewhere",
+        "Content sits in a narrow left-aligned column with large empty white margins on the right at 1200px, so the layout looks unbalanced",
+        "Only one short rotating testimonial, with a large logo wall and long paragraphs diluting the proof and the pitch"
+      ],
+      "segmentFit": {
+        "residential": 0.8,
+        "commercial": 0.4,
+        "new_construction": 0.4
+      },
+      "vocabulary": [
+        "angled orange tab buttons",
+        "royal blue and orange palette",
+        "Zilla Slab caps headings",
+        "round red icon medallions",
+        "landmark photo hero",
+        "pine silhouette backgrounds",
+        "navy review panel with logo mark",
+        "brand logo wall grid",
+        "split image and text band",
+        "blue pill nav strip"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 daylight photo of a historic brick riverside city with a stone bridge and vintage street lamp, a clean white service van parked on the road in the lower center, overcast soft light, muted green, brick red and gray palette, shot at eye level with a 35mm lens, calm sky and upper-center area left open for headline text. [SUBJECT: white HVAC service van on a city bridge road]. No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:58:35.872Z",
+        "robots": "no matching rule",
+        "title": "HVAC Services, AC Repairs & Heat Pump Installs | Spokane, WA",
+        "metaDescription": "Looking for top HVAC services in Spokane? Need your AC repaired? Or is it time for a brand new heat pump installation? Turn to R&R Heating & Air Conditioning.",
+        "headings": {
+          "h1": [
+            "EXPERT HEATING AND COOLING SERVICES",
+            "Expert Heating and Cooling Services"
+          ],
+          "h2": [
+            "HEATING SERVICES",
+            "COOLING SERVICES",
+            "IAQ SERVICES",
+            "MAINTENANCE SERVICES",
+            "HEATING AND AC PROFESSIONALS",
+            "WHAT OUR CUSTOMERS SAY",
+            "Gas Furnace Installation in Spokane, WA 99208",
+            "Gas Furnace Installation in Spokane, WA 99223",
+            "Gas Furnace Installation in Spokane, WA 99223",
+            "WHAT WE HAVE GOING ON…",
+            "Carrier Factory Authorized Dealer",
+            "CARRIER FACTORY AUTHORIZED DEALER",
+            "JOIN OUR TEAM",
+            "FINANCING",
+            "SERVICE AREA",
+            "Service Area",
+            "WE SERVICE ALL BRANDS",
+            "509-484-1405 | 208-765-9355"
+          ]
+        },
+        "telHrefs": [
+          "tel:+15094841405",
+          "tel:1+208-765-9355"
+        ],
+        "telLinkCount": 5,
+        "ctaLabels": [
+          {
+            "label": "BOOK NOW",
+            "count": 2,
+            "firstY": 69,
+            "tel": false
+          },
+          {
+            "label": "ONLINE PRICING",
+            "count": 2,
+            "firstY": 69,
+            "tel": false
+          },
+          {
+            "label": "FINANCING",
+            "count": 2,
+            "firstY": 69,
+            "tel": false
+          },
+          {
+            "label": "SCHEDULE APPOINTMENT",
+            "count": 2,
+            "firstY": 403,
+            "tel": false
+          },
+          {
+            "label": "REQUEST SERVICE",
+            "count": 4,
+            "firstY": 1259,
+            "tel": false
+          },
+          {
+            "label": "LEAVE A REVIEW",
+            "count": 4,
+            "firstY": 1635,
+            "tel": false
+          },
+          {
+            "label": "READ MORE REVIEWS",
+            "count": 2,
+            "firstY": 1635,
+            "tel": false
+          },
+          {
+            "label": "LEARN MORE",
+            "count": 5,
+            "firstY": 2279,
+            "tel": false
+          },
+          {
+            "label": "REQUEST ESTIMATE",
+            "count": 2,
+            "firstY": 2712,
+            "tel": false
+          },
+          {
+            "label": "CAREER OPTIONS",
+            "count": 2,
+            "firstY": 3150,
+            "tel": false
+          },
+          {
+            "label": "VIEW OUR PLANS",
+            "count": 2,
+            "firstY": 3469,
+            "tel": false
+          },
+          {
+            "label": "FINANCING OPTIONS",
+            "count": 2,
+            "firstY": 3729,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "BOOK NOW",
+          "mobile": "BOOK NOW"
+        },
+        "fonts": {
+          "body": "acumin-pro",
+          "h1": "\"Zilla Slab\", serif",
+          "h2": "\"Zilla Slab\", serif",
+          "loaded": [
+            "acumin-pro",
+            "Zilla Slab",
+            "Font Awesome 6 Sharp"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.281
+            },
+            {
+              "hex": "#13499f",
+              "share": 0.133
+            },
+            {
+              "hex": "#f08207",
+              "share": 0.048
+            },
+            {
+              "hex": "#022152",
+              "share": 0.035
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.597
+            },
+            {
+              "hex": "#000000",
+              "share": 0.39
+            },
+            {
+              "hex": "#ed1c24",
+              "share": 0.007
+            },
+            {
+              "hex": "#13499f",
+              "share": 0.006
+            }
+          ],
+          "imageShare": 0.503,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "509-484-1405",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 6,
+        "aboveFold": {
+          "desktop": {
+            "img": 5,
+            "bgImage": 1,
+            "video": 0,
+            "total": 6
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 1,
+            "video": 0,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": "EXPERT HEATING AND COOLING SERVICES",
+          "mobile": "EXPERT HEATING AND COOLING SERVICES"
+        },
+        "lcpMs": {
+          "desktop": 1332,
+          "mobile": 772
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 62,
+            "domContentLoaded": 1314,
+            "load": 1486
+          },
+          "mobile": {
+            "ttfb": 399,
+            "domContentLoaded": 769,
+            "load": 971
+          }
+        },
+        "signals": {
+          "trust": [
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": true,
+          "membership": true,
+          "serviceArea": true,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [
+            "podium",
+            "intercom"
+          ],
+          "badges": [
+            "google",
+            "carrier",
+            "trane",
+            "lennox",
+            "rheem",
+            "ruud",
+            "goodman",
+            "bryant",
+            "daikin",
+            "mitsubishi",
+            "american standard",
+            "award",
+            "nextdoor"
+          ],
+          "platform": [
+            "wordpress",
+            "squarespace",
+            "webflow",
+            "hubspot"
+          ],
+          "generator": "WordPress 7.1.3",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 5638,
+          "mobileHeight": 12007,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:10.241Z",
+        "strips": [
+          [
+            0,
+            2399
+          ],
+          [
+            2399,
+            4799
+          ],
+          [
+            4799,
+            5637
+          ]
+        ],
+        "usage": {
+          "input": 9031,
+          "output": 1057
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "hvac/iwantairtoday",
+      "vertical": "hvac",
+      "segment": "residential",
+      "slug": "iwantairtoday",
+      "company": "Air Today Heating & Cooling",
+      "metro": "Greenville SC",
+      "url": "https://iwantairtoday.com/",
+      "finalUrl": "https://iwantairtoday.com/",
+      "search": {
+        "query": "Greenville SC hvac",
+        "rank": 2,
+        "resultUrl": "https://iwantairtoday.com/"
+      },
+      "aesthetic": "Patriotic red-white-and-blue family HVAC brand with mascot coupons, bold Montserrat headings and stock-heavy service cards.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#e4ecf6",
+        "text": "#030303",
+        "accent": "#b5020b",
+        "accent2": "#1e73be"
+      },
+      "typePairing": {
+        "display": "Montserrat",
+        "body": "Montserrat",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "promo bar",
+        "header",
+        "hero",
+        "trust bar",
+        "reviews",
+        "book online cta",
+        "value props band",
+        "services",
+        "air conditioning services",
+        "heating services",
+        "about",
+        "why choose us",
+        "coupons",
+        "blog",
+        "faq",
+        "footer",
+        "subscribe form"
+      ],
+      "heroTreatment": "Full-width darkened close-up photo of condenser fan units, centered white Montserrat H1, short subcopy, red Call Now pill above blue Book Online button.",
+      "trustSignals": [
+        "Best of South Carolina 2025 and 2024 badges",
+        "Armstrong Air Comfort Team logo",
+        "100% Satisfaction Guaranteed shield",
+        "Family Owned and Operated 45 years seal",
+        "40+ years of residential HVAC experience",
+        "Background-checked and drug-tested technicians",
+        "No hidden costs, up-front pricing",
+        "Veteran discount"
+      ],
+      "ctaPattern": "Red phone pill plus blue Book Online button in header and hero; Book Online repeats after reviews and about; coupons all show the phone number.",
+      "distinctiveMoves": [
+        "Red brick-texture band holding three guarantee and experience claims",
+        "American flag photo background behind white six-card why-choose-us grid",
+        "Branded wizard-mascot coupon tiles with red call strip",
+        "Founder three-generation family photo with named story in the about section"
+      ],
+      "weaknesses": [
+        "Reviews section renders as a large empty white gap, so social proof is missing",
+        "Stock and mismatched service photos with long text-heavy repeated service card sections feel cluttered",
+        "No on-page lead form and many outline buttons with weak hierarchy; the flag backdrop and mixed reds and blues look busy"
+      ],
+      "segmentFit": {
+        "residential": 0.82,
+        "commercial": 0.12,
+        "new_construction": 0.1
+      },
+      "vocabulary": [
+        "dark photo hero overlay",
+        "red pill phone CTA",
+        "blue rectangular Book Online button",
+        "badge row trust bar",
+        "red brick texture band",
+        "flag background card grid",
+        "mascot coupon tiles",
+        "pale blue service panels",
+        "outlined service cards",
+        "Montserrat bold blue headings",
+        "black footer with city list"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": true,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Photorealistic 16:9 hero, low-angle close-up of [SUBJECT: residential outdoor AC condenser unit with fan grille in a landscaped yard], 50mm lens, shallow depth of field, overcast soft light, moody dark charcoal and green tones with a slight dark vignette, centered negative space across the middle of the frame for headline and buttons, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:02.949Z",
+        "robots": "no matching rule",
+        "title": "Greenville, SC HVAC Repair & Installation | Air Today Heating & Cooling",
+        "metaDescription": "We install, repair & maintain AC, furnaces & heat pumps in Greenville, SC. Family-owned for 40+ years. Call 864-295-0905 or book online for same-day service.",
+        "headings": {
+          "h1": [
+            "Trusted HVAC Company in Greenville, SC"
+          ],
+          "h2": [
+            "We provide reliable heating and cooling services for homes across the Upstate. Every job is backed by our 100% Money-Back Guarantee.",
+            "Customer Reviews & Testimonials",
+            "Our HVAC Services",
+            "AC Installation and Repair",
+            "Heating & Furnace",
+            "Ductwork & Air Quality",
+            "HVAC Preventative Maintenance",
+            "Our Air Conditioning Services",
+            "AC Installation",
+            "AC Repair",
+            "Our Heating & Furnace Services",
+            "Furnace Installation & Replacement",
+            "Furnace Repair",
+            "Heat Pump Services",
+            "About Air Today Heating & Cooling",
+            "Why Customers Choose Air Today",
+            "Discount & Coupons",
+            "Why Choose Air Today For HVAC Installation, Repairs, & Services?",
+            "Guides & Resources",
+            "Frequently Asked Questions"
+          ]
+        },
+        "telHrefs": [
+          "tel:8642950905",
+          "tel:864-295-0905"
+        ],
+        "telLinkCount": 5,
+        "ctaLabels": [
+          {
+            "label": "(864) 295-0905",
+            "count": 2,
+            "firstY": 100,
+            "tel": true
+          },
+          {
+            "label": "BOOK ONLINE",
+            "count": 7,
+            "firstY": 100,
+            "tel": false
+          },
+          {
+            "label": "Call Now: 864-295-0905",
+            "count": 2,
+            "firstY": 583,
+            "tel": true
+          },
+          {
+            "label": "AC Services",
+            "count": 2,
+            "firstY": 3338,
+            "tel": false
+          },
+          {
+            "label": "Heating Services",
+            "count": 2,
+            "firstY": 3336,
+            "tel": false
+          },
+          {
+            "label": "Ductwork Services",
+            "count": 2,
+            "firstY": 3337,
+            "tel": false
+          },
+          {
+            "label": "HVAC Maintenance",
+            "count": 2,
+            "firstY": 3334,
+            "tel": false
+          },
+          {
+            "label": "AC Installation",
+            "count": 2,
+            "firstY": 4083,
+            "tel": false
+          },
+          {
+            "label": "AC Repair",
+            "count": 2,
+            "firstY": 4083,
+            "tel": false
+          },
+          {
+            "label": "Furnace Installation",
+            "count": 2,
+            "firstY": 4906,
+            "tel": false
+          },
+          {
+            "label": "Furnace Repair",
+            "count": 2,
+            "firstY": 4881,
+            "tel": false
+          },
+          {
+            "label": "Heat Pump Repair & Installation",
+            "count": 2,
+            "firstY": 4881,
+            "tel": false
+          },
+          {
+            "label": "Our Blog",
+            "count": 2,
+            "firstY": 8571,
+            "tel": false
+          },
+          {
+            "label": "Send",
+            "count": 2,
+            "firstY": 10366,
+            "tel": false
+          },
+          {
+            "label": "Call (864) 295-0905",
+            "count": 2,
+            "firstY": 13,
+            "tel": true
+          },
+          {
+            "label": "Menu Toggle",
+            "count": 1,
+            "firstY": 110,
+            "tel": false
+          },
+          {
+            "label": "Call Now Button",
+            "count": 1,
+            "firstY": 774,
+            "tel": true
+          }
+        ],
+        "primaryCta": {
+          "desktop": "(864) 295-0905",
+          "mobile": "(864) 295-0905"
+        },
+        "fonts": {
+          "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+          "h1": "Montserrat, sans-serif",
+          "h2": "Montserrat, sans-serif",
+          "loaded": [
+            "Poppins",
+            "eicons",
+            "Font Awesome 5 Brands",
+            "Font Awesome 5 Free",
+            "font awesome 5 brands",
+            "font awesome 5 free",
+            "montserrat",
+            "roboto"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.509
+            },
+            {
+              "hex": "#111111",
+              "share": 0.082
+            },
+            {
+              "hex": "#1e73be",
+              "share": 0.063
+            },
+            {
+              "hex": "#000000",
+              "share": 0.047
+            },
+            {
+              "hex": "#b5020b",
+              "share": 0.028
+            },
+            {
+              "hex": "#f6f6f6",
+              "share": 0.008
+            }
+          ],
+          "text": [
+            {
+              "hex": "#030303",
+              "share": 0.469
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.171
+            },
+            {
+              "hex": "#033270",
+              "share": 0.168
+            },
+            {
+              "hex": "#103b75",
+              "share": 0.049
+            },
+            {
+              "hex": "#1253aa",
+              "share": 0.044
+            },
+            {
+              "hex": "#04387e",
+              "share": 0.039
+            }
+          ],
+          "imageShare": 0.26,
+          "gradientShare": 0
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 104,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 104,
+              "phone": true,
+              "text": "Services About Us Areas We Serve Contact Us (864) 295-0905 BOOK ONLINE"
+            },
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 69,
+              "phone": true,
+              "text": "$0 Diagnostic With Approved Repair! Call (864) 295-0905 Close Welcome Bar"
+            },
+            {
+              "edge": "bottom",
+              "width": 110,
+              "height": 157,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 83,
+              "phone": true,
+              "text": "$0 Diagnostic With Approved Repair! Call (864) 295-0905 Close Welcome Bar"
+            },
+            {
+              "edge": "bottom",
+              "width": 55,
+              "height": 55,
+              "phone": true,
+              "text": ""
+            },
+            {
+              "edge": "bottom",
+              "width": 110,
+              "height": 156,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(864) 295-0905",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 1,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 5,
+            "bgImage": 1,
+            "video": 0,
+            "total": 6
+          }
+        },
+        "heroH1": {
+          "desktop": "Trusted HVAC Company in Greenville, SC",
+          "mobile": "Trusted HVAC Company in Greenville, SC"
+        },
+        "lcpMs": {
+          "desktop": 1760,
+          "mobile": 1972
+        },
+        "lcpElement": {
+          "desktop": "section",
+          "mobile": "section"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 181,
+            "domContentLoaded": 1803,
+            "load": 8411
+          },
+          "mobile": {
+            "ttfb": 374,
+            "domContentLoaded": 3046,
+            "load": 6366
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "family-owned",
+            "warranty",
+            "guarantee",
+            "certified",
+            "years-in-business",
+            "upfront-pricing",
+            "background-checked"
+          ],
+          "coupon": true,
+          "financing": true,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": true,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [
+            "housecallpro"
+          ],
+          "chatVendors": [],
+          "badges": [
+            "google",
+            "veteran",
+            "top rated"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "speculation-rules 1.7.0",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 10857,
+          "mobileHeight": 17843,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:01.681Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            9600
+          ],
+          [
+            9600,
+            10858
+          ]
+        ],
+        "usage": {
+          "input": 18004,
+          "output": 1026
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "hvac/northtarrantac",
+      "vertical": "hvac",
+      "segment": "residential",
+      "slug": "northtarrantac",
+      "company": "North Tarrant Heat & Air",
+      "metro": "Fort Worth",
+      "url": "https://www.northtarrantac.com/",
+      "finalUrl": "https://www.northtarrantac.com/",
+      "search": {
+        "query": "Fort Worth hvac",
+        "rank": 4,
+        "resultUrl": "https://www.northtarrantac.com/"
+      },
+      "aesthetic": "Patriotic navy and crimson Texas-pride look with serif caps headlines, a spokesperson video popup and long text-led sections",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#212f6a",
+        "text": "#222222",
+        "accent": "#b90a2f",
+        "accent2": "#ffdd4a"
+      },
+      "typePairing": {
+        "display": "Montaga",
+        "body": "Hind",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "social bar",
+        "header",
+        "hero video popup",
+        "brand intro with four value icons",
+        "about seo copy",
+        "navy cta box",
+        "services grid split panel",
+        "lifetime warranty copy",
+        "testimonial slider",
+        "comfort solutions copy",
+        "review request",
+        "contact form",
+        "footer"
+      ],
+      "heroTreatment": "Dark blurred crew photo behind a large rounded video-card popup of a smiling technician, with an AI chat input, Watch Video button and a floating Book/Text/Call/Email/Chat bar.",
+      "trustSignals": [
+        "Lifetime Workmanship Warranty",
+        "Licensed and insured contractor",
+        "Trane Comfort Specialist",
+        "Texas Pride Guarantee",
+        "License #TACLA70911E in footer",
+        "Customer testimonial slider",
+        "Payment method icons"
+      ],
+      "ctaPattern": "Phone number top right, navy CTA boxes with a yellow 'reach out online' link, crimson 'Let's Get to Work', 'Leave a Review' and 'Send Message' buttons, and a floating contact bar.",
+      "distinctiveMoves": [
+        "Large rounded video-card hero featuring a real technician speaking to camera",
+        "Floating five-icon action bar (Book, Text, Call, Email, Chat) pinned under the hero",
+        "Texas-silhouette icon used as a section marker in navy and white",
+        "Split navy and charcoal services panel with a text intro on the left and a three-by-three service grid on the right"
+      ],
+      "weaknesses": [
+        "Hero overlay hides the headline and primary offer, and a broken logo image shows in the video card",
+        "Service grid tiles appear empty with no icons or photos, and the page is text-heavy with long paragraphs",
+        "Contact form is narrow and left-aligned with a large empty navy area, and the header is not sticky"
+      ],
+      "segmentFit": {
+        "residential": 0.8,
+        "commercial": 0.25,
+        "new_construction": 0.12
+      },
+      "vocabulary": [
+        "navy and crimson palette",
+        "serif all-caps headlines",
+        "rounded video popup hero",
+        "floating action icon bar",
+        "Texas silhouette icon",
+        "split navy services panel",
+        "crimson rectangular buttons",
+        "black testimonial band",
+        "yellow link accents",
+        "long-form SEO copy blocks"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": false,
+        "reviewsWidget": true,
+        "bookingForm": true,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 photo, shallow depth of field, 35mm lens, soft indoor light with a cool navy cast. [SUBJECT: friendly HVAC crew in navy polo shirts standing together in a Texas home garage beside a clean outdoor condenser unit]. Palette of deep navy, charcoal and warm skin tones with small crimson accents. Crew sits in the right third, leaving dark negative space on the left for the headline. No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:58:57.370Z",
+        "robots": "no matching rule",
+        "title": "Fort Worth HVAC Company | North Tarrant Heat & Air",
+        "metaDescription": "We offer Texas-ready HVAC solutions backed by our extensive experience and Texas Pride Guarantee. Call for same-day services. Free estimates are available. ",
+        "headings": {
+          "h1": [
+            "FORT WORTH HVAC COMPANY"
+          ],
+          "h2": [
+            "Providing Texas-Ready Cooling & Heating to Tarrant County & Beyond",
+            "LIFETIME WORKMANSHIP WARRANTY",
+            "Everything You Need to Stay Comfortable",
+            "We’re the Local HVAC Company to Call in an Emergency",
+            "Our Values Are Texas Values: Honesty, Integrity, & Quality",
+            "LET’S TALK COMFORT SOLUTIONS"
+          ]
+        },
+        "telHrefs": [
+          "tel:8176166999",
+          "tel:(817) 616-6999"
+        ],
+        "telLinkCount": 6,
+        "ctaLabels": [
+          {
+            "label": "WE'RE HERE TO HELP",
+            "count": 2,
+            "firstY": 690,
+            "tel": false
+          },
+          {
+            "label": "BOOK ONLINE",
+            "count": 2,
+            "firstY": 690,
+            "tel": false
+          },
+          {
+            "label": "CLICK HERE FOR FINANCING",
+            "count": 2,
+            "firstY": 690,
+            "tel": false
+          },
+          {
+            "label": "LET'S GET TO WORK",
+            "count": 2,
+            "firstY": 3366,
+            "tel": false
+          },
+          {
+            "label": "LEAVE A REVIEW",
+            "count": 2,
+            "firstY": 6403,
+            "tel": false
+          },
+          {
+            "label": "SEND MESSAGE",
+            "count": 2,
+            "firstY": 7597,
+            "tel": false
+          },
+          {
+            "label": "Continue Reading",
+            "count": 1,
+            "firstY": 5696,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "WE'RE HERE TO HELP",
+          "mobile": "WE'RE HERE TO HELP"
+        },
+        "fonts": {
+          "body": "Hind, sans-serif",
+          "h1": "Montaga, serif",
+          "h2": "Hind, sans-serif",
+          "loaded": [
+            "Hind",
+            "Montaga",
+            "Inter",
+            "Schibsted Grotesk",
+            "launcher_icons_v2"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 1
+            }
+          ],
+          "text": [
+            {
+              "hex": "#222222",
+              "share": 0.524
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.348
+            },
+            {
+              "hex": "#b90a2f",
+              "share": 0.076
+            },
+            {
+              "hex": "#000000",
+              "share": 0.032
+            },
+            {
+              "hex": "#191919",
+              "share": 0.009
+            },
+            {
+              "hex": "#ffdd4a",
+              "share": 0.008
+            }
+          ],
+          "imageShare": 0,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 67,
+              "height": 70,
+              "phone": false,
+              "text": "Top"
+            },
+            {
+              "edge": "bottom",
+              "width": 44,
+              "height": 48,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 61,
+              "height": 64,
+              "phone": false,
+              "text": "Top"
+            },
+            {
+              "edge": "bottom",
+              "width": 44,
+              "height": 48,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": false,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 0,
+            "video": 1,
+            "total": 2
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 1,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": "FORT WORTH HVAC COMPANY"
+        },
+        "lcpMs": {
+          "desktop": 1080,
+          "mobile": 1272
+        },
+        "lcpElement": {
+          "desktop": "p",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 302,
+            "domContentLoaded": 658,
+            "load": 3186
+          },
+          "mobile": {
+            "ttfb": 356,
+            "domContentLoaded": 1256,
+            "load": 3051
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "warranty",
+            "guarantee",
+            "certified",
+            "star-rating"
+          ],
+          "coupon": true,
+          "financing": true,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": true,
+          "licenseNumber": null,
+          "leadForms": 1,
+          "reviewVendors": [],
+          "schedulerVendors": [
+            "servicetitan"
+          ],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 8399,
+          "mobileHeight": 9772,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:09.544Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            8399
+          ]
+        ],
+        "usage": {
+          "input": 14574,
+          "output": 1082
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "hvac/tsshvac",
+      "vertical": "hvac",
+      "segment": "commercial",
+      "slug": "tsshvac",
+      "company": "TSS HVAC Services (Total System Services)",
+      "metro": "Boise",
+      "url": "https://www.tsshvac.com/",
+      "finalUrl": "https://www.tsshvac.com/",
+      "search": {
+        "query": "commercial hvac contractor Boise",
+        "rank": 2,
+        "resultUrl": "https://www.tsshvac.com/service-area/commercial-hvac-in-idaho/boise/"
+      },
+      "aesthetic": "Corporate navy and signal-red commercial HVAC site with white cards, audience tabs and client-logo credibility",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f5f5f5",
+        "text": "#6d7988",
+        "accent": "#cd1f2c",
+        "accent2": "#003d70"
+      },
+      "typePairing": {
+        "display": "Work Sans",
+        "body": "Work Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "audience tabs",
+        "intro cta",
+        "photo banner with benefit card",
+        "years of excellence",
+        "affiliation logos",
+        "testimonial slider",
+        "client logos",
+        "cta band",
+        "service area",
+        "cta band",
+        "footer"
+      ],
+      "heroTreatment": "Full-width photo of two technicians in hard hats in a mechanical room, with a dark translucent text box at upper right holding the H1, a short line and two red buttons.",
+      "trustSignals": [
+        "Serving the Pacific Northwest since 1985",
+        "30+ years of excellence",
+        "NATE-certified technicians",
+        "ASHRAE, BBB, Expertise.com 2022, Idaho AGC and BOMA badges",
+        "Richland Federal Building testimonial with 96% satisfaction",
+        "Client logos: Gap, Nike, Starbucks, Shopko, GSA, Intel, Amazon",
+        "Licensed, bonded, insured",
+        "State contractor license numbers for ID, WA and OR in footer",
+        "24/7/365 service"
+      ],
+      "ctaPattern": "Red 'Schedule Service' and 'Get a Free 4-Hour Look' in hero, repeated as Request a Quote, Schedule a Consultation, Contact Us and a phone button, with the phone also in the top bar and footer.",
+      "distinctiveMoves": [
+        "Audience tabs (property managers, facility managers, building owners, national service companies) that switch tailored content under the hero",
+        "Overlapping white benefit card that sits over the bottom edge of a large full-bleed technician photo",
+        "Client logo strip of recognizable national brands as commercial proof",
+        "Three-state service-area cards with green coverage maps and a faded city skyline backdrop"
+      ],
+      "weaknesses": [
+        "No on-page lead form or scheduler, so conversion relies on phone and buttons that lead to other pages",
+        "Hero text box is small and dense over a busy photo, and the grey body copy is low-contrast",
+        "Long page with repeated red buttons and generic stock imagery, and no visible review ratings"
+      ],
+      "segmentFit": {
+        "residential": 0.05,
+        "commercial": 0.92,
+        "new_construction": 0.25
+      },
+      "vocabulary": [
+        "navy top utility bar",
+        "red rectangular CTA buttons",
+        "audience tab selector",
+        "overlapping white card",
+        "full-bleed technician photo",
+        "client logo strip",
+        "badge row of affiliations",
+        "navy CTA band",
+        "map cards by state",
+        "bold Work Sans headings"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "16:9 photograph, eye-level, 35mm lens, of [SUBJECT: two HVAC technicians in hard hats and hi-vis vests reviewing a tablet in a commercial mechanical room with ductwork and pipes]; cool diffused overhead light, steel grey and navy palette with a warm yellow hard-hat accent, shallow depth of field; subjects on the left, dark empty machinery on the upper right for headline space; no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:58:55.333Z",
+        "robots": "no matching rule",
+        "title": "Home - TSS HVAC Services",
+        "metaDescription": null,
+        "headings": {
+          "h1": [
+            "Premier Commercial HVAC Services"
+          ],
+          "h2": [
+            "TSS proudly serves a wide range of commercial properties, from 3,000 to 500,000 square feet, providing solutions tailored to each facility's needs.",
+            "Serving the Pacific Northwest since 1985.",
+            "With decades of trusted service, we're ready to handle all your HVAC needs.",
+            "30+ Years of Excellence in HVAC Services",
+            "Our Service Area",
+            "+ View Full Map",
+            "+ View Full Map",
+            "+ View Full Map"
+          ]
+        },
+        "telHrefs": [
+          "tel:+12082313819"
+        ],
+        "telLinkCount": 4,
+        "ctaLabels": [
+          {
+            "label": "(208) 231-3819",
+            "count": 4,
+            "firstY": 7,
+            "tel": true
+          },
+          {
+            "label": "Schedule Service",
+            "count": 2,
+            "firstY": 418,
+            "tel": false
+          },
+          {
+            "label": "Get a Free 4-Hour Look",
+            "count": 2,
+            "firstY": 418,
+            "tel": false
+          },
+          {
+            "label": "Commercial Property Managers",
+            "count": 2,
+            "firstY": 684,
+            "tel": false
+          },
+          {
+            "label": "Facility Managers",
+            "count": 2,
+            "firstY": 684,
+            "tel": false
+          },
+          {
+            "label": "Building Owners",
+            "count": 2,
+            "firstY": 684,
+            "tel": false
+          },
+          {
+            "label": "National HVAC Service Companies",
+            "count": 2,
+            "firstY": 684,
+            "tel": false
+          },
+          {
+            "label": "More Info",
+            "count": 2,
+            "firstY": 955,
+            "tel": false
+          },
+          {
+            "label": "Request a Quote",
+            "count": 2,
+            "firstY": 1203,
+            "tel": false
+          },
+          {
+            "label": "Schedule a Consultation",
+            "count": 2,
+            "firstY": 2002,
+            "tel": false
+          },
+          {
+            "label": "Contact Us",
+            "count": 2,
+            "firstY": 3433,
+            "tel": false
+          },
+          {
+            "label": "(208) 886-4807",
+            "count": 4,
+            "firstY": 7,
+            "tel": true
+          }
+        ],
+        "primaryCta": {
+          "desktop": "(208) 231-3819",
+          "mobile": "(208) 886-4807"
+        },
+        "fonts": {
+          "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+          "h1": "\"Work Sans\", sans-serif",
+          "h2": "\"Work Sans\", sans-serif",
+          "loaded": [
+            "Work Sans"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.498
+            },
+            {
+              "hex": "#003d70",
+              "share": 0.137
+            },
+            {
+              "hex": "#f5f5f5",
+              "share": 0.087
+            },
+            {
+              "hex": "#cd1f2c",
+              "share": 0.007
+            }
+          ],
+          "text": [
+            {
+              "hex": "#003d70",
+              "share": 0.491
+            },
+            {
+              "hex": "#6d7988",
+              "share": 0.286
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.097
+            },
+            {
+              "hex": "#354152",
+              "share": 0.061
+            },
+            {
+              "hex": "#e5e5e5",
+              "share": 0.034
+            },
+            {
+              "hex": "#cd1f2c",
+              "share": 0.015
+            }
+          ],
+          "imageShare": 0.271,
+          "gradientShare": 0
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 47,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 47,
+              "phone": true,
+              "text": "(208) 231-3819"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 47,
+              "phone": true,
+              "text": "(208) 886-4807"
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(208) 886-4807",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 2,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 2,
+            "video": 0,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": "Premier Commercial HVAC Services",
+          "mobile": "Premier Commercial HVAC Services"
+        },
+        "lcpMs": {
+          "desktop": 772,
+          "mobile": 1040
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 148,
+            "domContentLoaded": 793,
+            "load": 2380
+          },
+          "mobile": {
+            "ttfb": 181,
+            "domContentLoaded": 1000,
+            "load": 2864
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "bonded",
+            "certified",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "Elementor 4.2.4; features: e_font_icon_svg, additional_custom_breakpoints; settings: css_print_method-external, google_font-enabled, font_display-auto",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 4871,
+          "mobileHeight": 6479,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 1,
+            "mobile": 1
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:11.772Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            4871
+          ]
+        ],
+        "usage": {
+          "input": 10064,
+          "output": 1147
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "hvac/divcoec",
+      "vertical": "hvac",
+      "segment": "commercial",
+      "slug": "divcoec",
+      "company": "DIVCO",
+      "metro": "Spokane",
+      "url": "https://divcoec.com/",
+      "finalUrl": "https://divcoec.com/",
+      "search": {
+        "query": "commercial hvac contractor Spokane",
+        "rank": 3,
+        "resultUrl": "https://divcoec.com/"
+      },
+      "aesthetic": "Industrial commercial-HVAC look: Eurostile extended caps, navy, lime and orange blocks over duotone mechanical photography.",
+      "palette": {
+        "bg": "#ececec",
+        "surface": "#ffffff",
+        "text": "#414345",
+        "accent": "#004990",
+        "accent2": "#f7921d"
+      },
+      "typePairing": {
+        "display": "Eurostile Extended",
+        "body": "Roboto Slab",
+        "source": "custom"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "nav",
+        "hero",
+        "about",
+        "market tiles",
+        "why choose us",
+        "services grid",
+        "tagline band",
+        "footer logo and nav",
+        "license list",
+        "copyright"
+      ],
+      "heroTreatment": "Full-width navy-tinted photo of exposed ductwork, centered three-line extended-caps white H1 with white and blue CTA buttons below.",
+      "trustSignals": [
+        "Established in 1982",
+        "Over 30 years headline",
+        "WA, ID and OR contractor license numbers listed in footer",
+        "Serves Washington and North Idaho",
+        "24 hour on demand service"
+      ],
+      "ctaPattern": "Hero pair of OUR HVAC SERVICES and CONTACT US, then READ MORE ABOUT US, VIEW OUR SERVICES and per-service Learn More buttons; phone sits in the top bar and footer.",
+      "distinctiveMoves": [
+        "2x2 market-segment tile grid (municipalities, commercial, agriculture, industrial) in lime, orange and duotone photos, framed in a white card overlapping sections",
+        "Full license table by state with license numbers as a footer credential block",
+        "Duotone navy and grayscale photo backgrounds that keep the brand palette across sections",
+        "Orange extended-caps service titles with underline rules over a dark aerial-photo grid"
+      ],
+      "weaknesses": [
+        "No lead form, reviews, testimonials or client logos, so social proof is thin",
+        "Service cards use low-contrast gray Learn More buttons on a busy photo background",
+        "Phone is only in the small top bar, with no sticky or prominent CTA, and the long text blocks are dense"
+      ],
+      "segmentFit": {
+        "residential": 0.05,
+        "commercial": 0.85,
+        "new_construction": 0.3
+      },
+      "vocabulary": [
+        "Eurostile extended caps headlines",
+        "navy duotone ductwork hero",
+        "lime green active nav tab",
+        "orange underline rules",
+        "2x2 market tile grid",
+        "white framed card overlap",
+        "dark gray utility bar",
+        "orange image-edge accent bars",
+        "grayscale aerial photo background",
+        "footer license table"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 photo of [SUBJECT: exposed commercial ceiling ductwork, round spiral ducts and pipes in a large mechanical space], shot with a wide lens looking up at a slight angle, cool navy-blue duotone grading with soft cool light and gray steel highlights, deep contrast, calm empty central area for a large centered headline and two buttons, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:12.217Z",
+        "robots": "no matching rule",
+        "title": "Home-DIVCO- Commercial HVAC in Spokane and Coeur d'Alene areas. Commercial Heating and Air Conditioning throughout Eastern Washington and North Idaho. HVAC, Building Controls and Mechanical Services in Spokane and Coeur d'Alene. CDA HVAC.",
+        "metaDescription": "Commercial Heating and Air Conditioning throughout Eastern Washington and North Idaho. HVAC, Building Controls and Mechanical Services in Spokane and Coeur d'Alene. CDA HVAC.",
+        "headings": {
+          "h1": [
+            "BUILDING COMFORT FOR OVER 30 YEARS"
+          ],
+          "h2": [
+            "DIVCO",
+            "YOUR BUSINESS DEPENDS ON OUR QUICK ACTION."
+          ]
+        },
+        "telHrefs": [
+          "tel:888.621.5103"
+        ],
+        "telLinkCount": 2,
+        "ctaLabels": [
+          {
+            "label": "EMPLOYEE LOGIN",
+            "count": 2,
+            "firstY": 92,
+            "tel": false
+          },
+          {
+            "label": "HOME",
+            "count": 1,
+            "firstY": 185,
+            "tel": false
+          },
+          {
+            "label": "OUR HVAC SERVICES",
+            "count": 2,
+            "firstY": 616,
+            "tel": false
+          },
+          {
+            "label": "CONTACT US",
+            "count": 2,
+            "firstY": 616,
+            "tel": false
+          },
+          {
+            "label": "READ MORE ABOUT US",
+            "count": 2,
+            "firstY": 1233,
+            "tel": false
+          },
+          {
+            "label": "VIEW OUR SERVICES",
+            "count": 2,
+            "firstY": 2272,
+            "tel": false
+          },
+          {
+            "label": "Learn More",
+            "count": 10,
+            "firstY": 2773,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "EMPLOYEE LOGIN",
+          "mobile": "EMPLOYEE LOGIN"
+        },
+        "fonts": {
+          "body": "\"Roboto Slab\"",
+          "h1": "eurostile-extended, sans-serif",
+          "h2": "eurostile-extended, sans-serif",
+          "loaded": [
+            "dashicons",
+            "jam-icons",
+            "eurostile",
+            "eurostile-condensed",
+            "eurostile-extended",
+            "Roboto Slab"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ececec",
+              "share": 0.263
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.129
+            },
+            {
+              "hex": "#004990",
+              "share": 0.048
+            },
+            {
+              "hex": "#000000",
+              "share": 0.044
+            },
+            {
+              "hex": "#414345",
+              "share": 0.032
+            },
+            {
+              "hex": "#f7921d",
+              "share": 0.018
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.601
+            },
+            {
+              "hex": "#414345",
+              "share": 0.317
+            },
+            {
+              "hex": "#f7921d",
+              "share": 0.032
+            },
+            {
+              "hex": "#aaaaaa",
+              "share": 0.027
+            },
+            {
+              "hex": "#050507",
+              "share": 0.012
+            },
+            {
+              "hex": "#004990",
+              "share": 0.009
+            }
+          ],
+          "imageShare": 0.378,
+          "gradientShare": 0.068
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 55,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 55,
+              "phone": false,
+              "text": "HOME ABOUT SERVICES CAREERS SERVICE AREAS CONTACT"
+            },
+            {
+              "edge": "bottom",
+              "width": 256,
+              "height": 60,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 40,
+              "phone": false,
+              "text": "MENU HOME ABOUT SERVICES CAREERS SERVICE AREAS CONTACT"
+            },
+            {
+              "edge": "bottom",
+              "width": 256,
+              "height": 60,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "888.621.5103",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 2,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "BUILDING COMFORT FOR OVER 30 YEARS",
+          "mobile": "BUILDING COMFORT FOR OVER 30 YEARS"
+        },
+        "lcpMs": {
+          "desktop": 960,
+          "mobile": 768
+        },
+        "lcpElement": {
+          "desktop": "span",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 110,
+            "domContentLoaded": 800,
+            "load": 1493
+          },
+          "mobile": {
+            "ttfb": 230,
+            "domContentLoaded": 737,
+            "load": 1371
+          }
+        },
+        "signals": {
+          "trust": [
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": "License\n020304",
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 6.4.12",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 4000,
+          "mobileHeight": 5651,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:59.885Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4000
+          ]
+        ],
+        "usage": {
+          "input": 8870,
+          "output": 1012
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "hvac/mtrosehvac",
+      "vertical": "hvac",
+      "segment": "commercial",
+      "slug": "mtrosehvac",
+      "company": "Mt. Rose Heating & Air Conditioning",
+      "metro": "Reno",
+      "url": "https://www.mtrosehvac.com/",
+      "finalUrl": "https://www.mtrosehvac.com/",
+      "search": {
+        "query": "commercial hvac contractor Reno",
+        "rank": 5,
+        "resultUrl": "http://www.mtrosehvac.com/"
+      },
+      "aesthetic": "Clean corporate white layout with Lake Tahoe landscape hero, flag-blue bars, red accents and a commercial project photo carousel.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f3f3f3",
+        "text": "#000000",
+        "accent": "#ba0e00",
+        "accent2": "#01368a"
+      },
+      "typePairing": {
+        "display": "Gotham",
+        "body": "Gotham",
+        "source": "custom"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "about",
+        "projects carousel",
+        "services",
+        "request form",
+        "footer"
+      ],
+      "heroTreatment": "Full-width Lake Tahoe and Sierra mountain photo with a translucent red band across the bottom holding a centered white caps headline and outlined estimate button.",
+      "trustSignals": [
+        "Locally owned mechanical contractor",
+        "Unlimited bonding capacity",
+        "Licensed in Nevada, California and Idaho",
+        "State of Nevada certified preferential bidder",
+        "License numbers listed: NV 32146, CA 770238, ID HVC-C-10037",
+        "Named projects: Legends Bay Casino, Reno Public Market, UNR"
+      ],
+      "ctaPattern": "Request an Estimate in the header and hero, a Read More outline button, then a short estimate form near the bottom; phone sits only in the top bar.",
+      "distinctiveMoves": [
+        "Six-up full-bleed project photo carousel with caps captions over a dark gradient, doubling as a commercial portfolio proof",
+        "Translucent red caption band overlaid on the bottom of the hero photo",
+        "Blue 'View all projects' strip attached directly under the carousel",
+        "Licence numbers for three states listed in the contact block as credibility"
+      ],
+      "weaknesses": [
+        "Hero is a scenic lake photo unrelated to HVAC and carries no phone number or supporting proof",
+        "Huge empty white gaps, light grey headings and a flat grey form leave the page sparse and low-contrast",
+        "No reviews, badges, or service-area list, and the services tabs are thin text with no imagery; the header is not sticky"
+      ],
+      "segmentFit": {
+        "residential": 0.1,
+        "commercial": 0.72,
+        "new_construction": 0.5
+      },
+      "vocabulary": [
+        "Tahoe landscape hero",
+        "translucent red caption band",
+        "flag-blue utility bar",
+        "outlined square buttons",
+        "Gotham caps headings",
+        "six-up project photo carousel",
+        "tabbed service buttons",
+        "grey placeholder form fields",
+        "generous white space",
+        "blue footer strip"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": true,
+        "conversion": "form-or-booking-first"
+      },
+      "heroImageRecipe": "Wide 16:9 landscape photo, 24mm lens, bright midday natural light, crisp blue sky and snow-capped mountains, calm turquoise lake with reflections, palette of cool blues and greens with warm granite boulders; [SUBJECT: a commercial rooftop HVAC unit installation in the foreground with a mountain lake basin behind]; keep the lower third open and uncluttered for a translucent red headline band; no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:12.409Z",
+        "robots": "no matching rule",
+        "title": "Mt. Rose HVAC | Reno Heating, Ventilation and Air Conditioning",
+        "metaDescription": "Reno Heating, Ventilation and Air Conditioning",
+        "headings": {
+          "h1": [],
+          "h2": [
+            "Commercial & Industrial HVAC",
+            "COMMERCIAL & INDUSTRIAL HVAC",
+            "ABOUT US",
+            "OUR SERVICES"
+          ]
+        },
+        "telHrefs": [
+          "tel:+17753298384",
+          "tel:+7753298384"
+        ],
+        "telLinkCount": 2,
+        "ctaLabels": [
+          {
+            "label": "REQUEST AN ESTIMATE",
+            "count": 3,
+            "firstY": 67,
+            "tel": false
+          },
+          {
+            "label": "READ MORE",
+            "count": 2,
+            "firstY": 1218,
+            "tel": false
+          },
+          {
+            "label": "Submit",
+            "count": 2,
+            "firstY": 3217,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "REQUEST AN ESTIMATE",
+          "mobile": "REQUEST AN ESTIMATE"
+        },
+        "fonts": {
+          "body": "gotham, sans-serif",
+          "h1": null,
+          "h2": "gotham, sans-serif",
+          "loaded": [
+            "d4fonticons",
+            "gotham"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.484
+            },
+            {
+              "hex": "#ba0e00",
+              "share": 0.07
+            },
+            {
+              "hex": "#f3f3f3",
+              "share": 0.03
+            },
+            {
+              "hex": "#c9c9c9",
+              "share": 0.03
+            },
+            {
+              "hex": "#01368a",
+              "share": 0.024
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.496
+            },
+            {
+              "hex": "#000000",
+              "share": 0.474
+            },
+            {
+              "hex": "#1a78b2",
+              "share": 0.02
+            },
+            {
+              "hex": "#c7c7c7",
+              "share": 0.01
+            }
+          ],
+          "imageShare": 0.328,
+          "gradientShare": 0.034
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 117,
+              "phone": true,
+              "text": "(775) 329-8384"
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(775) 329-8384",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": null
+        },
+        "lcpMs": {
+          "desktop": 816,
+          "mobile": 932
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 159,
+            "domContentLoaded": 704,
+            "load": 2209
+          },
+          "mobile": {
+            "ttfb": 351,
+            "domContentLoaded": 1078,
+            "load": 1858
+          }
+        },
+        "signals": {
+          "trust": [
+            "locally-owned",
+            "certified"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": "License 32146",
+          "leadForms": 1,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 3898,
+          "mobileHeight": 3448,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 1,
+            "mobile": 1
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:01.035Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            3898
+          ]
+        ],
+        "usage": {
+          "input": 8523,
+          "output": 1029
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "hvac/dynaserviceok",
+      "vertical": "hvac",
+      "segment": "commercial",
+      "slug": "dynaserviceok",
+      "company": "Dyna Service",
+      "metro": "Tulsa",
+      "url": "https://dynaserviceok.com/",
+      "finalUrl": "https://dynaserviceok.com/",
+      "search": {
+        "query": "commercial hvac contractor Tulsa",
+        "rank": 5,
+        "resultUrl": "https://dynaserviceok.com/hvac/"
+      },
+      "aesthetic": "Bold red angular geometric shapes on white with blueprint line-art, industrial commercial HVAC product photography",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f2f2f2",
+        "text": "#333333",
+        "accent": "#e10312",
+        "accent2": "#191a1f"
+      },
+      "typePairing": {
+        "display": "Rubik (h1) and Anek Kannada (h2)",
+        "body": "Kameron serif accents over system sans-serif",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "services",
+        "about",
+        "cta band",
+        "energy management",
+        "careers",
+        "cta band",
+        "why choose us",
+        "footer"
+      ],
+      "heroTreatment": "White blueprint line-art HVAC background with a large red angular polygon behind cutout condenser unit photos on the right; dark headline, short copy and outlined message button on the left.",
+      "trustSignals": [
+        "40+ Year of experience callout",
+        "Serving Tulsa area since 1995",
+        "Certified commercial HVAC technicians and plumbers",
+        "Mechanical license required for hiring",
+        "Hours Mon to Fri 8:00AM-4:30PM"
+      ],
+      "ctaPattern": "Outlined red-border buttons: Send Us A Message, Hire Us Now, Get A Free Estimate, repeated per section, with phone 918-663-6200 in header and a Why Trust block.",
+      "distinctiveMoves": [
+        "Oversized red chevron and arrow shapes bleeding off page edges as section dividers",
+        "Cutout product photo of condensers floating over a red parallelogram",
+        "Overlapping white-bordered photo collage with a floating 40+ years stat",
+        "Dark photo banner cards with centered headline and CTA break up white sections"
+      ],
+      "weaknesses": [
+        "No reviews, testimonials, badges or license numbers to build credibility",
+        "CTAs are low-contrast outlined ghost buttons and no on-page form or booking",
+        "Careers block mid-page dilutes the sales message; non-sticky header and mixed serif/sans type feels inconsistent"
+      ],
+      "segmentFit": {
+        "residential": 0.1,
+        "commercial": 0.78,
+        "new_construction": 0.3
+      },
+      "vocabulary": [
+        "red angular polygon shapes",
+        "blueprint line-art background",
+        "cutout condenser product photo",
+        "overlapping bordered photo collage",
+        "dark photo banner cards",
+        "light grey service tiles",
+        "outlined ghost CTA buttons",
+        "red-on-black footer with diagonal shape",
+        "bold geometric sans headlines",
+        "plus-icon expandable service cards"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "16:9 photo, bright clean daylight, crisp commercial product look in white, light grey and saturated red accents; [SUBJECT: rooftop commercial HVAC condenser units on a flat white roof seen from a slight elevated angle]; sharp focus, shallow depth of field, large clean negative space on the left half for headline, red geometric graphic panel on the right; no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:18.726Z",
+        "robots": "no matching rule",
+        "title": "HVAC Contractors - Commercial HVAC & Plumbing Contractor | Tulsa, OK | Dyna Service",
+        "metaDescription": "Discover top HVAC contractors near Tulsa, Owasso & Sand Springs. Call Dyna Service for reliable solutions today! (918) 663-6200",
+        "headings": {
+          "h1": [
+            "Top HVAC Contractors In Tulsa & Broken Arrow, OK – Your Trusted Local Experts"
+          ],
+          "h2": [
+            "Looking For Commercial HVAC Contractors Near Tulsa, Owasso & Sand Springs, OK? We’ve Got You Covered!"
+          ]
+        },
+        "telHrefs": [
+          "tel:9186636200"
+        ],
+        "telLinkCount": 8,
+        "ctaLabels": [
+          {
+            "label": "Send Us A Message",
+            "count": 4,
+            "firstY": 493,
+            "tel": false
+          },
+          {
+            "label": "Hire Us Now",
+            "count": 2,
+            "firstY": 2263,
+            "tel": true
+          },
+          {
+            "label": "Get A Free Estimate",
+            "count": 2,
+            "firstY": 3510,
+            "tel": true
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Send Us A Message",
+          "mobile": "Send Us A Message"
+        },
+        "fonts": {
+          "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "h1": "Rubik, sans-serif",
+          "h2": "\"Anek Kannada\", sans-serif",
+          "loaded": [
+            "Anek Kannada",
+            "Kameron",
+            "Rubik"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.149
+            },
+            {
+              "hex": "#191a1f",
+              "share": 0.076
+            },
+            {
+              "hex": "#e10312",
+              "share": 0.005
+            }
+          ],
+          "text": [
+            {
+              "hex": "#333333",
+              "share": 0.599
+            },
+            {
+              "hex": "#191a1f",
+              "share": 0.202
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.194
+            },
+            {
+              "hex": "#cc3366",
+              "share": 0.005
+            },
+            {
+              "hex": "#e10312",
+              "share": 0.001
+            }
+          ],
+          "imageShare": 0.771,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "918-663-6200",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 2,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 2,
+            "video": 0,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": "Top HVAC Contractors In Tulsa & Broken Arrow, OK – Your Trusted Local Experts",
+          "mobile": "Top HVAC Contractors In Tulsa & Broken Arrow, OK – Your Trusted Local Experts"
+        },
+        "lcpMs": {
+          "desktop": 616,
+          "mobile": 232
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 88,
+            "domContentLoaded": 630,
+            "load": 1021
+          },
+          "mobile": {
+            "ttfb": 68,
+            "domContentLoaded": 851,
+            "load": 1350
+          }
+        },
+        "signals": {
+          "trust": [
+            "certified",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.2",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 4895,
+          "mobileHeight": 7930,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:59.086Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            4895
+          ]
+        ],
+        "usage": {
+          "input": 10011,
+          "output": 1010
+        }
+      },
+      "family": "F3"
+    },
+    {
+      "id": "hvac/a1united",
+      "vertical": "hvac",
+      "segment": "new_construction",
+      "slug": "a1united",
+      "company": "A-1 United Heating, Air & Electrical",
+      "metro": "Omaha",
+      "url": "https://www.a1united.net/",
+      "finalUrl": "https://www.a1united.net/",
+      "search": {
+        "query": "new construction hvac Omaha",
+        "rank": 2,
+        "resultUrl": "https://www.a1united.net/residential-new/"
+      },
+      "aesthetic": "Dark charcoal industrial theme with halftone dot textures, orange and blue accents, circular photo crops and heavy Open Sans caps.",
+      "palette": {
+        "bg": "#141414",
+        "surface": "#eaeaea",
+        "text": "#ffffff",
+        "accent": "#f68520",
+        "accent2": "#1472ad"
+      },
+      "typePairing": {
+        "display": "Open Sans",
+        "body": "Public Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "services",
+        "about electrical",
+        "about furnace",
+        "reviews",
+        "offers tiles",
+        "blog",
+        "cta band",
+        "certifications",
+        "service areas",
+        "footer"
+      ],
+      "heroTreatment": "Split hero: lifestyle bedroom photo on left third, right two-thirds dark grey gradient panel with a very long caps H1, SEO copy, bullet list and one orange Request Service button.",
+      "trustSignals": [
+        "Employee owned since 1975",
+        "BBB Accredited Business A+",
+        "NATE certified",
+        "ACCA member",
+        "Lennox Premier Dealer and Circle of Excellence",
+        "Dave Lennox Award 2020",
+        "Readers' Choice Best of the Big O 2022",
+        "CompliAssure Secured",
+        "Buzzreview testimonial from Raymond J Z."
+      ],
+      "ctaPattern": "Orange REQUEST SERVICE and blue online equipment replacement quote buttons under the header, repeated in hero and yellow-orange CTA band; phone at top right and a chat widget.",
+      "distinctiveMoves": [
+        "Circular photo crops with orange or blue ring borders alternating left and right against dark panels",
+        "Orange and blue gradient line-icon service tiles on black with halftone dot texture",
+        "Three-up tile row for financing, offers and filter-reminder program with photo or pattern backgrounds",
+        "Angled diagonal edge into a blue gradient reviews section"
+      ],
+      "weaknesses": [
+        "Hero headline is an extremely long caps H1 with dense SEO paragraphs and bullets, which hurts scanability",
+        "Only one review shown, with no star rating, and no lead form on page, so conversion depends on button clicks",
+        "Mixed palettes (orange, blue, yellow gradient, black) and heavy text blocks feel busy and dated; hero photo is generic and unrelated to the trade"
+      ],
+      "segmentFit": {
+        "residential": 0.8,
+        "commercial": 0.35,
+        "new_construction": 0.15
+      },
+      "vocabulary": [
+        "halftone dot texture",
+        "circular ring-framed photos",
+        "gradient line icons",
+        "dark charcoal sections",
+        "heavy caps Open Sans headlines",
+        "orange block CTA buttons",
+        "diagonal section divider",
+        "split photo and text hero",
+        "badge grid on grey",
+        "orange underline accent bars"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 photo, 35mm lens at eye level, soft natural window light with warm interior tones and a cool grey wall, palette of charcoal, white and a red accent, [SUBJECT: smiling homeowner relaxing on a bed with cushions in a cozy warm home], subject framed in left third, large clean negative space on right two-thirds for headline over a dark gradient, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:53.338Z",
+        "robots": "no matching rule",
+        "title": "Furnace Repair, HVAC & Electrical Omaha, NE | A-1 United",
+        "metaDescription": "Furnace replacement, repair, AC and electrical services in Omaha, NE and Council Bluffs, IA. Employee-owned since 1975. Free estimates. Call 402-593-7500.",
+        "headings": {
+          "h1": [
+            "A-1 UNITED DELIVERING HEATING SERVICES OMAHA, NE, HAS TRUSTED SINCE 1975"
+          ],
+          "h2": [
+            "OUR SERVICES",
+            "NOTABLE HVAC NEWS"
+          ]
+        },
+        "telHrefs": [
+          "tel:402.593.7500"
+        ],
+        "telLinkCount": 2,
+        "ctaLabels": [
+          {
+            "label": "REQUEST SERVICE",
+            "count": 6,
+            "firstY": 197,
+            "tel": false
+          },
+          {
+            "label": "ONLINE EQUIPMENT REPLACEMENT QUOTE",
+            "count": 2,
+            "firstY": 197,
+            "tel": false
+          },
+          {
+            "label": "VIEW ELECTRICAL SERVICES",
+            "count": 2,
+            "firstY": 2892,
+            "tel": false
+          },
+          {
+            "label": "VIEW FURNACE SERVICES",
+            "count": 2,
+            "firstY": 3673,
+            "tel": false
+          },
+          {
+            "label": "READ MORE REVIEWS",
+            "count": 2,
+            "firstY": 4414,
+            "tel": false
+          },
+          {
+            "label": "View Offers",
+            "count": 2,
+            "firstY": 4759,
+            "tel": false
+          },
+          {
+            "label": "Join Program",
+            "count": 2,
+            "firstY": 4775,
+            "tel": false
+          },
+          {
+            "label": "View Lennox Elite",
+            "count": 2,
+            "firstY": 5109,
+            "tel": false
+          },
+          {
+            "label": "READ MORE BLOGS",
+            "count": 2,
+            "firstY": 6116,
+            "tel": false
+          },
+          {
+            "label": "Chat Have a question? Text us here",
+            "count": 2,
+            "firstY": 836,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "REQUEST SERVICE",
+          "mobile": "REQUEST SERVICE"
+        },
+        "fonts": {
+          "body": "\"Public Sans\", Arial, Helvetica, sans-serif",
+          "h1": "\"Open Sans\", Arial, Helvetica, sans-serif",
+          "h2": "\"Open Sans\", Arial, Helvetica, sans-serif",
+          "loaded": [
+            "Open Sans",
+            "Public Sans",
+            "awb-icons",
+            "Font Awesome 5 Free"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.226
+            },
+            {
+              "hex": "#141414",
+              "share": 0.191
+            },
+            {
+              "hex": "#eaeaea",
+              "share": 0.058
+            },
+            {
+              "hex": "#f68520",
+              "share": 0.027
+            },
+            {
+              "hex": "#1472ad",
+              "share": 0.027
+            },
+            {
+              "hex": "#333333",
+              "share": 0.006
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.652
+            },
+            {
+              "hex": "#2c2c2c",
+              "share": 0.164
+            },
+            {
+              "hex": "#3295d4",
+              "share": 0.083
+            },
+            {
+              "hex": "#17537b",
+              "share": 0.045
+            },
+            {
+              "hex": "#212121",
+              "share": 0.038
+            },
+            {
+              "hex": "#333333",
+              "share": 0.006
+            }
+          ],
+          "imageShare": 0.248,
+          "gradientShare": 0.213
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 148,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "bottom",
+              "width": 40,
+              "height": 40,
+              "phone": false,
+              "text": ""
+            },
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 148,
+              "phone": true,
+              "text": "HVAC SERVICES RESIDENTIAL Residential Replacement New Home Construction Resident"
+            },
+            {
+              "edge": "bottom",
+              "width": 48,
+              "height": 35,
+              "phone": false,
+              "text": "Go to Top"
+            },
+            {
+              "edge": "bottom",
+              "width": 98,
+              "height": 44,
+              "phone": false,
+              "text": "Chat Have a question? Text us here"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "bottom",
+              "width": 44,
+              "height": 44,
+              "phone": false,
+              "text": ""
+            },
+            {
+              "edge": "bottom",
+              "width": 98,
+              "height": 44,
+              "phone": false,
+              "text": "Chat Have a question? Text us here"
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "402.593.7500",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 1,
+            "video": 0,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": "A-1 UNITED DELIVERING HEATING SERVICES OMAHA, NE, HAS TRUSTED SINCE 1975",
+          "mobile": "A-1 UNITED DELIVERING HEATING SERVICES OMAHA, NE, HAS TRUSTED SINCE 1975"
+        },
+        "lcpMs": {
+          "desktop": 21960,
+          "mobile": 1040
+        },
+        "lcpElement": {
+          "desktop": "h1",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 1634,
+            "domContentLoaded": 2894,
+            "load": 20627
+          },
+          "mobile": {
+            "ttfb": 260,
+            "domContentLoaded": 1154,
+            "load": 3647
+          }
+        },
+        "signals": {
+          "trust": [
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": true,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [
+            "scheduleengine"
+          ],
+          "chatVendors": [],
+          "badges": [
+            "bbb",
+            "google",
+            "nate",
+            "lennox",
+            "award"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 8386,
+          "mobileHeight": 11941,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:49.367Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            8386
+          ]
+        ],
+        "usage": {
+          "input": 14638,
+          "output": 1089
+        }
+      },
+      "family": "F4"
+    },
+    {
+      "id": "hvac/temp-con",
+      "vertical": "hvac",
+      "segment": "new_construction",
+      "slug": "temp-con",
+      "company": "Temperature Control, Inc.",
+      "metro": "Tucson",
+      "url": "https://temp-con.com/",
+      "finalUrl": "https://temp-con.com/",
+      "search": {
+        "query": "new construction hvac Tucson",
+        "rank": 1,
+        "resultUrl": "https://temp-con.com/service-areas/tucson-az/new-construction-hvac-in-tucson-az/"
+      },
+      "aesthetic": "Arizona desert-sunset gradients in navy, teal and burnt orange, with soft cream panels and rounded orange pill CTAs.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f5efd9",
+        "text": "#104d71",
+        "accent": "#e47419",
+        "accent2": "#2a8fe6"
+      },
+      "typePairing": {
+        "display": "Wix Madefor Display",
+        "body": "Wix Madefor Display",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "promo bar",
+        "header",
+        "hero",
+        "rebate band",
+        "about",
+        "rebate info",
+        "core values",
+        "reviews",
+        "guarantee",
+        "plumbing feature",
+        "maintenance plan",
+        "financing strip",
+        "community",
+        "service area",
+        "brands",
+        "blog tips",
+        "careers",
+        "awards",
+        "footer"
+      ],
+      "heroTreatment": "Full-width Tucson desert home photo with centered white headline and a white Schedule Now pill on the left; four frosted-glass service tiles stacked on the right.",
+      "trustSignals": [
+        "Family-owned since 1982",
+        "44 years in Tucson",
+        "Google 4.9 rating, 2846 reviews",
+        "One year guarantee on repairs, replacements and installs",
+        "ACCA member badge",
+        "Angi Super Service Award 2023",
+        "HomeAdvisor Best Of 2020",
+        "Arizona Daily Star Favorite 2026",
+        "TEP Participating Contractor",
+        "License numbers in footer"
+      ],
+      "ctaPattern": "Free Estimate and Schedule Now in header and footer, with orange Schedule Now pills repeated after nearly every section and a phone number in the header and rebate band.",
+      "distinctiveMoves": [
+        "Frosted-glass service tiles overlaid on the hero photo",
+        "Sunset navy-to-orange gradient sections that echo the desert",
+        "Family photo cutout with the owner's family on a dotted cream background in the about section",
+        "Zip-code checker beside a service area map and town list"
+      ],
+      "weaknesses": [
+        "Headline and body text are small, light-weight and low contrast over photos and gradients",
+        "No on-page lead form, and the header is not sticky",
+        "Many sections and repeated CTAs make a long page, with little residential or new-construction specificity"
+      ],
+      "segmentFit": {
+        "residential": 0.85,
+        "commercial": 0.3,
+        "new_construction": 0.2
+      },
+      "vocabulary": [
+        "desert sunset gradients",
+        "orange pill CTAs",
+        "frosted glass tiles",
+        "cream panel sections",
+        "navy headline type",
+        "light-weight rounded sans",
+        "family cutout photo",
+        "rebate banner band",
+        "badge logo grid",
+        "team group photo band"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "16:9 wide-angle photo, golden-hour desert [SUBJECT: modern adobe-style Southwestern home with saguaro cactus and a green lawn], warm low sun, blue sky, saturated greens and terracotta, shot at eye level with a slight telephoto compression, clear open sky and foreground lawn on the left for the headline, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:33.267Z",
+        "robots": "no matching rule",
+        "title": "HVAC, Plumbing & Electrical Experts | Temperature Control",
+        "metaDescription": "Temperature Control offers trusted HVAC, plumbing, and electrical repair, install, and maintenance for Tucson & Oro Valley. Schedule today.",
+        "headings": {
+          "h1": [
+            "Guaranted Home Service Solutions in Tucson for 44 Years"
+          ],
+          "h2": [
+            "Heating and Cooling",
+            "Plumbing Services",
+            "Electrical Services",
+            "Maintenance Plans",
+            "Your Full-Service Home Comfort Partner in Tucson, AZ",
+            "Our Core Values",
+            "We Love Hearing From Our Tucson-Area Customers!",
+            "Expert Plumbing Led by John Mancini",
+            "Starts With a Maintenance Plan",
+            "We Love Our Community",
+            "Our Service Area",
+            "HVAC, Plumbing, and Electrical Tips",
+            "What Is Pipe Lining and How Does It Work for Sewer Repair?",
+            "Protect Your Home During Monsoon Season",
+            "When Should You Upgrade Your Home’s Electrical Outlets?",
+            "Fall HVAC & Plumbing Prep: Your Pre-Winter Checklist",
+            "Why Is My AC Making Loud Noises? A Tucson Homeowner’s Guide to Staying Cool in the Desert Heat",
+            "Simple Ways to Lower Cooling Costs During the Hottest Months",
+            "Why Is My Air Conditioner Blowing Warm Air? 8 Common Causes and Fixes",
+            "Your Top 10 Guide to Buying a New AC in Tucson, Az",
+            "5 Tips to Improve Your Tucson Home’s Air Quality This Summer",
+            "A Historic Day for Tucson’s Weather and Your Water Bill"
+          ]
+        },
+        "telHrefs": [
+          "tel:+15208155665",
+          "tel:%20+15208155665"
+        ],
+        "telLinkCount": 5,
+        "ctaLabels": [
+          {
+            "label": "Free Estimate",
+            "count": 4,
+            "firstY": 64,
+            "tel": false
+          },
+          {
+            "label": "Schedule Now",
+            "count": 12,
+            "firstY": 112,
+            "tel": false
+          },
+          {
+            "label": "Claim My 2026 Rebates",
+            "count": 2,
+            "firstY": 946,
+            "tel": false
+          },
+          {
+            "label": "Call Now: (520) 815-5665",
+            "count": 2,
+            "firstY": 946,
+            "tel": true
+          },
+          {
+            "label": "Meet The Team",
+            "count": 2,
+            "firstY": 1496,
+            "tel": false
+          },
+          {
+            "label": "Start Saving Now",
+            "count": 2,
+            "firstY": 1792,
+            "tel": false
+          },
+          {
+            "label": "Trustworthiness",
+            "count": 1,
+            "firstY": 2092,
+            "tel": false
+          },
+          {
+            "label": "Customer-Centered Care",
+            "count": 1,
+            "firstY": 2176,
+            "tel": false
+          },
+          {
+            "label": "Technical Excellence",
+            "count": 1,
+            "firstY": 2314,
+            "tel": false
+          },
+          {
+            "label": "Integrity in Every Interaction",
+            "count": 1,
+            "firstY": 2397,
+            "tel": false
+          },
+          {
+            "label": "Innovation with Purpose",
+            "count": 1,
+            "firstY": 2535,
+            "tel": false
+          },
+          {
+            "label": "Local Commitment",
+            "count": 1,
+            "firstY": 2618,
+            "tel": false
+          },
+          {
+            "label": "Reliability",
+            "count": 1,
+            "firstY": 2701,
+            "tel": false
+          },
+          {
+            "label": "Read All Reviews",
+            "count": 2,
+            "firstY": 3469,
+            "tel": false
+          },
+          {
+            "label": "Leave A Review",
+            "count": 2,
+            "firstY": 3469,
+            "tel": false
+          },
+          {
+            "label": "Explore All Specials",
+            "count": 2,
+            "firstY": 4027,
+            "tel": false
+          },
+          {
+            "label": "Plumbing Services",
+            "count": 2,
+            "firstY": 4647,
+            "tel": false
+          },
+          {
+            "label": "Enroll Today",
+            "count": 2,
+            "firstY": 5458,
+            "tel": false
+          },
+          {
+            "label": "See How We Can Help",
+            "count": 2,
+            "firstY": 5625,
+            "tel": false
+          },
+          {
+            "label": "Get Involved",
+            "count": 2,
+            "firstY": 5989,
+            "tel": false
+          },
+          {
+            "label": "Check Now",
+            "count": 2,
+            "firstY": 6909,
+            "tel": false
+          },
+          {
+            "label": "Explore Blog",
+            "count": 2,
+            "firstY": 8001,
+            "tel": false
+          },
+          {
+            "label": "Explore Openings",
+            "count": 2,
+            "firstY": 8384,
+            "tel": false
+          },
+          {
+            "label": "Leave Review",
+            "count": 2,
+            "firstY": 9580,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Free Estimate",
+          "mobile": "Free Estimate"
+        },
+        "fonts": {
+          "body": "\"Wix Madefor Display\", sans-serif",
+          "h1": "\"Wix Madefor Display\", sans-serif",
+          "h2": "\"Wix Madefor Display\", sans-serif",
+          "loaded": [
+            "Wix Madefor Display",
+            "dashicons"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.037
+            },
+            {
+              "hex": "#f5efd9",
+              "share": 0.005
+            },
+            {
+              "hex": "#e47419",
+              "share": 0.004
+            },
+            {
+              "hex": "#fdfbf7",
+              "share": 0.003
+            },
+            {
+              "hex": "#2a8fe6",
+              "share": 0.003
+            },
+            {
+              "hex": "#e57418",
+              "share": 0.001
+            }
+          ],
+          "text": [
+            {
+              "hex": "#104d71",
+              "share": 0.761
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.183
+            },
+            {
+              "hex": "#e47419",
+              "share": 0.027
+            },
+            {
+              "hex": "#f5efd9",
+              "share": 0.011
+            },
+            {
+              "hex": "#000000",
+              "share": 0.008
+            },
+            {
+              "hex": "#f7f4ea",
+              "share": 0.005
+            }
+          ],
+          "imageShare": 0.919,
+          "gradientShare": 0.028
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(520) 815-5665",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 2,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 1,
+            "video": 0,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": "Guaranted Home Service Solutions in Tucson for 44 Years",
+          "mobile": null
+        },
+        "lcpMs": {
+          "desktop": 484,
+          "mobile": 788
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 50,
+            "domContentLoaded": 357,
+            "load": 444
+          },
+          "mobile": {
+            "ttfb": 351,
+            "domContentLoaded": 753,
+            "load": 758
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "family-owned",
+            "guarantee",
+            "years-in-business"
+          ],
+          "coupon": true,
+          "financing": true,
+          "membership": true,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [
+            "servicetitan"
+          ],
+          "chatVendors": [
+            "podium",
+            "intercom"
+          ],
+          "badges": [
+            "angi",
+            "google",
+            "yelp",
+            "lennox"
+          ],
+          "platform": [
+            "wordpress",
+            "squarespace",
+            "webflow",
+            "hubspot"
+          ],
+          "generator": "WordPress 7.1.3",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 9836,
+          "mobileHeight": 15278,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 1,
+            "mobile": 1
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:09.693Z",
+        "strips": [
+          [
+            0,
+            2401
+          ],
+          [
+            2401,
+            4802
+          ],
+          [
+            4802,
+            7203
+          ],
+          [
+            7203,
+            9604
+          ],
+          [
+            9604,
+            9836
+          ]
+        ],
+        "usage": {
+          "input": 11851,
+          "output": 1009
+        }
+      },
+      "family": "F3"
+    },
+    {
+      "id": "hvac/bandkservices",
+      "vertical": "hvac",
+      "segment": "new_construction",
+      "slug": "bandkservices",
+      "company": "B & K Services",
+      "metro": "Greenville SC",
+      "url": "https://www.bandkservices.com/",
+      "finalUrl": "https://www.bandkservices.com/",
+      "search": {
+        "query": "new construction hvac Greenville SC",
+        "rank": 1,
+        "resultUrl": "https://www.bandkservices.com/residential/new-construction/"
+      },
+      "aesthetic": "Clean white corporate HVAC layout with navy headlines, bold yellow pill CTAs and orange/blue split service panels.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f5f5f5",
+        "text": "#182c43",
+        "accent": "#ffd135",
+        "accent2": "#ea1d22"
+      },
+      "typePairing": {
+        "display": "Now",
+        "body": "Lato",
+        "source": "unknown"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "quote cards",
+        "brand logos",
+        "feature cards",
+        "about",
+        "marquee heading",
+        "cta band",
+        "services split",
+        "residential services",
+        "commitment statement",
+        "service grid",
+        "reviews",
+        "stats",
+        "process",
+        "footer"
+      ],
+      "heroTreatment": "Rounded full-width technician photo with navy overlay, rating badges above, left-aligned headline and subline, two overlapping quote cards straddling the bottom edge.",
+      "trustSignals": [
+        "Google 4.9 rating badge",
+        "Yelp 4.8 rating badge",
+        "BBB A+ rating",
+        "Family-owned since 1984",
+        "40+ years of trusted service",
+        "20K+ homes and businesses served",
+        "5 Stars from loyal customers",
+        "24/7 emergency service",
+        "Carrier, Goodman, Amana, American Standard logos"
+      ],
+      "ctaPattern": "Yellow Get A Quote pill in header plus red HVAC Quote and yellow Request Service hero cards; yellow Contact Us and Request Service pills repeat down the page.",
+      "distinctiveMoves": [
+        "Two big colored action cards (red and yellow) overlapping the hero bottom edge",
+        "Orange heating panel beside blue cooling panel as a color-coded service split",
+        "Oversized pale gray marquee-style headline text as section divider",
+        "Navy circular stat badges with yellow numerals"
+      ],
+      "weaknesses": [
+        "No on-page form or scheduler and the phone number is small and not sticky",
+        "Large empty white gaps, a black video placeholder block and a faint swirl graphic make the page feel sparse",
+        "Reviews are small, thin-bordered text cards with truncated names; no license number or service area list"
+      ],
+      "segmentFit": {
+        "residential": 0.8,
+        "commercial": 0.35,
+        "new_construction": 0.3
+      },
+      "vocabulary": [
+        "rounded hero photo",
+        "overlapping quote cards",
+        "yellow pill CTA",
+        "navy headline type",
+        "orange and blue split panels",
+        "brand logo row",
+        "circular navy stat badges",
+        "ghosted giant headline",
+        "photo step cards",
+        "light gray feature cards"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": false,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Photorealistic 16:9 hero photo, shot at eye level with a 50mm lens in soft overcast daylight, of [SUBJECT: HVAC technician in a gray uniform and safety glasses servicing an outdoor condenser unit beside a suburban house]. Cool navy and slate palette with muted greens, shallow depth of field and a blurred house background. Subject sits on the right third, with open darker negative space on the left for the headline and rating badges. No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:39.350Z",
+        "robots": "no matching rule",
+        "title": "Home - B & K Services",
+        "metaDescription": null,
+        "headings": {
+          "h1": [
+            "Year-Round Comfort, Built on Trust"
+          ],
+          "h2": [
+            "B & K Services – Family-Owned Comfort Since Day One",
+            "Upstate South Carolina Heating & Cooling Services",
+            "Residential HVAC Services – Built for Your Home’s Comfort",
+            "UPSTATE'S TRUSTED HVAC EXPERTS",
+            "Reach and Reliability",
+            "Our Seamless HVAC Process"
+          ]
+        },
+        "telHrefs": [
+          "tel:+18642449122"
+        ],
+        "telLinkCount": 7,
+        "ctaLabels": [
+          {
+            "label": "HVAC Quote Get a price now",
+            "count": 1,
+            "firstY": 611,
+            "tel": false
+          },
+          {
+            "label": "REQUEST SERVICE Send Request",
+            "count": 1,
+            "firstY": 611,
+            "tel": false
+          },
+          {
+            "label": "Have a Question? Call Us Today.",
+            "count": 2,
+            "firstY": 1689,
+            "tel": true
+          },
+          {
+            "label": "Get A Free Quote",
+            "count": 2,
+            "firstY": 1992,
+            "tel": false
+          },
+          {
+            "label": "Contact Us",
+            "count": 4,
+            "firstY": 3598,
+            "tel": false
+          },
+          {
+            "label": "Request Service",
+            "count": 1,
+            "firstY": 5156,
+            "tel": false
+          },
+          {
+            "label": "Next slide",
+            "count": 2,
+            "firstY": 5659,
+            "tel": false
+          },
+          {
+            "label": "Previous slide",
+            "count": 2,
+            "firstY": 5659,
+            "tel": false
+          },
+          {
+            "label": "Call",
+            "count": 1,
+            "firstY": 6161,
+            "tel": true
+          }
+        ],
+        "primaryCta": {
+          "desktop": "HVAC Quote Get a price now",
+          "mobile": null
+        },
+        "fonts": {
+          "body": "Lato, sans-serif",
+          "h1": "Now, sans-serif",
+          "h2": "Now, sans-serif",
+          "loaded": [
+            "Lato"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.51
+            },
+            {
+              "hex": "#f5f5f5",
+              "share": 0.071
+            },
+            {
+              "hex": "#fafafa",
+              "share": 0.038
+            },
+            {
+              "hex": "#ffd135",
+              "share": 0.025
+            },
+            {
+              "hex": "#182c43",
+              "share": 0.012
+            },
+            {
+              "hex": "#ea1d22",
+              "share": 0.012
+            }
+          ],
+          "text": [
+            {
+              "hex": "#182c43",
+              "share": 0.464
+            },
+            {
+              "hex": "#505b67",
+              "share": 0.316
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.189
+            },
+            {
+              "hex": "#ff7b00",
+              "share": 0.022
+            },
+            {
+              "hex": "#000000",
+              "share": 0.005
+            },
+            {
+              "hex": "#ffd135",
+              "share": 0.002
+            }
+          ],
+          "imageShare": 0.257,
+          "gradientShare": 0.069
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 7,
+        "aboveFold": {
+          "desktop": {
+            "img": 6,
+            "bgImage": 1,
+            "video": 0,
+            "total": 7
+          },
+          "mobile": {
+            "img": 4,
+            "bgImage": 1,
+            "video": 0,
+            "total": 5
+          }
+        },
+        "heroH1": {
+          "desktop": "Year-Round Comfort, Built on Trust",
+          "mobile": "Year-Round Comfort, Built on Trust"
+        },
+        "lcpMs": {
+          "desktop": 572,
+          "mobile": 724
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 26,
+            "domContentLoaded": 409,
+            "load": 3454
+          },
+          "mobile": {
+            "ttfb": 360,
+            "domContentLoaded": 690,
+            "load": 2336
+          }
+        },
+        "signals": {
+          "trust": [
+            "family-owned",
+            "locally-owned",
+            "years-in-business",
+            "star-rating"
+          ],
+          "coupon": false,
+          "financing": true,
+          "membership": true,
+          "serviceArea": false,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "bbb",
+            "google",
+            "yelp",
+            "carrier",
+            "goodman"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.2",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 7430,
+          "mobileHeight": 13686,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:50.764Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            7430
+          ]
+        ],
+        "usage": {
+          "input": 13249,
+          "output": 1024
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "hvac/arthurhagar",
+      "vertical": "hvac",
+      "segment": "new_construction",
+      "slug": "arthurhagar",
+      "company": "Arthur Hagar Air Conditioning & Heating",
+      "metro": "Fort Worth",
+      "url": "https://www.arthurhagar.com/",
+      "finalUrl": "https://www.arthurhagar.com/",
+      "search": {
+        "query": "new construction hvac Fort Worth",
+        "rank": 2,
+        "resultUrl": "https://www.arthurhagar.com/new-construction/"
+      },
+      "aesthetic": "Patriotic red-white-navy corporate HVAC template with Trane dealer branding over a warm family-on-sofa hero photo.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#ffffff",
+        "text": "#000000",
+        "accent": "#e91d28",
+        "accent2": "#23398e"
+      },
+      "typePairing": {
+        "display": "Open Sans",
+        "body": "Open Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "nav bar",
+        "hero",
+        "intro",
+        "service cards",
+        "experience cta band",
+        "about copy",
+        "footer"
+      ],
+      "heroTreatment": "Full-width family-on-sofa photo with dark overlay, centered white caps H1, subcopy, Trane logo and Comfort Specialist badge, then red quote and navy call buttons.",
+      "trustSignals": [
+        "Trane Authorized Dealer logo",
+        "Trane Comfort Specialist badge",
+        "Family owned and operated since 1949",
+        "More than 65 years of experience",
+        "Licensed, bonded and insured",
+        "License No. TACLB12063E in footer",
+        "Open 24/7"
+      ],
+      "ctaPattern": "Primary red 'Speedy Fast Quote' plus navy 'Call (817) 478-1122' in hero; red 'Get an Estimate' in navy band; phone top right and in footer.",
+      "distinctiveMoves": [
+        "Trane logo and Comfort Specialist badge placed in the hero between headline and CTAs",
+        "Five equal rounded cards where Specials and Financing sit alongside Estimate and Service as entry points",
+        "Full-bleed navy band restating 65 years and family-owned heritage with a single red CTA",
+        "Red top rule and red active-tab nav under a white logo header"
+      ],
+      "weaknesses": [
+        "No on-page form, scheduler or reviews, so no social proof or low-friction lead capture",
+        "Long dense text block at the bottom with little hierarchy; generic template feel",
+        "Header and phone not sticky, and no service area list or new-construction/builder messaging"
+      ],
+      "segmentFit": {
+        "residential": 0.72,
+        "commercial": 0.35,
+        "new_construction": 0.2
+      },
+      "vocabulary": [
+        "red and navy palette",
+        "centered caps hero headline",
+        "dark overlay lifestyle photo",
+        "manufacturer badge in hero",
+        "five-up rounded service cards",
+        "red pill buttons",
+        "full-bleed navy CTA band",
+        "red caps section headings",
+        "dark navy footer",
+        "red-underlined nav bar"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 lifestyle photo, 35mm, shallow depth of field, warm interior window light with slightly dim overlay-friendly tones, palette of warm browns, cream and leather; [SUBJECT: relaxed couple lounging comfortably on a dark leather sofa in a bright living room]; subjects placed low and right, open negative space across the upper center and left for headline and buttons; no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:49.216Z",
+        "robots": "no matching rule",
+        "title": "Arthur Hagar - Fort Worth's HVAC Experts Since 1949",
+        "metaDescription": "Whether you need emergency AC repair or a whole new HVAC system, Arthur Hagar is here to help. We've been serving the Fort Worth community for more than 65 years and we know how to do it right. Get help from the heating and cooling experts and trust the installation of your new unit to a Trane authorized dealer. Call today!",
+        "headings": {
+          "h1": [
+            "RELIABLE HVAC SERVICES IN FORT WORTH FOR HOMES AND BUSINESSES"
+          ],
+          "h2": [
+            "YOUR COMFORT IS OUR PRIORITY",
+            "ARTHUR HAGAR - LEADING HVAC COMPANY IN FORT WORTH, TX",
+            "WE'RE LOCATED AT",
+            "OUR OPERATING HOURS"
+          ]
+        },
+        "telHrefs": [
+          "tel:8174781122"
+        ],
+        "telLinkCount": 4,
+        "ctaLabels": [
+          {
+            "label": "Skip to footer",
+            "count": 2,
+            "firstY": -56,
+            "tel": false
+          },
+          {
+            "label": "817-478-1122",
+            "count": 1,
+            "firstY": 30,
+            "tel": true
+          },
+          {
+            "label": "HOME",
+            "count": 1,
+            "firstY": 109,
+            "tel": false
+          },
+          {
+            "label": "Call (817) 478-1122",
+            "count": 2,
+            "firstY": 617,
+            "tel": true
+          },
+          {
+            "label": "Learn More",
+            "count": 10,
+            "firstY": 1585,
+            "tel": false
+          },
+          {
+            "label": "Get an Estimate",
+            "count": 2,
+            "firstY": 1983,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "817-478-1122",
+          "mobile": "Call (817) 478-1122"
+        },
+        "fonts": {
+          "body": "\"Open Sans\"",
+          "h1": "\"Open Sans\"",
+          "h2": "\"Open Sans\"",
+          "loaded": [
+            "Font Awesome 6 Solid",
+            "Open Sans"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.648
+            },
+            {
+              "hex": "#0a1029",
+              "share": 0.182
+            },
+            {
+              "hex": "#23398e",
+              "share": 0.085
+            },
+            {
+              "hex": "#e91d28",
+              "share": 0.021
+            }
+          ],
+          "text": [
+            {
+              "hex": "#000000",
+              "share": 0.711
+            },
+            {
+              "hex": "#f2f2f2",
+              "share": 0.123
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.067
+            },
+            {
+              "hex": "#e91d28",
+              "share": 0.053
+            },
+            {
+              "hex": "#fde8e9",
+              "share": 0.016
+            },
+            {
+              "hex": "#ebeefa",
+              "share": 0.013
+            }
+          ],
+          "imageShare": 0.064,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(817) 478-1122",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 5,
+        "aboveFold": {
+          "desktop": {
+            "img": 5,
+            "bgImage": 0,
+            "video": 0,
+            "total": 5
+          },
+          "mobile": {
+            "img": 5,
+            "bgImage": 0,
+            "video": 0,
+            "total": 5
+          }
+        },
+        "heroH1": {
+          "desktop": "RELIABLE HVAC SERVICES IN FORT WORTH FOR HOMES AND BUSINESSES",
+          "mobile": "RELIABLE HVAC SERVICES IN FORT WORTH FOR HOMES AND BUSINESSES"
+        },
+        "lcpMs": {
+          "desktop": 1468,
+          "mobile": 912
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 923,
+            "domContentLoaded": 1453,
+            "load": 2015
+          },
+          "mobile": {
+            "ttfb": 618,
+            "domContentLoaded": 998,
+            "load": 1246
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "bonded",
+            "family-owned",
+            "years-in-business"
+          ],
+          "coupon": true,
+          "financing": true,
+          "membership": true,
+          "serviceArea": false,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "trane"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.3",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 3115,
+          "mobileHeight": 6301,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:47.268Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            3115
+          ]
+        ],
+        "usage": {
+          "input": 7737,
+          "output": 995
+        }
+      },
+      "family": "F4"
+    }
+  ]
+}

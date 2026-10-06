@@ -1,0 +1,5344 @@
+{
+  "meta": {
+    "vertical": "plumbing",
+    "brick": "RFD.VAULT.4",
+    "generatedAt": "2026-10-06T20:25:53.007Z",
+    "entries": 12,
+    "picks": [
+      {
+        "slug": "robgoodsonplumbing",
+        "company": "Goodson Plumbing Services",
+        "segment": "residential",
+        "metro": "Boise",
+        "query": "Boise plumber",
+        "rank": 3,
+        "status": "entry"
+      },
+      {
+        "slug": "williamsplumbinganddrain",
+        "company": "Williams Plumbing & Drain",
+        "segment": "residential",
+        "metro": "Tulsa",
+        "query": "Tulsa plumber",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "everestplumbing",
+        "company": "Everest Plumbing",
+        "segment": "residential",
+        "metro": "Greenville SC",
+        "query": "Greenville SC plumber",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "inlawplumbing",
+        "company": "In-Law Plumbing & Drain Services",
+        "segment": "residential",
+        "metro": "Omaha",
+        "query": "Omaha plumber",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "hydepark-plumbing",
+        "company": "Hyde Park Plumbing",
+        "segment": "commercial",
+        "metro": "Boise",
+        "query": "commercial plumbing contractor Boise",
+        "rank": 4,
+        "status": "entry"
+      },
+      {
+        "slug": "johnsonplumbingnv",
+        "company": "Johnson Plumbing",
+        "segment": "commercial",
+        "metro": "Reno",
+        "query": "commercial plumbing contractor Reno",
+        "rank": 3,
+        "status": "entry"
+      },
+      {
+        "slug": "skplumbinginc",
+        "company": "S & K Plumbing of Fort Worth",
+        "segment": "commercial",
+        "metro": "Fort Worth",
+        "query": "commercial plumbing contractor Fort Worth",
+        "rank": 3,
+        "status": "entry"
+      },
+      {
+        "slug": "aapiok",
+        "company": "All American Plumbing",
+        "segment": "commercial",
+        "metro": "Tulsa",
+        "query": "commercial plumbing contractor Tulsa",
+        "rank": 4,
+        "status": "entry"
+      },
+      {
+        "slug": "goldsealplumbing",
+        "company": "Gold Seal Plumbing",
+        "segment": "new_construction",
+        "metro": "Spokane",
+        "query": "new construction plumbing Spokane",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "lasiter",
+        "company": "Lasiter & Lasiter Plumbing",
+        "segment": "new_construction",
+        "metro": "Fort Worth",
+        "query": "new construction plumbing Fort Worth",
+        "rank": 4,
+        "status": "entry"
+      },
+      {
+        "slug": "tucsonplumbing",
+        "company": "Tucson Plumbing",
+        "segment": "new_construction",
+        "metro": "Tucson",
+        "query": "new construction plumbing Tucson",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "masterserviceplumbing",
+        "company": "Master Service Plumbing",
+        "segment": "new_construction",
+        "metro": "Reno",
+        "query": "new construction plumbing Reno",
+        "rank": 1,
+        "status": "entry"
+      }
+    ],
+    "search": {
+      "metros": [
+        "Boise",
+        "Spokane",
+        "Reno",
+        "Tucson",
+        "Omaha",
+        "Tulsa",
+        "Greenville SC",
+        "Fort Worth"
+      ],
+      "queries": {
+        "residential": "<city> plumber",
+        "commercial": "commercial plumbing contractor <city>",
+        "new_construction": "new construction plumbing <city>"
+      },
+      "rankMethod": "rank = 1-based position of the pick in the WebSearch result list for the exact query string. The unfiltered lists were almost entirely directories, job boards and franchise pages, so each query was re-run with the vertical's blockedDomains filter below; rejected results that still came through count toward the rank.",
+      "blockedDomains": [
+        "yelp.com",
+        "angi.com",
+        "angieslist.com",
+        "homeadvisor.com",
+        "servicemagic.com",
+        "thumbtack.com",
+        "networx.com",
+        "houzz.com",
+        "porch.com",
+        "bark.com",
+        "bbb.org",
+        "yellowpages.com",
+        "manta.com",
+        "nextdoor.com",
+        "facebook.com",
+        "google.com",
+        "expertise.com",
+        "threebestrated.com",
+        "bestpickreports.com",
+        "thisoldhouse.com",
+        "consumeraffairs.com",
+        "buildzoom.com",
+        "downtobid.com",
+        "levelset.com",
+        "thebluebook.com",
+        "homeguide.com",
+        "lantern.llc",
+        "contractorplus.app",
+        "permitmint.com",
+        "propertyzoned.com",
+        "a-leads.co",
+        "zoominfo.com",
+        "dealroom.co",
+        "withorbital.com",
+        "d7leadfinder.com",
+        "archinect.com",
+        "experience.com",
+        "customerlobby.com",
+        "wmfha.org",
+        "noritz.com",
+        "myshyft.com",
+        "bizben.com",
+        "andrewadonis.com",
+        "treasurevalleytrades.com",
+        "kivitv.com",
+        "3newsnow.com",
+        "kgun9.com",
+        "sherbrookerecord.com",
+        "minstercommunitypost.com",
+        "ipsnews.net",
+        "communityimpact.com",
+        "tanglewoodmoms.com",
+        "zoho.com",
+        "greenvillechamber.org",
+        "gretnachamber.com",
+        "fortworthchamber.com",
+        "dejobs.org",
+        "recruiter.com",
+        "usnlx.com",
+        "greenhouse.io",
+        "classet.ai",
+        "ihireconstruction.com",
+        "ihire.com",
+        "expresspros.com",
+        "careerplug.com",
+        "monster.com",
+        "wayup.com",
+        "roaddogjobs.com",
+        "nebraska.edu",
+        "tietalent.com",
+        "jobget.com",
+        "whatjobs.com",
+        "paylocity.com",
+        "icims.com",
+        "systemone.com",
+        "perrytech.edu",
+        "idahoworks.gov",
+        "indeed.com",
+        "ziprecruiter.com",
+        "rotorooter.com",
+        "rotorooterok.com",
+        "mrrooter.com",
+        "benjaminfranklinplumbing.com",
+        "serviceexperts.com",
+        "zplumberz.com",
+        "goettl.com",
+        "idesignac.com",
+        "fortworthtexas.gov",
+        "spokanecity.org",
+        "viki.com"
+      ]
+    },
+    "capture": "Playwright Chromium, desktop 1440x900 and mobile 390x844 full-page PNGs; facts from the live DOM (scripts/vault-capture.mjs)",
+    "vision": "claude-sonnet-5-5, effort medium, desktop screenshot strips (scripts/vault-ingest.mjs)",
+    "clustering": {
+      "method": "exhaustive k-medoids on palette/type/hero distance, at least 2 sites per family, k by silhouette",
+      "k": 4,
+      "silhouette": 0.236,
+      "tried": [
+        {
+          "k": 4,
+          "silhouette": 0.236
+        },
+        {
+          "k": 5,
+          "silhouette": 0.192
+        },
+        {
+          "k": 6,
+          "silhouette": 0.177
+        }
+      ]
+    },
+    "familyCopy": "claude-sonnet-5-5, text only, from member entries; House DNA from counted conventions",
+    "contactSheet": "plumbing-contact-sheet.jpg"
+  },
+  "conventions": {
+    "sites": 12,
+    "stickyPhone": {
+      "count": 6,
+      "of": 12,
+      "rule": "a phone number or call link stays pinned while scrolling, desktop or mobile (DOM)",
+      "sites": [
+        "robgoodsonplumbing",
+        "inlawplumbing",
+        "hydepark-plumbing",
+        "skplumbinginc",
+        "tucsonplumbing",
+        "masterserviceplumbing"
+      ]
+    },
+    "stickyHeader": {
+      "count": 5,
+      "of": 12,
+      "rule": "header bar stays pinned at the top while scrolling on desktop (DOM)",
+      "sites": [
+        "robgoodsonplumbing",
+        "hydepark-plumbing",
+        "skplumbinginc",
+        "tucsonplumbing",
+        "masterserviceplumbing"
+      ]
+    },
+    "phoneFirstMobileScreen": {
+      "count": 9,
+      "of": 12,
+      "rule": "phone number fully visible in the first 390x844 viewport (DOM)",
+      "sites": [
+        "robgoodsonplumbing",
+        "williamsplumbinganddrain",
+        "everestplumbing",
+        "inlawplumbing",
+        "hydepark-plumbing",
+        "johnsonplumbingnv",
+        "skplumbinginc",
+        "goldsealplumbing",
+        "masterserviceplumbing"
+      ]
+    },
+    "callLinkFirstMobileScreen": {
+      "count": 8,
+      "of": 12,
+      "rule": "a tap-to-call link (number or icon) visible in the first 390x844 viewport (DOM)",
+      "sites": [
+        "robgoodsonplumbing",
+        "williamsplumbinganddrain",
+        "everestplumbing",
+        "inlawplumbing",
+        "hydepark-plumbing",
+        "skplumbinginc",
+        "goldsealplumbing",
+        "tucsonplumbing"
+      ]
+    },
+    "trustBar": {
+      "count": 6,
+      "of": 12,
+      "rule": "dedicated strip of trust badges or claims near the top (vision)",
+      "sites": [
+        "everestplumbing",
+        "inlawplumbing",
+        "hydepark-plumbing",
+        "skplumbinginc",
+        "goldsealplumbing",
+        "tucsonplumbing"
+      ]
+    },
+    "couponOrFinancing": {
+      "count": 4,
+      "of": 12,
+      "rule": "visible coupon, special-offer or financing block (vision)",
+      "sites": [
+        "robgoodsonplumbing",
+        "williamsplumbinganddrain",
+        "everestplumbing",
+        "inlawplumbing"
+      ]
+    },
+    "serviceAreaList": {
+      "count": 7,
+      "of": 12,
+      "rule": "visible list or map of towns served (vision)",
+      "sites": [
+        "robgoodsonplumbing",
+        "williamsplumbinganddrain",
+        "everestplumbing",
+        "inlawplumbing",
+        "hydepark-plumbing",
+        "johnsonplumbingnv",
+        "goldsealplumbing"
+      ]
+    },
+    "reviewsWidget": {
+      "count": 7,
+      "of": 12,
+      "rule": "reviews section with ratings or testimonials (vision)",
+      "sites": [
+        "robgoodsonplumbing",
+        "williamsplumbinganddrain",
+        "everestplumbing",
+        "hydepark-plumbing",
+        "goldsealplumbing",
+        "lasiter",
+        "tucsonplumbing"
+      ]
+    },
+    "bookingForm": {
+      "count": 3,
+      "of": 12,
+      "rule": "on-page form or embedded scheduler (vision, or a 2+ field form in the DOM)",
+      "sites": [
+        "hydepark-plumbing",
+        "lasiter",
+        "tucsonplumbing"
+      ]
+    },
+    "phoneFirst": {
+      "count": 6,
+      "of": 12,
+      "rule": "the page pushes the phone call hardest (vision)",
+      "sites": [
+        "robgoodsonplumbing",
+        "everestplumbing",
+        "inlawplumbing",
+        "johnsonplumbingnv",
+        "skplumbinginc",
+        "masterserviceplumbing"
+      ]
+    },
+    "formOrBookingFirst": {
+      "count": 0,
+      "of": 12,
+      "rule": "the page pushes a form or online booking hardest (vision)",
+      "sites": []
+    },
+    "balancedConversion": {
+      "count": 6,
+      "of": 12,
+      "rule": "phone and form/booking pushed about equally (vision)",
+      "sites": [
+        "williamsplumbinganddrain",
+        "hydepark-plumbing",
+        "aapiok",
+        "goldsealplumbing",
+        "lasiter",
+        "tucsonplumbing"
+      ]
+    },
+    "licenseNumberShown": {
+      "count": 3,
+      "of": 12,
+      "rule": "a license/registration number appears in the page text (DOM)",
+      "sites": [
+        "johnsonplumbingnv",
+        "lasiter",
+        "masterserviceplumbing"
+      ]
+    },
+    "emergency247": {
+      "count": 6,
+      "of": 12,
+      "rule": "24/7 or emergency wording (DOM)",
+      "sites": [
+        "robgoodsonplumbing",
+        "williamsplumbinganddrain",
+        "hydepark-plumbing",
+        "johnsonplumbingnv",
+        "goldsealplumbing",
+        "tucsonplumbing"
+      ]
+    },
+    "medianCtaLabel": {
+      "label": "call <phone>",
+      "sites": 2,
+      "rule": "most common first action CTA by page position (nav items excluded; any phone-number label = 'call <phone>')"
+    },
+    "ctaLabels": [
+      {
+        "label": "call <phone>",
+        "sites": 6
+      },
+      {
+        "label": "schedule now",
+        "sites": 2
+      },
+      {
+        "label": "schedule service",
+        "sites": 2
+      },
+      {
+        "label": "contact us",
+        "sites": 2
+      },
+      {
+        "label": "schedule an appointment",
+        "sites": 1
+      },
+      {
+        "label": "call: <phone> - 24/7",
+        "sites": 1
+      },
+      {
+        "label": "schedule online",
+        "sites": 1
+      },
+      {
+        "label": "get special deal",
+        "sites": 1
+      },
+      {
+        "label": "call now",
+        "sites": 1
+      },
+      {
+        "label": "book online",
+        "sites": 1
+      }
+    ],
+    "paletteHues": {
+      "accent": [
+        {
+          "hue": "red",
+          "sites": 6
+        },
+        {
+          "hue": "blue",
+          "sites": 3
+        },
+        {
+          "hue": "orange",
+          "sites": 2
+        },
+        {
+          "hue": "green",
+          "sites": 1
+        }
+      ],
+      "accent2": [
+        {
+          "hue": "blue",
+          "sites": 6
+        },
+        {
+          "hue": "neutral",
+          "sites": 3
+        },
+        {
+          "hue": "green",
+          "sites": 1
+        },
+        {
+          "hue": "yellow",
+          "sites": 1
+        },
+        {
+          "hue": "orange",
+          "sites": 1
+        }
+      ],
+      "ground": [
+        {
+          "ground": "light",
+          "sites": 10
+        },
+        {
+          "ground": "dark-heavy",
+          "sites": 2
+        }
+      ]
+    },
+    "displayFonts": [
+      {
+        "font": "Montserrat",
+        "sites": 3
+      },
+      {
+        "font": "Oswald",
+        "sites": 1
+      },
+      {
+        "font": "Montserrat (H1), Open Sans caps (H2)",
+        "sites": 1
+      },
+      {
+        "font": "Roboto (h1) with Abyssinica SIL serif for h2 accents like Specials",
+        "sites": 1
+      },
+      {
+        "font": "Playfair Display",
+        "sites": 1
+      },
+      {
+        "font": "DM Sans",
+        "sites": 1
+      },
+      {
+        "font": "Rubik ExtraBold",
+        "sites": 1
+      },
+      {
+        "font": "Roboto Bold",
+        "sites": 1
+      }
+    ],
+    "typeClasses": [
+      {
+        "type": "geometric sans",
+        "sites": 5
+      },
+      {
+        "type": "serif",
+        "sites": 3
+      },
+      {
+        "type": "condensed sans",
+        "sites": 2
+      },
+      {
+        "type": "grotesk sans",
+        "sites": 2
+      }
+    ],
+    "heroClasses": [
+      {
+        "hero": "full-bleed photo hero",
+        "sites": 9
+      },
+      {
+        "hero": "slider hero",
+        "sites": 2
+      },
+      {
+        "hero": "solid-colour hero",
+        "sites": 1
+      }
+    ],
+    "lcpMsMedian": {
+      "desktop": 920,
+      "mobile": 1452
+    },
+    "imagesAboveFoldMedian": 2,
+    "platforms": [
+      {
+        "platform": "wordpress",
+        "sites": 9
+      },
+      {
+        "platform": "duda",
+        "sites": 1
+      },
+      {
+        "platform": "wix",
+        "sites": 1
+      },
+      {
+        "platform": "godaddy",
+        "sites": 1
+      }
+    ],
+    "schedulers": [
+      {
+        "vendor": "housecallpro",
+        "sites": 1
+      }
+    ]
+  },
+  "families": [
+    {
+      "id": "F1",
+      "name": "Red Banner Plumbers",
+      "aesthetic": "Clean white pages with a single saturated red or orange accent, darkened full-bleed hero photos, geometric sans headlines and badge-led trust proof.",
+      "lead": "plumbing/lasiter",
+      "members": [
+        "plumbing/lasiter",
+        "plumbing/johnsonplumbingnv",
+        "plumbing/tucsonplumbing",
+        "plumbing/inlawplumbing",
+        "plumbing/hydepark-plumbing"
+      ],
+      "medoid": "plumbing/johnsonplumbingnv",
+      "traits": {
+        "ground": "light ground",
+        "accent": "red",
+        "hero": "full-bleed photo hero",
+        "type": "geometric sans",
+        "darkShare": 0.05
+      },
+      "segments": {
+        "residential": 1,
+        "commercial": 2,
+        "new_construction": 2
+      },
+      "vocabulary": [
+        "full-bleed darkened photo hero",
+        "single saturated red accent",
+        "geometric sans headlines",
+        "red line-icon service grid",
+        "ghost outline hero buttons",
+        "red pill phone button",
+        "association badge row",
+        "stat grid with big numerals",
+        "red underline heading accent",
+        "black or dark service panel",
+        "light grey section panels",
+        "dark footer with license details"
+      ],
+      "never": [
+        "Hero with no headline or call to action",
+        "Thin colored subline over a busy photo",
+        "Dense small paragraph over hero imagery",
+        "Repeating the same stat twice in one view",
+        "Claiming reviews without showing any testimonial content",
+        "Phone number only in a non-sticky top bar"
+      ],
+      "risk": "Pair a hero stat grid of big numerals (years, review count, BBB, licensed) beside the headline so the trust bar sits inside the hero photo.",
+      "heroImageRecipe": "16:9 wide photograph, [SUBJECT: branded plumbing van parked in front of a white brick suburban home, or a smiling homeowner at a kitchen faucet], shot at eye level with a 35mm lens in soft overcast daylight, palette of crisp whites, charcoal and one punch of red, darkened tonal grade on the left half, clear negative space on the left third for a headline and buttons, no text or logos.",
+      "reference": [
+        "Lasiter & Lasiter Plumbing, Fort Worth (lasiter.com)",
+        "Johnson Plumbing, Reno (johnsonplumbingnv.com)",
+        "Tucson Plumbing, Tucson (tucsonplumbing.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: red banner plumbers (Clean white pages with a single saturated red or orange accent, darkened full-bleed hero photos, geometric sans headlines and badge-led trust proof.)\nVocabulary: full-bleed darkened photo hero, single saturated red accent, geometric sans headlines, red line-icon service grid, ghost outline hero buttons, red pill phone button, association badge row, stat grid with big numerals, red underline heading accent, black or dark service panel, light grey section panels, dark footer with license details\nReference feel: Lasiter & Lasiter Plumbing, Fort Worth (lasiter.com), Johnson Plumbing, Reno (johnsonplumbingnv.com), Tucson Plumbing, Tucson (tucsonplumbing.com)\nHouse DNA: Phone number on the first mobile screen (9/12); Star-rated reviews on the homepage (7/12); Named list of towns served (7/12); Phone or call button pinned while scrolling (6/12); Trust strip of licenses, ratings and years near the top (6/12); Call is the primary conversion (6/12)\nNever: Hero with no headline or call to action, Thin colored subline over a busy photo, Dense small paragraph over hero imagery, Repeating the same stat twice in one view, Claiming reviews without showing any testimonial content, Phone number only in a non-sticky top bar, Phone number below the first mobile screen (3/12 real sites)\nOne risk: Pair a hero stat grid of big numerals (years, review count, BBB, licensed) beside the headline so the trust bar sits inside the hero photo.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide photograph, [SUBJECT: branded plumbing van parked in front of a white brick suburban home, or a smiling homeowner at a kitchen faucet], shot at eye level with a 35mm lens in soft overcast daylight, palette of crisp whites, charcoal and one punch of red, darkened tonal grade on the left half, clear negative space on the left third for a headline and buttons, no text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F2",
+      "name": "Jobsite Red Commercial",
+      "aesthetic": "Full-bleed construction-site photography under dark overlays, flat red buttons, heavy bold sans caps, white icon cards and black bands on a light ground.",
+      "lead": "plumbing/skplumbinginc",
+      "members": [
+        "plumbing/skplumbinginc",
+        "plumbing/robgoodsonplumbing",
+        "plumbing/aapiok"
+      ],
+      "medoid": "plumbing/skplumbinginc",
+      "traits": {
+        "ground": "light ground with dark bands",
+        "accent": "red",
+        "hero": "full-bleed photo hero",
+        "type": "grotesk sans",
+        "darkShare": 0.32
+      },
+      "segments": {
+        "residential": 1,
+        "commercial": 2,
+        "new_construction": 0
+      },
+      "vocabulary": [
+        "full-bleed construction photo hero",
+        "dark or red gradient overlay",
+        "huge white caps headline",
+        "flat red CTA buttons",
+        "pill or rectangular red buttons",
+        "white cards with red line icons",
+        "full-black section bands",
+        "grayscale badge or logo row",
+        "edge-to-edge project photo strip",
+        "condensed or heavy grotesk headings",
+        "outlined ghost secondary button",
+        "full-bleed red feature band"
+      ],
+      "never": [
+        "Thin white headline over a busy unlit photo",
+        "Phone number buried small in header only",
+        "Muted low-contrast grey trust badges",
+        "Repetitive Read More buttons without detail",
+        "No quote form or scheduler anywhere",
+        "Mixed fonts and colors that feel heavy"
+      ],
+      "risk": "Cut a black rounded-corner project teaser tab into the bottom of the hero over a red-gradient aerial construction photo, linking straight to project proof.",
+      "heroImageRecipe": "16:9 wide hero photograph, [SUBJECT: unfinished concrete commercial building under construction, shot aerial or from low interior angle, with pipe runs and a plumber's truck visible], 28mm lens, overcast late-afternoon light with crisp contrast, desaturated concrete greys and black shadows with a single oxblood red accent such as a truck or safety vest, deep darker tonal falloff on the left half for negative space for a large white headline, no text or logos.",
+      "reference": [
+        "S & K Plumbing of Fort Worth, Fort Worth (skplumbinginc.com)",
+        "Goodson Plumbing Services, Boise (robgoodsonplumbing.com)",
+        "All American Plumbing, Tulsa (aapiok.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: jobsite red commercial (Full-bleed construction-site photography under dark overlays, flat red buttons, heavy bold sans caps, white icon cards and black bands on a light ground.)\nVocabulary: full-bleed construction photo hero, dark or red gradient overlay, huge white caps headline, flat red CTA buttons, pill or rectangular red buttons, white cards with red line icons, full-black section bands, grayscale badge or logo row, edge-to-edge project photo strip, condensed or heavy grotesk headings, outlined ghost secondary button, full-bleed red feature band\nReference feel: S & K Plumbing of Fort Worth, Fort Worth (skplumbinginc.com), Goodson Plumbing Services, Boise (robgoodsonplumbing.com), All American Plumbing, Tulsa (aapiok.com)\nHouse DNA: Phone number on the first mobile screen (9/12); Star-rated reviews on the homepage (7/12); Named list of towns served (7/12); Phone or call button pinned while scrolling (6/12); Trust strip of licenses, ratings and years near the top (6/12); Call is the primary conversion (6/12)\nNever: Thin white headline over a busy unlit photo, Phone number buried small in header only, Muted low-contrast grey trust badges, Repetitive Read More buttons without detail, No quote form or scheduler anywhere, Mixed fonts and colors that feel heavy, Phone number below the first mobile screen (3/12 real sites)\nOne risk: Cut a black rounded-corner project teaser tab into the bottom of the hero over a red-gradient aerial construction photo, linking straight to project proof.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide hero photograph, [SUBJECT: unfinished concrete commercial building under construction, shot aerial or from low interior angle, with pipe runs and a plumber's truck visible], 28mm lens, overcast late-afternoon light with crisp contrast, desaturated concrete greys and black shadows with a single oxblood red accent such as a truck or safety vest, deep darker tonal falloff on the left half for negative space for a large white headline, no text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F3",
+      "name": "Royal Blue Fleet",
+      "aesthetic": "Light-ground plumbing sites with saturated royal-blue panels, bold condensed or heavy caps, branded truck and team photo heroes, and card-based service grids.",
+      "lead": "plumbing/goldsealplumbing",
+      "members": [
+        "plumbing/goldsealplumbing",
+        "plumbing/williamsplumbinganddrain"
+      ],
+      "medoid": "plumbing/goldsealplumbing",
+      "traits": {
+        "ground": "light ground",
+        "accent": "blue",
+        "hero": "slider hero",
+        "type": "condensed sans",
+        "darkShare": 0.15
+      },
+      "segments": {
+        "residential": 1,
+        "commercial": 0,
+        "new_construction": 1
+      },
+      "vocabulary": [
+        "royal blue hero panel",
+        "branded truck photo",
+        "angled photo cut",
+        "condensed caps headlines",
+        "icon-suffixed CTA buttons",
+        "award badge strip",
+        "white service cards on grey",
+        "three-column service grid",
+        "navy closing band",
+        "Google rating pill",
+        "coupon or quote cards",
+        "dual call and schedule buttons"
+      ],
+      "never": [
+        "Thin light-weight body text on white",
+        "Tall uneven text-heavy service cards with no relief",
+        "Phone number that scrolls away with no sticky header",
+        "Service area towns buried in the footer",
+        "Dense copy blocks without photos or icons",
+        "Small grey review text that hurts legibility"
+      ],
+      "risk": "Overlap a row of perforated ticket-style coupon cards onto the base of the hero, with a diagonal-cut fleet photo against a solid blue panel.",
+      "heroImageRecipe": "16:9 wide photo of [SUBJECT: branded plumbing van and uniformed technicians parked in front of a suburban home], shot at eye level with a 35mm lens in bright clear daylight, crisp and slightly saturated, palette of royal blue, navy and white with a small pop of accent color. Subject sits on the right third, left side is clean sky and driveway for a headline. No text or logos.",
+      "reference": [
+        "Gold Seal Plumbing, Spokane (goldsealplumbing.com)",
+        "Williams Plumbing & Drain, Tulsa (williamsplumbinganddrain.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: royal blue fleet (Light-ground plumbing sites with saturated royal-blue panels, bold condensed or heavy caps, branded truck and team photo heroes, and card-based service grids.)\nVocabulary: royal blue hero panel, branded truck photo, angled photo cut, condensed caps headlines, icon-suffixed CTA buttons, award badge strip, white service cards on grey, three-column service grid, navy closing band, Google rating pill, coupon or quote cards, dual call and schedule buttons\nReference feel: Gold Seal Plumbing, Spokane (goldsealplumbing.com), Williams Plumbing & Drain, Tulsa (williamsplumbinganddrain.com)\nHouse DNA: Phone number on the first mobile screen (9/12); Star-rated reviews on the homepage (7/12); Named list of towns served (7/12); Phone or call button pinned while scrolling (6/12); Trust strip of licenses, ratings and years near the top (6/12); Call is the primary conversion (6/12)\nNever: Thin light-weight body text on white, Tall uneven text-heavy service cards with no relief, Phone number that scrolls away with no sticky header, Service area towns buried in the footer, Dense copy blocks without photos or icons, Small grey review text that hurts legibility, Phone number below the first mobile screen (3/12 real sites)\nOne risk: Overlap a row of perforated ticket-style coupon cards onto the base of the hero, with a diagonal-cut fleet photo against a solid blue panel.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide photo of [SUBJECT: branded plumbing van and uniformed technicians parked in front of a suburban home], shot at eye level with a 35mm lens in bright clear daylight, crisp and slightly saturated, palette of royal blue, navy and white with a small pop of accent color. Subject sits on the right third, left side is clean sky and driveway for a headline. No text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F4",
+      "name": "Mountain Blue Heritage",
+      "aesthetic": "Light-ground plumbing sites with blue brand accents, mountain imagery, photo-backed heroes and rounded or pill shapes, grounded by license, award and badge trust marks.",
+      "lead": "plumbing/everestplumbing",
+      "members": [
+        "plumbing/everestplumbing",
+        "plumbing/masterserviceplumbing"
+      ],
+      "medoid": "plumbing/masterserviceplumbing",
+      "traits": {
+        "ground": "light ground",
+        "accent": "blue",
+        "hero": "full-bleed photo hero",
+        "type": "serif",
+        "darkShare": 0.14
+      },
+      "segments": {
+        "residential": 1,
+        "commercial": 0,
+        "new_construction": 1
+      },
+      "vocabulary": [
+        "mountain photo backdrop",
+        "navy photo overlay",
+        "pill-shaped buttons",
+        "angled hero divider",
+        "translucent contact card",
+        "uppercase navy H2 headings",
+        "italic serif tagline",
+        "rounded white feature cards",
+        "accreditation and badge band",
+        "phone number in sticky nav",
+        "checkbox service-area list",
+        "dashed coupon card"
+      ],
+      "never": [
+        "Thin light-blue headings on white",
+        "Vague Read More as the only CTA",
+        "Faded grey text over busy photos",
+        "Muddy grey sections with weak hierarchy",
+        "Missing H1 and no lead form",
+        "Stray logos floating in white gaps"
+      ],
+      "risk": "Make the mountain a brand device: a navy-overlaid summit photo behind the hero and reviews, with an angled cut edge and a mid-page call bar with a hand-drawn underline on the phone number.",
+      "heroImageRecipe": "16:9 full-bleed photo, 35mm lens at eye level, soft natural daylight, cool navy and teal palette with white highlights. [SUBJECT: plumber's gloved hands tightening copper pipe fittings in a clean utility space, with a faint mountain ridge in the far background]. Subject sits in the right third; the left two-thirds is a darker, smooth navy-toned area for a headline and a single button.",
+      "reference": [
+        "Everest Plumbing, Greenville SC (everestplumbing.com)",
+        "Master Service Plumbing, Reno (masterserviceplumbing.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: mountain blue heritage (Light-ground plumbing sites with blue brand accents, mountain imagery, photo-backed heroes and rounded or pill shapes, grounded by license, award and badge trust marks.)\nVocabulary: mountain photo backdrop, navy photo overlay, pill-shaped buttons, angled hero divider, translucent contact card, uppercase navy H2 headings, italic serif tagline, rounded white feature cards, accreditation and badge band, phone number in sticky nav, checkbox service-area list, dashed coupon card\nReference feel: Everest Plumbing, Greenville SC (everestplumbing.com), Master Service Plumbing, Reno (masterserviceplumbing.com)\nHouse DNA: Phone number on the first mobile screen (9/12); Star-rated reviews on the homepage (7/12); Named list of towns served (7/12); Phone or call button pinned while scrolling (6/12); Trust strip of licenses, ratings and years near the top (6/12); Call is the primary conversion (6/12)\nNever: Thin light-blue headings on white, Vague Read More as the only CTA, Faded grey text over busy photos, Muddy grey sections with weak hierarchy, Missing H1 and no lead form, Stray logos floating in white gaps, Phone number below the first mobile screen (3/12 real sites)\nOne risk: Make the mountain a brand device: a navy-overlaid summit photo behind the hero and reviews, with an angled cut edge and a mid-page call bar with a hand-drawn underline on the phone number.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 full-bleed photo, 35mm lens at eye level, soft natural daylight, cool navy and teal palette with white highlights. [SUBJECT: plumber's gloved hands tightening copper pipe fittings in a clean utility space, with a faint mountain ridge in the far background]. Subject sits in the right third; the left two-thirds is a darker, smooth navy-toned area for a headline and a single button.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    }
+  ],
+  "entries": [
+    {
+      "id": "plumbing/robgoodsonplumbing",
+      "vertical": "plumbing",
+      "segment": "residential",
+      "slug": "robgoodsonplumbing",
+      "company": "Goodson Plumbing Services",
+      "metro": "Boise",
+      "url": "https://www.robgoodsonplumbing.com/",
+      "finalUrl": "https://www.robgoodsonplumbing.com/",
+      "search": {
+        "query": "Boise plumber",
+        "rank": 3,
+        "resultUrl": "https://www.robgoodsonplumbing.com/"
+      },
+      "aesthetic": "Family-owned brand look: black header, forest green nav and red section bands, with a founders-and-vans hero photo.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f2f2f2",
+        "text": "#000000",
+        "accent": "#c12726",
+        "accent2": "#4e712f"
+      },
+      "typePairing": {
+        "display": "Oswald",
+        "body": "Poppins",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "nav",
+        "hero",
+        "intro",
+        "why choose us",
+        "services",
+        "military discount",
+        "reviews",
+        "faq",
+        "blog",
+        "video about",
+        "service areas footer",
+        "footer"
+      ],
+      "heroTreatment": "Full-width photo of the owner couple in front of branded green and red vans, centered Oswald headline, two red buttons stacked below and award badges at the bottom.",
+      "trustSignals": [
+        "4.8 star rating with 23 ratings & reviews in header",
+        "Boise Favorites 2025 Winner badge",
+        "Nextdoor 2024 Neighborhood Fave badge",
+        "Family-owned and operated since 1997",
+        "Licensed, bonded & insured",
+        "Warranty for all services",
+        "Military & veteran discounts",
+        "Better Business Bureau mention in copy",
+        "Named customer reviews with dates"
+      ],
+      "ctaPattern": "Primary is the phone number (208) 629-4278 plus a Schedule an Appointment button, both in the header and hero; Learn More buttons on each service and a Watch Video button lower down.",
+      "distinctiveMoves": [
+        "Real owners-in-front-of-branded-vans hero photo that makes the family-owned claim visible",
+        "Header ratings block with star score and a 'Serving The Treasure Valley' location tag flanking a centered oval logo",
+        "Full-bleed red 'Why Choose Us' band with white check icons and an inset photo",
+        "Dedicated military and veteran discount card with a green frame and logo on a black band"
+      ],
+      "weaknesses": [
+        "Hero headline sits over a busy photo with light text and no overlay, so legibility is weak",
+        "No on-page contact form and the FAQ column leaves a large empty right side, with a single blog card and sparse footer",
+        "Palette of red, green and black with mixed fonts feels heavy, and the service icons and Learn More buttons are repetitive"
+      ],
+      "segmentFit": {
+        "residential": 0.82,
+        "commercial": 0.2,
+        "new_construction": 0.12
+      },
+      "vocabulary": [
+        "black header with centered oval logo",
+        "forest green nav bar",
+        "full-bleed red feature band",
+        "white check-circle icons",
+        "Oswald condensed red headings",
+        "two-column service grid with line icons",
+        "red rectangular Learn More buttons",
+        "gray accordion FAQ rows",
+        "award badges under hero CTAs",
+        "green-framed photo cards"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Wide 16:9 photo, 35mm lens at eye level, soft overcast daylight, natural colour with saturated red and green accents from branded work vans parked in a commercial lot; [SUBJECT: smiling owner couple in work shirts standing shoulder to shoulder in front of their branded plumbing vans]; subjects centered with slightly darker lower-middle area and clear space across the upper third and lower center for headline and buttons; no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:17:42.944Z",
+        "robots": "no matching rule",
+        "title": "Plumbers Boise, ID | Goodson Plumbing Services",
+        "metaDescription": "Our plumbers in Boise, ID provide fixture installation and repairs, boiler and radiator plumbing, and more. 24/7 services are available. Contact us today!",
+        "headings": {
+          "h1": [
+            "Professional Plumbers"
+          ],
+          "h2": [
+            "Recent Blog Posts",
+            "Boise, ID",
+            "Why Choose Us",
+            "Why Choose Us",
+            "Our Recent Projects",
+            "Recent Blog Posts"
+          ]
+        },
+        "telHrefs": [
+          "tel:(208) 629-4278"
+        ],
+        "telLinkCount": 7,
+        "ctaLabels": [
+          {
+            "label": "Schedule an Appointment",
+            "count": 4,
+            "firstY": 17,
+            "tel": false
+          },
+          {
+            "label": "(208) 629-4278",
+            "count": 3,
+            "firstY": 774,
+            "tel": true
+          },
+          {
+            "label": "Learn More",
+            "count": 14,
+            "firstY": 2157,
+            "tel": false
+          },
+          {
+            "label": "Watch Video",
+            "count": 2,
+            "firstY": 6237,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Schedule an Appointment",
+          "mobile": "Schedule an Appointment"
+        },
+        "fonts": {
+          "body": "\"Source Sans Pro\"",
+          "h1": "Oswald, \"Oswald Fallback\"",
+          "h2": "Oswald, \"Oswald Fallback\"",
+          "loaded": [
+            "Open Sans",
+            "Poppins",
+            "Questrial",
+            "Oswald",
+            "Kumbh Sans",
+            "Poppins Fallback",
+            "Ionicons",
+            "Schibsted Grotesk",
+            "launcher_icons_v2"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.258
+            },
+            {
+              "hex": "#000000",
+              "share": 0.229
+            },
+            {
+              "hex": "#4e712f",
+              "share": 0.195
+            },
+            {
+              "hex": "#f2f2f2",
+              "share": 0.065
+            },
+            {
+              "hex": "#c12726",
+              "share": 0.046
+            }
+          ],
+          "text": [
+            {
+              "hex": "#000000",
+              "share": 0.706
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.166
+            },
+            {
+              "hex": "#c12726",
+              "share": 0.078
+            },
+            {
+              "hex": "#666666",
+              "share": 0.028
+            },
+            {
+              "hex": "#747474",
+              "share": 0.014
+            },
+            {
+              "hex": "#4e712f",
+              "share": 0.003
+            }
+          ],
+          "imageShare": 0.207,
+          "gradientShare": 0
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 244,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 244,
+              "phone": true,
+              "text": "4.8 (23 Ratings & Reviews) Serving The Treasure Valley Schedule an Appointment G"
+            },
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 900,
+              "phone": false,
+              "text": ""
+            },
+            {
+              "edge": "bottom",
+              "width": 44,
+              "height": 48,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 213,
+              "phone": true,
+              "text": "4.8 (23 Ratings & Reviews) (208) 629-4278 Schedule an Appointment"
+            },
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 844,
+              "phone": false,
+              "text": ""
+            },
+            {
+              "edge": "bottom",
+              "width": 44,
+              "height": 48,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(208) 629-4278",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 3,
+            "bgImage": 1,
+            "video": 0,
+            "total": 4
+          }
+        },
+        "heroH1": {
+          "desktop": "Professional Plumbers",
+          "mobile": "Professional Plumbers"
+        },
+        "lcpMs": {
+          "desktop": 496,
+          "mobile": 696
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 190,
+            "domContentLoaded": 1106,
+            "load": 2431
+          },
+          "mobile": {
+            "ttfb": 430,
+            "domContentLoaded": 1649,
+            "load": 2742
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "bonded",
+            "bbb",
+            "family-owned",
+            "warranty",
+            "guarantee",
+            "certified",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": true,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [
+            "housecallpro"
+          ],
+          "chatVendors": [],
+          "badges": [
+            "nextdoor"
+          ],
+          "platform": [
+            "duda"
+          ],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 6791,
+          "mobileHeight": 9493,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "patchedIframes": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": "Accept"
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:19:54.010Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            6791
+          ]
+        ],
+        "usage": {
+          "input": 12440,
+          "output": 1095
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "plumbing/williamsplumbinganddrain",
+      "vertical": "plumbing",
+      "segment": "residential",
+      "slug": "williamsplumbinganddrain",
+      "company": "Williams Plumbing & Drain",
+      "metro": "Tulsa",
+      "url": "https://www.williamsplumbinganddrain.com/",
+      "finalUrl": "https://www.williamsplumbinganddrain.com/",
+      "search": {
+        "query": "Tulsa plumber",
+        "rank": 1,
+        "resultUrl": "https://www.williamsplumbinganddrain.com/"
+      },
+      "aesthetic": "Loud royal-blue, black and electric-lime plumbing brand with ticket-style coupons and team-photo hero",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f5f5f5",
+        "text": "#363636",
+        "accent": "#cffc40",
+        "accent2": "#184f84"
+      },
+      "typePairing": {
+        "display": "Montserrat",
+        "body": "Plus Jakarta Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "coupons",
+        "about",
+        "services tabs",
+        "service detail",
+        "what makes us different",
+        "guarantee",
+        "service areas",
+        "reviews",
+        "cta band",
+        "footer"
+      ],
+      "heroTreatment": "Full-bleed dark-overlaid team-and-fleet photo with Google rating pill, centered white Montserrat H1, lime call and white schedule buttons, and a coupon carousel overlapping the bottom.",
+      "trustSignals": [
+        "Google 4.9 stars, 6,385 reviews",
+        "A+ BBB Rated",
+        "Licensed OK #1900490089",
+        "Family-owned since 1988",
+        "Over 6,000 verified Google reviews",
+        "#1 rated on ThreeBestRated, HomeAdvisor Elite, Angi recognized",
+        "Upfront flat-rate pricing",
+        "Guaranteed workmanship",
+        "Award badges in footer"
+      ],
+      "ctaPattern": "Lime CALL button paired with white SCHEDULE button in utility bar, hero, guarantee and closing band; lime service and map CTAs between.",
+      "distinctiveMoves": [
+        "Perforated ticket-style coupon cards in a carousel overlapping the hero base",
+        "Lime-on-black chunky outlined buttons with icons",
+        "Diagonal-cut cutout plumber and van photos on blue and lime panels",
+        "Tabbed service selector with large caps labels that expands into a blue detail panel"
+      ],
+      "weaknesses": [
+        "Reviews section shows only a heading and button, so the widget appears empty and social proof is wasted",
+        "No on-page form or scheduler, and the header is not sticky, so the phone number scrolls away",
+        "Long dense copy blocks in the about and differentiator sections; the cookie banner overlaps a coupon"
+      ],
+      "segmentFit": {
+        "residential": 0.9,
+        "commercial": 0.3,
+        "new_construction": 0.1
+      },
+      "vocabulary": [
+        "electric lime CTA buttons",
+        "royal blue panels",
+        "black utility bar",
+        "ticket-style coupon cards",
+        "team photo hero overlay",
+        "diagonal cutout photo panel",
+        "bold Montserrat headlines",
+        "outlined pill town chips",
+        "tabbed service selector",
+        "van cutout on lime slash"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 photo, eye-level, 35mm, overcast daylight with a cool blue grade and deep shadows. [SUBJECT: a smiling team of plumbers in matching blue and black work shirts standing in front of branded blue service vans in a depot lot]. Palette of royal blue, charcoal and white. Keep the upper third and center as darker, uncluttered space for a centered headline, with the crew along the lower half. No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:17:38.938Z",
+        "robots": "no matching rule",
+        "title": "Trusted Plumbing Services in Tulsa, OK | Williams Plumbing & Drain",
+        "metaDescription": "Family-owned plumbing services in Tulsa since 1988. Phones are answered 24/7. Same-day appointments are available when scheduling allows. Call (918) 212-6649.",
+        "headings": {
+          "h1": [
+            "Family-Owned Plumbing Services in Tulsa, OK Since 1988"
+          ],
+          "h2": [
+            "Why Tulsa Calls Williams",
+            "Our Plumbing Services in Tulsa",
+            "What Makes Williams Different",
+            "Serving Tulsa and 40+ Green Country Communities",
+            "What Our Neighbors Say",
+            "Need an Emergency Plumber in Tulsa?",
+            "FAQ"
+          ]
+        },
+        "telHrefs": [
+          "tel:9187945555",
+          "tel:9182126649",
+          "tel:(918) 794-5555",
+          "tel: (918) 794-5555",
+          "tel:918-794-5555"
+        ],
+        "telLinkCount": 7,
+        "ctaLabels": [
+          {
+            "label": "CALL: (918) 794-5555",
+            "count": 1,
+            "firstY": 5,
+            "tel": true
+          },
+          {
+            "label": "SCHEDULE NOW",
+            "count": 3,
+            "firstY": 5,
+            "tel": false
+          },
+          {
+            "label": "CALL: (918) 794-5555 - 24/7",
+            "count": 2,
+            "firstY": 619,
+            "tel": true
+          },
+          {
+            "label": "SCHEDULE SERVICE",
+            "count": 2,
+            "firstY": 619,
+            "tel": false
+          },
+          {
+            "label": "EXPLORE DRAIN CLEARING & SEWER",
+            "count": 2,
+            "firstY": 2717,
+            "tel": false
+          },
+          {
+            "label": "CALL: 918-794-5555",
+            "count": 4,
+            "firstY": 4397,
+            "tel": true
+          },
+          {
+            "label": "SCHEDULE ONLINE",
+            "count": 2,
+            "firstY": 4397,
+            "tel": false
+          },
+          {
+            "label": "VIEW OUR SERVICE AREAS",
+            "count": 2,
+            "firstY": 5422,
+            "tel": false
+          },
+          {
+            "label": "READ MORE REVIEWS",
+            "count": 2,
+            "firstY": 5764,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "CALL: (918) 794-5555",
+          "mobile": "CALL: (918) 794-5555 - 24/7"
+        },
+        "fonts": {
+          "body": "-apple-system, \"system-ui\", \"Segoe UI\", roboto, helvetica, arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+          "h1": "Montserrat",
+          "h2": "Montserrat",
+          "loaded": [
+            "Font Awesome 6 Brands",
+            "Font Awesome 6 Solid",
+            "Ionicons",
+            "themify",
+            "Montserrat",
+            "Plus Jakarta Sans",
+            "Work Sans",
+            "Trustindex Poppins"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.323
+            },
+            {
+              "hex": "#184f84",
+              "share": 0.165
+            },
+            {
+              "hex": "#000000",
+              "share": 0.128
+            },
+            {
+              "hex": "#f5f5f5",
+              "share": 0.061
+            },
+            {
+              "hex": "#cffc40",
+              "share": 0.012
+            }
+          ],
+          "text": [
+            {
+              "hex": "#363636",
+              "share": 0.391
+            },
+            {
+              "hex": "#000000",
+              "share": 0.301
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.262
+            },
+            {
+              "hex": "#bcbcbc",
+              "share": 0.024
+            },
+            {
+              "hex": "#949494",
+              "share": 0.019
+            },
+            {
+              "hex": "#cffc40",
+              "share": 0.003
+            }
+          ],
+          "imageShare": 0.312,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(918) 794-5555",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Family-Owned Plumbing Services in Tulsa, OK Since 1988",
+          "mobile": "Family-Owned Plumbing Services in Tulsa, OK Since 1988"
+        },
+        "lcpMs": {
+          "desktop": 1760,
+          "mobile": 2788
+        },
+        "lcpElement": {
+          "desktop": "section",
+          "mobile": "section"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 1329,
+            "domContentLoaded": 1687,
+            "load": 1880
+          },
+          "mobile": {
+            "ttfb": 1401,
+            "domContentLoaded": 2786,
+            "load": 3180
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "bbb",
+            "family-owned",
+            "guarantee",
+            "years-in-business",
+            "star-rating",
+            "google-reviews",
+            "upfront-pricing"
+          ],
+          "coupon": true,
+          "financing": true,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": true,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [
+            "trustindex"
+          ],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "google",
+            "award"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 7142,
+          "mobileHeight": 11199,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 1,
+            "mobile": 1
+          },
+          "patchedIframes": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:20:05.867Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7142
+          ]
+        ],
+        "usage": {
+          "input": 13107,
+          "output": 1073
+        }
+      },
+      "family": "F3"
+    },
+    {
+      "id": "plumbing/everestplumbing",
+      "vertical": "plumbing",
+      "segment": "residential",
+      "slug": "everestplumbing",
+      "company": "Everest Plumbing",
+      "metro": "Greenville SC",
+      "url": "https://everestplumbing.com/",
+      "finalUrl": "https://everestplumbing.com/",
+      "search": {
+        "query": "Greenville SC plumber",
+        "rank": 2,
+        "resultUrl": "https://everestplumbing.com/"
+      },
+      "aesthetic": "Navy-and-white brand look with Everest mountain motif, photo-backed hero, rounded cards and a diagonal swoosh divider.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f2f4f7",
+        "text": "#000000",
+        "accent": "#003068",
+        "accent2": "#4054b2"
+      },
+      "typePairing": {
+        "display": "Montserrat (H1), Open Sans caps (H2)",
+        "body": "Open Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "value props",
+        "intro copy",
+        "reviews carousel",
+        "call and schedule bar",
+        "services carousel",
+        "service areas",
+        "coupons",
+        "commitment cards",
+        "partner logo",
+        "cta band",
+        "footer"
+      ],
+      "heroTreatment": "Full-width close-up photo of hands working on pipes under a navy overlay, centered white Montserrat H1 with one white SCHEDULE NOW button, angled bottom edge.",
+      "trustSignals": [
+        "Straightforward flat-rate pricing",
+        "100% satisfaction guarantee",
+        "Family owned & operated",
+        "BBB 2019 and 2018 Business of Integrity awards",
+        "Drug tested & background checked technicians",
+        "0% interest financing for 6 months",
+        "Customer review from Anna C. with 5 stars"
+      ],
+      "ctaPattern": "Primary SCHEDULE NOW in hero and a mid-page call/schedule bar with large phone number; secondary Read More Reviews, Leave A Review and Get Special Deal coupon button; phone repeated in the utility bar, intro copy and closing CTA.",
+      "distinctiveMoves": [
+        "Mountain-photo background behind intro copy and reviews, reinforcing the Everest brand name",
+        "Split-logo header with centered mountain logo flanked by three nav links on each side",
+        "Mid-page call-now and schedule-now bar with hand-drawn underline on the phone number",
+        "Service-area checklist beside a photo of three women plumbers holding wrenches, cut with a curved edge"
+      ],
+      "weaknesses": [
+        "Carousels render as huge empty navy arrow blocks, leaving large dead zones and hiding services, reviews and coupons",
+        "No on-page form or scheduler, and a plain header that is not sticky with no phone in the main nav",
+        "Weak hierarchy: faded grey text on photos, a muddy grey commitment section, and an out-of-place BioOne logo with big white gaps"
+      ],
+      "segmentFit": {
+        "residential": 0.7,
+        "commercial": 0.12,
+        "new_construction": 0.08
+      },
+      "vocabulary": [
+        "navy utility bar",
+        "mountain logo header",
+        "angled hero divider",
+        "white outlined CTA button",
+        "uppercase navy H2 headings",
+        "icon-led value props",
+        "dashed coupon card",
+        "rounded white feature cards",
+        "checkbox service-area list",
+        "mountain photo background"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Close-up photograph of [SUBJECT: a plumber's gloved hands tightening a fitting on white and copper pipes with a blue-handled valve], shallow depth of field, 50mm lens, soft cool daylight, deep navy blue color grade with muted creams, background blurred and darker toward the left, central and lower-center negative space for a large centered headline and button, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:17:55.645Z",
+        "robots": "no matching rule",
+        "title": "Everest Plumbing | Plumber in Greenville, SC",
+        "metaDescription": "Everest Plumbing offers expert plumbing services in Greenville, SC and the surrounding areas. Call us today at (864) 610-2336 to schedule service.",
+        "headings": {
+          "h1": [
+            "Plumber in Greenville, South Carolina"
+          ],
+          "h2": [
+            "EXPERT GREENVILLE",
+            "PLUMBING COMPANY",
+            "SCHEDULE NOW!",
+            "COMPREHENSIVE WHOLE-HOME PLUMBING SOLUTIONS",
+            "We take a holistic approach to your home and plumbing system. Every solution we recommend is designed to save you time and money while improving the quality of your plumbing system.",
+            "Home Repiping",
+            "Whole HousePlumbing Inspections",
+            "Kitchen Fixtures",
+            "Water Heater Services",
+            "Toilet Repair & Installation",
+            "Tankless Water Heaters Services",
+            "Drain Cleaning Services",
+            "Hybrid Water Heater Services",
+            "Garbage Disposals",
+            "High Water Pressure",
+            "Hybrid Water Heater Services",
+            "Garbage Disposals",
+            "High Water Pressure",
+            "Home Repiping",
+            "Whole House Plumbing Inspections",
+            "Kitchen Fixtures",
+            "Water Heater Services",
+            "Toilet Repair & Installation",
+            "Tankless Water Heaters Services",
+            "Drain Cleaning Services",
+            "Hybrid Water Heater Services",
+            "Garbage Disposals",
+            "High Water Pressure",
+            "Home Repiping",
+            "Whole House Plumbing Inspections",
+            "Kitchen Fixtures",
+            "SERVICE AREAS",
+            "Proudly Serving Greenville & the Surrounding Areas",
+            "GAIN INSTANT ACCESS",
+            "TO MONEY SAVING COUPONS",
+            "$50 OFF",
+            "Water Heater Repair",
+            "COUPON CANNOT BE COMBINED WITH ANY OTHER OFFERS & MUST BE PRESENTED AT THE TIME OF SERVICE",
+            "$25 OFF",
+            "First Time Customers",
+            "COUPON CANNOT BE COMBINED WITH ANY OTHER OFFERS & MUST BE PRESENTED AT THE TIME OF SERVICE",
+            "$30 OFF",
+            "Clogged Toilet Repair",
+            "COUPON CANNOT BE COMBINED WITH ANY OTHER OFFERS & MUST BE PRESENTED AT THE TIME OF SERVICE",
+            "$50 OFF",
+            "Kitchen Plumbing Services (Faucets, Garbage Disposals and Sinks)",
+            "COUPON CANNOT BE COMBINED WITH ANY OTHER OFFERS & MUST BE PRESENTED AT THE TIME OF SERVICE",
+            "$250 OFF",
+            "Full House Repipe Services",
+            "COUPON CANNOT BE COMBINED WITH ANY OTHER OFFERS & MUST BE PRESENTED AT THE TIME OF SERVICE",
+            "$40 OFF",
+            "Sewer Video Inspection",
+            "COUPON CANNOT BE COMBINED WITH ANY OTHER OFFERS & MUST BE PRESENTED AT THE TIME OF SERVICE",
+            "$30 OFF",
+            "Sewer Line Repair",
+            "COUPON CANNOT BE COMBINED WITH ANY OTHER OFFERS & MUST BE PRESENTED AT THE TIME OF SERVICE",
+            "$50 OFF",
+            "Hydrojetting Services",
+            "COUPON CANNOT BE COMBINED WITH ANY OTHER OFFERS & MUST BE PRESENTED AT THE TIME OF SERVICE",
+            "$25 OFF"
+          ]
+        },
+        "telHrefs": [
+          "tel:864-610-2336"
+        ],
+        "telLinkCount": 3,
+        "ctaLabels": [
+          {
+            "label": "Open toolbar",
+            "count": 2,
+            "firstY": 450,
+            "tel": false
+          },
+          {
+            "label": "Increase Text",
+            "count": 2,
+            "firstY": 503,
+            "tel": false
+          },
+          {
+            "label": "Decrease Text",
+            "count": 2,
+            "firstY": 537,
+            "tel": false
+          },
+          {
+            "label": "Grayscale",
+            "count": 2,
+            "firstY": 572,
+            "tel": false
+          },
+          {
+            "label": "High Contrast",
+            "count": 2,
+            "firstY": 606,
+            "tel": false
+          },
+          {
+            "label": "Negative Contrast",
+            "count": 2,
+            "firstY": 641,
+            "tel": false
+          },
+          {
+            "label": "Light Background",
+            "count": 2,
+            "firstY": 675,
+            "tel": false
+          },
+          {
+            "label": "Links Underline",
+            "count": 2,
+            "firstY": 709,
+            "tel": false
+          },
+          {
+            "label": "Readable Font",
+            "count": 2,
+            "firstY": 744,
+            "tel": false
+          },
+          {
+            "label": "Reset",
+            "count": 2,
+            "firstY": 778,
+            "tel": false
+          },
+          {
+            "label": "SCHEDULE NOW",
+            "count": 2,
+            "firstY": 603,
+            "tel": false
+          },
+          {
+            "label": "Read More Reviews",
+            "count": 2,
+            "firstY": 3395,
+            "tel": false
+          },
+          {
+            "label": "Leave A Review",
+            "count": 2,
+            "firstY": 3395,
+            "tel": false
+          },
+          {
+            "label": "Get Special Deal",
+            "count": 34,
+            "firstY": 8062,
+            "tel": false
+          },
+          {
+            "label": "Previous slide",
+            "count": 3,
+            "firstY": 7991,
+            "tel": false
+          },
+          {
+            "label": "Next slide",
+            "count": 3,
+            "firstY": 8445,
+            "tel": false
+          },
+          {
+            "label": "Privacy Policy",
+            "count": 2,
+            "firstY": 10814,
+            "tel": false
+          },
+          {
+            "label": "Careers",
+            "count": 2,
+            "firstY": 10873,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Open toolbar",
+          "mobile": "Open toolbar"
+        },
+        "fonts": {
+          "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, \"Noto Sans\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "h1": "Montserrat, sans-serif",
+          "h2": "\"Open Sans\", sans-serif",
+          "loaded": [
+            "Roboto",
+            "Montserrat",
+            "Open Sans"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.33
+            },
+            {
+              "hex": "#003068",
+              "share": 0.282
+            },
+            {
+              "hex": "#4054b2",
+              "share": 0.003
+            },
+            {
+              "hex": "#000000",
+              "share": 0
+            }
+          ],
+          "text": [
+            {
+              "hex": "#000000",
+              "share": 0.586
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.165
+            },
+            {
+              "hex": "#333333",
+              "share": 0.136
+            },
+            {
+              "hex": "#7a7a7a",
+              "share": 0.06
+            },
+            {
+              "hex": "#003068",
+              "share": 0.038
+            },
+            {
+              "hex": "#1c2022",
+              "share": 0.005
+            }
+          ],
+          "imageShare": 0.385,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(864) 610-2336",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 0,
+            "video": 1,
+            "total": 2
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 0,
+            "video": 1,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Plumber in Greenville, South Carolina",
+          "mobile": "Plumber in Greenville, South Carolina"
+        },
+        "lcpMs": {
+          "desktop": 560,
+          "mobile": 744
+        },
+        "lcpElement": {
+          "desktop": "h1",
+          "mobile": "h1"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 113,
+            "domContentLoaded": 667,
+            "load": 1675
+          },
+          "mobile": {
+            "ttfb": 257,
+            "domContentLoaded": 821,
+            "load": 2096
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "bbb",
+            "family-owned",
+            "guarantee",
+            "star-rating",
+            "upfront-pricing",
+            "background-checked"
+          ],
+          "coupon": true,
+          "financing": true,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.3",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 11089,
+          "mobileHeight": 11892,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "patchedIframes": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:19:54.435Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            9600
+          ],
+          [
+            9600,
+            11089
+          ]
+        ],
+        "usage": {
+          "input": 18253,
+          "output": 1111
+        }
+      },
+      "family": "F4"
+    },
+    {
+      "id": "plumbing/inlawplumbing",
+      "vertical": "plumbing",
+      "segment": "residential",
+      "slug": "inlawplumbing",
+      "company": "In-Law Plumbing & Drain Services",
+      "metro": "Omaha",
+      "url": "https://inlawplumbing.com/",
+      "finalUrl": "https://inlawplumbing.com/",
+      "search": {
+        "query": "Omaha plumber",
+        "rank": 2,
+        "resultUrl": "https://inlawplumbing.com/"
+      },
+      "aesthetic": "Bold crimson-and-black local plumber look with dark photo hero, stat grid and clean white card sections",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f5f5f5",
+        "text": "#000000",
+        "accent": "#dd1a3a",
+        "accent2": "#000000"
+      },
+      "typePairing": {
+        "display": "Roboto (h1) with Abyssinica SIL serif for h2 accents like Specials",
+        "body": "Roboto",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "specials banner",
+        "intro with photo",
+        "services cards",
+        "what we do checklist",
+        "service areas",
+        "contact info and map",
+        "cta band",
+        "footer"
+      ],
+      "heroTreatment": "Darkened full-width photo of a branded van and suburban home with left headline in white and red, intro paragraph, two red buttons, and a right-hand 2x2 stat grid.",
+      "trustSignals": [
+        "40+ years combined experience",
+        "550+ Google reviews",
+        "BBB Accredited Business",
+        "Licensed, Bonded & Insured",
+        "Local family-owned since 2013",
+        "Google Guaranteed service provider badge",
+        "4.9 rating on map card (600 reviews)",
+        "Nebraska based"
+      ],
+      "ctaPattern": "Red Call (402) 709-7059 and Learn More buttons in hero, repeated in intro, service cards (Learn More red/Call Now black), areas, contact and footer band; Contact Us in header and floating Call Now tab.",
+      "distinctiveMoves": [
+        "Hero stat grid with large numerals (40+, 550+, BBB, Licensed) doubling as a trust bar",
+        "Rounded-border Specials banner with serif script-like heading right under hero",
+        "Service-area towns as pill chips with red map pins",
+        "Red/black paired button system (Learn More red, Call Now black) on each service card"
+      ],
+      "weaknesses": [
+        "Hero stats repeat (550+ Google Reviews twice) and the paragraph text over the photo is dense and small",
+        "No on-page form or scheduler, and no real review or testimonial content despite the claims",
+        "Generic template feel with many repeated phone CTAs, and no emergency or 24/7 messaging"
+      ],
+      "segmentFit": {
+        "residential": 0.8,
+        "commercial": 0.25,
+        "new_construction": 0.1
+      },
+      "vocabulary": [
+        "crimson header bar",
+        "dark photo hero overlay",
+        "stat grid with big numerals",
+        "red-outlined checklist cards",
+        "location pill chips",
+        "red and black button pair",
+        "specials banner with rounded border",
+        "floating vertical call tab",
+        "light grey section panels",
+        "payment-logo footer strip"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": true,
+        "serviceAreaList": true,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "16:9 photo, shot at eye level with 35mm lens, of [SUBJECT: white plumbing service van parked in front of a suburban two-story brick home with mature trees], overcast soft daylight, deep desaturated greens and charcoal with subtle crimson accents, heavy dark vignette, open darker negative space on the left half for headline and right side for a stat panel, no text or logos",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:18:01.551Z",
+        "robots": "no matching rule",
+        "title": "Omaha Plumber & Drain Services | In Law Plumbing",
+        "metaDescription": "Need a trusted plumber in the Omaha metro? In Law Plumbing provides plumbing repairs, drain cleaning, installations, remodeling, and more for homes and businesses.",
+        "headings": {
+          "h1": [
+            "Omaha Plumbing, Drain Cleaning & Sewer Services"
+          ],
+          "h2": [
+            "Specials",
+            "Exclusive Savings",
+            "Our Services",
+            "What We Do",
+            "Areas We Serve",
+            "Get In Touch"
+          ]
+        },
+        "telHrefs": [
+          "tel:4027097059",
+          "tel:+14027097059"
+        ],
+        "telLinkCount": 19,
+        "ctaLabels": [
+          {
+            "label": "Contact Us",
+            "count": 1,
+            "firstY": 67,
+            "tel": true
+          },
+          {
+            "label": "Learn More",
+            "count": 18,
+            "firstY": 696,
+            "tel": false
+          },
+          {
+            "label": "Call (402) 709-7059",
+            "count": 14,
+            "firstY": 696,
+            "tel": true
+          },
+          {
+            "label": "View Current Offers",
+            "count": 2,
+            "firstY": 913,
+            "tel": false
+          },
+          {
+            "label": "Call Now",
+            "count": 9,
+            "firstY": 2369,
+            "tel": true
+          },
+          {
+            "label": "All Areas We Serve",
+            "count": 2,
+            "firstY": 3482,
+            "tel": false
+          },
+          {
+            "label": "Call 402-709-7059",
+            "count": 2,
+            "firstY": 3482,
+            "tel": true
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Contact Us",
+          "mobile": "Call Now"
+        },
+        "fonts": {
+          "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+          "h1": "Roboto, sans-serif",
+          "h2": "\"Abyssinica SIL\", sans-serif",
+          "loaded": [
+            "eicons",
+            "Font Awesome 5 Brands",
+            "Font Awesome 5 Free",
+            "Roboto",
+            "Abyssinica SIL",
+            "DM Sans",
+            "Roboto Slab"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.452
+            },
+            {
+              "hex": "#f5f5f5",
+              "share": 0.14
+            },
+            {
+              "hex": "#fcfcfc",
+              "share": 0.054
+            },
+            {
+              "hex": "#dd1a3a",
+              "share": 0.045
+            },
+            {
+              "hex": "#000000",
+              "share": 0.025
+            },
+            {
+              "hex": "#f3eeea",
+              "share": 0.024
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.463
+            },
+            {
+              "hex": "#000000",
+              "share": 0.308
+            },
+            {
+              "hex": "#3a3a3a",
+              "share": 0.102
+            },
+            {
+              "hex": "#7a7a7a",
+              "share": 0.041
+            },
+            {
+              "hex": "#c32e2e",
+              "share": 0.039
+            },
+            {
+              "hex": "#dd1a3a",
+              "share": 0.024
+            }
+          ],
+          "imageShare": 0.131,
+          "gradientShare": 0.108
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": [
+            {
+              "edge": "bottom",
+              "width": 370,
+              "height": 52,
+              "phone": true,
+              "text": "Call Now"
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(402) 709-7059",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 4,
+        "aboveFold": {
+          "desktop": {
+            "img": 4,
+            "bgImage": 0,
+            "video": 0,
+            "total": 4
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": null
+        },
+        "lcpMs": {
+          "desktop": 2060,
+          "mobile": 2100
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 102,
+            "domContentLoaded": 889,
+            "load": 1582
+          },
+          "mobile": {
+            "ttfb": 275,
+            "domContentLoaded": 1162,
+            "load": 1664
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "bonded",
+            "bbb",
+            "family-owned",
+            "years-in-business",
+            "google-reviews"
+          ],
+          "coupon": true,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "bbb",
+            "google"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.2",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 4954,
+          "mobileHeight": 8383,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "patchedIframes": {
+            "desktop": 1,
+            "mobile": 1
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:19:53.060Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            4954
+          ]
+        ],
+        "usage": {
+          "input": 10171,
+          "output": 1038
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "plumbing/hydepark-plumbing",
+      "vertical": "plumbing",
+      "segment": "commercial",
+      "slug": "hydepark-plumbing",
+      "company": "Hyde Park Plumbing",
+      "metro": "Boise",
+      "url": "https://hydepark-plumbing.com/",
+      "finalUrl": "https://hydepark-plumbing.com/",
+      "search": {
+        "query": "commercial plumbing contractor Boise",
+        "rank": 4,
+        "resultUrl": "https://hydepark-plumbing.com/boise-id-commercial-plumbing-services/"
+      },
+      "aesthetic": "Warm espresso-brown and amber on cream, editorial Playfair serif headlines over moody midnight-blue night-street hero photography",
+      "palette": {
+        "bg": "#f8f7f5",
+        "surface": "#ffffff",
+        "text": "#543019",
+        "accent": "#d98a35",
+        "accent2": "#b0a272"
+      },
+      "typePairing": {
+        "display": "Playfair Display",
+        "body": "DM Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "trust badges",
+        "stats bar",
+        "services",
+        "about copy",
+        "projects gallery",
+        "emergency cta band",
+        "why us",
+        "stats panel",
+        "reviews",
+        "supply partners",
+        "service areas",
+        "blog",
+        "faq",
+        "cta band",
+        "footer"
+      ],
+      "heroTreatment": "Full-width dark blue night-street photo with overlay; left-aligned serif H1 with gold second line, intro copy, check chips, area list and two CTAs; right a white two-step service-picker card with amber header.",
+      "trustSignals": [
+        "Boise's #1 Rated Plumber pill",
+        "4.9 from 512+ verified reviews",
+        "Idaho License #PLB-J-4285",
+        "$2M liability insured",
+        "Locally owned since 2009",
+        "Licensed & Bonded, Free Estimates, 100% Satisfaction",
+        "Badge grid: Google, BBB Accredited, Best Plumbers, Boise Metro Chamber, Nextdoor Fave, Angi, HomeAdvisor, Yelp",
+        "500+ 5-star reviews, 10,000+ jobs, 45 min avg response",
+        "45-Minute Response Guarantee"
+      ],
+      "ctaPattern": "Primary amber Call (208) 871-9113 plus secondary Book Online ghost button, repeated in the sticky header, mid-page emergency band and closing CTA band.",
+      "distinctiveMoves": [
+        "Two-step icon tile service picker card inside the hero instead of a standard form",
+        "Service-area cards using neighborhood aerial and street photography with local-keyword titles",
+        "Dense dark-brown utility bar with license, insurance, rating, phone and Open Now status",
+        "Supply-partner logo row (Grainger, Ferguson, Standard Plumbing) in grayscale as credibility"
+      ],
+      "weaknesses": [
+        "Reviews section renders as an empty white box, so social proof is missing where it matters",
+        "Long SEO paragraph and heavy hero text block dilute the scan path; gold headline line has low contrast on blue",
+        "Little commercial-specific content despite commercial query; no offers, financing or real form on page, and mixed AI-looking stock imagery"
+      ],
+      "segmentFit": {
+        "residential": 0.82,
+        "commercial": 0.3,
+        "new_construction": 0.12
+      },
+      "vocabulary": [
+        "night-street blue hero",
+        "espresso brown and amber",
+        "Playfair serif headlines",
+        "two-step service picker card",
+        "badge logo grid",
+        "brown stats bar",
+        "rounded white service cards",
+        "pill section eyebrow labels",
+        "neighborhood photo tiles",
+        "dark footer with hours table"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": true,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Cinematic 16:9 photo at blue hour of [SUBJECT: service van parked on a quiet tree-lined Boise residential street with warm lit windows], shot at eye level with a 35mm lens, deep midnight-blue palette with small warm amber street-light glows, soft mist, shallow depth of field, large dark negative space across the left half and center for headline and cards, no text or logos",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:57:37.157Z",
+        "robots": "no matching rule",
+        "title": "Boise's Top Plumbing Experts - Emergency Services Available",
+        "metaDescription": "Expert plumbing services for residential and commercial properties. Repairs, installations, and emergency service available 24/7.",
+        "headings": {
+          "h1": [
+            "Boise Plumber 24/7 Emergency & Residential Plumbing Service",
+            "Emergency Plumbing and Sewer Services in Boise | Hyde Park Plumbing"
+          ],
+          "h2": [
+            "Expert Plumbing Solutions",
+            "Full-Service Plumbing in Boise, ID",
+            "See Us in Action",
+            "Plumbing Emergency?",
+            "The Boise Difference",
+            "What Boise Says About Us",
+            "Serving All of Boise",
+            "Latest from Our Blog",
+            "Plumbing Questions? We Have Answers.",
+            "Ready to Fix Your Plumbing?"
+          ]
+        },
+        "telHrefs": [
+          "tel:+12088719113",
+          "tel:208) 871-9113"
+        ],
+        "telLinkCount": 11,
+        "ctaLabels": [
+          {
+            "label": "Schedule Service",
+            "count": 1,
+            "firstY": 79,
+            "tel": false
+          },
+          {
+            "label": "(208) 871-9113",
+            "count": 1,
+            "firstY": 80,
+            "tel": true
+          },
+          {
+            "label": "Call (208) 871-9113",
+            "count": 4,
+            "firstY": 984,
+            "tel": true
+          },
+          {
+            "label": "Book Online",
+            "count": 4,
+            "firstY": 984,
+            "tel": false
+          },
+          {
+            "label": "Emergency Plumbing",
+            "count": 2,
+            "firstY": 608,
+            "tel": false
+          },
+          {
+            "label": "Drain Cleaning",
+            "count": 2,
+            "firstY": 608,
+            "tel": false
+          },
+          {
+            "label": "Water Heater",
+            "count": 2,
+            "firstY": 726,
+            "tel": false
+          },
+          {
+            "label": "Sewer Service",
+            "count": 2,
+            "firstY": 726,
+            "tel": false
+          },
+          {
+            "label": "Leak Detection",
+            "count": 2,
+            "firstY": 844,
+            "tel": false
+          },
+          {
+            "label": "General Plumbing",
+            "count": 2,
+            "firstY": 844,
+            "tel": false
+          },
+          {
+            "label": "View All Services",
+            "count": 2,
+            "firstY": 2954,
+            "tel": false
+          },
+          {
+            "label": "Call Now: (208) 871-9113",
+            "count": 2,
+            "firstY": 4865,
+            "tel": true
+          },
+          {
+            "label": "Learn About Us",
+            "count": 2,
+            "firstY": 5899,
+            "tel": false
+          },
+          {
+            "label": "Read All Reviews on Google",
+            "count": 2,
+            "firstY": 7081,
+            "tel": false
+          },
+          {
+            "label": "GRAINGER",
+            "count": 2,
+            "firstY": 7351,
+            "tel": false
+          },
+          {
+            "label": "FERGUSON",
+            "count": 2,
+            "firstY": 7321,
+            "tel": false
+          },
+          {
+            "label": "STANDARD PLUMBING SUPPLY",
+            "count": 2,
+            "firstY": 7318,
+            "tel": false
+          },
+          {
+            "label": "GROVER ELECTRIC",
+            "count": 2,
+            "firstY": 7340,
+            "tel": false
+          },
+          {
+            "label": "HOMESERVE",
+            "count": 2,
+            "firstY": 7339,
+            "tel": false
+          },
+          {
+            "label": "All Boise Service Areas Boise Coverage Map →",
+            "count": 2,
+            "firstY": 8218,
+            "tel": false
+          },
+          {
+            "label": "View All Articles →",
+            "count": 2,
+            "firstY": 9443,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Schedule Service",
+          "mobile": "Call (208) 871-9113"
+        },
+        "fonts": {
+          "body": "\"DM Sans\", system-ui, -apple-system, sans-serif",
+          "h1": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+          "h2": "\"Playfair Display\", Georgia, \"Times New Roman\", serif",
+          "loaded": [
+            "Playfair Display",
+            "CNB Icons"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.257
+            },
+            {
+              "hex": "#f8f7f5",
+              "share": 0.138
+            },
+            {
+              "hex": "#faf8f5",
+              "share": 0.106
+            },
+            {
+              "hex": "#1a2332",
+              "share": 0.044
+            },
+            {
+              "hex": "#faf9f7",
+              "share": 0.025
+            },
+            {
+              "hex": "#f8f6f1",
+              "share": 0.009
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.353
+            },
+            {
+              "hex": "#7a7265",
+              "share": 0.17
+            },
+            {
+              "hex": "#444444",
+              "share": 0.154
+            },
+            {
+              "hex": "#543019",
+              "share": 0.153
+            },
+            {
+              "hex": "#4b5563",
+              "share": 0.054
+            },
+            {
+              "hex": "#2563eb",
+              "share": 0.03
+            }
+          ],
+          "imageShare": 0.104,
+          "gradientShare": 0.306
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 78,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 78,
+              "phone": true,
+              "text": "24/7 Emergency Service Idaho License #PLB-J-4285 $2M Liability Insured Locally O"
+            },
+            {
+              "edge": "bottom",
+              "width": 55,
+              "height": 55,
+              "phone": true,
+              "text": "call"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 63,
+              "phone": true,
+              "text": "24/7 Emergency Service (208) 871-9113"
+            },
+            {
+              "edge": "bottom",
+              "width": 390,
+              "height": 55,
+              "phone": true,
+              "text": "Call Now"
+            },
+            {
+              "edge": "bottom",
+              "width": 55,
+              "height": 55,
+              "phone": true,
+              "text": "call"
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(208) 871-9113",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Boise Plumber 24/7 Emergency & Residential Plumbing Service",
+          "mobile": "Boise Plumber 24/7 Emergency & Residential Plumbing Service"
+        },
+        "lcpMs": {
+          "desktop": 1076,
+          "mobile": 736
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 256,
+            "domContentLoaded": 783,
+            "load": 1186
+          },
+          "mobile": {
+            "ttfb": 212,
+            "domContentLoaded": 522,
+            "load": 894
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "bonded",
+            "family-owned",
+            "locally-owned",
+            "guarantee",
+            "years-in-business",
+            "star-rating",
+            "upfront-pricing",
+            "background-checked"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": true,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [
+            "leadconnector"
+          ],
+          "badges": [
+            "bbb",
+            "angi",
+            "homeadvisor",
+            "google",
+            "yelp",
+            "award",
+            "top rated",
+            "nextdoor"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.0.6",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 13074,
+          "mobileHeight": 17368,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:24.109Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            9600
+          ],
+          [
+            9600,
+            12000
+          ],
+          [
+            12000,
+            13074
+          ]
+        ],
+        "usage": {
+          "input": 20840,
+          "output": 1177
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "plumbing/johnsonplumbingnv",
+      "vertical": "plumbing",
+      "segment": "commercial",
+      "slug": "johnsonplumbingnv",
+      "company": "Johnson Plumbing",
+      "metro": "Reno",
+      "url": "https://johnsonplumbingnv.com/",
+      "finalUrl": "https://johnsonplumbingnv.com/",
+      "search": {
+        "query": "commercial plumbing contractor Reno",
+        "rank": 3,
+        "resultUrl": "https://johnsonplumbingnv.com/"
+      },
+      "aesthetic": "Clean white corporate commercial-plumbing site with a brick-red accent, abstract water-surface hero and project-photo proof, no workwear clichés.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#ebebeb",
+        "text": "#262522",
+        "accent": "#af1900",
+        "accent2": "#d9d2c7"
+      },
+      "typePairing": {
+        "display": "DM Sans",
+        "body": "DM Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "about intro",
+        "services",
+        "why choose us",
+        "project photos",
+        "stats band",
+        "leadership",
+        "local authority copy",
+        "footer",
+        "legal bar"
+      ],
+      "heroTreatment": "Full-width rippled water photograph with transparent overlay nav and red phone button top right; no headline or CTA in the hero, only a survey popup bottom right.",
+      "trustSignals": [
+        "50 years of combined experience",
+        "Fully licensed and bonded, NV Lic #70119 and #91476",
+        "0.90 EMOD safety rating",
+        "5-year UA apprenticeship for every plumber",
+        "500+ projects, 25+ years in business",
+        "Named GC project captions (Penta, Clayco, Neeser)",
+        "Footer license numbers with UA and AGC badges",
+        "24/7 service"
+      ],
+      "ctaPattern": "Single red pill button in header with 24-hour phone number; footer repeats with Get Directions and Write A Review buttons; no mid-page CTAs.",
+      "distinctiveMoves": [
+        "Six-column segment grid with red line icons (multi-family, institutional, commercial, industrial, design, residential) and bullet sublists",
+        "Project photos captioned with the general contractor partner names as proof",
+        "Stats band in warm sand beige separating proof from team section",
+        "Licenses column in the footer listing three states' license numbers with association badges"
+      ],
+      "weaknesses": [
+        "Hero is an empty water photo with no headline, CTA or value proposition, and a survey popup covers a corner",
+        "Leadership images are broken and show alt text, which looks unfinished",
+        "No reviews, no booking or lead form, and thin CTAs; the page ends in long grey low-contrast SEO copy"
+      ],
+      "segmentFit": {
+        "residential": 0.3,
+        "commercial": 0.8,
+        "new_construction": 0.72
+      },
+      "vocabulary": [
+        "rippled water hero",
+        "transparent overlay nav",
+        "red outline line icons",
+        "six-column service grid",
+        "sand beige stats band",
+        "large DM Sans headlines",
+        "small red caps eyebrows",
+        "captioned project photography",
+        "black footer with centered logo",
+        "red rectangular buttons"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Wide 16:9 photo, shot at eye level with a 35mm lens, soft overcast daylight, cool desaturated slate-blue and mauve palette, [SUBJECT: gently rippling water surface or a clean modern commercial building with copper piping detail], shallow depth, large calm empty area across the center and left for headline text, subtle red accent only in small details, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:18:28.128Z",
+        "robots": "no matching rule",
+        "title": "Plumber in Reno, NV | Johnson Plumbing – 24/7 Service",
+        "metaDescription": "Johnson Plumbing provides trusted residential & commercial plumbing in Reno, NV. 24/7 emergency repairs, fast service. Call (775) 351-2293.",
+        "headings": {
+          "h1": [
+            "Top-Rated Plumber in Reno & Sparks | 24/7 Residential & Commercial Services"
+          ],
+          "h2": [
+            "50 Years of Trusted Plumbing Expertise in Reno & Beyond",
+            "The Reno-Sparks Plumbing Authority: Local Roots, Elite Standards."
+          ]
+        },
+        "telHrefs": [
+          "tel:+1-775-351-2293",
+          "tel:7753512293"
+        ],
+        "telLinkCount": 2,
+        "ctaLabels": [
+          {
+            "label": "24-Hour Service (775) 351-2293",
+            "count": 2,
+            "firstY": 57,
+            "tel": true
+          },
+          {
+            "label": "Get Directions",
+            "count": 2,
+            "firstY": 4715,
+            "tel": false
+          },
+          {
+            "label": "Write A Review",
+            "count": 2,
+            "firstY": 4725,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "24-Hour Service (775) 351-2293",
+          "mobile": "24-Hour Service (775) 351-2293"
+        },
+        "fonts": {
+          "body": "\"DM Sans\", sans-serif",
+          "h1": "\"DM Sans\", sans-serif",
+          "h2": "\"DM Sans\", sans-serif",
+          "loaded": [
+            "DM Sans",
+            "Manrope",
+            "trx_addons_icons",
+            "fontello",
+            "revicons"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.727
+            },
+            {
+              "hex": "#000000",
+              "share": 0.084
+            },
+            {
+              "hex": "#d9d2c7",
+              "share": 0.038
+            },
+            {
+              "hex": "#f5f6f6",
+              "share": 0.015
+            },
+            {
+              "hex": "#af1900",
+              "share": 0.002
+            }
+          ],
+          "text": [
+            {
+              "hex": "#797c7f",
+              "share": 0.737
+            },
+            {
+              "hex": "#262522",
+              "share": 0.086
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.061
+            },
+            {
+              "hex": "#000000",
+              "share": 0.06
+            },
+            {
+              "hex": "#f2f5f5",
+              "share": 0.017
+            },
+            {
+              "hex": "#b2b2b2",
+              "share": 0.014
+            }
+          ],
+          "imageShare": 0.134,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "bottom",
+              "width": 43,
+              "height": 43,
+              "phone": false,
+              "text": ""
+            },
+            {
+              "edge": "bottom",
+              "width": 316,
+              "height": 315,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "bottom",
+              "width": 40,
+              "height": 40,
+              "phone": false,
+              "text": ""
+            },
+            {
+              "edge": "bottom",
+              "width": 390,
+              "height": 315,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": false,
+        "phoneSeen390": "(775) 351-2293",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 0,
+            "video": 1,
+            "total": 2
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 0,
+            "video": 1,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": "Top-Rated Plumber in Reno & Sparks | 24/7 Residential & Commercial Services"
+        },
+        "lcpMs": {
+          "desktop": 600,
+          "mobile": 1604
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "h1"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 101,
+            "domContentLoaded": 816,
+            "load": 2751
+          },
+          "mobile": {
+            "ttfb": 133,
+            "domContentLoaded": 1010,
+            "load": 3435
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "bonded",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": "Lic #70119",
+          "leadForms": 0,
+          "reviewVendors": [
+            "trustindex"
+          ],
+          "schedulerVendors": [],
+          "chatVendors": [
+            "podium",
+            "leadconnector"
+          ],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "Site Kit by Google 1.171.0",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 5012,
+          "mobileHeight": 8515,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "patchedIframes": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:19:54.781Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            5012
+          ]
+        ],
+        "usage": {
+          "input": 10156,
+          "output": 1018
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "plumbing/skplumbinginc",
+      "vertical": "plumbing",
+      "segment": "commercial",
+      "slug": "skplumbinginc",
+      "company": "S & K Plumbing of Fort Worth",
+      "metro": "Fort Worth",
+      "url": "https://skplumbinginc.com/",
+      "finalUrl": "https://skplumbinginc.com/",
+      "search": {
+        "query": "commercial plumbing contractor Fort Worth",
+        "rank": 3,
+        "resultUrl": "https://skplumbinginc.com/"
+      },
+      "aesthetic": "Bold black-and-oxblood commercial look: aerial construction photography, heavy Rubik headlines, concrete-textured light panels, pill CTAs",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#ffffff",
+        "text": "#657078",
+        "accent": "#9b130b",
+        "accent2": "#d6d6d6"
+      },
+      "typePairing": {
+        "display": "Rubik ExtraBold",
+        "body": "Manrope SemiBold",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "projects teaser",
+        "services",
+        "trust bar",
+        "about",
+        "projects",
+        "brands",
+        "cta band",
+        "footer"
+      ],
+      "heroTreatment": "Full-bleed aerial photo of a concrete building under construction with a red gradient on the left; huge white caps H1, short paragraph and black phone pill at left, and a black rounded-corner 'See What We've Been Building' tab cut into the bottom-left.",
+      "trustSignals": [
+        "PHCC badge",
+        "BBB Accredited Business A+",
+        "Highly Experienced badge",
+        "Fully Licensed & Insured badge",
+        "Over 35 years of experience",
+        "Family-owned since 1987"
+      ],
+      "ctaPattern": "Red pill phone button in the sticky header and black phone pill in the hero, with secondary View Projects, View More and About Us pills repeated down the page.",
+      "distinctiveMoves": [
+        "Black rounded-corner project teaser tab overlapping the bottom of the hero",
+        "Red-to-transparent gradient over aerial construction photo for a commercial feel",
+        "Four-up division cards with red line icons on a concrete-textured grey panel",
+        "Truck-wrap photography and nighttime hotel shots as full-bleed project proof"
+      ],
+      "weaknesses": [
+        "No lead form, scheduler or quote request; only phone and project links",
+        "Large empty black areas with little content, plus muted greyed trust badges that are small and low contrast",
+        "No reviews, testimonials, license number or service-area list, and about image is awkwardly cropped"
+      ],
+      "segmentFit": {
+        "residential": 0.1,
+        "commercial": 0.85,
+        "new_construction": 0.7
+      },
+      "vocabulary": [
+        "aerial construction hero photo",
+        "red gradient overlay",
+        "black rounded-corner tab",
+        "oxblood pill CTAs",
+        "heavy Rubik caps headlines",
+        "concrete texture panel",
+        "white cards with red line icons",
+        "greyscale badge row",
+        "full-black sections",
+        "night-lit building photography"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "16:9 aerial drone photo of [SUBJECT: concrete-framed multi-family building under construction with excavators and dirt], high angle, late-afternoon light, crisp detail, palette of warm earth, grey concrete and deep oxblood red tint; heavy dark red gradient fading from the left; open negative space on the left third for headline and CTAs; no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:57:47.656Z",
+        "robots": "no matching rule",
+        "title": "S&K Plumbing | Commercial Plumbing Services Fort Worth, TX",
+        "metaDescription": "S & K Plumbing of Fort Worth brings over 35 years of experience to every job site. We’re licensed, family-owned, and focused on quality plumbing systems that perform.",
+        "headings": {
+          "h1": [
+            "COMMERCIAL PLUMBING SERVICES"
+          ],
+          "h2": [
+            "Built for scale. Trusted for precision.",
+            "Rooted in Fort Worth. Built on trust.",
+            "Explore Our Recent Projects",
+            "Brands We Have Worked With",
+            "Let’s talk about your next project.",
+            "Working Today to Help Build Your Tomorrow"
+          ]
+        },
+        "telHrefs": [
+          "tel:817-222-9930",
+          "tel:8172229930"
+        ],
+        "telLinkCount": 6,
+        "ctaLabels": [
+          {
+            "label": "(817) 222-9930",
+            "count": 6,
+            "firstY": 22,
+            "tel": true
+          },
+          {
+            "label": "VIEW PROJECTS",
+            "count": 2,
+            "firstY": 789,
+            "tel": false
+          },
+          {
+            "label": "VIEW MORE",
+            "count": 2,
+            "firstY": 1501,
+            "tel": false
+          },
+          {
+            "label": "ABOUT US",
+            "count": 2,
+            "firstY": 2646,
+            "tel": false
+          },
+          {
+            "label": "LEARN MORE",
+            "count": 13,
+            "firstY": 4610,
+            "tel": false
+          },
+          {
+            "label": "VIEW ALL PROJECTS",
+            "count": 1,
+            "firstY": 4700,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "(817) 222-9930",
+          "mobile": "(817) 222-9930"
+        },
+        "fonts": {
+          "body": "Manrope-SemiBold, sans-serif",
+          "h1": "Rubik-ExtraBold, sans-serif",
+          "h2": "Rubik-ExtraBold, sans-serif",
+          "loaded": [
+            "Manrope-SemiBold",
+            "Manrope-ExtraBold",
+            "Rubik-ExtraBold",
+            "Rubik-Medium"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#000000",
+              "share": 0.527
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.13
+            },
+            {
+              "hex": "#9b130b",
+              "share": 0.002
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.748
+            },
+            {
+              "hex": "#657078",
+              "share": 0.187
+            },
+            {
+              "hex": "#000000",
+              "share": 0.036
+            },
+            {
+              "hex": "#d6d6d6",
+              "share": 0.022
+            },
+            {
+              "hex": "#a5a5a5",
+              "share": 0.008
+            }
+          ],
+          "imageShare": 0.292,
+          "gradientShare": 0.05
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 116,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 116,
+              "phone": true,
+              "text": "ABOUT US DIVISIONS PROJECTS EMPLOYMENT CONTACT (817) 222-9930"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 100,
+              "phone": true,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(817) 222-9930",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 1,
+            "total": 3
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 1,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": "COMMERCIAL PLUMBING SERVICES",
+          "mobile": "COMMERCIAL PLUMBING SERVICES"
+        },
+        "lcpMs": {
+          "desktop": 936,
+          "mobile": 1728
+        },
+        "lcpElement": {
+          "desktop": "video",
+          "mobile": "section"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 244,
+            "domContentLoaded": 478,
+            "load": 897
+          },
+          "mobile": {
+            "ttfb": 325,
+            "domContentLoaded": 1443,
+            "load": 1906
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "family-owned",
+            "warranty",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "bbb",
+            "phcc"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WP Rocket 3.23.5.1",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 5783,
+          "mobileHeight": 7903,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:39.355Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            5783
+          ]
+        ],
+        "usage": {
+          "input": 11187,
+          "output": 980
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "plumbing/aapiok",
+      "vertical": "plumbing",
+      "segment": "commercial",
+      "slug": "aapiok",
+      "company": "All American Plumbing",
+      "metro": "Tulsa",
+      "url": "https://www.aapiok.com/",
+      "finalUrl": "https://www.aapiok.com/",
+      "search": {
+        "query": "commercial plumbing contractor Tulsa",
+        "rank": 4,
+        "resultUrl": "https://www.aapiok.com/"
+      },
+      "aesthetic": "Patriotic red-and-blue commercial plumbing site with full-bleed construction photography and a flag-eagle footer, clean Wix layout.",
+      "palette": {
+        "bg": "#fafafa",
+        "surface": "#ffffff",
+        "text": "#000000",
+        "accent": "#b0010e",
+        "accent2": "#0b2ab7"
+      },
+      "typePairing": {
+        "display": "Roboto Bold",
+        "body": "Arial / Helvetica",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "services intro",
+        "service cards",
+        "careers banner",
+        "projects intro",
+        "project photo strip",
+        "clients",
+        "client logos",
+        "footer"
+      ],
+      "heroTreatment": "Full-bleed photo of an unfinished concrete building interior with dark overlay; large white left-aligned Roboto headline, family-owned subline, red solid and outlined CTAs beneath.",
+      "trustSignals": [
+        "Family owned in Tulsa since 1984",
+        "Family and locally owned for over 39 years",
+        "1984 year of establishment",
+        "200+ projects completed",
+        "Client logos: Gathering Place, Tulsa Zoo, Walmart, Kimberly-Clark, Warren Clinic, Southern Hills",
+        "Named landmark projects (Osage Casino Skiatook, Greenwood Rising)"
+      ],
+      "ctaPattern": "Primary View Projects (red) and secondary Join Our Team (outline) in hero; Read More red buttons per section, Apply Now in careers band, Contact Us and Join Our Team in footer.",
+      "distinctiveMoves": [
+        "Grayscale client-logo wall of recognizable local landmarks and corporations as the main credibility device",
+        "Edge-to-edge three-photo project strip mixing landmark finished buildings with a trench job-site shot",
+        "Hero headline speaks only to commercial and industrial buyers, with no residential hedging",
+        "Careers banner with stats (1984, 200+) overlaid on a job-site photo, doubling as recruiting and proof"
+      ],
+      "weaknesses": [
+        "No lead form, booking, or prominent click-to-call CTA; phone appears only small in the header and footer",
+        "No reviews, license numbers, or certifications; trust relies on logos and age",
+        "Thin service content with only three cards, plus Read More buttons without detail and a weak, dated footer overlay"
+      ],
+      "segmentFit": {
+        "residential": 0.05,
+        "commercial": 0.8,
+        "new_construction": 0.6
+      },
+      "vocabulary": [
+        "full-bleed concrete interior hero",
+        "white bold Roboto headline",
+        "flat red rectangular buttons",
+        "outlined ghost button",
+        "red heading over black eyebrow",
+        "white icon cards with red line icons",
+        "grayscale client logo grid",
+        "edge-to-edge project photo strip",
+        "blue uppercase nav links",
+        "flag and eagle footer overlay"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 photo of [SUBJECT: unfinished multi-story commercial concrete building interior with exposed ceiling beams and a lone worker in hi-vis in the distance], shot on a 24mm lens at eye level, soft overcast daylight through open walls, desaturated gray-concrete palette with a faint orange hi-vis accent, slight dark gradient overlay, open negative space across the left-center and upper half for a large headline and buttons, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:57:51.277Z",
+        "robots": "Allow: /",
+        "title": "All American Plumbing | Commercial & Industrial Plumbing | Tulsa, Oklahoma",
+        "metaDescription": "All American Plumbing is family and locally owned right here in Green Country for over 39 years. We are a known and trusted partner in commercial and industrial plumbing and have had the honor to work on some of the largest and well-known projects in the state of Oklahoma.",
+        "headings": {
+          "h1": [
+            "Commercial & Industrial Plumbing"
+          ],
+          "h2": [
+            "Our Services",
+            "Come Work With Us!",
+            "What We do",
+            "A Few of Our Clients"
+          ]
+        },
+        "telHrefs": [
+          "tel:918-227-1555"
+        ],
+        "telLinkCount": 1,
+        "ctaLabels": [
+          {
+            "label": "View Projects",
+            "count": 2,
+            "firstY": 646,
+            "tel": false
+          },
+          {
+            "label": "Join Our Team",
+            "count": 4,
+            "firstY": 646,
+            "tel": false
+          },
+          {
+            "label": "Read More",
+            "count": 3,
+            "firstY": 1044,
+            "tel": false
+          },
+          {
+            "label": "Apply Now",
+            "count": 2,
+            "firstY": 2005,
+            "tel": false
+          },
+          {
+            "label": "Contact Us",
+            "count": 2,
+            "firstY": 3610,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "View Projects",
+          "mobile": "View Projects"
+        },
+        "fonts": {
+          "body": "Arial, Helvetica, sans-serif",
+          "h1": "roboto-bold, roboto, sans-serif",
+          "h2": "helvetica-w01-roman, sans-serif",
+          "loaded": [
+            "helvetica-w01-roman",
+            "roboto-bold"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.442
+            },
+            {
+              "hex": "#fafafa",
+              "share": 0.089
+            },
+            {
+              "hex": "#b0010e",
+              "share": 0.011
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.475
+            },
+            {
+              "hex": "#000000",
+              "share": 0.44
+            },
+            {
+              "hex": "#b0010e",
+              "share": 0.059
+            },
+            {
+              "hex": "#0b2ab7",
+              "share": 0.026
+            }
+          ],
+          "imageShare": 0.457,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": false,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 3,
+            "bgImage": 0,
+            "video": 0,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": "Commercial & Industrial Plumbing",
+          "mobile": "Commercial & Industrial Plumbing"
+        },
+        "lcpMs": {
+          "desktop": 412,
+          "mobile": 340
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 50,
+            "domContentLoaded": 446,
+            "load": 899
+          },
+          "mobile": {
+            "ttfb": 119,
+            "domContentLoaded": 469,
+            "load": 1289
+          }
+        },
+        "signals": {
+          "trust": [
+            "family-owned",
+            "locally-owned",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [
+            "ngage"
+          ],
+          "badges": [],
+          "platform": [
+            "wix"
+          ],
+          "generator": "Wix.com Website Builder",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 3816,
+          "mobileHeight": 4129,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:19.954Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            3816
+          ]
+        ],
+        "usage": {
+          "input": 8490,
+          "output": 1134
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "plumbing/goldsealplumbing",
+      "vertical": "plumbing",
+      "segment": "new_construction",
+      "slug": "goldsealplumbing",
+      "company": "Gold Seal Plumbing",
+      "metro": "Spokane",
+      "url": "https://www.goldsealplumbing.com/",
+      "finalUrl": "https://www.goldsealplumbing.com/",
+      "search": {
+        "query": "new construction plumbing Spokane",
+        "rank": 2,
+        "resultUrl": "https://www.goldsealplumbing.com/services/new-construction/residential-new-construction-plumbing/spokane/wa"
+      },
+      "aesthetic": "Bold royal-blue and navy plumbing site with Bebas Neue condensed caps, truck-photo hero and card-heavy service grids",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f8f8f8",
+        "text": "#111111",
+        "accent": "#21519a",
+        "accent2": "#080f3b"
+      },
+      "typePairing": {
+        "display": "Bebas Neue",
+        "body": "Quicksand",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "trust bar",
+        "latest videos",
+        "about",
+        "plumbing services",
+        "sewer services",
+        "construction services",
+        "reviews",
+        "cta band",
+        "footer",
+        "service areas"
+      ],
+      "heroTreatment": "Split hero: solid blue panel with white condensed headline, intro copy and one Get a Quote button on the left, angled cut into a branded work-truck photo on the right, with slider arrows.",
+      "trustSignals": [
+        "Google Reviews 4.8, over 4,000 reviews",
+        "Best of Inlander 1st place badges 2022-2025",
+        "BBB Accredited Business badge",
+        "Family company founded 1967",
+        "Elfsight Google reviews grid 4.8 overall (4,537)",
+        "WA and Idaho contractor license numbers in footer"
+      ],
+      "ctaPattern": "Blue Get a Quote button in header, hero and closing navy band, with phone number in header and band; each service card carries its own blue button.",
+      "distinctiveMoves": [
+        "Separate Plumbing, Sewer and Construction service groups that speak to residential, trenchless and builder audiences",
+        "Bid Request Form card inside the construction grid aimed at builders",
+        "Row of award and rating badges on a navy strip directly under the hero",
+        "Every button pairs condensed caps with a small icon"
+      ],
+      "weaknesses": [
+        "Very long, text-heavy service cards of uneven height make the page 10,000px long with little visual relief",
+        "Thin, light-weight body text and small grey review text hurt legibility",
+        "No on-page form or scheduler, header is not sticky, and the service area towns are buried in the footer"
+      ],
+      "segmentFit": {
+        "residential": 0.72,
+        "commercial": 0.6,
+        "new_construction": 0.68
+      },
+      "vocabulary": [
+        "split blue hero panel",
+        "truck photo hero",
+        "award badge strip",
+        "Bebas Neue condensed caps",
+        "royal blue rounded buttons",
+        "icon-suffixed CTA labels",
+        "white service cards on pale grey",
+        "three-column service grid",
+        "video thumbnail row",
+        "navy gradient footer band",
+        "Google review card grid"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 photo of [SUBJECT: white plumbing service van parked at a new-home construction site with fresh concrete and framed houses behind]. Eye-level DSLR, 35mm, soft overcast daylight with big cloud sky, earthy browns and clean white, with saturated cobalt blue in the van's branding colour. Subject placed on the right two thirds, leaving calm empty ground and sky on the left third for a headline. No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:58:08.101Z",
+        "robots": "Allow: /",
+        "title": "Gold Seal | Plumbing Services Spokane Valley, WA",
+        "metaDescription": "Gold Seal is the leading provider of plumbing services in the Spokane Valley, WA area. Call us today at (509) 535-5946 for fast, friendly service.",
+        "headings": {
+          "h1": [
+            "Spokane Valley, Washington Plumbing"
+          ],
+          "h2": [
+            "SPOKANE VALLEY, WASHINGTON EMERGENCY PLUMBING",
+            "SPOKANE VALLEY, WASHINGTON WATER HEATERS",
+            "SPOKANE VALLEY, WASHINGTON DRAIN CLEANING",
+            "SPOKANE VALLEY, WASHINGTON LEAK DETECTION",
+            "SPOKANE VALLEY, WASHINGTON GAS LINE REPAIR",
+            "SPOKANE VALLEY, WASHINGTON WATER TREATMENT",
+            "SPOKANE VALLEY, WASHINGTON TRENCHLESS WATER LINE REPLACEMENT",
+            "SPOKANE VALLEY, WASHINGTON TRENCHLESS LINING",
+            "SPOKANE VALLEY, WASHINGTON TRENCHLESS BURSTING",
+            "SPOKANE VALLEY, WASHINGTON OPEN TRENCH SEWER REPAIR",
+            "SPOKANE VALLEY, WASHINGTON SEWER CLEANING",
+            "SPOKANE VALLEY, WASHINGTON SEWER INSPECTION",
+            "SPOKANE VALLEY, WASHINGTON BID REQUEST FORM",
+            "SPOKANE VALLEY, WASHINGTON NEW COMMERCIAL CONSTRUCTION",
+            "SPOKANE VALLEY, WASHINGTON NEW RESIDENTIAL CONSTRUCTION",
+            "SPOKANE VALLEY, WASHINGTON RESIDENTIAL REMODELING"
+          ]
+        },
+        "telHrefs": [
+          "tel:(509) 535-5946"
+        ],
+        "telLinkCount": 4,
+        "ctaLabels": [
+          {
+            "label": "PLUMBING",
+            "count": 1,
+            "firstY": -1,
+            "tel": false
+          },
+          {
+            "label": "SEWER",
+            "count": 1,
+            "firstY": -1,
+            "tel": false
+          },
+          {
+            "label": "CONSTRUCTION",
+            "count": 1,
+            "firstY": -1,
+            "tel": false
+          },
+          {
+            "label": "OFFERS",
+            "count": 1,
+            "firstY": -1,
+            "tel": false
+          },
+          {
+            "label": "ABOUT",
+            "count": 1,
+            "firstY": -1,
+            "tel": false
+          },
+          {
+            "label": "(509) 535-5946",
+            "count": 2,
+            "firstY": 26,
+            "tel": true
+          },
+          {
+            "label": "GET A QUOTE",
+            "count": 5,
+            "firstY": 24,
+            "tel": false
+          },
+          {
+            "label": "ALL VIDEOS",
+            "count": 2,
+            "firstY": 1015,
+            "tel": false
+          },
+          {
+            "label": "PLUMBING SERVICES",
+            "count": 2,
+            "firstY": 2409,
+            "tel": false
+          },
+          {
+            "label": "SEWER SERVICES",
+            "count": 2,
+            "firstY": 3995,
+            "tel": false
+          },
+          {
+            "label": "CONSTRUCTION SERVICES",
+            "count": 2,
+            "firstY": 5607,
+            "tel": false
+          },
+          {
+            "label": "Load More",
+            "count": 2,
+            "firstY": 8337,
+            "tel": false
+          },
+          {
+            "label": "QUOTE",
+            "count": 1,
+            "firstY": 30,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "PLUMBING",
+          "mobile": "(509) 535-5946"
+        },
+        "fonts": {
+          "body": "Quicksand, Arial, sans-serif",
+          "h1": "\"Bebas Neue\", Arial, sans-serif",
+          "h2": "\"Bebas Neue\", Arial, sans-serif",
+          "loaded": [
+            "Quicksand",
+            "Bebas Neue",
+            "Font Awesome 6 Brands",
+            "Font Awesome 6 Pro",
+            "Font Awesome 6 Duotone"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.527
+            },
+            {
+              "hex": "#f8f8f8",
+              "share": 0.063
+            },
+            {
+              "hex": "#21519a",
+              "share": 0.039
+            }
+          ],
+          "text": [
+            {
+              "hex": "#111111",
+              "share": 0.757
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.232
+            },
+            {
+              "hex": "#080f3b",
+              "share": 0.011
+            }
+          ],
+          "imageShare": 0.193,
+          "gradientShare": 0.178
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "bottom",
+              "width": 340,
+              "height": 200,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "bottom",
+              "width": 340,
+              "height": 200,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(509) 535-5946",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 8,
+        "aboveFold": {
+          "desktop": {
+            "img": 7,
+            "bgImage": 1,
+            "video": 0,
+            "total": 8
+          },
+          "mobile": {
+            "img": 6,
+            "bgImage": 1,
+            "video": 0,
+            "total": 7
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": null
+        },
+        "lcpMs": {
+          "desktop": 1400,
+          "mobile": 1872
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "a"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 732,
+            "domContentLoaded": 1400,
+            "load": 2407
+          },
+          "mobile": {
+            "ttfb": 1209,
+            "domContentLoaded": 1867,
+            "load": 3168
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "guarantee",
+            "years-in-business",
+            "star-rating"
+          ],
+          "coupon": true,
+          "financing": true,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [
+            "elfsight"
+          ],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "google",
+            "best of"
+          ],
+          "platform": [],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 10013,
+          "mobileHeight": 16862,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:20.825Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            9600
+          ],
+          [
+            9600,
+            10013
+          ]
+        ],
+        "usage": {
+          "input": 16973,
+          "output": 1028
+        }
+      },
+      "family": "F3"
+    },
+    {
+      "id": "plumbing/lasiter",
+      "vertical": "plumbing",
+      "segment": "new_construction",
+      "slug": "lasiter",
+      "company": "Lasiter & Lasiter Plumbing",
+      "metro": "Fort Worth",
+      "url": "https://lasiter.com/",
+      "finalUrl": "https://lasiter.com/",
+      "search": {
+        "query": "new construction plumbing Fort Worth",
+        "rank": 4,
+        "resultUrl": "https://lasiter.com/new-construction/"
+      },
+      "aesthetic": "Family-heritage red, black and white plumbing site with truck-wrap hero, icon-led service grid and dark panels",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f4f4f4",
+        "text": "#333333",
+        "accent": "#d20001",
+        "accent2": "#1a1a1a"
+      },
+      "typePairing": {
+        "display": "Montserrat",
+        "body": "Roboto",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "tile grid with estimate form",
+        "about",
+        "services",
+        "testimonials",
+        "footer"
+      ],
+      "heroTreatment": "Full-width photo of branded van in front of a white brick home with dark overlay; right-aligned white headline and intro, three outlined ghost buttons along the bottom.",
+      "trustSignals": [
+        "Family tradition since 1974",
+        "Family owned and operated",
+        "TX Master Plumbers Lic# M-8331",
+        "Texas State Board of Plumbing Examiners seal",
+        "Customer testimonial with 5 stars from a property manager",
+        "Team headshots in uniform"
+      ],
+      "ctaPattern": "Red FREE ESTIMATE button and phone number in top utility bar, ghost buttons in hero, dark estimate form in tile grid, red Free Estimate and Testimonials buttons after about.",
+      "distinctiveMoves": [
+        "Photo tile grid mixing service cards, team headshot mosaic and a dark estimate form in one block",
+        "Red ribbon banner with heritage tagline and licence seal in the about section",
+        "Custom red line-icon set above each service on a black panel",
+        "Short red underline accent below every section heading"
+      ],
+      "weaknesses": [
+        "No sticky header or pinned phone, and the phone is only in the top bar",
+        "Little new-construction or commercial content despite the commercial mention in the hero copy",
+        "Testimonials are a single carousel quote with no review count or third-party rating, and the about section has awkward empty space"
+      ],
+      "segmentFit": {
+        "residential": 0.8,
+        "commercial": 0.35,
+        "new_construction": 0.2
+      },
+      "vocabulary": [
+        "truck-wrap hero photo",
+        "dark overlay hero",
+        "right-aligned white headline",
+        "ghost outline buttons",
+        "red underline heading accent",
+        "black services panel",
+        "red line icons",
+        "utility bar with red CTA",
+        "photo tile grid",
+        "heritage ribbon banner"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": true,
+        "bookingForm": true,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "16:9 photo, eye-level, soft overcast daylight, white-painted brick suburban home with green lawn and a branded white work van parked on the left, muted greens and warm whites with red accents, slightly darkened edges, negative space on the right half upper and middle for headline and intro text. [SUBJECT: white plumbing service van in front of a suburban Texas home] No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:58:05.883Z",
+        "robots": "no matching rule",
+        "title": "Lasiter & Lasiter Plumbing | Licensed Plumber in Fort Worth",
+        "metaDescription": "Looking for a trusted Fort Worth plumber? Lasiter & Lasiter handles drain cleaning, water heater repair, and emergency plumbing. Call our family team today.",
+        "headings": {
+          "h1": [
+            "A DFW Family Tradition Since 1974"
+          ],
+          "h2": [
+            "LASITER & LASITER PLUMBING",
+            "Our Services",
+            "Customer Testimonials"
+          ]
+        },
+        "telHrefs": [
+          "tel:8175891678"
+        ],
+        "telLinkCount": 2,
+        "ctaLabels": [
+          {
+            "label": "SERVICE & REPAIRS",
+            "count": 2,
+            "firstY": 617,
+            "tel": false
+          },
+          {
+            "label": "CUSTOMER REVIEWS",
+            "count": 2,
+            "firstY": 617,
+            "tel": false
+          },
+          {
+            "label": "SPECIAL OFFERS",
+            "count": 2,
+            "firstY": 617,
+            "tel": false
+          },
+          {
+            "label": "Send",
+            "count": 2,
+            "firstY": 1131,
+            "tel": false
+          },
+          {
+            "label": "CUSTOMER TESTIMONIALS",
+            "count": 2,
+            "firstY": 2503,
+            "tel": false
+          },
+          {
+            "label": "FREE ESTIMATE",
+            "count": 2,
+            "firstY": 2503,
+            "tel": false
+          },
+          {
+            "label": "View Our Services Page",
+            "count": 2,
+            "firstY": 3682,
+            "tel": false
+          },
+          {
+            "label": "View All Customer Testimonials",
+            "count": 2,
+            "firstY": 4070,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": null,
+          "mobile": null
+        },
+        "fonts": {
+          "body": "Roboto, Arial, sans-serif",
+          "h1": "Montserrat",
+          "h2": "Montserrat",
+          "loaded": [
+            "Icon7Stroke",
+            "CustomEssentialSet",
+            "CustomDevelopmentSet",
+            "CustomConstructionSet",
+            "CustomTransportationSet",
+            "CustomScienceSet",
+            "Montserrat",
+            "Roboto",
+            "FontAwesome"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.319
+            },
+            {
+              "hex": "#d20001",
+              "share": 0.005
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.709
+            },
+            {
+              "hex": "#333333",
+              "share": 0.228
+            },
+            {
+              "hex": "#000000",
+              "share": 0.045
+            },
+            {
+              "hex": "#d20001",
+              "share": 0.018
+            }
+          ],
+          "imageShare": 0.676,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": false,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": false,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 0,
+            "bgImage": 2,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 0,
+            "bgImage": 2,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": null
+        },
+        "lcpMs": {
+          "desktop": 768,
+          "mobile": 780
+        },
+        "lcpElement": {
+          "desktop": "section",
+          "mobile": "section"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 212,
+            "domContentLoaded": 554,
+            "load": 728
+          },
+          "mobile": {
+            "ttfb": 356,
+            "domContentLoaded": 609,
+            "load": 782
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "family-owned",
+            "master-license",
+            "years-in-business"
+          ],
+          "coupon": true,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": "Lic#: M-8331",
+          "leadForms": 1,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.0.6",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 5257,
+          "mobileHeight": 8803,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 24,
+            "mobile": 24
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:30.288Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            5256
+          ]
+        ],
+        "usage": {
+          "input": 10447,
+          "output": 943
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "plumbing/tucsonplumbing",
+      "vertical": "plumbing",
+      "segment": "new_construction",
+      "slug": "tucsonplumbing",
+      "company": "Tucson Plumbing",
+      "metro": "Tucson",
+      "url": "https://tucsonplumbing.com/",
+      "finalUrl": "https://tucsonplumbing.com/",
+      "search": {
+        "query": "new construction plumbing Tucson",
+        "rank": 2,
+        "resultUrl": "https://tucsonplumbing.com/new-construction/"
+      },
+      "aesthetic": "Heritage-brand orange and sky-blue banding with a family hero photo and a vintage-vs-modern 'since 1952' story",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#faf8f7",
+        "text": "#000000",
+        "accent": "#e67e23",
+        "accent2": "#1f9bde"
+      },
+      "typePairing": {
+        "display": "Montserrat",
+        "body": "Source Sans 3",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "nav bar",
+        "hero",
+        "blue tagline band",
+        "about",
+        "testimonial",
+        "services",
+        "association logos",
+        "contact form",
+        "footer"
+      ],
+      "heroTreatment": "Full-width photo of a smiling mother and son at a kitchen faucet under a dark overlay; left-aligned white Montserrat headline, orange subline, ghost outline button and a row of association badges below.",
+      "trustSignals": [
+        "Over 70 years / since 1952",
+        "BBB Accredited Business A+ badge",
+        "PHCC member logo",
+        "CCA logo",
+        "SAHBA (Southern Arizona Home Builders Association) badge",
+        "Fully licensed, insured technicians",
+        "Two-year workmanship warranty",
+        "No-nickel-and-dime upfront diagnosis pledge",
+        "Customer testimonial from David & Judy, Tucson"
+      ],
+      "ctaPattern": "Phone 520.416.5302 in the header and a ghost 'Schedule A Service' button in the hero; the only repeat is the appointment form with an after-hours emergency number.",
+      "distinctiveMoves": [
+        "Centered header with tagline left, round cactus logo in the middle and orange 'Give us a Call' phone right",
+        "Full-bleed orange nav bar with white text and thin vertical dividers, including a 'New Construction' item",
+        "Cutout of the branded orange-and-blue service van beside the story copy, reinforcing the brand colours",
+        "Hero badge row including SAHBA builder association signals alongside BBB and PHCC"
+      ],
+      "weaknesses": [
+        "Hero subline in orange on a busy photo has poor contrast and the ghost button is weak as the main CTA",
+        "Services are plain white caps text on blue with no icons, links or descriptions, and the layout is uneven and has an orphaned item",
+        "Form section looks broken and cluttered, with underlined orange text, a broken image in the footer, no reviews widget or service area list, and little new-construction content"
+      ],
+      "segmentFit": {
+        "residential": 0.7,
+        "commercial": 0.35,
+        "new_construction": 0.3
+      },
+      "vocabulary": [
+        "orange full-width nav bar",
+        "sky-blue tagline band",
+        "family kitchen hero photo",
+        "ghost outline CTA",
+        "association badge row",
+        "branded van cutout",
+        "Montserrat bold headlines",
+        "orange underlined headings",
+        "blue-tinted testimonial photo band",
+        "dark slate footer",
+        "caps service text on blue",
+        "centered logo header"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": true,
+        "bookingForm": true,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Warm natural-light lifestyle photo, 35mm, shallow depth of field, eye-level. [SUBJECT: smiling homeowner and child at a kitchen sink running water from a chrome pull-down faucet]. Cool blue-grey kitchen tones with soft cream cabinets and a slight dark gradient on the left half, leaving negative space on the left third for the headline and buttons. No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:58:17.120Z",
+        "robots": "no matching rule",
+        "title": "Plumbers Tucson | Plumbing Services & Repair | Tucson Plumbing",
+        "metaDescription": "Tucson Plumbing has served Tucson, AZ since 1952. Emergency repairs, drain cleaning, water heaters, gas lines & more. Licensed, local. Call (520) 881-6000.",
+        "headings": {
+          "h1": [
+            "Tucson Plumbing"
+          ],
+          "h2": [
+            "Over 70 years as Tucson’s Most Trusted Plumbers.",
+            "Tucson Plumbing has proudly served Tucson and surrounding communities since 1952. There’s no substitute for the original Tucson Plumbing.",
+            "Old-School Work Ethic for Over 70 Years",
+            "Our Services Include",
+            "DRAIN CLEANING/VIDEO INSPECTION",
+            "EMERGENCY REPAIRS",
+            "FIXTURE UPGRADES",
+            "INSTALLATIONS AND REMODELS",
+            "WATER HEATER INSTALL & REPAIR",
+            "HOT WATER ON DEMAND",
+            "WATER FILTRATION & CONDITIONING",
+            "GAS LINE INSTALLATION AND REPAIR",
+            "IN-HOME ELDER HANDI-CARE",
+            "For emergency services after those hours, please call 520-416-5302."
+          ]
+        },
+        "telHrefs": [
+          "tel:+15204165302",
+          "tel:5204165302"
+        ],
+        "telLinkCount": 3,
+        "ctaLabels": [
+          {
+            "label": "Schedule A Service",
+            "count": 2,
+            "firstY": 533,
+            "tel": false
+          },
+          {
+            "label": "Upload",
+            "count": 2,
+            "firstY": 3532,
+            "tel": false
+          },
+          {
+            "label": "Submit",
+            "count": 2,
+            "firstY": 3618,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Schedule A Service",
+          "mobile": "Schedule A Service"
+        },
+        "fonts": {
+          "body": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+          "h1": "Montserrat, sans-serif",
+          "h2": "Montserrat, sans-serif",
+          "loaded": [
+            "Montserrat",
+            "Source Sans 3",
+            "Font Awesome 6 Brands",
+            "Roboto Condensed"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.489
+            },
+            {
+              "hex": "#faf8f7",
+              "share": 0.132
+            },
+            {
+              "hex": "#e67e23",
+              "share": 0.113
+            },
+            {
+              "hex": "#1f9bde",
+              "share": 0.095
+            },
+            {
+              "hex": "#3b4149",
+              "share": 0.057
+            },
+            {
+              "hex": "#000000",
+              "share": 0.024
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.446
+            },
+            {
+              "hex": "#000000",
+              "share": 0.349
+            },
+            {
+              "hex": "#777879",
+              "share": 0.082
+            },
+            {
+              "hex": "#e67e23",
+              "share": 0.06
+            },
+            {
+              "hex": "#1f9bde",
+              "share": 0.045
+            },
+            {
+              "hex": "#404040",
+              "share": 0.012
+            }
+          ],
+          "imageShare": 0.04,
+          "gradientShare": 0.05
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 234,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 234,
+              "phone": true,
+              "text": "Modern Technology. Classic Work Ethic. Give us a Call 520.416.5302 Schedule A Se"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 50,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 6,
+        "aboveFold": {
+          "desktop": {
+            "img": 6,
+            "bgImage": 0,
+            "video": 0,
+            "total": 6
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 0,
+            "video": 0,
+            "total": 1
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": null
+        },
+        "lcpMs": {
+          "desktop": 904,
+          "mobile": 2364
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 445,
+            "domContentLoaded": 1367,
+            "load": 2091
+          },
+          "mobile": {
+            "ttfb": 728,
+            "domContentLoaded": 2674,
+            "load": 4435
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "warranty",
+            "years-in-business"
+          ],
+          "coupon": true,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 1,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "bbb",
+            "phcc"
+          ],
+          "platform": [
+            "wordpress",
+            "godaddy"
+          ],
+          "generator": "WordPress 7.1.3",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 4238,
+          "mobileHeight": 6449,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:42.947Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4238
+          ]
+        ],
+        "usage": {
+          "input": 9262,
+          "output": 1127
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "plumbing/masterserviceplumbing",
+      "vertical": "plumbing",
+      "segment": "new_construction",
+      "slug": "masterserviceplumbing",
+      "company": "Master Service Plumbing",
+      "metro": "Reno",
+      "url": "https://masterserviceplumbing.com/",
+      "finalUrl": "https://masterserviceplumbing.com/",
+      "search": {
+        "query": "new construction plumbing Reno",
+        "rank": 1,
+        "resultUrl": "https://masterserviceplumbing.com/"
+      },
+      "aesthetic": "Dated WordPress template: teal water-texture banner, pill nav over mountain photo, light-blue headings, badge-heavy footer.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#c4c4c4",
+        "text": "#333333",
+        "accent": "#3793b5",
+        "accent2": "#3d67bd"
+      },
+      "typePairing": {
+        "display": "Helvetica Neue (light blue headings, italic serif tagline)",
+        "body": "Helvetica Neue",
+        "source": "system"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "about",
+        "accreditations",
+        "social and payment",
+        "testimonial quote",
+        "services",
+        "tagline",
+        "badges",
+        "footer"
+      ],
+      "heroTreatment": "Teal water-texture banner with italic serif tagline and license number, translucent contact card left, intro copy with Read More button center, framed bathroom photo right.",
+      "trustSignals": [
+        "Since 1991, 30 years of experience",
+        "NV Lic. #31877",
+        "Accreditations list: backflow, medical gas, tankless certified",
+        "Member of BBB and Reno Chamber of Commerce",
+        "HomeAdvisor Top Rated badge",
+        "HomeAdvisor Elite Service badge",
+        "HomeAdvisor Screened & Approved badge",
+        "Workmanship guaranteed 100%",
+        "Owner quote from Marc Totton"
+      ],
+      "ctaPattern": "Phone pill 'Call Now! (775) 851-1444' in the sticky nav, plus a weak 'Read More' button and a PayPal Pay Now button; no form.",
+      "distinctiveMoves": [
+        "Pill-shaped nav buttons floating over a mountain-photo header strip",
+        "Translucent contact card with address, phone and fax inside the hero",
+        "Italic serif owner quote as a section divider",
+        "Explicit accreditations list covering medical gas, backflow and tankless certification"
+      ],
+      "weaknesses": [
+        "No H1, no meta description, no lead form or scheduler; the only CTA is the phone pill and a vague Read More",
+        "Dated, low-contrast look: thin light-blue headings, blank Facebook embed, large empty gray badge block",
+        "No reviews shown (only Google+ and Yelp icons), no service-area list and no photos of real work or crew"
+      ],
+      "segmentFit": {
+        "residential": 0.4,
+        "commercial": 0.4,
+        "new_construction": 0.35
+      },
+      "vocabulary": [
+        "teal water-texture banner",
+        "pill nav buttons",
+        "mountain photo header",
+        "translucent contact card",
+        "framed hero photo",
+        "light-blue thin headings",
+        "italic serif quote",
+        "gray badge footer band",
+        "HomeAdvisor badges",
+        "three-column service cards"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Wide 16:9 photo, 35mm, soft natural daylight, cool teal and white palette with warm wood accents, clean modern interior of [SUBJECT: newly installed bathroom or mechanical room with copper and PEX plumbing rough-in], shallow depth of field, subject on the right third, open calm negative space on the left for headline, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:58:22.729Z",
+        "robots": "no matching rule",
+        "title": "Master Service Plumbing – THE PLUMBER YOU KNOW & TRUST …… SINCE 1991",
+        "metaDescription": null,
+        "headings": {
+          "h1": [],
+          "h2": []
+        },
+        "telHrefs": [
+          "tel:%20+17758511444"
+        ],
+        "telLinkCount": 2,
+        "ctaLabels": [],
+        "primaryCta": {
+          "desktop": null,
+          "mobile": null
+        },
+        "fonts": {
+          "body": "HelveticaNeue, \"Helvetica Neue\", Helvetica, Arial, sans-serif",
+          "h1": null,
+          "h2": null,
+          "loaded": [
+            "Roboto",
+            "entypo-fontello"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.476
+            },
+            {
+              "hex": "#c4c4c4",
+              "share": 0.105
+            },
+            {
+              "hex": "#3793b5",
+              "share": 0.028
+            }
+          ],
+          "text": [
+            {
+              "hex": "#333333",
+              "share": 0.803
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.116
+            },
+            {
+              "hex": "#3d67bd",
+              "share": 0.045
+            },
+            {
+              "hex": "#0754a1",
+              "share": 0.023
+            },
+            {
+              "hex": "#000000",
+              "share": 0.013
+            }
+          ],
+          "imageShare": 0.27,
+          "gradientShare": 0.121
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 112,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 112,
+              "phone": true,
+              "text": "Call Now! (775) 851-1444 Home Services Rave Reviews Videos Pay Online Contact Us"
+            },
+            {
+              "edge": "bottom",
+              "width": 50,
+              "height": 50,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 82,
+              "phone": true,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": false,
+        "phoneSeen390": "(775) 851-1444",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 4,
+        "aboveFold": {
+          "desktop": {
+            "img": 3,
+            "bgImage": 1,
+            "video": 0,
+            "total": 4
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 1,
+            "video": 0,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": null
+        },
+        "lcpMs": {
+          "desktop": 2288,
+          "mobile": 1300
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 144,
+            "domContentLoaded": 1798,
+            "load": 2351
+          },
+          "mobile": {
+            "ttfb": 355,
+            "domContentLoaded": 1329,
+            "load": 1839
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "bbb",
+            "certified",
+            "master-license",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": "LIC. #31877",
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "homeadvisor",
+            "google",
+            "yelp",
+            "award",
+            "top rated"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.3",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 2592,
+          "mobileHeight": 5477,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:03:33.391Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            2592
+          ]
+        ],
+        "usage": {
+          "input": 6788,
+          "output": 1037
+        }
+      },
+      "family": "F4"
+    }
+  ]
+}

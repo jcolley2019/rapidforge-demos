@@ -10,7 +10,8 @@
     "test": "vitest run",
     "lint": "oxlint",
     "preview": "vite preview",
-    "shots": "npm run build && node scripts/shots.mjs"
+    "shots": "npm run build && node scripts/shots.mjs",
+    "vault": "node scripts/vault-capture.mjs && node scripts/vault-ingest.mjs && node scripts/vault-distill.mjs"
   },
   "dependencies": {
     "@fontsource-variable/cormorant": "^5.3.0",
@@ -32,6 +33,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
     "@testing-library/react": "^16.3.3",
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",
