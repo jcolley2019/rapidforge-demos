@@ -3,14 +3,10 @@ import './picker.css'
 
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import PlaceholderImage from './components/PlaceholderImage'
 import { siteContent as site } from './brief/current'
 import { presetForVariant, swatchesOf } from './presets/presets'
+import { previewFor } from './presets/previews'
 import { variants } from './variants/variants'
-
-/* Five directions across a six-column field: three wide, then two wider —
-   a deliberate composition rather than a ragged third row. */
-const SPANS = ['lg:col-span-2', 'lg:col-span-2', 'lg:col-span-2', 'lg:col-span-3', 'lg:col-span-3']
 
 export default function PickerPage() {
   useEffect(() => {
@@ -21,45 +17,47 @@ export default function PickerPage() {
     <main className="pk">
       <div className="pk-shell">
         <header className="pk-head">
-          <h1 className="pk-title">{site.name} &mdash; five design directions</h1>
+          <h1 className="pk-title">{`${site.name} — five looks, pick one`}</h1>
           <p className="pk-lead">
-            Each direction is a complete, working one-page site built on the same
-            content. Open any of them to review it, then use the link in the
-            corner to come back here.
+            Each one is a complete, working site. Open any of them; use the link
+            in the corner to come back.
           </p>
         </header>
 
         <ul className="pk-grid">
-          {variants.map((variant, i) => {
+          {variants.map((variant) => {
             const preset = presetForVariant(variant.slug)
-            const swatches = swatchesOf(preset)
+            const preview = previewFor(variant.slug)
             return (
-              <li key={variant.slug} className={SPANS[i] ?? 'lg:col-span-2'}>
+              <li key={variant.slug}>
                 <Link to={`/${variant.slug}`} className="pk-card">
-                  <div className="pk-card-media">
-                    <PlaceholderImage
-                      aspectRatio="16 / 7"
-                      palette={preset.palette}
-                      lineOpacity={0.5}
-                      seed={i + 1}
+                  {/* The screenshots repeat what the name and description
+                      say, so they stay out of the link's accessible name. */}
+                  <div className="pk-frame">
+                    <img
+                      className="pk-shot"
+                      src={preview.desktop}
+                      alt=""
+                      width={1280}
+                      height={800}
+                      decoding="async"
+                    />
+                    <img
+                      className="pk-phone"
+                      src={preview.mobile}
+                      alt=""
+                      width={390}
+                      height={844}
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
-                  <div className="pk-card-body">
-                    <p className="pk-card-index">
-                      {String(i + 1).padStart(2, '0')} &middot; {site.name}
-                    </p>
-                    <h2 className="pk-card-name">
-                      {preset.name}
-                      <span className="pk-card-mark" aria-hidden="true">
-                        &rarr;
-                      </span>
-                    </h2>
-                    <p className="pk-card-desc">{variant.description}</p>
-                    <div className="pk-swatches" aria-hidden="true">
-                      {swatches.map((color, j) => (
-                        <span key={`${color}-${j}`} className="pk-swatch" style={{ backgroundColor: color }} />
-                      ))}
-                    </div>
+                  <h2 className="pk-name">{preset.name}</h2>
+                  <p className="pk-desc">{variant.description}</p>
+                  <div className="pk-swatches" aria-hidden="true">
+                    {swatchesOf(preset).map((color, j) => (
+                      <span key={`${color}-${j}`} className="pk-swatch" style={{ backgroundColor: color }} />
+                    ))}
                   </div>
                 </Link>
               </li>
