@@ -8,9 +8,9 @@ export default function IsHours() {
     <section id="contact" className="is-surface is-section">
       <div className="is-wrap">
         <Reveal>
-          <p className="is-mono">Hours &amp; Contact</p>
+          <p className="is-mono">Hours</p>
           <h2 className="is-display is-h2">
-            Find us<span className="is-mark">.</span>
+            Hours &amp; Location<span className="is-mark">.</span>
           </h2>
         </Reveal>
         <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">

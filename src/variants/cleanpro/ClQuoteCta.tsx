@@ -9,17 +9,20 @@ export default function ClQuoteCta() {
       <div className="cl-wrap cl-section">
         <Reveal>
           <p className="cl-eyebrow">{site.cta.label}</p>
-          <h2 className="cl-display cl-h2 mx-auto max-w-[16ch]">
-            Ready when you <em>are.</em>
-          </h2>
+          <h2 className="cl-display cl-h2 mx-auto max-w-[18ch]">{site.ctaHeadline}</h2>
+          {site.phoneHref && (
+            <a href={site.phoneHref} className="cl-display cl-plate-phone cl-num">
+              {site.phone}
+            </a>
+          )}
           <p className="cl-plate-sub mx-auto mt-5 max-w-xl">{site.subhead}</p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a href={site.cta.href} className="cl-btn cl-btn-white">
               {site.cta.label}
             </a>
-            {site.phoneHref && (
-              <a href={site.phoneHref} className="cl-plate-phone cl-num">
-                {site.phone}
+            {site.ctaSecondary && (
+              <a href={site.ctaSecondary.href} className="cl-btn cl-btn-plate cl-num">
+                {site.ctaSecondary.label}
               </a>
             )}
           </div>

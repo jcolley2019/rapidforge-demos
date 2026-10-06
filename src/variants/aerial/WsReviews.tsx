@@ -9,9 +9,7 @@ export default function WsReviews() {
       <div className="ws-wrap">
         <Reveal>
           <p className="ws-eyebrow">Reviews</p>
-          <h2 className="ws-display ws-h2">
-            Told by our <span className="ws-warm">neighbors.</span>
-          </h2>
+          <h2 className="ws-display ws-h2">What Customers Say</h2>
         </Reveal>
         <div className="ws-cards">
           {site.reviews.map((review, i) => (

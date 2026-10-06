@@ -4,7 +4,7 @@
     "name": "Paper Press",
     "collection": "print-tech-paper",
     "entryId": "roamfield",
-    "brief": "Aesthetic: print-tech paper (warm editorial x print DNA)\nVocabulary: halftone texture, warm paper ground, registration marks, mono data callouts, dashed grid rules, single ember accent word, archival imagery\nReference feel: Stillpage, SPADE\nHouse DNA: One monumental image anchors the page; Imagery is processed, never raw; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (ember, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Untextured stock photography, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Render the hero image entirely in halftone dots with visible registration marks\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"[SUBJECT] rendered as a vintage halftone CMYK print: coarse visible dot grid, slight chromatic misregistration, warm cream paper ground, muted palette with one orange accent, generous soft-sky negative space for headline, flat print finish, no gloss\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
+    "brief": "Aesthetic: warm paper (cream ground, serif headlines, one orange accent)\nVocabulary: light print screen over the photo, warm paper ground, registration marks, mono data callouts, dashed grid rules, single orange accent\nReference feel: Stillpage, SPADE\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Let the hero photo run full-bleed and set the copy on a paper panel at its foot",
     "palette": {
       "bg": "#F3EADB",
       "surface": "#FBF6EC",
@@ -18,11 +18,10 @@
       "body": "Inter Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Full-bleed halftone scene; serif headline sits in the cream sky at center; pill nav floats on top, black pill CTA below.",
+    "heroTreatment": "Full-bleed trade photo warmed toward the paper under a light print screen (overlay at most 0.55); copy sits on a cream panel at the foot; pill nav floats on top, black pill CTA.",
     "neverList": [
       "Purple gradients",
       "Glossy 3D SaaS blobs",
-      "Untextured stock photography",
       "Rounded-everything friendliness",
       "Icon-grid feature rows",
       "Inter/system-font-only typography",
@@ -32,9 +31,9 @@
   {
     "id": "ink-split",
     "name": "Ink Split",
-    "collection": "dither-mono",
+    "collection": "bitmap-mono",
     "entryId": "castle",
-    "brief": "Aesthetic: dither mono (brutalist-editorial B&W)\nVocabulary: bitmap dither, stark B&W, film grain, serif display, split-screen form + art, giant cropped wordmark, high contrast\nReference feel: MONOLITH, Castle\nHouse DNA: One monumental image anchors the page; Imagery is processed, never raw; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (ember, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Untextured stock photography, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Dither the entire hero image to 1-bit and let a cropped wordmark run off the viewport\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"[SUBJECT] as a stark black-and-white image with heavy 1-bit bitmap dither / coarse film grain, high contrast, dramatic single light source, dark studio or void background, no color, no midtone smoothness - texture must read as deliberate machine processing\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
+    "brief": "Aesthetic: ink mono (brutalist black and white)\nVocabulary: stark black and white, film grain, serif display, split-screen copy + photo, giant cropped wordmark, high contrast\nReference feel: MONOLITH, Castle\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Push the hero photo to black and white and let a cropped wordmark run off the viewport",
     "palette": {
       "bg": "#FFFFFF",
       "surface": "#F2F2F0",
@@ -48,11 +47,10 @@
       "body": "Inter Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Two-field split: left white column with a huge serif headline and black CTA block, right field a 1-bit dithered placeholder cropped hard at the split.",
+    "heroTreatment": "Two-field split: left white column with a huge serif headline and black CTA block, right field a black-and-white trade photo under a light dot screen (overlay at most 0.55), cropped hard at the split.",
     "neverList": [
       "Purple gradients",
       "Glossy 3D SaaS blobs",
-      "Untextured stock photography",
       "Rounded-everything friendliness",
       "Icon-grid feature rows",
       "Inter/system-font-only typography",
@@ -64,7 +62,7 @@
     "name": "Dusk Horizon",
     "collection": "vast-quiet-cinematic",
     "entryId": "nexora",
-    "brief": "Aesthetic: vast quiet cinematic (editorial minimalism x cinematic)\nVocabulary: monumental landscape photography, mist and fog atmosphere, dusk color grade, tiny centered sans, extreme negative space, two-tone headline, quiet CTA\nReference feel: CTGT (hero), CTGT (alt hero)\nHouse DNA: One monumental image anchors the page; Imagery is processed, never raw; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (ember, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Untextured stock photography, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Let the landscape occupy 90% of the viewport and shrink the headline to whisper size\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"vast aerial photograph of [SUBJECT], heavy mist and fog atmosphere, desaturated cinematic color grade (pale fog whites or deep teal dusk), upper half dissolving into pale featureless sky for headline space, epic scale, no people, matte photographic finish\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
+    "brief": "Aesthetic: vast quiet cinematic (minimal x cinematic)\nVocabulary: monumental photography, dusk color grade, tiny centered sans, extreme negative space, quiet CTA\nReference feel: CTGT (hero), CTGT (alt hero)\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Let the photo occupy the whole viewport and keep the headline quiet",
     "palette": {
       "bg": "#0F2A2C",
       "surface": "#163B3D",
@@ -78,11 +76,10 @@
       "body": "Inter Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Full-bleed teal dusk; headline top-left on the darkened sky; ember CTA; mono scroll cue and a service ticker run along the bottom edge.",
+    "heroTreatment": "Full-bleed trade photo graded toward teal dusk (overlay at most 0.55); headline top-left on the darkened sky; orange CTA; mono scroll cue and a service ticker run along the bottom edge.",
     "neverList": [
       "Purple gradients",
       "Glossy 3D SaaS blobs",
-      "Untextured stock photography",
       "Rounded-everything friendliness",
       "Icon-grid feature rows",
       "Inter/system-font-only typography",
@@ -92,9 +89,9 @@
   {
     "id": "classic-light",
     "name": "Classic Light",
-    "collection": "classical-remix",
+    "collection": "classic-remix",
     "entryId": "dualite",
-    "brief": "Aesthetic: classical remix (classical x soft-futurism)\nVocabulary: classical painting imagery, serif italic emphasis word, soft sky palette, gold accents, canvas grain, orbit-line overlay, rounded glass input\nReference feel: Juris, Break the Pattern\nHouse DNA: One monumental image anchors the page; Imagery is processed, never raw; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (ember, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Untextured stock photography, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Put a 500-year-old artwork behind a chat input and let them share the frame\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"[SUBJECT] painted as a Renaissance / Baroque oil painting: allegorical figure or classical scene, soft sky-blue ground with rolling clouds, warm flesh tones and gold accents, flowing drapery, visible canvas grain, museum-grade composition with clear negative space on one side\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
+    "brief": "Aesthetic: classic remix (traditional x soft-futurism)\nVocabulary: serif headlines, soft sky palette, gold accents, canvas grain, orbit-line overlay, rounded glass input\nReference feel: Juris, Break the Pattern\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Put the trade photo in a tall framed panel beside the headline and let the orbit lines run behind both",
     "palette": {
       "bg": "#FFFFFF",
       "surface": "#F4F6FA",
@@ -108,11 +105,10 @@
       "body": "Figtree Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Right-half grainy figure placeholder on white; faint orbit lines continue behind the left text column; serif italic emphasis word; blue pill CTA; trust row below.",
+    "heroTreatment": "Right-half trade photo in a tall panel with light canvas grain on white; faint orbit lines continue behind the left text column; plain serif headline; blue pill CTA; trust strip below.",
     "neverList": [
       "Purple gradients",
       "Glossy 3D SaaS blobs",
-      "Untextured stock photography",
       "Rounded-everything friendliness",
       "Icon-grid feature rows",
       "Inter/system-font-only typography",
@@ -122,9 +118,9 @@
   {
     "id": "warm-story",
     "name": "Warm Story",
-    "collection": "illustrated-storybook",
+    "collection": "illustrated-warm",
     "entryId": "vitra",
-    "brief": "Aesthetic: illustrated storybook (playful x cinematic illustration)\nVocabulary: painterly illustration, chunky display wordmark, type-masked imagery, storybook scene, saturated but graded palette, split illustration panel\nReference feel: MARBLE, Vitra\nHouse DNA: One monumental image anchors the page; Imagery is processed, never raw; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (ember, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Untextured stock photography, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Mask the entire brand wordmark over the illustrated scene so letters become windows\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"[SUBJECT] as a painterly storybook illustration: gouache/animation-background style, saturated but cohesively graded palette, soft painted light, wondrous but not childish, cinematic composition with a clear zone of calm sky or water for type\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
+    "brief": "Aesthetic: warm and friendly (playful x cinematic)\nVocabulary: chunky display wordmark, type-masked wordmark, saturated but graded palette, split photo panel\nReference feel: MARBLE, Vitra\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Mask the entire brand wordmark in a warm gradient so the letters glow against the green",
     "palette": {
       "bg": "#F6EFE4",
       "surface": "#FFFFFF",
@@ -138,11 +134,10 @@
       "body": "Figtree Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Split layout: left flat pale panel with a deep-green chunky display headline and CTA, right vertical painterly panel cropped at the panel edge.",
+    "heroTreatment": "Split layout: left flat pale panel with a deep-green chunky display headline and CTA, right vertical trade photo panel with light paper tooth, cropped at the panel edge.",
     "neverList": [
       "Purple gradients",
       "Glossy 3D SaaS blobs",
-      "Untextured stock photography",
       "Rounded-everything friendliness",
       "Icon-grid feature rows",
       "Inter/system-font-only typography",

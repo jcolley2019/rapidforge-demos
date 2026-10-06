@@ -1,7 +1,7 @@
 import { siteContent as site } from '../../brief/current'
 import { navLinks } from '../../brief/site-helpers'
 
-const links = navLinks(site, 'Hours & Contact')
+const links = navLinks(site, 'Hours & Location')
 
 export default function WsNav() {
   return (

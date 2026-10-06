@@ -7,17 +7,20 @@ export default function DhQuoteCta() {
       <div className="dh-wrap dh-section">
         <Reveal>
           <p className="dh-label">{site.cta.label}</p>
-          <h2 className="dh-display dh-h2 mx-auto max-w-[14ch]">
-            <strong>Ready when</strong> <span className="dh-tone">you are.</span>
-          </h2>
+          <h2 className="dh-display dh-h2 mx-auto max-w-[18ch]">{site.ctaHeadline}</h2>
+          {site.phoneHref && (
+            <a href={site.phoneHref} className="dh-quote-phone dh-num">
+              {site.phone}
+            </a>
+          )}
           <p className="mx-auto mt-6 max-w-xl text-(--dh-muted)">{site.subhead}</p>
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-5">
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <a href={site.cta.href} className="dh-btn dh-btn-ember">
               {site.cta.label}
             </a>
-            {site.phoneHref && (
-              <a href={site.phoneHref} className="dh-quote-phone dh-num">
-                {site.phone}
+            {site.ctaSecondary && (
+              <a href={site.ctaSecondary.href} className="dh-btn dh-btn-ghost dh-num">
+                {site.ctaSecondary.label}
               </a>
             )}
           </div>

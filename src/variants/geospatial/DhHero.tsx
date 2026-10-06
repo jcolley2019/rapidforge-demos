@@ -1,22 +1,11 @@
 import type { CSSProperties } from 'react'
 import { siteContent as site } from '../../brief/current'
 import { localityLine } from '../../brief/site-helpers'
+import PlaceholderImage from '../../components/PlaceholderImage'
+import { presetForVariant } from '../../presets/presets'
 
 const at = (s: number) => ({ '--dh-delay': `${s}s` }) as CSSProperties
-
-/** Two-tone headline: the first clause bright, the rest in the fog tone. */
-function twoTone(text: string) {
-  const words = text.trim().split(/\s+/)
-  if (words.length < 4) return <strong>{text}</strong>
-  const cut = Math.ceil(words.length / 2)
-  return (
-    <>
-      <strong>{words.slice(0, cut).join(' ')}</strong>{' '}
-      <span className="dh-tone">{words.slice(cut).join(' ')}</span>
-    </>
-  )
-}
-
+const palette = presetForVariant('geospatial').palette
 const photo = site.photos[0]
 const tickerItems = site.services.map((s) => s.title)
 
@@ -24,13 +13,14 @@ export default function DhHero() {
   return (
     <section className="dh-hero" aria-label="Introduction">
       <div className="dh-hero-media" aria-hidden="true">
-        {photo ? <img src={photo} alt="" /> : <div className="dh-dusk" />}
+        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="dh-hero-img" />
+        <div className="dh-hero-grade" />
       </div>
 
       <div className="dh-wrap dh-hero-body">
         <p className="dh-label dh-hero-eyebrow dh-load">{localityLine(site)}</p>
         <h1 className="dh-display dh-hero-h1 dh-load" style={at(0.12)}>
-          {twoTone(site.headline)}
+          {site.headline}
         </h1>
         <p className="dh-hero-sub dh-load" style={at(0.24)}>
           {site.subhead}
@@ -39,9 +29,9 @@ export default function DhHero() {
           <a href={site.cta.href} className="dh-btn dh-btn-ember">
             {site.cta.label}
           </a>
-          {site.phoneHref && (
-            <a href={site.phoneHref} className="dh-btn dh-btn-ghost dh-num">
-              {site.phone}
+          {site.ctaSecondary && (
+            <a href={site.ctaSecondary.href} className="dh-btn dh-btn-ghost dh-num">
+              {site.ctaSecondary.label}
             </a>
           )}
         </div>

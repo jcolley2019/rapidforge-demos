@@ -11,25 +11,24 @@ export interface VariantMeta {
 }
 
 /*
- * RFD.PRESETS.2 — variant → preset mapping (src/presets/presets.json).
- * The slug set is fixed; each slug now renders one taste-vault preset.
+ * RFD.PRESETS.2 mapped each slug to one taste-vault preset
+ * (src/presets/presets.json); RFD.PRESETS.2b rewrote the descriptions for a
+ * business owner. The slug set is fixed.
  *
- *   heritage   → paper-press    (print-tech paper: warm paper ground, halftone, serif display)
- *   geospatial → dusk-horizon   (vast quiet cinematic: dark teal dusk, mono marginalia, ticker)
- *   cleanpro   → classic-light  (classical remix: white ground, blue accent, serif italic)
- *   texas      → ink-split      (dither mono: stark B&W split screen, giant serif, hard edges)
- *   aerial     → warm-story     (illustrated storybook: pale panel + painted panel, chunky display)
+ *   heritage   -> paper-press    (warm cream, serif headlines, one orange accent)
+ *   geospatial -> dusk-horizon   (dark teal, quiet type, orange button)
+ *   cleanpro   -> classic-light  (white, serif headlines, blue accent)
+ *   texas      -> ink-split      (black and white, split hero, one red mark)
+ *   aerial     -> warm-story     (cream and white, deep green type, terracotta)
  *
- * Names and descriptions below are the prospect-facing preset name and a
- * line written from the preset's "Aesthetic:" line. Palettes are the
- * preset's bg / surface / accent / text.
+ * Palettes are the preset's bg / surface / accent / text.
  */
 export const variants: VariantMeta[] = [
   {
     slug: 'heritage',
     name: 'Paper Press',
     description:
-      'Print-tech paper — a warm editorial page with print DNA: cream ground, halftone image, serif headline, one ember accent.',
+      'Warm and established: cream paper tones, classic serif headlines, one orange accent.',
     palette: ['#F3EADB', '#FBF6EC', '#C15F3C', '#1E1A14'],
     brick: 'RFD.PRESETS.2',
     complete: true,
@@ -38,7 +37,7 @@ export const variants: VariantMeta[] = [
     slug: 'geospatial',
     name: 'Dusk Horizon',
     description:
-      'Vast quiet cinematic — editorial minimalism meets cinema: deep teal dusk, extreme negative space, a quiet ember call to action.',
+      'Dark and premium: deep teal background, big photo, lots of breathing room, orange call button.',
     palette: ['#0F2A2C', '#163B3D', '#E8743A', '#F2F4F0'],
     brick: 'RFD.PRESETS.2',
     complete: true,
@@ -47,7 +46,7 @@ export const variants: VariantMeta[] = [
     slug: 'cleanpro',
     name: 'Classic Light',
     description:
-      'Classical remix — classical weight with soft-futurist light: white ground, serif italic emphasis, gold and blue accents.',
+      'Clean and modern: white space, blue accents, serif headlines, easy to scan.',
     palette: ['#FFFFFF', '#F4F6FA', '#2B5BD7', '#1C2230'],
     brick: 'RFD.PRESETS.2',
     complete: true,
@@ -56,7 +55,7 @@ export const variants: VariantMeta[] = [
     slug: 'texas',
     name: 'Ink Split',
     description:
-      'Dither mono — brutalist-editorial black and white: split-screen hero, giant serif headline, a single red mark.',
+      'Bold and direct: black and white, hard edges, big headline, one red mark.',
     palette: ['#FFFFFF', '#F2F2F0', '#D8432F', '#141414'],
     brick: 'RFD.PRESETS.2',
     complete: true,
@@ -65,7 +64,7 @@ export const variants: VariantMeta[] = [
     slug: 'aerial',
     name: 'Warm Story',
     description:
-      'Illustrated storybook — playful cinematic illustration: pale panel, painted scene, chunky deep-green display type.',
+      'Friendly and local: cream and white, chunky green type, warm terracotta touches.',
     palette: ['#F6EFE4', '#FFFFFF', '#2F5233', '#1E2A22'],
     brick: 'RFD.PRESETS.2',
     complete: true,

@@ -1,5 +1,10 @@
 import { siteContent as site } from '../../brief/current'
+import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
+import { presetForVariant } from '../../presets/presets'
+
+const palette = presetForVariant('texas').palette
+const photos = site.detailPhotos
 
 export default function IsServices() {
   return (
@@ -8,18 +13,26 @@ export default function IsServices() {
         <Reveal>
           <p className="is-mono">Services</p>
           <h2 className="is-display is-h2">
-            What we do<span className="is-mark">.</span>
+            Our Services<span className="is-mark">.</span>
           </h2>
         </Reveal>
-        <div className="is-ledger">
+        <div className="is-tiles">
           {site.services.map((service, i) => (
-            <Reveal key={service.title} delay={(i % 2) * 70}>
-              <article className="is-ledger-row">
-                <span className="is-mono" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="is-display is-ledger-title">{service.title}</h3>
-                {service.blurb ? <p className="is-ledger-blurb">{service.blurb}</p> : <span />}
+            <Reveal key={service.title} delay={(i % 3) * 70}>
+              <article className="is-tile">
+                <div className="is-tile-media">
+                  <PlaceholderImage
+                    src={photos[i % photos.length]}
+                    palette={palette}
+                    aspectRatio="4 / 3"
+                    seed={i + 1}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="is-tile-body">
+                  <h3 className="is-display is-tile-title">{service.title}</h3>
+                  {service.blurb && <p className="is-tile-blurb">{service.blurb}</p>}
+                </div>
               </article>
             </Reveal>
           ))}

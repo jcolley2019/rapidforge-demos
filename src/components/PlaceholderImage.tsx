@@ -1,8 +1,11 @@
-import type { CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
 import type { PresetPalette } from '../presets/presets'
 
 export interface PlaceholderImageProps {
-  /** CSS aspect-ratio value, e.g. "16 / 9", "4 / 3", "1 / 1". Defaults to "16 / 9". */
+  /** Photo to show. When it fails to load the gradient takes over. */
+  src?: string
+  alt?: string
+  /** CSS aspect-ratio for the gradient fallback, e.g. "16 / 9". Defaults to "16 / 9". */
   aspectRatio?: string
   /** Gradient start color. Falls back to palette.surface. */
   gradientFrom?: string
@@ -12,7 +15,7 @@ export interface PlaceholderImageProps {
   lineColor?: string
   /** Highlight opacity, 0–1. */
   lineOpacity?: number
-  /** Optional label rendered in the corner (e.g. "Site photo coming soon"). */
+  /** Optional label rendered in the corner of the fallback. */
   label?: string
   /** Label text color. Any CSS color string. */
   labelColor?: string
@@ -21,14 +24,18 @@ export interface PlaceholderImageProps {
   /** Preset palette; supplies any color not given explicitly. */
   palette?: PresetPalette
   className?: string
+  loading?: 'eager' | 'lazy'
 }
 
 /**
- * Neutral soft-gradient block that holds an image slot open. Takes its
- * colors from a preset palette (or explicit overrides) and draws nothing
- * figurative — a quiet wash with one soft highlight.
+ * A photo with a quiet gradient behind it. Renders the `<img>` when `src` is
+ * given and swaps to the gradient only if the image errors, so a dead URL
+ * never leaves a broken-image glyph on the page. Without `src` it is the
+ * gradient alone.
  */
 export default function PlaceholderImage({
+  src,
+  alt = '',
   aspectRatio = '16 / 9',
   gradientFrom,
   gradientTo,
@@ -39,7 +46,16 @@ export default function PlaceholderImage({
   seed = 1,
   palette,
   className = '',
+  loading,
 }: PlaceholderImageProps) {
+  const [failed, setFailed] = useState(false)
+
+  if (src && !failed) {
+    return (
+      <img src={src} alt={alt} className={className} loading={loading} onError={() => setFailed(true)} />
+    )
+  }
+
   const from = gradientFrom ?? palette?.surface ?? '#e9e9e6'
   const to = gradientTo ?? palette?.bg ?? '#d6d6d2'
   const tint = lineColor ?? palette?.accent ?? '#999999'
@@ -64,7 +80,7 @@ export default function PlaceholderImage({
       className={`relative overflow-hidden ${className}`}
       style={style}
       role="img"
-      aria-label={label ?? 'Placeholder image'}
+      aria-label={label ?? alt ?? 'Placeholder image'}
     >
       {label && (
         <span

@@ -1,6 +1,6 @@
-/* Warm Story (preset: warm-story) — illustrated storybook.
-   Pale flat panel beside a painted panel, chunky Outfit display in deep
-   green, terracotta second accent, type-masked wordmark.
+/* Warm Story (preset: warm-story).
+   Pale flat panel beside a warm photo panel, chunky Outfit display in
+   deep green, terracotta second accent, type-masked wordmark.
    Scoped to .aerial so other variants are untouched. */
 
 .aerial {
@@ -56,7 +56,7 @@
   font-family: 'Outfit Variable', 'Segoe UI', system-ui, sans-serif;
   font-weight: 800;
   letter-spacing: -0.03em;
-  line-height: 0.98;
+  line-height: 1;
   color: var(--ws-accent);
 }
 .ws-display .ws-warm {
@@ -82,7 +82,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Buttons — softened corners, never pills */
+/* Buttons: softened corners, never pills */
 .ws-btn {
   display: inline-flex;
   align-items: center;
@@ -132,6 +132,15 @@
   background: var(--ws-bg);
   border-color: var(--ws-bg);
   color: var(--ws-accent);
+}
+.ws-btn-pale {
+  background: transparent;
+  color: var(--ws-bg);
+  border-color: rgba(246, 239, 228, 0.5);
+}
+.ws-btn-pale:hover,
+.ws-btn-pale:focus-visible {
+  border-color: var(--ws-bg);
 }
 
 /* Nav */
@@ -191,7 +200,7 @@
   white-space: nowrap;
 }
 
-/* Hero — flat pale panel left, painted panel right */
+/* Hero: flat pale panel left, photo panel right */
 .ws-hero {
   display: grid;
   border-bottom: 1px solid var(--ws-line);
@@ -199,7 +208,7 @@
 @media (min-width: 1024px) {
   .ws-hero {
     grid-template-columns: 1.05fr 0.95fr;
-    min-height: calc(100svh - 3.75rem);
+    min-height: calc(92svh - 3.75rem);
   }
 }
 .ws-hero-copy {
@@ -222,8 +231,8 @@
 }
 .ws-hero-h1 {
   margin-top: 0.9rem;
-  font-size: clamp(2.6rem, 1.3rem + 5.6vw, 5.8rem);
-  max-width: 12ch;
+  font-size: clamp(2.5rem, 1.3rem + 4.8vw, 5.2rem);
+  max-width: 13ch;
 }
 .ws-hero-sub {
   margin-top: 1.25rem;
@@ -240,8 +249,8 @@
 .ws-hero-art {
   order: 1;
   position: relative;
-  height: 34svh;
-  min-height: 15rem;
+  height: 38svh;
+  min-height: 16rem;
   overflow: hidden;
   background: #cfe0ea;
 }
@@ -253,38 +262,85 @@
     border-left: 1px solid var(--ws-line);
   }
 }
-.ws-hero-art img {
+.ws-hero-art > * {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* Processed, never raw: graded toward the gouache. */
-  filter: saturate(1.15) contrast(0.92) brightness(1.04);
 }
-.ws-scene {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.ws-hero-img {
+  object-fit: cover;
+  /* Warmed a touch, still a photograph. */
+  filter: saturate(1.1) contrast(0.96) brightness(1.02);
 }
 .ws-hero-art::after {
-  /* gouache paper tooth */
+  /* paper tooth */
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.18;
+  opacity: 0.14;
   mix-blend-mode: multiply;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .ws-hero-tag {
-  position: absolute;
-  left: 1rem;
-  bottom: 0.9rem;
+  inset: auto auto 0.9rem 1rem;
+  width: auto;
+  height: auto;
   color: var(--ws-text);
-  background: rgba(246, 239, 228, 0.85);
-  padding: 0.25rem 0.5rem;
+  background: rgba(246, 239, 228, 0.9);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* Trust strip: soft white chips on the pale ground */
+.aerial .ts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--ws-line);
+}
+.aerial .ts-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.aerial .ts-chip {
+  font-family: 'Outfit Variable', system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  background: var(--ws-surface);
+  color: var(--ws-accent);
+}
+.aerial .ts-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--ws-muted);
+}
+.aerial .ts-stars {
+  letter-spacing: 0.15em;
+  color: var(--ws-accent2);
+}
+.aerial .ts-call {
+  margin-left: auto;
+  font-family: 'Outfit Variable', system-ui, sans-serif;
+  font-weight: 700;
+  color: var(--ws-accent);
+  border-bottom: 2px solid var(--ws-accent2);
+}
+.aerial .ts-call:hover,
+.aerial .ts-call:focus-visible {
+  color: var(--ws-accent2);
 }
 
 /* Sections */
@@ -296,56 +352,64 @@
   font-size: clamp(2.1rem, 1.4rem + 2.8vw, 3.6rem);
 }
 
-/* Services — storybook chapters, not an icon grid */
-.ws-chapters {
+/* Services: rounded photo tiles with a green spine */
+.ws-tiles {
   margin-top: 2.5rem;
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
 }
-@media (min-width: 768px) {
-  .ws-chapters {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
+@media (min-width: 640px) {
+  .ws-tiles {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-.ws-chapter {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1.25rem;
-  padding: 1.5rem 1.5rem 1.5rem 1.25rem;
+@media (min-width: 1024px) {
+  .ws-tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.ws-tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
   background: var(--ws-surface);
-  border-radius: 6px;
+  border-radius: 8px;
   border-left: 6px solid var(--ws-accent);
   transition:
     border-color 0.35s var(--ws-ease),
     transform 0.35s var(--ws-ease);
 }
-.ws-chapter:hover {
+.ws-tile:hover {
   border-left-color: var(--ws-accent2);
-  transform: translateX(4px);
+  transform: translateY(-3px);
 }
-.ws-chapter-num {
-  font-family: 'Outfit Variable', system-ui, sans-serif;
-  font-size: 2.5rem;
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
-  color: var(--ws-accent2);
+.ws-tile-media {
+  background: var(--ws-bg);
 }
-.ws-chapter-title {
+.ws-tile-media > * {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.ws-tile-body {
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+.ws-tile-title {
   font-family: 'Outfit Variable', system-ui, sans-serif;
   font-size: 1.375rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--ws-text);
 }
-.ws-chapter-blurb {
+.ws-tile-blurb {
   margin-top: 0.35rem;
   color: var(--ws-muted);
   font-size: 0.9375rem;
 }
 
-/* Reviews — white cards with a warm corner */
+/* Reviews: white cards with a warm corner */
 .ws-cards {
   margin-top: 2.5rem;
   display: grid;
@@ -432,7 +496,7 @@
   color: var(--ws-accent2);
 }
 
-/* Quote CTA — the deep-green page with a type-masked wordmark */
+/* Quote CTA: the deep-green page with a type-masked wordmark */
 .ws-green {
   position: relative;
   overflow: clip;
@@ -450,8 +514,10 @@
   color: rgba(246, 239, 228, 0.78);
 }
 .ws-green-phone {
-  color: var(--ws-bg);
-  border-bottom: 2px solid var(--ws-accent2);
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.75rem);
+  border-bottom: 4px solid var(--ws-accent2);
   transition: color 0.3s var(--ws-ease);
 }
 .ws-green-phone:hover,
@@ -495,7 +561,7 @@
   color: var(--ws-accent2);
 }
 
-/* Motion — a page turn: a light lift with a touch of scale */
+/* Motion: a page turn, a light lift with a touch of scale */
 @media (prefers-reduced-motion: no-preference) {
   .aerial .rv {
     opacity: 0;
@@ -538,7 +604,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .aerial .ws-btn:active,
-  .aerial .ws-chapter:hover {
+  .aerial .ws-tile:hover {
     transform: none;
   }
 }
