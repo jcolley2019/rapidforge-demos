@@ -1,35 +1,44 @@
-/* Ink Split (preset: ink-split).
-   Stark black and white, film grain, Playfair display, a split-screen
-   hero with a black-and-white photograph under a light dot screen, a
-   giant cropped wordmark, one red mark. Scoped to .texas so other
-   variants are untouched. */
+/* Friendly Family (preset: friendly-family). UI/UX Pro Max Soft UI
+   Evolution: near-white ground, white cards, family blue, amber on the
+   action and the stars, 16px radii, soft offset shadows. Varela Round
+   headings, Nunito Sans body. Class prefix is- is a namespace carried
+   over from the earlier skin; scoped to .texas. */
 
 .texas {
-  --is-bg: #ffffff;
-  --is-surface: #f2f2f0;
-  --is-text: #141414;
-  --is-muted: #6b6b6b;
-  --is-accent: #141414;
-  --is-accent2: #d8432f;
-  --is-line: rgba(20, 20, 20, 0.16);
-  --is-ease: cubic-bezier(0.32, 0.72, 0, 1);
-  --is-mono: ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace;
+  --is-bg: #f8fafc;
+  --is-surface: #ffffff;
+  --is-text: #0f172a;
+  --is-muted: #475569;
+  --is-blue: #2563eb;
+  --is-blue-2: #1d4ed8;
+  --is-blue-soft: #dbeafe;
+  --is-amber: #b45309;
+  --is-amber-2: #92400e;
+  --is-border: #e2e8f0;
+  --is-shadow: 0 8px 24px -12px rgba(15, 23, 42, 0.18);
+  --is-shadow-lg: 0 20px 40px -20px rgba(15, 23, 42, 0.28);
+  --is-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
   background-color: var(--is-bg);
   color: var(--is-text);
-  font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
-  font-size: 1rem;
+  font-family: 'Nunito Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.0625rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  --bc-bg: #ffffff;
+  --bc-fg: #0f172a;
+  --bc-border: #e2e8f0;
+  --bc-accent: #2563eb;
+  --bc-radius: 999px;
 }
 
 .texas ::selection {
-  background: var(--is-text);
-  color: var(--is-bg);
+  background: var(--is-blue);
+  color: #ffffff;
 }
 .texas :focus-visible {
-  outline: 3px solid var(--is-accent2);
+  outline: 3px solid var(--is-amber);
   outline-offset: 3px;
 }
 .texas [id] {
@@ -41,19 +50,8 @@
   text-wrap: balance;
 }
 
-/* Film grain: fixed over everything */
-.is-grain {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  pointer-events: none;
-  opacity: 0.09;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 .is-wrap {
-  max-width: 80rem;
+  max-width: 74rem;
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
@@ -63,100 +61,118 @@
   }
 }
 
-/* Type at extremes: Playfair monumental, mono micro */
+/* Type: rounded display, humanist body */
 .is-display {
-  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-.is-display .is-mark {
-  color: var(--is-accent2);
+  font-family: 'Varela Round', 'Segoe UI', system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
 }
 .is-mono {
-  font-family: var(--is-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
+  font-size: 0.8125rem;
+  font-weight: 700;
   color: var(--is-muted);
 }
 .is-num {
   font-variant-numeric: tabular-nums;
 }
 
-/* Blocks: no radius anywhere */
+/* Buttons: pills, one amber, one blue, one white */
 .is-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 1rem 1.75rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border: 2px solid var(--is-text);
+  min-height: 2.75rem;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  font-family: 'Varela Round', system-ui, sans-serif;
+  font-size: 0.9375rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
   transition:
-    background-color 0.3s var(--is-ease),
-    color 0.3s var(--is-ease),
-    border-color 0.3s var(--is-ease);
+    background-color 0.25s var(--is-ease),
+    border-color 0.25s var(--is-ease),
+    color 0.25s var(--is-ease),
+    transform 0.25s var(--is-ease),
+    box-shadow 0.25s var(--is-ease);
 }
-.is-btn-black {
-  background: var(--is-text);
-  color: var(--is-bg);
+.is-btn:hover,
+.is-btn:focus-visible {
+  transform: translateY(-1px);
 }
-.is-btn-black:hover,
-.is-btn-black:focus-visible {
-  background: var(--is-accent2);
-  border-color: var(--is-accent2);
+.is-btn-amber {
+  background: var(--is-amber);
+  color: #ffffff;
+  border-color: var(--is-amber);
+  box-shadow: var(--is-shadow);
 }
-.is-btn-outline {
-  background: transparent;
-  color: var(--is-text);
+.is-btn-amber:hover,
+.is-btn-amber:focus-visible {
+  background: var(--is-amber-2);
+  border-color: var(--is-amber-2);
 }
-.is-btn-outline:hover,
-.is-btn-outline:focus-visible {
-  background: var(--is-text);
-  color: var(--is-bg);
+.is-btn-blue {
+  background: var(--is-blue);
+  color: #ffffff;
+  border-color: var(--is-blue);
+}
+.is-btn-blue:hover,
+.is-btn-blue:focus-visible {
+  background: var(--is-blue-2);
+  border-color: var(--is-blue-2);
+}
+.is-btn-white {
+  background: #ffffff;
+  color: var(--is-blue);
+  border-color: #ffffff;
+}
+.is-btn-white:hover,
+.is-btn-white:focus-visible {
+  background: var(--is-blue-soft);
+  border-color: var(--is-blue-soft);
 }
 
-/* Nav: a hard rule under a serif wordmark */
+/* Nav: white, soft shadow */
 .is-nav {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--is-bg);
-  border-bottom: 2px solid var(--is-text);
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--is-border);
+  backdrop-filter: blur(8px);
 }
 .is-nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 0.75rem;
+  padding-block: 0.7rem;
+}
+.is-brand {
+  font-size: 1.25rem;
+  color: var(--is-blue);
 }
 .is-nav-links {
   display: none;
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
-@media (min-width: 768px) {
+/* Section links join the nav only once they fit beside the phone and button. */
+@media (min-width: 1024px) {
   .is-nav-links {
     display: flex;
   }
 }
 .is-navlink {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--is-text);
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.3s var(--is-ease);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--is-muted);
+  transition: color 0.25s var(--is-ease);
+  white-space: nowrap;
 }
 .is-navlink:hover,
 .is-navlink:focus-visible {
-  border-color: var(--is-accent2);
+  color: var(--is-blue);
 }
 .is-nav-right {
   display: flex;
@@ -164,76 +180,83 @@
   gap: 1rem;
 }
 .is-nav-phone {
-  display: none;
-  font-size: 0.875rem;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--is-text);
+  transition: color 0.25s var(--is-ease);
+  white-space: nowrap;
 }
-@media (min-width: 480px) {
+.is-nav-phone:hover,
+.is-nav-phone:focus-visible {
+  color: var(--is-amber);
+}
+.is-nav-call {
+  display: none;
+}
+/* Phones: the number collapses to a Call button so click-to-call stays
+   in the sticky nav after the hero scrolls away. */
+@media (max-width: 479px) {
   .is-nav-phone {
+    min-height: 2.75rem;
+    padding-inline: 0.9rem;
+    border: 2px solid var(--is-blue);
+    border-radius: 999px;
+  }
+  .is-nav-number {
+    display: none;
+  }
+  .is-nav-call {
     display: inline;
   }
 }
 .is-nav-cta {
-  padding: 0.6rem 1rem;
-  font-size: 0.75rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
   white-space: nowrap;
 }
+@media (max-width: 479px) {
+  .is-nav-cta {
+    min-height: 2.75rem;
+  }
+}
 
-/* Hero: two fields split down the middle */
+/* Hero: rounded photo card left, copy right; compact so the fold holds */
 .is-hero {
-  position: relative;
-  display: grid;
-  border-bottom: 2px solid var(--is-text);
+  padding-block: 1.25rem 2rem;
 }
 @media (min-width: 1024px) {
   .is-hero {
-    grid-template-columns: 1fr 1fr;
-    min-height: calc(92svh - 3.6rem);
+    padding-block: 2.5rem;
   }
 }
-.is-hero-copy {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2.5rem 1.25rem 2.5rem;
-}
-@media (min-width: 640px) {
-  .is-hero-copy {
-    padding-inline: 2rem;
-  }
+.is-hero-grid {
+  display: grid;
+  gap: 1.5rem;
 }
 @media (min-width: 1024px) {
-  .is-hero-copy {
-    padding: 4rem 3rem 4rem clamp(2rem, 6vw, 5rem);
-    border-right: 2px solid var(--is-text);
+  .is-hero-grid {
+    grid-template-columns: 0.95fr 1.05fr;
+    align-items: center;
+    gap: 3.5rem;
   }
-}
-.is-hero-h1 {
-  margin-top: 1rem;
-  font-size: clamp(2.6rem, 1.4rem + 5.2vw, 5.8rem);
-  max-width: 13ch;
-}
-.is-hero-sub {
-  margin-top: 1.5rem;
-  max-width: 30rem;
-  color: var(--is-muted);
-  font-size: 1.0625rem;
-}
-.is-hero-actions {
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
 }
 .is-hero-art {
   position: relative;
-  min-height: 46svh;
+  height: 9.5rem;
   overflow: hidden;
-  background: var(--is-text);
+  border-radius: 20px;
+  background: var(--is-surface);
+  box-shadow: var(--is-shadow-lg);
 }
 @media (min-width: 1024px) {
   .is-hero-art {
-    min-height: 0;
+    height: auto;
+    aspect-ratio: 5 / 4;
+    max-height: 27rem;
+    border-radius: 24px;
   }
 }
 .is-hero-art > * {
@@ -244,114 +267,100 @@
 }
 .is-hero-img {
   object-fit: cover;
-  /* Black and white with a firm contrast, still a photograph. */
-  filter: grayscale(1) contrast(1.2) brightness(1.02);
 }
-/* A light dot screen over the photo, never past 0.55. */
-.is-screen {
-  background:
-    radial-gradient(circle, #fff 0.9px, transparent 1.3px) 0 0 / 4px 4px,
-    radial-gradient(circle, #fff 0.7px, transparent 1.1px) 2px 2px / 4px 4px;
-  mask-image: linear-gradient(165deg, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%);
-  mix-blend-mode: overlay;
-  opacity: 0.4;
-  pointer-events: none;
+.is-hero-h1 {
+  font-size: clamp(1.875rem, 1.2rem + 2.8vw, 3.5rem);
+  max-width: 16ch;
 }
-.is-hero-tag {
-  inset: auto auto 0.9rem 1rem;
-  width: auto;
-  height: auto;
-  padding: 0.3rem 0.6rem;
-  background: var(--is-bg);
-  color: var(--is-text);
+.is-hero-sub {
+  margin-top: 0.7rem;
+  max-width: 32rem;
+  color: var(--is-muted);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+}
+.is-hero-actions {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
-/* Giant cropped wordmark: runs off the right edge inside a clipped band */
-.is-wordmark-band {
-  overflow: hidden;
-  border-bottom: 2px solid var(--is-text);
-  background: var(--is-surface);
-}
-.is-wordmark {
-  display: block;
-  white-space: nowrap;
-  font-size: clamp(5rem, 24vw, 19rem);
-  line-height: 0.82;
-  letter-spacing: -0.05em;
-  padding-top: 0.08em;
-  margin-bottom: -0.14em;
-  margin-left: -0.03em;
-  color: var(--is-text);
+@media (max-width: 639px) {
+  .is-hero-actions > * {
+    flex: 1 1 auto;
+    padding-inline: 0.8rem;
+    white-space: nowrap;
+  }
+  .texas .ts-rating {
+    font-size: 0.8125rem;
+  }
+  .texas .ts-call {
+    display: none;
+  }
 }
 
-/* Trust strip: a hard black rule with boxed chips */
+/* Trust strip: soft blue chips */
 .texas .ts {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem 1.75rem;
-  padding-block: 1rem;
-  border-bottom: 2px solid var(--is-text);
+  gap: 0.5rem 1rem;
+  padding-block: 0.7rem;
+  border-top: 1px solid var(--is-border);
+  border-bottom: 1px solid var(--is-border);
 }
 .texas .ts-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .texas .ts-chip {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.4rem 0.7rem;
-  border: 2px solid var(--is-text);
-  color: var(--is-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--is-blue-soft);
+  color: var(--is-blue-2);
 }
 .texas .ts-rating {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   margin: 0;
   font-size: 0.875rem;
   color: var(--is-muted);
 }
 .texas .ts-stars {
-  letter-spacing: 0.15em;
-  color: var(--is-accent2);
+  color: var(--is-amber);
 }
 .texas .ts-call {
   margin-left: auto;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.875rem;
-  color: var(--is-text);
-  border-bottom: 2px solid var(--is-accent2);
+  font-family: 'Varela Round', system-ui, sans-serif;
+  color: var(--is-blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 .texas .ts-call:hover,
 .texas .ts-call:focus-visible {
-  color: var(--is-accent2);
+  color: var(--is-amber);
 }
 
 /* Sections */
 .is-section {
-  padding-block: clamp(4rem, 3rem + 5vw, 7rem);
+  padding-block: clamp(2rem, 1.25rem + 3vw, 5rem);
 }
 .is-h2 {
-  margin-top: 0.75rem;
-  font-size: clamp(2.25rem, 1.4rem + 3.2vw, 4rem);
+  font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
 }
 
-/* Services: hard-edged photo tiles, black and white */
+/* Services: rounded cards with a soft shadow */
 .is-tiles {
-  margin-top: 2.5rem;
+  margin-top: 1.75rem;
   display: grid;
-  gap: 2px;
-  background: var(--is-text);
-  border: 2px solid var(--is-text);
+  gap: 1.25rem;
 }
 @media (min-width: 640px) {
   .is-tiles {
@@ -367,55 +376,65 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--is-bg);
+  overflow: hidden;
+  background: var(--is-surface);
+  border: 1px solid var(--is-border);
+  border-radius: 16px;
+  box-shadow: var(--is-shadow);
   transition:
-    background-color 0.3s var(--is-ease),
-    color 0.3s var(--is-ease);
+    transform 0.25s var(--is-ease),
+    box-shadow 0.25s var(--is-ease);
 }
 .is-tile:hover {
-  background: var(--is-text);
-  color: var(--is-bg);
-}
-.is-tile:hover .is-tile-blurb {
-  color: rgba(255, 255, 255, 0.72);
+  transform: translateY(-3px);
+  box-shadow: var(--is-shadow-lg);
 }
 .is-tile-media {
-  background: var(--is-surface);
-  border-bottom: 2px solid var(--is-text);
+  background: var(--is-bg);
 }
 .is-tile-media > * {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.1);
 }
 .is-tile-body {
-  padding: 1.25rem 1.25rem 1.4rem;
+  padding: 1rem 1.2rem 1.25rem;
 }
 .is-tile-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 .is-tile-blurb {
-  margin-top: 0.4rem;
+  margin-top: 0.3rem;
   color: var(--is-muted);
   font-size: 0.9375rem;
-  transition: color 0.3s var(--is-ease);
 }
 
-/* Reviews: white on black */
-.is-black {
-  background: var(--is-text);
-  color: var(--is-bg);
+/* Phones: tiles become compact rows so six services do not push the
+   reviews thousands of pixels down. */
+@media (max-width: 639px) {
+  .is-tile {
+    flex-direction: row;
+  }
+  .is-tile-media {
+    flex: 0 0 6.5rem;
+  }
+  .is-tile-media > * {
+    height: 100%;
+    min-height: 6.5rem;
+    aspect-ratio: auto;
+  }
+  .is-tile-body {
+    align-self: center;
+    padding: 0.85rem 1rem;
+  }
 }
-.is-black .is-mono {
-  color: rgba(255, 255, 255, 0.6);
-}
+
+/* Reviews */
 .is-quotes {
-  margin-top: 2.5rem;
+  margin-top: 1.75rem;
   display: grid;
-  gap: 2px;
-  background: rgba(255, 255, 255, 0.25);
+  gap: 1.25rem;
 }
 @media (min-width: 768px) {
   .is-quotes {
@@ -426,88 +445,98 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 2rem 1.75rem;
-  background: var(--is-text);
+  padding: 1.5rem 1.4rem;
+  background: var(--is-surface);
+  border: 1px solid var(--is-border);
+  border-radius: 16px;
+  box-shadow: var(--is-shadow);
 }
 .is-quote-text {
   flex: 1;
-  margin-top: 1rem;
-  font-size: 1.0625rem;
-  line-height: 1.55;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 .is-stars {
   font-size: 0.8125rem;
-  letter-spacing: 0.2em;
-  color: var(--is-accent2);
+  color: var(--is-amber);
 }
 
-/* Hours: on the surface grey */
+/* Hours */
 .is-surface {
   background: var(--is-surface);
-  border-bottom: 2px solid var(--is-text);
+  border-top: 1px solid var(--is-border);
+  border-bottom: 1px solid var(--is-border);
 }
 .is-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9375rem;
-  border-top: 2px solid var(--is-text);
 }
 .is-table th,
 .is-table td {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--is-text);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--is-border);
 }
 .is-table th {
   text-align: left;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.75rem;
+  font-weight: 700;
 }
 .is-table td {
   text-align: right;
+  color: var(--is-muted);
   font-variant-numeric: tabular-nums;
 }
 .is-contact-phone {
   display: inline-block;
-  margin-top: 0.4rem;
-  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3rem);
-  color: var(--is-text);
-  border-bottom: 3px solid var(--is-accent2);
-  transition: color 0.3s var(--is-ease);
+  margin-top: 0.3rem;
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  color: var(--is-blue);
+  text-decoration: underline;
+  text-decoration-color: var(--is-amber);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+  transition: color 0.25s var(--is-ease);
 }
 .is-contact-phone:hover,
 .is-contact-phone:focus-visible {
-  color: var(--is-accent2);
+  color: var(--is-amber);
 }
 
-/* Quote CTA: white, monumental */
-.is-cta-h2 {
-  font-size: clamp(2.75rem, 1.6rem + 6vw, 7rem);
+/* Quote band: solid blue with rounded corners inside the page */
+.is-band {
+  background: var(--is-blue);
+  color: #ffffff;
+  text-align: center;
 }
-.is-cta-phone {
+.is-band :focus-visible {
+  outline-color: #ffffff;
+}
+.is-band .is-h2 {
+  color: #ffffff;
+}
+.is-band-sub {
+  color: #ffffff;
+}
+.is-band-phone {
   display: inline-block;
-  font-size: clamp(2rem, 1.3rem + 3.2vw, 4rem);
-  color: var(--is-text);
-  border-bottom: 4px solid var(--is-accent2);
-  transition: color 0.3s var(--is-ease);
-}
-.is-cta-phone:hover,
-.is-cta-phone:focus-visible {
-  color: var(--is-accent2);
+  margin-top: 1rem;
+  font-size: clamp(1.875rem, 1.3rem + 2.6vw, 3.5rem);
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: var(--is-amber);
+  text-decoration-thickness: 4px;
+  text-underline-offset: 8px;
 }
 
 /* Footer */
 .is-footer {
-  background: var(--is-text);
-  color: var(--is-bg);
-}
-.is-footer .is-mono {
-  color: rgba(255, 255, 255, 0.6);
+  background: var(--is-surface);
+  border-top: 1px solid var(--is-border);
 }
 .is-footer-grid {
   display: grid;
-  gap: 2rem;
+  gap: 1.75rem;
 }
 @media (min-width: 640px) {
   .is-footer-grid {
@@ -515,52 +544,51 @@
   }
 }
 .is-quiet {
-  color: rgba(255, 255, 255, 0.78);
-  transition: color 0.3s var(--is-ease);
+  color: var(--is-muted);
+  transition: color 0.25s var(--is-ease);
 }
 .is-quiet:hover,
 .is-quiet:focus-visible {
-  color: var(--is-accent2);
+  color: var(--is-blue);
 }
 
-/* Motion: hard, short, content snaps in like a frame advance. */
+/* Motion: a gentle lift, once, on scroll */
 @media (prefers-reduced-motion: no-preference) {
   .texas .rv {
     opacity: 0;
     transform: translateY(12px);
     transition:
-      opacity 0.5s steps(4, end),
-      transform 0.5s steps(4, end);
+      opacity 0.5s var(--is-ease),
+      transform 0.5s var(--is-ease);
   }
   .texas .rv.rv-in {
     opacity: 1;
     transform: none;
-  }
-  .texas .is-load {
-    animation: is-frame 0.6s steps(5, end) both;
-    animation-delay: var(--is-delay, 0s);
   }
   @supports (animation-timeline: view()) {
     .texas .rv {
       opacity: 1;
       transform: none;
       transition: none;
-      animation: is-frame 1s steps(6, end) both;
+      animation: is-lift 0.55s var(--is-ease) both;
       animation-timeline: view();
-      animation-range: entry 10% entry 50%;
+      animation-range: entry 5% entry 35%;
     }
   }
-  .texas {
-    scroll-behavior: smooth;
-  }
 }
-@keyframes is-frame {
+@keyframes is-lift {
   from {
     opacity: 0;
     transform: translateY(12px);
   }
   to {
     opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .texas .is-btn:hover,
+  .texas .is-tile:hover {
     transform: none;
   }
 }

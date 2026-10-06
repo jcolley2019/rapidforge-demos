@@ -8,7 +8,6 @@ export default function WsHours() {
     <section id="contact" className="ws-section">
       <div className="ws-wrap">
         <Reveal>
-          <p className="ws-eyebrow">Hours</p>
           <h2 className="ws-display ws-h2">Hours &amp; Location</h2>
         </Reveal>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">

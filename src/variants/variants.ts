@@ -11,62 +11,61 @@ export interface VariantMeta {
 }
 
 /*
- * RFD.PRESETS.2 mapped each slug to one taste-vault preset
- * (src/presets/presets.json); RFD.PRESETS.2b rewrote the descriptions for a
- * business owner. The slug set is fixed.
+ * RFD.PRESETS.2c: each slug renders one UI/UX Pro Max direction
+ * (src/presets/presets.json). The slug set is fixed.
  *
- *   heritage   -> paper-press    (warm cream, serif headlines, one orange accent)
- *   geospatial -> dusk-horizon   (dark teal, quiet type, orange button)
- *   cleanpro   -> classic-light  (white, serif headlines, blue accent)
- *   texas      -> ink-split      (black and white, split hero, one red mark)
- *   aerial     -> warm-story     (cream and white, deep green type, terracotta)
+ *   heritage   -> clean-trust      (pale blue ground, blue and orange, Lexend)
+ *   geospatial -> bold-local       (navy blocks, safety orange, condensed Barlow)
+ *   cleanpro   -> premium-dark     (black ground, gold accent, Cormorant)
+ *   texas      -> friendly-family  (near-white, rounded, family blue and amber)
+ *   aerial     -> modern-minimal   (white, hairlines, one blue accent, Outfit)
  *
  * Palettes are the preset's bg / surface / accent / text.
  */
 export const variants: VariantMeta[] = [
   {
     slug: 'heritage',
-    name: 'Paper Press',
+    name: 'Clean Trust',
     description:
-      'Warm and established: cream paper tones, classic serif headlines, one orange accent.',
-    palette: ['#F3EADB', '#FBF6EC', '#C15F3C', '#1E1A14'],
-    brick: 'RFD.PRESETS.2',
+      'Clean and modern: pale blue ground, orange call button, easy to scan.',
+    palette: ['#EFF6FF', '#FFFFFF', '#1E40AF', '#1E3A8A'],
+    brick: 'RFD.PRESETS.2c',
     complete: true,
   },
   {
     slug: 'geospatial',
-    name: 'Dusk Horizon',
+    name: 'Bold Local',
     description:
-      'Dark and premium: deep teal background, big photo, lots of breathing room, orange call button.',
-    palette: ['#0F2A2C', '#163B3D', '#E8743A', '#F2F4F0'],
-    brick: 'RFD.PRESETS.2',
+      'Bold and direct: big photo, navy blocks, safety-orange call button, condensed headlines.',
+    palette: ['#FFFFFF', '#F1F5F9', '#EA580C', '#0F172A'],
+    brick: 'RFD.PRESETS.2c',
     complete: true,
   },
   {
     slug: 'cleanpro',
-    name: 'Classic Light',
+    name: 'Premium Dark',
     description:
-      'Clean and modern: white space, blue accents, serif headlines, easy to scan.',
-    palette: ['#FFFFFF', '#F4F6FA', '#2B5BD7', '#1C2230'],
-    brick: 'RFD.PRESETS.2',
+      'Premium and calm: dark background, gold call button, elegant serif headlines.',
+    palette: ['#121212', '#1C1917', '#CA8A04', '#FAFAF9'],
+    brick: 'RFD.PRESETS.2c',
     complete: true,
   },
   {
     slug: 'texas',
-    name: 'Ink Split',
+    name: 'Friendly Family',
     description:
-      'Bold and direct: black and white, hard edges, big headline, one red mark.',
-    palette: ['#FFFFFF', '#F2F2F0', '#D8432F', '#141414'],
-    brick: 'RFD.PRESETS.2',
+      'Friendly and local: rounded corners, soft shadows, family blue with an amber call button.',
+    palette: ['#F8FAFC', '#FFFFFF', '#2563EB', '#0F172A'],
+    brick: 'RFD.PRESETS.2c',
     complete: true,
   },
   {
     slug: 'aerial',
-    name: 'Warm Story',
+    name: 'Modern Minimal',
     description:
-      'Friendly and local: cream and white, chunky green type, warm terracotta touches.',
-    palette: ['#F6EFE4', '#FFFFFF', '#2F5233', '#1E2A22'],
-    brick: 'RFD.PRESETS.2',
+      'Modern and minimal: white space, thin lines, one blue accent, nothing extra.',
+    palette: ['#FFFFFF', '#F8FAFC', '#2563EB', '#1E293B'],
+    brick: 'RFD.PRESETS.2c',
     complete: true,
   },
 ]

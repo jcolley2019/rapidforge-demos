@@ -5,12 +5,11 @@ import Reveal from '../../components/Reveal'
 export default function IsReviews() {
   if (site.reviews.length === 0) return null
   return (
-    <section id="reviews" className="is-black is-section">
+    <section id="reviews" className="is-section">
       <div className="is-wrap">
         <Reveal>
-          <p className="is-mono">Reviews</p>
           <h2 className="is-display is-h2">
-            What Customers Say<span className="is-mark">.</span>
+            What Customers Say
           </h2>
         </Reveal>
         <div className="is-quotes">

@@ -2,9 +2,10 @@ import { siteContent as site } from '../../brief/current'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
+import { tilePhotosFor } from '../heroPhoto'
 
 const palette = presetForVariant('heritage').palette
-const photos = site.detailPhotos
+const photos = tilePhotosFor('heritage')
 
 export default function PpServices() {
   return (
@@ -12,7 +13,6 @@ export default function PpServices() {
       <div className="pp-wrap">
         <Reveal>
           <div className="pp-head">
-            <p className="pp-mono">Services</p>
             <h2 className="pp-display pp-h2">Our Services</h2>
           </div>
         </Reveal>
@@ -37,7 +37,6 @@ export default function PpServices() {
             </Reveal>
           ))}
         </div>
-        <hr className="pp-dash" />
       </div>
     </section>
   )

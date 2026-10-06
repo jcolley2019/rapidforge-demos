@@ -3,32 +3,25 @@ import Reveal from '../../components/Reveal'
 
 export default function IsQuoteCta() {
   return (
-    <section id="quote" className="is-section">
-      <div className="is-wrap">
+    <section id="quote" className="is-band">
+      <div className="is-wrap is-section">
         <Reveal>
-          <p className="is-mono">{site.cta.label}</p>
-          <h2 className="is-display is-cta-h2 mt-3">{site.ctaHeadline}</h2>
-        </Reveal>
-        <Reveal delay={80}>
-          <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <div>
-              {site.phoneHref && (
-                <a href={site.phoneHref} className="is-display is-cta-phone is-num">
-                  {site.phone}
-                </a>
-              )}
-              <p className="mt-5 max-w-md text-(--is-muted)">{site.subhead}</p>
-            </div>
-            <div className="flex flex-wrap items-start gap-3">
-              <a href={site.cta.href} className="is-btn is-btn-black">
-                {site.cta.label}
+          <h2 className="is-display is-h2 mx-auto max-w-[18ch]">{site.ctaHeadline}</h2>
+          {site.phoneHref && (
+            <a href={site.phoneHref} className="is-display is-band-phone is-num">
+              {site.phone}
+            </a>
+          )}
+          <p className="is-band-sub mx-auto mt-5 max-w-xl">{site.subhead}</p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a href={site.cta.href} className="is-btn is-btn-amber">
+              {site.cta.label}
+            </a>
+            {site.ctaSecondary && (
+              <a href={site.ctaSecondary.href} className="is-btn is-btn-white is-num">
+                {site.ctaSecondary.label}
               </a>
-              {site.ctaSecondary && (
-                <a href={site.ctaSecondary.href} className="is-btn is-btn-outline is-num">
-                  {site.ctaSecondary.label}
-                </a>
-              )}
-            </div>
+            )}
           </div>
         </Reveal>
       </div>

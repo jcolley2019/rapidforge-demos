@@ -1,147 +1,147 @@
 [
   {
-    "id": "paper-press",
-    "name": "Paper Press",
-    "collection": "print-tech-paper",
-    "entryId": "roamfield",
-    "brief": "Aesthetic: warm paper (cream ground, serif headlines, one orange accent)\nVocabulary: light print screen over the photo, warm paper ground, registration marks, mono data callouts, dashed grid rules, single orange accent\nReference feel: Stillpage, SPADE\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Let the hero photo run full-bleed and set the copy on a paper panel at its foot",
+    "id": "clean-trust",
+    "name": "Clean Trust",
+    "collection": "ui-ux-pro-max:flat-design",
+    "entryId": "home-services-plumber-electrician",
+    "brief": "Aesthetic: Flat Design (2D, minimalist, bold colors, no shadows, clean lines, simple shapes, typography-focused)\nPattern: Trust & Authority + Conversion. Hero (mission/credibility) > Proof (certs, stats) > Solution overview > Clear CTA path. CTA: Get Quote (primary) + Nav.\nColor strategy: Professional blue + urgent orange. Accent for CTA only.\nTypography: Lexend / Source Sans 3 (Corporate Trust: trustworthy, accessible, readable).\nKey effects: No gradients/shadows, simple hover (color/opacity shift), fast loading, clean transitions (150-200ms ease), minimal icons.\nNever: Hidden contact info, No certifications, Emoji as icons, Text under 12px, Removing focus rings, Horizontal scroll.",
     "palette": {
-      "bg": "#F3EADB",
-      "surface": "#FBF6EC",
-      "text": "#1E1A14",
-      "muted": "#6E6253",
-      "accent": "#C15F3C",
-      "accent2": "#D98B55"
-    },
-    "type": {
-      "display": "Fraunces Variable",
-      "body": "Inter Variable",
-      "source": "fontsource"
-    },
-    "heroTreatment": "Full-bleed trade photo warmed toward the paper under a light print screen (overlay at most 0.55); copy sits on a cream panel at the foot; pill nav floats on top, black pill CTA.",
-    "neverList": [
-      "Purple gradients",
-      "Glossy 3D SaaS blobs",
-      "Rounded-everything friendliness",
-      "Icon-grid feature rows",
-      "Inter/system-font-only typography",
-      "Evenly-distributed colorful palettes"
-    ]
-  },
-  {
-    "id": "ink-split",
-    "name": "Ink Split",
-    "collection": "bitmap-mono",
-    "entryId": "castle",
-    "brief": "Aesthetic: ink mono (brutalist black and white)\nVocabulary: stark black and white, film grain, serif display, split-screen copy + photo, giant cropped wordmark, high contrast\nReference feel: MONOLITH, Castle\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Push the hero photo to black and white and let a cropped wordmark run off the viewport",
-    "palette": {
-      "bg": "#FFFFFF",
-      "surface": "#F2F2F0",
-      "text": "#141414",
-      "muted": "#6B6B6B",
-      "accent": "#141414",
-      "accent2": "#D8432F"
-    },
-    "type": {
-      "display": "Playfair Display",
-      "body": "Inter Variable",
-      "source": "fontsource"
-    },
-    "heroTreatment": "Two-field split: left white column with a huge serif headline and black CTA block, right field a black-and-white trade photo under a light dot screen (overlay at most 0.55), cropped hard at the split.",
-    "neverList": [
-      "Purple gradients",
-      "Glossy 3D SaaS blobs",
-      "Rounded-everything friendliness",
-      "Icon-grid feature rows",
-      "Inter/system-font-only typography",
-      "Evenly-distributed colorful palettes"
-    ]
-  },
-  {
-    "id": "dusk-horizon",
-    "name": "Dusk Horizon",
-    "collection": "vast-quiet-cinematic",
-    "entryId": "nexora",
-    "brief": "Aesthetic: vast quiet cinematic (minimal x cinematic)\nVocabulary: monumental photography, dusk color grade, tiny centered sans, extreme negative space, quiet CTA\nReference feel: CTGT (hero), CTGT (alt hero)\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Let the photo occupy the whole viewport and keep the headline quiet",
-    "palette": {
-      "bg": "#0F2A2C",
-      "surface": "#163B3D",
-      "text": "#F2F4F0",
-      "muted": "#9DB5B2",
-      "accent": "#E8743A",
-      "accent2": "#2E4A46"
-    },
-    "type": {
-      "display": "Inter Variable",
-      "body": "Inter Variable",
-      "source": "fontsource"
-    },
-    "heroTreatment": "Full-bleed trade photo graded toward teal dusk (overlay at most 0.55); headline top-left on the darkened sky; orange CTA; mono scroll cue and a service ticker run along the bottom edge.",
-    "neverList": [
-      "Purple gradients",
-      "Glossy 3D SaaS blobs",
-      "Rounded-everything friendliness",
-      "Icon-grid feature rows",
-      "Inter/system-font-only typography",
-      "Evenly-distributed colorful palettes"
-    ]
-  },
-  {
-    "id": "classic-light",
-    "name": "Classic Light",
-    "collection": "classic-remix",
-    "entryId": "dualite",
-    "brief": "Aesthetic: classic remix (traditional x soft-futurism)\nVocabulary: serif headlines, soft sky palette, gold accents, canvas grain, orbit-line overlay, rounded glass input\nReference feel: Juris, Break the Pattern\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Put the trade photo in a tall framed panel beside the headline and let the orbit lines run behind both",
-    "palette": {
-      "bg": "#FFFFFF",
-      "surface": "#F4F6FA",
-      "text": "#1C2230",
-      "muted": "#6B7385",
-      "accent": "#2B5BD7",
-      "accent2": "#8C6A3F"
-    },
-    "type": {
-      "display": "EB Garamond Variable",
-      "body": "Figtree Variable",
-      "source": "fontsource"
-    },
-    "heroTreatment": "Right-half trade photo in a tall panel with light canvas grain on white; faint orbit lines continue behind the left text column; plain serif headline; blue pill CTA; trust strip below.",
-    "neverList": [
-      "Purple gradients",
-      "Glossy 3D SaaS blobs",
-      "Rounded-everything friendliness",
-      "Icon-grid feature rows",
-      "Inter/system-font-only typography",
-      "Evenly-distributed colorful palettes"
-    ]
-  },
-  {
-    "id": "warm-story",
-    "name": "Warm Story",
-    "collection": "illustrated-warm",
-    "entryId": "vitra",
-    "brief": "Aesthetic: warm and friendly (playful x cinematic)\nVocabulary: chunky display wordmark, type-masked wordmark, saturated but graded palette, split photo panel\nReference feel: MARBLE, Vitra\nHouse DNA: One real photograph anchors the page; Technical marginalia; Type at extremes; Near-monochrome ground + single warm accent (orange, amber, terracotta, red)\nNever: Purple gradients, Glossy 3D SaaS blobs, Rounded-everything friendliness, Icon-grid feature rows, Inter/system-font-only typography, Evenly-distributed colorful palettes\nOne risk: Mask the entire brand wordmark in a warm gradient so the letters glow against the green",
-    "palette": {
-      "bg": "#F6EFE4",
+      "bg": "#EFF6FF",
       "surface": "#FFFFFF",
-      "text": "#1E2A22",
-      "muted": "#5F6B62",
-      "accent": "#2F5233",
-      "accent2": "#D97A4A"
+      "text": "#1E3A8A",
+      "muted": "#475569",
+      "accent": "#1E40AF",
+      "accent2": "#C2410C"
+    },
+    "type": {
+      "display": "Lexend Variable",
+      "body": "Source Sans 3 Variable",
+      "source": "fontsource"
+    },
+    "heroTreatment": "Two columns on a pale blue ground: headline, subhead, orange booking button and blue call button on the left; the trade photo on the right in a plain rectangle with a 2px blue rule. No overlay on the photo. Mobile stacks the photo above the copy at a short height so the trust strip and services heading stay in the fold.",
+    "neverList": [
+      "Hidden contact info",
+      "No certifications",
+      "Emoji as icons",
+      "Gradients or drop shadows",
+      "Removing focus rings",
+      "Horizontal scroll"
+    ]
+  },
+  {
+    "id": "bold-local",
+    "name": "Bold Local",
+    "collection": "ui-ux-pro-max:brutalism",
+    "entryId": "construction-architecture",
+    "brief": "Aesthetic: Brutalism (raw, stark, high contrast, plain text, visible borders, asymmetric)\nPattern: Trust & Authority + Conversion. Hero > Proof > Solution overview > Clear CTA path.\nColor strategy: Industrial navy + safety orange, high contrast, accent for CTA only.\nTypography: Barlow Condensed / Barlow (condensed for impact headlines, regular for body).\nKey effects: Sharp corners (0px), bold typography (700+), visible 2-4px borders, large blocks, instant or near-instant transitions.\nNever: Hidden contact info, No certifications, Rounded-everything, Soft shadows, Pastel palettes, Decorative gradients.",
+    "palette": {
+      "bg": "#FFFFFF",
+      "surface": "#F1F5F9",
+      "text": "#0F172A",
+      "muted": "#475569",
+      "accent": "#0F172A",
+      "accent2": "#C2410C"
+    },
+    "type": {
+      "display": "Barlow Condensed",
+      "body": "Barlow",
+      "source": "fontsource"
+    },
+    "heroTreatment": "Full-bleed trade photo with no filter and a bottom-left navy gradient capped at 0.35; the copy sits on an opaque navy block anchored bottom-left with a 4px orange top rule, condensed uppercase headline, orange booking button, white outline call button. Mobile: photo band on top with a 4px orange rule under it, navy block below.",
+    "neverList": [
+      "Hidden contact info",
+      "No certifications",
+      "Rounded-everything friendliness",
+      "Soft shadows",
+      "Pastel palettes",
+      "Decorative gradients"
+    ]
+  },
+  {
+    "id": "premium-dark",
+    "name": "Premium Dark",
+    "collection": "ui-ux-pro-max:dark-mode-oled",
+    "entryId": "luxury-premium-brand",
+    "brief": "Aesthetic: Dark Mode (OLED) (deep black, dark grey, high contrast, low white emission, visible focus)\nPattern: Trust & Authority + Conversion with a premium register. Hero > Proof > Solution overview > Clear CTA path.\nColor strategy: Premium black + gold accent; gold reserved for the call to action and ratings.\nTypography: Cormorant / Montserrat (Luxury Serif: elegant heading, geometric body).\nKey effects: Minimal glow, dark-to-light transitions (200-300ms), hairline gold rules, no cheap visuals, no fast animations.\nNever: Hidden contact info, No certifications, Cheap visuals, Fast animations, Gray-on-gray text, Neon accents.",
+    "palette": {
+      "bg": "#121212",
+      "surface": "#1C1917",
+      "text": "#FAFAF9",
+      "muted": "#A8A29E",
+      "accent": "#CA8A04",
+      "accent2": "#292524"
+    },
+    "type": {
+      "display": "Cormorant Variable",
+      "body": "Montserrat Variable",
+      "source": "fontsource"
+    },
+    "heroTreatment": "Dark page. Copy left with a tall serif headline, a gold booking button and an outlined call button; the trade photo right inside a hairline gold frame with a 0.25 black vignette at the lower edge only, no filter. Mobile: framed photo band on top at a short height, copy below.",
+    "neverList": [
+      "Hidden contact info",
+      "No certifications",
+      "Cheap visuals",
+      "Fast animations",
+      "Gray-on-gray text",
+      "Neon accents"
+    ]
+  },
+  {
+    "id": "friendly-family",
+    "name": "Friendly Family",
+    "collection": "ui-ux-pro-max:soft-ui-evolution",
+    "entryId": "family-calendar-chores",
+    "brief": "Aesthetic: Soft UI Evolution (improved contrast, subtle depth, rounded 8-16px, modern 200-300ms motion)\nPattern: Trust & Authority + Conversion in a neighborly register. Hero > Proof > Solution overview > Clear CTA path.\nColor strategy: Family blue + amber accent on a near-white ground; amber only on the call to action and stars.\nTypography: Varela Round / Nunito Sans (Soft Rounded: friendly, approachable, warm).\nKey effects: Soft multi-layer shadows with offset and blur, 16px radii, gentle hover lift, visible focus, measured contrast.\nNever: Hidden contact info, No certifications, Sharp corners everywhere, Harsh black, Stock icon grids, Aggressive urgency.",
+    "palette": {
+      "bg": "#F8FAFC",
+      "surface": "#FFFFFF",
+      "text": "#0F172A",
+      "muted": "#475569",
+      "accent": "#2563EB",
+      "accent2": "#B45309"
+    },
+    "type": {
+      "display": "Varela Round",
+      "body": "Nunito Sans Variable",
+      "source": "fontsource"
+    },
+    "heroTreatment": "Photo left in a 24px-radius card with a soft offset shadow, copy right with a rounded headline, amber booking button and blue call button; no overlay or filter on the photo. Mobile: rounded photo band on top at a short height, copy below.",
+    "neverList": [
+      "Hidden contact info",
+      "No certifications",
+      "Sharp corners everywhere",
+      "Harsh black",
+      "Stock icon grids",
+      "Aggressive urgency"
+    ]
+  },
+  {
+    "id": "modern-minimal",
+    "name": "Modern Minimal",
+    "collection": "ui-ux-pro-max:minimalism-swiss",
+    "entryId": "knowledge-base-documentation",
+    "brief": "Aesthetic: Minimalism & Swiss Style (clean, spacious, functional, white space, high contrast, geometric, grid-based)\nPattern: Trust & Authority + Conversion. Hero > Proof > Solution overview > Clear CTA path.\nColor strategy: Neutral grey + link blue; a single accent, used for the call to action and links only.\nTypography: Outfit / Work Sans (Geometric Modern: clean, balanced, contemporary).\nKey effects: Subtle hover (200-250ms), 1px hairline borders, no shadows, 0-2px radii, clear type hierarchy.\nNever: Hidden contact info, No certifications, Shadows and gradients, Decorative ornament, More than one accent, Centered everything.",
+    "palette": {
+      "bg": "#FFFFFF",
+      "surface": "#F8FAFC",
+      "text": "#1E293B",
+      "muted": "#475569",
+      "accent": "#2563EB",
+      "accent2": "#E2E8F0"
     },
     "type": {
       "display": "Outfit Variable",
-      "body": "Figtree Variable",
+      "body": "Work Sans Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Split layout: left flat pale panel with a deep-green chunky display headline and CTA, right vertical trade photo panel with light paper tooth, cropped at the panel edge.",
+    "heroTreatment": "Left-aligned copy across the top of a hairline grid, blue booking button and outlined call button, then the trade photo as a wide panoramic band under the copy with no filter or overlay. Mobile: the same order at a shorter band height.",
     "neverList": [
-      "Purple gradients",
-      "Glossy 3D SaaS blobs",
-      "Rounded-everything friendliness",
-      "Icon-grid feature rows",
-      "Inter/system-font-only typography",
-      "Evenly-distributed colorful palettes"
+      "Hidden contact info",
+      "No certifications",
+      "Shadows and gradients",
+      "Decorative ornament",
+      "More than one accent",
+      "Centered everything"
     ]
   }
 ]

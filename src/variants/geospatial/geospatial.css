@@ -1,40 +1,46 @@
-/* Dusk Horizon (preset: dusk-horizon).
-   Deep teal ground, a full-bleed photograph graded toward dusk, quiet
-   centered labels, generous negative space and one ember call to action.
-   Scoped to .geospatial so other variants are untouched. */
+/* Bold Local (preset: bold-local). UI/UX Pro Max Brutalism, toned to
+   borders and blocks: white ground, navy blocks, safety orange on the
+   action, 2px borders, 0 radius. Barlow Condensed uppercase headings,
+   Barlow body. Class prefix dh- is a namespace carried over from the
+   earlier skin; scoped to .geospatial. */
 
 .geospatial {
-  --dh-bg: #0f2a2c;
-  --dh-surface: #163b3d;
-  --dh-text: #f2f4f0;
-  --dh-muted: #9db5b2;
-  --dh-accent: #e8743a;
-  --dh-accent2: #2e4a46;
-  --dh-line: rgba(157, 181, 178, 0.18);
-  --dh-line-strong: rgba(157, 181, 178, 0.4);
-  --dh-ease: cubic-bezier(0.32, 0.72, 0, 1);
-  --dh-mono: ui-monospace, 'SF Mono', Consolas, 'Liberation Mono', monospace;
+  --dh-bg: #ffffff;
+  --dh-surface: #f1f5f9;
+  --dh-text: #0f172a;
+  --dh-muted: #475569;
+  --dh-navy: #0f172a;
+  --dh-orange: #c2410c;
+  --dh-orange-2: #9a3412;
+  /* The brighter orange is for text and rules on navy, where #c2410c is too dim. */
+  --dh-orange-hi: #ea580c;
+  --dh-line: #0f172a;
+  --dh-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
   background-color: var(--dh-bg);
   color: var(--dh-text);
-  font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Barlow', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.0625rem;
-  font-weight: 350;
-  line-height: 1.65;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  --bc-bg: #0f172a;
+  --bc-fg: #ffffff;
+  --bc-border: #0f172a;
+  --bc-accent: #ea580c;
+  --bc-radius: 0px;
 }
 
 .geospatial ::selection {
-  background: var(--dh-accent);
-  color: var(--dh-bg);
+  background: var(--dh-orange);
+  color: #ffffff;
 }
 .geospatial :focus-visible {
-  outline: 2px solid var(--dh-accent);
-  outline-offset: 3px;
+  outline: 3px solid var(--dh-orange);
+  outline-offset: 2px;
 }
 .geospatial [id] {
-  scroll-margin-top: 5rem;
+  scroll-margin-top: 4.5rem;
 }
 .geospatial h1,
 .geospatial h2,
@@ -49,120 +55,120 @@
 }
 @media (min-width: 640px) {
   .dh-wrap {
-    padding-inline: 2.5rem;
+    padding-inline: 2rem;
   }
 }
 
-/* Type at extremes: whisper labels and monumental headlines. */
-.dh-label {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.26em;
+/* Type: condensed uppercase for headings, plain Barlow for reading */
+.dh-display {
+  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--dh-muted);
-  text-align: center;
+  letter-spacing: 0.01em;
+  line-height: 0.98;
 }
 .dh-mono {
-  font-family: var(--dh-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.12em;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-variant-numeric: tabular-nums;
   color: var(--dh-muted);
-}
-.dh-display {
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
 }
 .dh-num {
   font-variant-numeric: tabular-nums;
 }
 
-/* Buttons: quiet, square, one of them ember */
+/* Buttons: hard blocks */
 .dh-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.9rem 1.6rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  border: 1px solid transparent;
-  border-radius: 2px;
+  min-height: 2.75rem;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid var(--dh-navy);
+  cursor: pointer;
   transition:
-    background-color 0.4s var(--dh-ease),
-    color 0.4s var(--dh-ease),
-    border-color 0.4s var(--dh-ease),
-    transform 0.4s var(--dh-ease);
+    background-color 0.12s linear,
+    color 0.12s linear,
+    border-color 0.12s linear;
 }
-.dh-btn:active {
-  transform: scale(0.98);
+.dh-btn-orange {
+  background: var(--dh-orange);
+  color: #ffffff;
+  border-color: var(--dh-orange);
 }
-.dh-btn-ember {
-  background: var(--dh-accent);
-  color: #1a0f08;
-  border-color: var(--dh-accent);
+.dh-btn-orange:hover,
+.dh-btn-orange:focus-visible {
+  background: var(--dh-orange-2);
+  border-color: var(--dh-orange-2);
 }
-.dh-btn-ember:hover,
-.dh-btn-ember:focus-visible {
-  background: #f08a52;
-  border-color: #f08a52;
+.dh-btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border-color: #ffffff;
 }
-.dh-btn-ghost {
-  background: rgba(15, 42, 44, 0.35);
-  color: var(--dh-text);
-  border-color: var(--dh-line-strong);
-  backdrop-filter: blur(6px);
+.dh-btn-outline:hover,
+.dh-btn-outline:focus-visible {
+  background: #ffffff;
+  color: var(--dh-navy);
 }
-.dh-btn-ghost:hover,
-.dh-btn-ghost:focus-visible {
-  border-color: var(--dh-text);
+.dh-btn-outline-light {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.dh-btn-outline-light:hover,
+.dh-btn-outline-light:focus-visible {
+  border-color: #ffffff;
 }
 
-/* Nav: transparent over the photo, a soft bar once scrolled */
+/* Nav: a navy bar */
 .dh-nav {
   position: sticky;
   top: 0;
   z-index: 40;
-  border-bottom: 1px solid transparent;
-  transition:
-    background-color 0.5s var(--dh-ease),
-    border-color 0.5s var(--dh-ease);
-}
-.dh-nav-solid {
-  background: rgba(15, 42, 44, 0.86);
-  border-color: var(--dh-line);
-  backdrop-filter: blur(10px);
+  background: var(--dh-navy);
+  color: #ffffff;
 }
 .dh-nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 0.9rem;
+  padding-block: 0.6rem;
+}
+.dh-brand {
+  font-size: 1.375rem;
+  color: #ffffff;
 }
 .dh-nav-links {
   display: none;
-  gap: 2rem;
+  gap: 1.5rem;
 }
-@media (min-width: 768px) {
+/* Section links join the nav only once they fit beside the phone and button. */
+@media (min-width: 1024px) {
   .dh-nav-links {
     display: flex;
   }
 }
 .dh-navlink {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--dh-muted);
-  transition: color 0.3s var(--dh-ease);
+  color: rgba(255, 255, 255, 0.82);
+  transition: color 0.12s linear;
+  white-space: nowrap;
 }
 .dh-navlink:hover,
 .dh-navlink:focus-visible {
-  color: var(--dh-text);
+  color: var(--dh-orange-hi);
 }
 .dh-nav-right {
   display: flex;
@@ -170,35 +176,59 @@
   gap: 1rem;
 }
 .dh-nav-phone {
-  display: none;
-  font-size: 0.875rem;
-  color: var(--dh-text);
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+  transition: color 0.12s linear;
+  white-space: nowrap;
 }
-@media (min-width: 480px) {
+.dh-nav-phone:hover,
+.dh-nav-phone:focus-visible {
+  color: var(--dh-orange-hi);
+}
+.dh-nav-call {
+  display: none;
+}
+/* Phones: the number collapses to a Call button so click-to-call stays
+   in the sticky nav after the hero scrolls away. */
+@media (max-width: 479px) {
   .dh-nav-phone {
+    min-height: 2.75rem;
+    padding-inline: 0.9rem;
+    border: 2px solid #ffffff;
+    border-radius: 0;
+  }
+  .dh-nav-number {
+    display: none;
+  }
+  .dh-nav-call {
     display: inline;
   }
 }
 .dh-nav-cta {
-  padding: 0.6rem 1.05rem;
-  font-size: 0.75rem;
+  min-height: 2.5rem;
+  padding: 0.45rem 1rem;
+  font-size: 0.9375rem;
   white-space: nowrap;
 }
+@media (max-width: 479px) {
+  .dh-nav-cta {
+    min-height: 2.75rem;
+  }
+}
 
-/* Hero: the photograph takes the viewport; type sits in the darkened top-left */
+/* Hero: unfiltered photo, a navy block anchored bottom-left */
 .dh-hero {
   position: relative;
-  min-height: 100svh;
-  margin-top: -3.6rem; /* slide under the transparent nav */
-  display: flex;
-  flex-direction: column;
-  overflow: clip;
   isolation: isolate;
+  background: var(--dh-navy);
 }
 .dh-hero-media {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
+  position: relative;
+  height: 9.5rem;
+  overflow: hidden;
   background: var(--dh-surface);
 }
 .dh-hero-media > * {
@@ -209,170 +239,148 @@
 }
 .dh-hero-img {
   object-fit: cover;
-  /* Graded toward the dusk, still a photograph. */
-  filter: saturate(0.65) contrast(0.98) brightness(0.82);
 }
 .dh-hero-grade {
-  /* Teal grade: darkest behind the headline, never over 0.55. */
-  background:
-    linear-gradient(to bottom, rgba(15, 42, 44, 0.55) 0%, rgba(15, 42, 44, 0.25) 55%, rgba(15, 42, 44, 0.5) 100%),
-    linear-gradient(to right, rgba(15, 42, 44, 0.45), transparent 65%);
+  /* Navy from the bottom-left corner, capped at 0.35. */
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0) 55%);
   pointer-events: none;
 }
-.dh-hero-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 7.5rem;
-  padding-bottom: 2rem;
+.dh-hero-inner {
+  position: relative;
+}
+.dh-hero-block {
+  padding: 1.5rem 0 1.75rem;
+  color: #ffffff;
+}
+/* Phones: the orange rule runs between the photo band and the navy block. */
+@media (max-width: 1023px) {
+  .dh-hero-media {
+    border-bottom: 4px solid var(--dh-orange-hi);
+  }
+}
+@media (min-width: 1024px) {
+  .dh-hero {
+    min-height: 31rem;
+    display: flex;
+    align-items: flex-end;
+  }
+  .dh-hero-media {
+    position: absolute;
+    inset: 0;
+    height: auto;
+    z-index: -1;
+  }
+  .dh-hero-inner {
+    width: 100%;
+  }
+  .dh-hero-block {
+    max-width: 34rem;
+    margin-block: 2rem;
+    padding: 1.75rem 2rem 2rem;
+    background: var(--dh-navy);
+    border-top: 4px solid var(--dh-orange-hi);
+  }
 }
 .dh-hero-h1 {
-  margin-top: 1rem;
-  font-size: clamp(2.5rem, 1.2rem + 5.4vw, 5.6rem);
+  font-size: clamp(2.25rem, 1.4rem + 3.2vw, 4rem);
   max-width: 14ch;
-  text-shadow: 0 2px 24px rgba(15, 42, 44, 0.6);
 }
 .dh-hero-sub {
-  margin-top: 1.5rem;
-  max-width: 30rem;
-  color: var(--dh-text);
+  margin-top: 0.7rem;
+  max-width: 32rem;
+  color: #cbd5e1;
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
-  text-shadow: 0 1px 12px rgba(15, 42, 44, 0.7);
 }
 .dh-hero-actions {
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
 }
-.dh-hero-eyebrow {
-  text-align: left;
-}
 
-/* Bottom edge: scroll cue and the service ticker */
-.dh-hero-foot {
-  border-top: 1px solid var(--dh-line);
-  background: rgba(15, 42, 44, 0.55);
-  backdrop-filter: blur(4px);
-}
-.dh-hero-foot-inner {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
-  gap: 1.25rem;
-  padding-block: 0.8rem;
-}
-.dh-cue {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  white-space: nowrap;
-}
-.dh-cue-line {
-  display: inline-block;
-  width: 2.25rem;
-  height: 1px;
-  background: var(--dh-muted);
-}
-.dh-ticker {
-  overflow: hidden;
-  min-width: 0;
-  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-}
-.dh-ticker-track {
-  display: flex;
-  width: max-content;
-  gap: 2.5rem;
-  padding-right: 2.5rem;
-  animation: dh-ticker 38s linear infinite;
-}
-.dh-ticker-item {
-  white-space: nowrap;
-  color: var(--dh-text);
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-.dh-ticker-item::before {
-  content: '·';
-  color: var(--dh-accent);
-  margin-right: 2.5rem;
-}
-@keyframes dh-ticker {
-  to {
-    transform: translateX(-50%);
+@media (max-width: 639px) {
+  .dh-hero-actions > * {
+    flex: 1 1 auto;
+    padding-inline: 0.8rem;
+    white-space: nowrap;
+  }
+  .geospatial .ts-rating {
+    font-size: 0.8125rem;
+  }
+  .geospatial .ts-call {
+    display: none;
   }
 }
 
-/* Trust strip: a hairline register under the hero */
+/* Trust strip: boxed chips on a 2px rule */
 .geospatial .ts {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.75rem 1.75rem;
-  padding-block: 1.1rem;
-  border-bottom: 1px solid var(--dh-line);
+  gap: 0.5rem 1rem;
+  padding-block: 0.7rem;
+  border-bottom: 2px solid var(--dh-line);
 }
 .geospatial .ts-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 .geospatial .ts-chip {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 0.4rem 0.75rem;
-  border: 1px solid var(--dh-line-strong);
-  border-radius: 2px;
+  padding: 0.3rem 0.6rem;
+  border: 2px solid var(--dh-line);
   color: var(--dh-text);
 }
 .geospatial .ts-rating {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   margin: 0;
   font-size: 0.875rem;
+  font-weight: 600;
   color: var(--dh-muted);
 }
 .geospatial .ts-stars {
-  letter-spacing: 0.15em;
-  color: var(--dh-accent);
+  color: var(--dh-orange);
 }
 .geospatial .ts-call {
   margin-left: auto;
-  font-weight: 500;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: var(--dh-text);
-  border-bottom: 1px solid var(--dh-accent);
-  transition: color 0.3s var(--dh-ease);
+  border-bottom: 3px solid var(--dh-orange);
 }
 .geospatial .ts-call:hover,
 .geospatial .ts-call:focus-visible {
-  color: var(--dh-accent);
+  color: var(--dh-orange);
 }
 
-/* Sections: generous breathing room */
+/* Sections */
 .dh-section {
-  padding-block: clamp(4.5rem, 3rem + 7vw, 9rem);
+  padding-block: clamp(2rem, 1.25rem + 3vw, 5rem);
 }
 .dh-h2 {
-  margin-top: 1rem;
-  text-align: center;
-  font-size: clamp(2rem, 1.3rem + 3vw, 3.75rem);
+  margin-top: 0.25rem;
+  text-align: left;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
 }
 
-/* Services: photo tiles on surface panels */
+/* Services: hard-bordered tiles */
 .dh-tiles {
-  margin-top: 3.5rem;
+  margin-top: 1.75rem;
   display: grid;
-  gap: 1px;
-  background: var(--dh-line);
-  border: 1px solid var(--dh-line);
+  gap: 1rem;
 }
 @media (min-width: 640px) {
   .dh-tiles {
@@ -388,43 +396,62 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--dh-surface);
-  transition: background-color 0.4s var(--dh-ease);
+  background: var(--dh-bg);
+  border: 2px solid var(--dh-line);
+  transition: border-color 0.12s linear;
 }
 .dh-tile:hover {
-  background: var(--dh-accent2);
+  border-color: var(--dh-orange);
 }
 .dh-tile-media {
-  background: var(--dh-bg);
+  background: var(--dh-surface);
+  border-bottom: 2px solid var(--dh-line);
 }
 .dh-tile-media > * {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  filter: saturate(0.75) brightness(0.92);
 }
 .dh-tile-body {
-  padding: 1.5rem 1.5rem 1.6rem;
+  padding: 1rem 1.1rem 1.2rem;
 }
 .dh-tile-title {
-  font-size: 1.25rem;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: 1.5rem;
 }
 .dh-tile-blurb {
-  margin-top: 0.4rem;
+  margin-top: 0.3rem;
   color: var(--dh-muted);
   font-size: 0.9375rem;
 }
 
-/* Reviews: single pale panels */
+/* Phones: tiles become compact rows so six services do not push the
+   reviews thousands of pixels down. */
+@media (max-width: 639px) {
+  .dh-tile {
+    flex-direction: row;
+  }
+  .dh-tile-media {
+    flex: 0 0 6.5rem;
+    border-bottom: 0;
+    border-right: 2px solid var(--dh-line);
+  }
+  .dh-tile-media > * {
+    height: 100%;
+    min-height: 6.5rem;
+    aspect-ratio: auto;
+  }
+  .dh-tile-body {
+    align-self: center;
+    padding: 0.85rem 1rem;
+  }
+}
+
+/* Reviews: grey panels with a navy edge */
 .dh-panels {
-  margin-top: 3.5rem;
+  margin-top: 1.75rem;
   display: grid;
-  gap: 1px;
-  background: var(--dh-line);
-  border: 1px solid var(--dh-line);
+  gap: 1rem;
 }
 @media (min-width: 768px) {
   .dh-panels {
@@ -435,19 +462,19 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 2rem 1.75rem;
+  padding: 1.5rem 1.4rem;
   background: var(--dh-surface);
+  border: 2px solid var(--dh-line);
 }
 .dh-quote {
   flex: 1;
-  margin-top: 1rem;
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.55;
 }
 .dh-stars {
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  color: var(--dh-accent);
+  font-size: 0.8125rem;
+  color: var(--dh-orange);
 }
 
 /* Hours */
@@ -455,70 +482,79 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9375rem;
+  border-top: 2px solid var(--dh-line);
 }
 .dh-table th,
 .dh-table td {
-  padding: 0.75rem 0;
+  padding: 0.6rem 0;
   border-bottom: 1px solid var(--dh-line);
 }
 .dh-table th {
   text-align: left;
-  font-weight: 400;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.8125rem;
 }
 .dh-table td {
   text-align: right;
-  color: var(--dh-muted);
   font-variant-numeric: tabular-nums;
 }
 .dh-contact {
-  padding: 2rem 1.75rem;
+  padding: 1.5rem 1.4rem;
   background: var(--dh-surface);
-  border: 1px solid var(--dh-line);
+  border: 2px solid var(--dh-line);
 }
 .dh-contact-phone {
   display: inline-block;
-  margin-top: 0.5rem;
-  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  margin-top: 0.3rem;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+  font-weight: 700;
   color: var(--dh-text);
-  border-bottom: 1px solid var(--dh-accent);
-  transition: color 0.3s var(--dh-ease);
+  border-bottom: 4px solid var(--dh-orange);
+  transition: color 0.12s linear;
 }
 .dh-contact-phone:hover,
 .dh-contact-phone:focus-visible {
-  color: var(--dh-accent);
+  color: var(--dh-orange);
 }
 
-/* Quote CTA: the surface band */
+/* Quote band: solid navy */
 .dh-quote-band {
-  background: var(--dh-surface);
-  border-top: 1px solid var(--dh-line);
-  border-bottom: 1px solid var(--dh-line);
-  text-align: center;
+  background: var(--dh-navy);
+  color: #ffffff;
+  text-align: left;
+}
+.dh-quote-band .dh-h2 {
+  color: #ffffff;
+}
+.dh-quote-band p {
+  color: #cbd5e1;
 }
 .dh-quote-phone {
   display: inline-block;
-  margin-top: 1.5rem;
-  font-size: clamp(2rem, 1.4rem + 3vw, 3.75rem);
-  font-weight: 400;
-  letter-spacing: -0.03em;
-  color: var(--dh-text);
-  border-bottom: 2px solid var(--dh-accent);
-  transition: color 0.3s var(--dh-ease);
+  margin-top: 1rem;
+  font-family: 'Barlow Condensed', system-ui, sans-serif;
+  font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 5px solid var(--dh-orange-hi);
+  transition: color 0.12s linear;
 }
 .dh-quote-phone:hover,
 .dh-quote-phone:focus-visible {
-  color: var(--dh-accent);
+  color: var(--dh-orange-hi);
 }
 
 /* Footer */
 .dh-footer {
   padding-block: 3rem;
+  border-top: 2px solid var(--dh-line);
 }
 .dh-footer-grid {
   display: grid;
-  gap: 2rem;
+  gap: 1.75rem;
 }
 @media (min-width: 640px) {
   .dh-footer-grid {
@@ -527,59 +563,44 @@
 }
 .dh-quiet {
   color: var(--dh-muted);
-  transition: color 0.3s var(--dh-ease);
+  transition: color 0.12s linear;
 }
 .dh-quiet:hover,
 .dh-quiet:focus-visible {
-  color: var(--dh-text);
+  color: var(--dh-orange);
 }
 
-/* Motion: slow, heavy fade-up, like fog lifting */
+/* Motion: a short snap in, once, on scroll */
 @media (prefers-reduced-motion: no-preference) {
   .geospatial .rv {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(8px);
     transition:
-      opacity 1.1s var(--dh-ease),
-      transform 1.1s var(--dh-ease);
+      opacity 0.3s steps(3, end),
+      transform 0.3s steps(3, end);
   }
   .geospatial .rv.rv-in {
     opacity: 1;
     transform: none;
-  }
-  .geospatial .dh-load {
-    animation: dh-lift 1.2s var(--dh-ease) both;
-    animation-delay: var(--dh-delay, 0s);
   }
   @supports (animation-timeline: view()) {
     .geospatial .rv {
       opacity: 1;
       transform: none;
       transition: none;
-      animation: dh-lift 1s var(--dh-ease) both;
+      animation: dh-snap 0.4s steps(3, end) both;
       animation-timeline: view();
-      animation-range: entry 10% entry 55%;
+      animation-range: entry 5% entry 30%;
     }
   }
-  .geospatial {
-    scroll-behavior: smooth;
-  }
 }
-@keyframes dh-lift {
+@keyframes dh-snap {
   from {
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
-    transform: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .dh-ticker-track {
-    animation: none;
-  }
-  .geospatial .dh-btn:active {
     transform: none;
   }
 }

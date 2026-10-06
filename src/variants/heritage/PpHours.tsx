@@ -9,7 +9,6 @@ export default function PpHours() {
       <div className="pp-wrap">
         <Reveal>
           <div className="pp-head">
-            <p className="pp-mono">Hours</p>
             <h2 className="pp-display pp-h2">Hours &amp; Location</h2>
           </div>
         </Reveal>
@@ -32,8 +31,6 @@ export default function PpHours() {
           {(site.address || site.phoneHref) && (
             <Reveal delay={160}>
               <div className="pp-contact">
-                <span className="pp-reg pp-reg-tr" aria-hidden="true" />
-                <span className="pp-reg pp-reg-bl" aria-hidden="true" />
                 {site.address && (
                   <>
                     <p className="pp-mono">Address</p>

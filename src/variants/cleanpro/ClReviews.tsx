@@ -8,7 +8,6 @@ export default function ClReviews() {
     <section id="reviews" className="cl-section" style={{ background: 'var(--cl-surface)' }}>
       <div className="cl-wrap">
         <Reveal>
-          <p className="cl-eyebrow">Reviews</p>
           <h2 className="cl-display cl-h2">What Customers Say</h2>
         </Reveal>
         <div className="cl-cards">

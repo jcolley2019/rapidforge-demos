@@ -7,7 +7,7 @@ export default function WsNav() {
   return (
     <header className="ws-nav">
       <div className="ws-wrap ws-nav-inner">
-        <a href="#top" className="ws-display text-xl">
+        <a href="#top" className="ws-display ws-brand">
           {site.shortName}
         </a>
         <nav className="ws-nav-links" aria-label="Page sections">
@@ -19,11 +19,12 @@ export default function WsNav() {
         </nav>
         <div className="ws-nav-right">
           {site.phoneHref && (
-            <a href={site.phoneHref} className="ws-nav-phone ws-num">
-              {site.phone}
+            <a href={site.phoneHref} className="ws-nav-phone ws-num" aria-label={`Call ${site.phone}`}>
+              <span className="ws-nav-number">{site.phone}</span>
+              <span className="ws-nav-call">Call</span>
             </a>
           )}
-          <a href={site.cta.href} className="ws-btn ws-btn-green ws-nav-cta">
+          <a href={site.cta.href} className="ws-btn ws-btn-blue ws-nav-cta">
             {site.cta.label}
           </a>
         </div>
