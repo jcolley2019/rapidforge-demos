@@ -8,10 +8,8 @@ export default function ClHours() {
     <section id="contact" className="cl-section">
       <div className="cl-wrap">
         <Reveal>
-          <p className="cl-eyebrow">Hours &amp; Contact</p>
-          <h2 className="cl-display cl-h2">
-            Find <em>us</em>
-          </h2>
+          <p className="cl-eyebrow">Hours</p>
+          <h2 className="cl-display cl-h2">Hours &amp; Location</h2>
         </Reveal>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           {site.hours && (

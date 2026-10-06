@@ -1,8 +1,12 @@
 import type { CSSProperties } from 'react'
 import { siteContent as site } from '../../brief/current'
 import { localityLine } from '../../brief/site-helpers'
+import PlaceholderImage from '../../components/PlaceholderImage'
+import { presetForVariant } from '../../presets/presets'
 
 const at = (s: number) => ({ '--is-delay': `${s}s` }) as CSSProperties
+const palette = presetForVariant('texas').palette
+const photo = site.photos[0]
 
 /** Headline with its final mark in red. */
 function redMark(text: string) {
@@ -23,8 +27,6 @@ function redMark(text: string) {
   )
 }
 
-const photo = site.photos[0]
-
 export default function IsHero() {
   return (
     <>
@@ -41,31 +43,18 @@ export default function IsHero() {
             <a href={site.cta.href} className="is-btn is-btn-black">
               {site.cta.label}
             </a>
-            {site.phoneHref && (
-              <a href={site.phoneHref} className="is-btn is-btn-outline is-num">
-                {site.phone}
+            {site.ctaSecondary && (
+              <a href={site.ctaSecondary.href} className="is-btn is-btn-outline is-num">
+                {site.ctaSecondary.label}
               </a>
             )}
           </div>
         </div>
 
-        <div className={`is-hero-art ${photo ? 'is-hero-art-photo' : ''}`} aria-hidden="true">
-          {photo ? (
-            <>
-              <img src={photo} alt="" />
-              <div className="is-dither" />
-            </>
-          ) : (
-            <>
-              <div className="is-dither" />
-              <div className="is-dither is-dither-2" />
-              <div className="is-dither is-dither-3" />
-              <div className="is-dither-sun" />
-            </>
-          )}
-          <p className="is-mono is-hero-tag">
-            {site.verticalLabel} · 1-bit
-          </p>
+        <div className="is-hero-art" aria-hidden="true">
+          <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="is-hero-img" />
+          <div className="is-screen" />
+          <p className="is-mono is-hero-tag">{localityLine(site)}</p>
         </div>
       </section>
 

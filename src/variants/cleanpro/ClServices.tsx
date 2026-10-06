@@ -1,5 +1,10 @@
 import { siteContent as site } from '../../brief/current'
+import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
+import { presetForVariant } from '../../presets/presets'
+
+const palette = presetForVariant('cleanpro').palette
+const photos = site.detailPhotos
 
 export default function ClServices() {
   return (
@@ -7,20 +12,24 @@ export default function ClServices() {
       <div className="cl-wrap">
         <Reveal>
           <p className="cl-eyebrow">Services</p>
-          <h2 className="cl-display cl-h2">
-            What we <em>do</em>
-          </h2>
+          <h2 className="cl-display cl-h2">Our Services</h2>
         </Reveal>
-        <div className="cl-register">
+        <div className="cl-tiles">
           {site.services.map((service, i) => (
-            <Reveal key={service.title} delay={(i % 2) * 90}>
-              <article className="cl-entry">
-                <span className="cl-entry-num" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3 className="cl-display cl-entry-title">{service.title}</h3>
-                  {service.blurb && <p className="cl-entry-blurb">{service.blurb}</p>}
+            <Reveal key={service.title} delay={(i % 3) * 90}>
+              <article className="cl-tile">
+                <div className="cl-tile-media">
+                  <PlaceholderImage
+                    src={photos[i % photos.length]}
+                    palette={palette}
+                    aspectRatio="4 / 3"
+                    seed={i + 1}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="cl-tile-body">
+                  <h3 className="cl-display cl-tile-title">{service.title}</h3>
+                  {service.blurb && <p className="cl-tile-blurb">{service.blurb}</p>}
                 </div>
               </article>
             </Reveal>

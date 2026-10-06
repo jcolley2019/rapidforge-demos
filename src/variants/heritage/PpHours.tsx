@@ -9,10 +9,8 @@ export default function PpHours() {
       <div className="pp-wrap">
         <Reveal>
           <div className="pp-head">
-            <p className="pp-mono">Hours &amp; Contact</p>
-            <h2 className="pp-display pp-h2">
-              Find <em>us</em>
-            </h2>
+            <p className="pp-mono">Hours</p>
+            <h2 className="pp-display pp-h2">Hours &amp; Location</h2>
           </div>
         </Reveal>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">

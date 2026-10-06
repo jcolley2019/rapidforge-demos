@@ -5,6 +5,8 @@ import '@fontsource-variable/inter'
 import './texas.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
+import TrustStrip from '../../components/TrustStrip'
+import { siteContent as site } from '../../brief/current'
 import { usePageTitle } from '../usePageTitle'
 import IsNav from './IsNav'
 import IsHero from './IsHero'
@@ -14,7 +16,7 @@ import IsHours from './IsHours'
 import IsQuoteCta from './IsQuoteCta'
 import IsFooter from './IsFooter'
 
-/** Ink Split — preset `ink-split` (dither mono). */
+/** Ink Split: preset `ink-split` (stark black and white, split hero, one red mark). */
 export default function TexasPage() {
   usePageTitle('texas')
   return (
@@ -24,6 +26,9 @@ export default function TexasPage() {
       <IsNav />
       <main>
         <IsHero />
+        <div className="is-wrap">
+          <TrustStrip site={site} />
+        </div>
         <IsServices />
         <IsReviews />
         <IsHours />

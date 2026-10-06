@@ -1,5 +1,6 @@
 import type { DesignBrief } from './design-brief'
-import { copyFamilyFor, pickCopy, type CopyFamily } from './copy'
+import { copyFamilyFor, ctaHeadlineFor, pickCopy, type CopyFamily } from './copy'
+import { TRADE_PHOTOS } from './trade-photos'
 
 /**
  * SiteContent — what the variants render. Derived from a DesignBrief by
@@ -40,6 +41,10 @@ export interface SiteContent {
   city: string | null
   headline: string
   subhead: string
+  /** Action headline for the quote band, e.g. "Need a plumber today?". */
+  ctaHeadline: string
+  /** Short trust claims for the strip under the hero. Never a year or a license number. */
+  trust: string[]
   services: SiteService[]
   reviews: SiteReview[]
   hours: SiteHoursRow[] | null
@@ -48,8 +53,12 @@ export interface SiteContent {
   phoneHref: string | null
   address: string | null
   cta: SiteCta
-  /** photo_urls from the brief, in order. Empty when the audit found none. */
+  /** Click-to-call, when the brief has a phone. */
+  ctaSecondary: { label: string; href: string } | null
+  /** photo_urls from the brief, or the trade family's stock heroes when the audit found none. */
   photos: string[]
+  /** Supporting stock shots for service tiles, from the trade family. */
+  detailPhotos: string[]
   /** current_site_problem — kept for the picker, shown nowhere on the site. */
   problemLine: string
 }
@@ -171,6 +180,13 @@ export function toSiteContent(brief: DesignBrief): SiteContent {
   const phone = brief.phone?.trim() || null
   const phoneHref = phoneHrefOf(phone)
 
+  const ctaHeadline = ctaHeadlineFor(family, { name, shortName, city, verticalLabel })
+
+  const trust = ['Licensed & insured', 'Same-day service', 'Upfront pricing']
+  if (city) trust.push(`Serving ${city}`)
+
+  const ownPhotos = brief.photo_urls.map((u) => u.trim()).filter(Boolean)
+
   const cta: SiteCta = {
     label: brief.primary_cta.label,
     kind: brief.primary_cta.kind,
@@ -185,6 +201,8 @@ export function toSiteContent(brief: DesignBrief): SiteContent {
     city,
     headline,
     subhead,
+    ctaHeadline,
+    trust,
     services: brief.services.map((title) => ({ title, blurb: blurbFor(family, title) })),
     reviews: brief.review_quotes.map((q) => ({
       text: q.text,
@@ -196,7 +214,9 @@ export function toSiteContent(brief: DesignBrief): SiteContent {
     phoneHref,
     address: brief.address?.trim() || null,
     cta,
-    photos: brief.photo_urls.map((u) => u.trim()).filter(Boolean),
+    ctaSecondary: phone && phoneHref ? { label: `Call ${phone}`, href: phoneHref } : null,
+    photos: ownPhotos.length > 0 ? ownPhotos : [...TRADE_PHOTOS[family].hero],
+    detailPhotos: [...TRADE_PHOTOS[family].detail],
     problemLine: brief.current_site_problem,
   }
 }

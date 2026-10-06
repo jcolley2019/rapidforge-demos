@@ -9,7 +9,7 @@ export default function DhReviews() {
       <div className="dh-wrap">
         <Reveal>
           <p className="dh-label">Reviews</p>
-          <h2 className="dh-display dh-h2">From the people we work for</h2>
+          <h2 className="dh-display dh-h2">What Customers Say</h2>
         </Reveal>
         <div className="dh-panels">
           {site.reviews.map((review, i) => (

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { DesignBriefSchema } from './design-brief'
 import { cityFromAddress, shortNameOf, toSiteContent, verticalLabelOf } from './site-content'
+import { TRADE_PHOTOS } from './trade-photos'
 import acme from './fixtures/acme-plumbing.json'
 import sparse from './fixtures/sparse-electric.json'
 
@@ -50,10 +51,27 @@ describe('toSiteContent', () => {
     expect(site.city).toBeNull()
   })
 
-  it('carries photo_urls through as photos', () => {
-    expect(toSiteContent(acmeBrief).photos).toEqual([])
+  it('carries photo_urls through as photos, falling back to the trade heroes', () => {
+    expect(toSiteContent(acmeBrief).photos).toEqual(TRADE_PHOTOS.plumbing.hero)
+    expect(toSiteContent(sparseBrief).photos).toEqual(TRADE_PHOTOS.electrical.hero)
     const withPhotos = toSiteContent({ ...acmeBrief, photo_urls: ['https://img.example/a.jpg', ' '] })
     expect(withPhotos.photos).toEqual(['https://img.example/a.jpg'])
+    expect(withPhotos.detailPhotos).toEqual(TRADE_PHOTOS.plumbing.detail)
+  })
+
+  it('builds trust chips without inventing a year or license number', () => {
+    const acmeSite = toSiteContent(acmeBrief)
+    expect(acmeSite.trust).toEqual(['Licensed & insured', 'Same-day service', 'Upfront pricing', 'Serving Nampa'])
+    for (const chip of acmeSite.trust) expect(chip).not.toMatch(/\d/)
+    const sparseSite = toSiteContent(sparseBrief)
+    expect(sparseSite.trust).toEqual(['Licensed & insured', 'Same-day service', 'Upfront pricing'])
+  })
+
+  it('offers click-to-call as the secondary CTA only when there is a phone', () => {
+    expect(toSiteContent(acmeBrief).ctaSecondary).toEqual({ label: 'Call (208) 555-0142', href: 'tel:2085550142' })
+    expect(toSiteContent(sparseBrief).ctaSecondary).toBeNull()
+    expect(toSiteContent(acmeBrief).ctaHeadline).toBe('Need a plumber today?')
+    expect(toSiteContent(sparseBrief).ctaHeadline).toBe('Need an electrician today?')
   })
 
   it('is deterministic: the same brief twice gives the same headline and subhead', () => {

@@ -10,7 +10,7 @@ export default function IsReviews() {
         <Reveal>
           <p className="is-mono">Reviews</p>
           <h2 className="is-display is-h2">
-            Straight from the customer<span className="is-mark">.</span>
+            What Customers Say<span className="is-mark">.</span>
           </h2>
         </Reveal>
         <div className="is-quotes">
@@ -18,7 +18,7 @@ export default function IsReviews() {
             <Reveal key={i} delay={(i % 3) * 70}>
               <figure className="is-quote">
                 <Stars rating={review.rating} className="is-stars" />
-                <blockquote className="is-display is-quote-text">&ldquo;{review.text}&rdquo;</blockquote>
+                <blockquote className="is-quote-text">&ldquo;{review.text}&rdquo;</blockquote>
                 {review.author && <figcaption className="is-mono mt-5">{review.author}</figcaption>}
               </figure>
             </Reveal>

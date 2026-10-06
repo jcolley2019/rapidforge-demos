@@ -3,6 +3,8 @@ import '@fontsource-variable/inter'
 import './heritage.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
+import TrustStrip from '../../components/TrustStrip'
+import { siteContent as site } from '../../brief/current'
 import { usePageTitle } from '../usePageTitle'
 import PpNav from './PpNav'
 import PpHero from './PpHero'
@@ -12,7 +14,7 @@ import PpHours from './PpHours'
 import PpQuoteCta from './PpQuoteCta'
 import PpFooter from './PpFooter'
 
-/** Paper Press — preset `paper-press` (print-tech paper). */
+/** Paper Press: preset `paper-press` (warm paper, serif, one ember accent). */
 export default function HeritagePage() {
   usePageTitle('heritage')
   return (
@@ -22,6 +24,9 @@ export default function HeritagePage() {
       <PpNav />
       <main>
         <PpHero />
+        <div className="pp-wrap">
+          <TrustStrip site={site} />
+        </div>
         <PpServices />
         <PpReviews />
         <PpHours />

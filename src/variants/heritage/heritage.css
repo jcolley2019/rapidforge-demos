@@ -1,7 +1,7 @@
-/* Paper Press (preset: paper-press) — print-tech paper.
-   Warm paper ground, halftone hero, registration marks, mono data
-   callouts, dashed grid rules, a single ember accent word.
-   Scoped to .heritage so other variants are untouched. */
+/* Paper Press (preset: paper-press).
+   Warm paper ground, a real photograph in the hero under a light print
+   screen, registration marks, mono data callouts, dashed grid rules and
+   a single ember accent. Scoped to .heritage so other variants are untouched. */
 
 .heritage {
   --pp-bg: #f3eadb;
@@ -47,12 +47,7 @@
   font-variation-settings: 'SOFT' 40, 'WONK' 0;
   font-weight: 500;
   letter-spacing: -0.015em;
-  line-height: 1.02;
-}
-.pp-display em {
-  font-style: italic;
-  color: var(--pp-accent);
-  font-variation-settings: 'SOFT' 100, 'WONK' 1;
+  line-height: 1.04;
 }
 .pp-mono {
   font-family: var(--pp-mono);
@@ -66,7 +61,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Paper grain — fixed, non-interactive, barely there */
+/* Paper grain: fixed, non-interactive, barely there */
 .pp-grain {
   position: fixed;
   inset: 0;
@@ -87,14 +82,14 @@
   }
 }
 
-/* Dashed grid rules — the print layout's own guides */
+/* Dashed grid rules: the print layout's own guides */
 .pp-dash {
   border: 0;
   height: 0;
   border-top: 1px dashed var(--pp-rule-strong);
 }
 
-/* Registration marks — placed inside any relative container */
+/* Registration marks: placed inside any relative container */
 .pp-reg {
   position: absolute;
   width: 14px;
@@ -138,7 +133,7 @@
   right: 0.75rem;
 }
 
-/* Pills — the two allowed rounded things: nav and the black CTA. */
+/* Pills: the two allowed rounded things, nav and the black CTA. */
 .pp-btn {
   display: inline-flex;
   align-items: center;
@@ -169,7 +164,7 @@
   border-color: var(--pp-accent);
 }
 .pp-btn-ghost {
-  background: rgba(251, 246, 236, 0.6);
+  background: transparent;
   color: var(--pp-text);
   border-color: var(--pp-rule-strong);
 }
@@ -186,6 +181,15 @@
 .pp-btn-paper:focus-visible {
   background: var(--pp-accent2);
   border-color: var(--pp-accent2);
+}
+.pp-btn-plate {
+  background: transparent;
+  color: var(--pp-surface);
+  border-color: rgba(251, 246, 236, 0.5);
+}
+.pp-btn-plate:hover,
+.pp-btn-plate:focus-visible {
+  border-color: var(--pp-surface);
 }
 
 /* Floating pill nav */
@@ -209,7 +213,7 @@
   width: min(100%, 64rem);
   padding: 0.5rem 0.5rem 0.5rem 1.1rem;
   border-radius: 999px;
-  background: rgba(251, 246, 236, 0.86);
+  background: rgba(251, 246, 236, 0.9);
   border: 1px solid var(--pp-rule);
   backdrop-filter: blur(10px);
   box-shadow: 0 12px 30px -20px rgba(30, 26, 20, 0.5);
@@ -239,15 +243,15 @@
   white-space: nowrap;
 }
 
-/* Hero — a full-bleed halftone scene, headline set in the cream sky */
+/* Hero: a full-bleed photograph, the copy on a paper panel at the foot */
 .pp-hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 86svh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding-top: 6.5rem;
-  padding-bottom: 3rem;
+  justify-content: flex-end;
+  padding-top: 7rem;
+  padding-bottom: 2.5rem;
   overflow: clip;
   isolation: isolate;
 }
@@ -255,98 +259,110 @@
   position: absolute;
   inset: 0;
   z-index: -1;
+  background: var(--pp-text);
 }
-.pp-hero-media img {
+.pp-hero-media > * {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+}
+.pp-hero-img {
   object-fit: cover;
-  /* Processed, never raw: the photo goes through the paper. */
-  filter: sepia(0.35) contrast(1.05) saturate(0.8);
+  /* Warmed toward the paper, still a photograph. */
+  filter: sepia(0.22) contrast(1.04) saturate(0.9);
 }
-.pp-hero-media::after {
-  /* Cream sky held clear for the headline; halftone grows toward ground. */
-  content: '';
-  position: absolute;
-  inset: 0;
+.pp-hero-screen {
+  /* A light print screen and a cream wash toward the panel; never over 0.55. */
   background:
-    linear-gradient(
-      to bottom,
-      var(--pp-bg) 0%,
-      rgba(243, 234, 219, 0.92) 36%,
-      rgba(243, 234, 219, 0.2) 70%,
-      rgba(243, 234, 219, 0) 100%
-    ),
-    radial-gradient(circle, rgba(30, 26, 20, 0.55) 0.7px, transparent 1.1px) 0 0 / 5px 5px;
-  mix-blend-mode: multiply;
-}
-/* The placeholder scene: cream sky, one ember sun, warm halftoned ground. */
-.pp-halftone {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(
-      clamp(6rem, 22vw, 15rem) clamp(3.5rem, 12vw, 8.5rem) at 76% 66%,
-      var(--pp-accent) 0 58%,
-      transparent 60%
-    ),
-    linear-gradient(
-      to bottom,
-      var(--pp-bg) 0%,
-      var(--pp-bg) 40%,
-      #e3cfb0 58%,
-      var(--pp-accent2) 72%,
-      #8d4a2d 86%,
-      var(--pp-text) 100%
-    );
-}
-.pp-halftone::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle, rgba(30, 26, 20, 0.9) 0.8px, transparent 1.2px) 0 0 / 6px 6px,
-    radial-gradient(circle, rgba(30, 26, 20, 0.6) 1.1px, transparent 1.6px) 3px 3px / 6px 6px;
-  mask-image: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.4) 55%, #000 80%);
-  mix-blend-mode: multiply;
-  opacity: 0.8;
+    linear-gradient(to top, rgba(243, 234, 219, 0.55) 0%, rgba(243, 234, 219, 0) 55%),
+    radial-gradient(circle, rgba(30, 26, 20, 0.5) 0.6px, transparent 1px) 0 0 / 5px 5px;
+  opacity: 0.5;
+  pointer-events: none;
 }
 .pp-hero-inner {
   position: relative;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+}
+.pp-hero-panel {
+  position: relative;
+  max-width: 40rem;
+  padding: 2rem 1.5rem 1.75rem;
+  background: var(--pp-surface);
+  border: 1px solid var(--pp-rule);
+  box-shadow: 0 30px 60px -40px rgba(30, 26, 20, 0.7);
+}
+@media (min-width: 640px) {
+  .pp-hero-panel {
+    padding: 2.5rem 2.25rem 2.25rem;
+  }
 }
 .pp-hero-h1 {
-  margin-top: 1.25rem;
-  font-size: clamp(2.5rem, 1.4rem + 5.2vw, 5.6rem);
-  max-width: 14ch;
+  margin-top: 0.9rem;
+  font-size: clamp(2.2rem, 1.3rem + 3.4vw, 4rem);
 }
 .pp-hero-sub {
-  margin-top: 1.25rem;
+  margin-top: 1rem;
   max-width: 34rem;
   color: var(--pp-muted);
-  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
 }
 .pp-hero-actions {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  justify-content: center;
 }
-.pp-hero-callouts {
-  margin-top: auto;
-  padding-top: 3rem;
+
+/* Trust strip: a dashed register line under the hero */
+.heritage .ts {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 2rem;
-  justify-content: space-between;
-  color: var(--pp-surface);
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  padding-block: 1rem;
+  border-bottom: 1px dashed var(--pp-rule-strong);
 }
-.pp-hero-callouts .pp-mono {
-  color: inherit;
-  opacity: 0.85;
+.heritage .ts-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.heritage .ts-chip {
+  font-family: var(--pp-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border: 1px dashed var(--pp-rule-strong);
+  color: var(--pp-text);
+}
+.heritage .ts-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--pp-muted);
+}
+.heritage .ts-stars {
+  letter-spacing: 0.15em;
+  color: var(--pp-accent);
+}
+.heritage .ts-call {
+  margin-left: auto;
+  font-weight: 500;
+  color: var(--pp-text);
+  text-decoration: underline;
+  text-decoration-color: var(--pp-accent);
+  text-underline-offset: 4px;
+}
+.heritage .ts-call:hover,
+.heritage .ts-call:focus-visible {
+  color: var(--pp-accent);
 }
 
 /* Sections */
@@ -361,45 +377,58 @@
   font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
 }
 
-/* Services — a numbered print index, not an icon grid */
-.pp-index {
+/* Services: photo tiles on the paper, square corners */
+.pp-tiles {
   margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
   display: grid;
-  gap: 0 3rem;
+  gap: 1.25rem;
 }
-@media (min-width: 768px) {
-  .pp-index {
-    grid-template-columns: 1fr 1fr;
+@media (min-width: 640px) {
+  .pp-tiles {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-.pp-row {
-  display: grid;
-  grid-template-columns: 3.25rem 1fr;
-  gap: 1rem;
-  padding-block: 1.25rem;
-  border-top: 1px dashed var(--pp-rule-strong);
-  transition: background-color 0.4s var(--pp-ease);
+@media (min-width: 1024px) {
+  .pp-tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-.pp-row:hover {
+.pp-tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: var(--pp-surface);
+  border: 1px solid var(--pp-rule);
+  transition: border-color 0.4s var(--pp-ease);
 }
-.pp-row-num {
-  font-family: var(--pp-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: var(--pp-accent);
-  padding-top: 0.45rem;
+.pp-tile:hover {
+  border-color: var(--pp-accent);
 }
-.pp-row-title {
-  font-size: 1.375rem;
+.pp-tile-media {
+  border-bottom: 1px solid var(--pp-rule);
+  background: var(--pp-bg);
 }
-.pp-row-blurb {
+.pp-tile-media > * {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: sepia(0.18) saturate(0.9);
+}
+.pp-tile-body {
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+.pp-tile-title {
+  font-size: 1.3125rem;
+}
+.pp-tile-blurb {
   margin-top: 0.4rem;
   color: var(--pp-muted);
   font-size: 0.9375rem;
 }
 
-/* Reviews — archival cards, square corners */
+/* Reviews: archival cards, square corners */
 .pp-cards {
   margin-top: 2.5rem;
   display: grid;
@@ -425,9 +454,8 @@
   border: 1px solid var(--pp-rule);
 }
 .pp-quote {
-  font-size: 1.25rem;
-  font-style: italic;
-  line-height: 1.35;
+  font-size: 1.0625rem;
+  line-height: 1.55;
   flex: 1;
 }
 .pp-stars {
@@ -436,7 +464,7 @@
   color: var(--pp-accent);
 }
 
-/* Hours — a measured table */
+/* Hours: a measured table */
 .pp-table {
   width: 100%;
   border-collapse: collapse;
@@ -478,16 +506,13 @@
   color: var(--pp-accent);
 }
 
-/* Quote CTA — the ink plate */
+/* Quote CTA: the ink plate */
 .pp-plate {
   position: relative;
   background: var(--pp-text);
   color: var(--pp-surface);
 }
 .pp-plate .pp-mono {
-  color: var(--pp-accent2);
-}
-.pp-plate .pp-display em {
   color: var(--pp-accent2);
 }
 .pp-plate-sub {
@@ -497,10 +522,19 @@
   color: var(--pp-surface);
 }
 .pp-plate-phone {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.75rem);
   color: var(--pp-surface);
   text-decoration: underline;
   text-decoration-color: var(--pp-accent2);
-  text-underline-offset: 5px;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
+  transition: color 0.3s var(--pp-ease);
+}
+.pp-plate-phone:hover,
+.pp-plate-phone:focus-visible {
+  color: var(--pp-accent2);
 }
 
 /* Footer */
@@ -526,7 +560,7 @@
   color: var(--pp-accent);
 }
 
-/* Motion — type settles onto the paper like a press impression. */
+/* Motion: type settles onto the paper like a press impression. */
 @media (prefers-reduced-motion: no-preference) {
   .heritage .rv {
     opacity: 0;

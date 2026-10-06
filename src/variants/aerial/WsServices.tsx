@@ -1,5 +1,10 @@
 import { siteContent as site } from '../../brief/current'
+import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
+import { presetForVariant } from '../../presets/presets'
+
+const palette = presetForVariant('aerial').palette
+const photos = site.detailPhotos
 
 export default function WsServices() {
   return (
@@ -7,20 +12,24 @@ export default function WsServices() {
       <div className="ws-wrap">
         <Reveal>
           <p className="ws-eyebrow">Services</p>
-          <h2 className="ws-display ws-h2">
-            What we <span className="ws-warm">do.</span>
-          </h2>
+          <h2 className="ws-display ws-h2">Our Services</h2>
         </Reveal>
-        <div className="ws-chapters">
+        <div className="ws-tiles">
           {site.services.map((service, i) => (
-            <Reveal key={service.title} delay={(i % 2) * 90}>
-              <article className="ws-chapter">
-                <span className="ws-chapter-num" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3 className="ws-chapter-title">{service.title}</h3>
-                  {service.blurb && <p className="ws-chapter-blurb">{service.blurb}</p>}
+            <Reveal key={service.title} delay={(i % 3) * 90}>
+              <article className="ws-tile">
+                <div className="ws-tile-media">
+                  <PlaceholderImage
+                    src={photos[i % photos.length]}
+                    palette={palette}
+                    aspectRatio="4 / 3"
+                    seed={i + 1}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="ws-tile-body">
+                  <h3 className="ws-tile-title">{service.title}</h3>
+                  {service.blurb && <p className="ws-tile-blurb">{service.blurb}</p>}
                 </div>
               </article>
             </Reveal>

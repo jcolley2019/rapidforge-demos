@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { siteContent as site } from '../../brief/current'
 import { navLinks } from '../../brief/site-helpers'
 
-const links = navLinks(site)
+const links = navLinks(site, 'Hours & Location')
 
 export default function DhNav() {
   const [solid, setSolid] = useState(false)

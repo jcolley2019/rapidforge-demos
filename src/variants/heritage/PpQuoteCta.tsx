@@ -11,17 +11,20 @@ export default function PpQuoteCta() {
       <div className="pp-wrap pp-section text-center">
         <Reveal>
           <p className="pp-mono">{site.cta.label}</p>
-          <h2 className="pp-display pp-h2 mx-auto mt-3 max-w-[16ch]">
-            Ready when you <em>are.</em>
-          </h2>
+          <h2 className="pp-display pp-h2 mx-auto mt-3 max-w-[18ch]">{site.ctaHeadline}</h2>
+          {site.phoneHref && (
+            <a href={site.phoneHref} className="pp-display pp-plate-phone pp-num">
+              {site.phone}
+            </a>
+          )}
           <p className="pp-plate-sub mx-auto mt-5 max-w-xl">{site.subhead}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a href={site.cta.href} className="pp-btn pp-btn-paper">
               {site.cta.label}
             </a>
-            {site.phoneHref && (
-              <a href={site.phoneHref} className="pp-plate-phone pp-num text-base">
-                {site.phone}
+            {site.ctaSecondary && (
+              <a href={site.ctaSecondary.href} className="pp-btn pp-btn-plate pp-num">
+                {site.ctaSecondary.label}
               </a>
             )}
           </div>

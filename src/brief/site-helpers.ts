@@ -34,3 +34,22 @@ export function navLinks(site: SiteContent, contactLabel = 'Contact'): NavLink[]
 export function localityLine(site: SiteContent): string {
   return site.city ? `${site.verticalLabel} in ${site.city}` : site.verticalLabel
 }
+
+/**
+ * One-line hours summary for a footer: consecutive days with the same hours
+ * are folded, e.g. "Mon–Fri 7:00 AM – 6:00 PM · Sat 8:00 AM – 2:00 PM · Sun Closed".
+ */
+export function hoursSummary(hours: SiteHoursRow[] | null): string | null {
+  if (!hours || hours.length === 0) return null
+  const short = (day: string) => day.slice(0, 3)
+  const groups: Array<{ from: string; to: string; label: string }> = []
+  for (const row of hours) {
+    const label = hoursLabel(row)
+    const last = groups[groups.length - 1]
+    if (last && last.label === label) last.to = row.day
+    else groups.push({ from: row.day, to: row.day, label })
+  }
+  return groups
+    .map((g) => `${g.from === g.to ? short(g.from) : `${short(g.from)}–${short(g.to)}`} ${g.label}`)
+    .join(' · ')
+}

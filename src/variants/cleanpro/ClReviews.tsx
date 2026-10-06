@@ -9,16 +9,14 @@ export default function ClReviews() {
       <div className="cl-wrap">
         <Reveal>
           <p className="cl-eyebrow">Reviews</p>
-          <h2 className="cl-display cl-h2">
-            In their <em>words</em>
-          </h2>
+          <h2 className="cl-display cl-h2">What Customers Say</h2>
         </Reveal>
         <div className="cl-cards">
           {site.reviews.map((review, i) => (
             <Reveal key={i} delay={(i % 3) * 90}>
               <figure className="cl-card">
                 <Stars rating={review.rating} className="cl-stars" />
-                <blockquote className="cl-display cl-quote">&ldquo;{review.text}&rdquo;</blockquote>
+                <blockquote className="cl-quote">&ldquo;{review.text}&rdquo;</blockquote>
                 {review.author && <figcaption className="cl-mono mt-5">{review.author}</figcaption>}
               </figure>
             </Reveal>

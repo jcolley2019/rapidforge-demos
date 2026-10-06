@@ -1,7 +1,7 @@
-/* Classic Light (preset: classic-light) — classical remix.
-   White ground, serif italic emphasis word, soft sky panel with canvas
-   grain, gold and blue accents, faint orbit lines behind the hero.
-   Scoped to .cleanpro so other variants are untouched. */
+/* Classic Light (preset: classic-light).
+   White ground, Garamond headlines, soft sky panel holding a photograph
+   with a touch of canvas grain, gold and blue accents, faint orbit lines
+   behind the hero. Scoped to .cleanpro so other variants are untouched. */
 
 .cleanpro {
   --cl-bg: #ffffff;
@@ -58,12 +58,7 @@
   font-family: 'EB Garamond Variable', Garamond, 'Times New Roman', serif;
   font-weight: 500;
   letter-spacing: -0.015em;
-  line-height: 1.04;
-}
-.cl-display em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--cl-accent2);
+  line-height: 1.06;
 }
 .cl-eyebrow {
   font-size: 0.75rem;
@@ -84,7 +79,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Buttons — one blue pill, the rest quiet */
+/* Buttons: one blue pill, the rest quiet */
 .cl-btn {
   display: inline-flex;
   align-items: center;
@@ -134,6 +129,15 @@
 .cl-btn-white:focus-visible {
   background: var(--cl-sky);
   border-color: var(--cl-sky);
+}
+.cl-btn-plate {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.cl-btn-plate:hover,
+.cl-btn-plate:focus-visible {
+  border-color: #ffffff;
 }
 
 /* Nav */
@@ -193,7 +197,7 @@
   white-space: nowrap;
 }
 
-/* Hero — text column left, grainy classical panel right, orbit lines behind */
+/* Hero: text column left, photo panel right, orbit lines behind */
 .cl-hero {
   position: relative;
   overflow: clip;
@@ -210,21 +214,21 @@
 .cl-hero-grid {
   display: grid;
   gap: 2.5rem;
-  padding-block: 2.5rem 3.5rem;
+  padding-block: 2.5rem 3rem;
 }
 @media (min-width: 1024px) {
   .cl-hero-grid {
     grid-template-columns: 1.05fr 0.95fr;
     align-items: center;
     gap: 4rem;
-    padding-block: 4rem 5rem;
-    min-height: calc(100svh - 4rem);
+    padding-block: 4rem 4.5rem;
+    min-height: calc(92svh - 4rem);
   }
 }
 .cl-hero-h1 {
   margin-top: 1rem;
-  font-size: clamp(2.6rem, 1.4rem + 5vw, 5.4rem);
-  max-width: 14ch;
+  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 4.9rem);
+  max-width: 15ch;
 }
 .cl-hero-sub {
   margin-top: 1.25rem;
@@ -238,31 +242,19 @@
   flex-wrap: wrap;
   gap: 0.75rem;
 }
-.cl-trust {
-  margin-top: 2.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem 2rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--cl-line);
-}
-.cl-trust-item {
-  display: grid;
-  gap: 0.1rem;
-}
-.cl-trust-value {
-  font-size: 1.375rem;
-}
 
-/* The panel: soft sky, canvas grain, a classical figure in gold tones */
+/* The panel: soft sky edge, canvas grain, the photo */
 .cl-panel {
   position: relative;
   aspect-ratio: 4 / 5;
   max-height: 72svh;
   width: 100%;
   overflow: hidden;
+  border-radius: 4px;
   background: linear-gradient(to bottom, #eef3fa 0%, var(--cl-sky) 55%, #c9d6ea 100%);
-  box-shadow: inset 0 0 0 1px var(--cl-line);
+  box-shadow:
+    inset 0 0 0 1px var(--cl-line),
+    0 30px 60px -40px rgba(28, 34, 48, 0.5);
 }
 @media (min-width: 1024px) {
   .cl-panel {
@@ -270,36 +262,87 @@
     max-height: none;
   }
 }
-.cl-panel img {
+.cl-panel > * {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  /* Processed, never raw: softened toward the painting. */
-  filter: saturate(0.75) contrast(0.95) sepia(0.12);
 }
-.cl-panel-art {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+.cl-panel-img {
+  object-fit: cover;
+  /* Softened a touch toward the sky palette, still a photograph. */
+  filter: saturate(0.9) contrast(0.98);
 }
 .cl-panel::after {
   /* canvas grain */
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.22;
+  opacity: 0.18;
   mix-blend-mode: multiply;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .cl-panel-caption {
   position: absolute;
-  left: 1rem;
-  bottom: 0.9rem;
+  inset: auto auto 0.9rem 1rem;
+  width: auto;
+  height: auto;
   z-index: 1;
+  padding: 0.3rem 0.6rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 2px;
+  color: var(--cl-text);
+}
+
+/* Trust strip: a quiet rule with soft chips */
+.cleanpro .ts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--cl-line);
+  border-bottom: 1px solid var(--cl-line);
+}
+.cleanpro .ts-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cleanpro .ts-chip {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--cl-surface);
+  color: var(--cl-text);
+}
+.cleanpro .ts-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--cl-muted);
+}
+.cleanpro .ts-stars {
+  letter-spacing: 0.15em;
+  color: var(--cl-accent2);
+}
+.cleanpro .ts-call {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--cl-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.cleanpro .ts-call:hover,
+.cleanpro .ts-call:focus-visible {
+  color: #244dba;
 }
 
 /* Sections */
@@ -311,41 +354,61 @@
   font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
 }
 
-/* Services — a two-column serif register, not an icon grid */
-.cl-register {
+/* Services: white photo cards, corners barely eased */
+.cl-tiles {
   margin-top: 2.5rem;
   display: grid;
-  gap: 0 3rem;
+  gap: 1.25rem;
 }
-@media (min-width: 768px) {
-  .cl-register {
-    grid-template-columns: 1fr 1fr;
+@media (min-width: 640px) {
+  .cl-tiles {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-.cl-entry {
-  display: grid;
-  grid-template-columns: 3rem 1fr;
-  gap: 1rem;
-  padding-block: 1.4rem;
-  border-top: 1px solid var(--cl-line-strong);
+@media (min-width: 1024px) {
+  .cl-tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-.cl-entry-num {
-  font-family: 'EB Garamond Variable', Garamond, serif;
-  font-size: 1.5rem;
-  line-height: 1;
-  color: var(--cl-accent2);
-  padding-top: 0.2rem;
+.cl-tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--cl-line);
+  border-radius: 4px;
+  transition:
+    border-color 0.4s var(--cl-ease),
+    box-shadow 0.4s var(--cl-ease);
 }
-.cl-entry-title {
-  font-size: 1.5rem;
+.cl-tile:hover {
+  border-color: var(--cl-accent);
+  box-shadow: 0 24px 40px -32px rgba(43, 91, 215, 0.5);
 }
-.cl-entry-blurb {
+.cl-tile-media {
+  background: var(--cl-sky);
+  border-bottom: 1px solid var(--cl-line);
+}
+.cl-tile-media > * {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.cl-tile-body {
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+.cl-tile-title {
+  font-size: 1.4375rem;
+}
+.cl-tile-blurb {
   margin-top: 0.4rem;
   color: var(--cl-muted);
   font-size: 0.9375rem;
 }
 
-/* Reviews — white cards on the surface tint, corners barely eased */
+/* Reviews: white cards on the surface tint */
 .cl-cards {
   margin-top: 2.5rem;
   display: grid;
@@ -373,9 +436,8 @@
 .cl-quote {
   flex: 1;
   margin-top: 1rem;
-  font-size: 1.3125rem;
-  font-style: italic;
-  line-height: 1.35;
+  font-size: 1.0625rem;
+  line-height: 1.55;
 }
 .cl-stars {
   font-size: 0.8125rem;
@@ -424,7 +486,7 @@
   color: var(--cl-accent);
 }
 
-/* Quote CTA — the deep plate */
+/* Quote CTA: the deep plate */
 .cl-plate {
   position: relative;
   overflow: clip;
@@ -435,17 +497,23 @@
 .cl-plate .cl-eyebrow {
   color: #a9bdf0;
 }
-.cl-plate .cl-display em {
-  color: #d9b981;
-}
 .cl-plate-sub {
   color: rgba(255, 255, 255, 0.72);
 }
 .cl-plate-phone {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.75rem);
   color: #ffffff;
   text-decoration: underline;
   text-decoration-color: #d9b981;
-  text-underline-offset: 5px;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 8px;
+  transition: color 0.3s var(--cl-ease);
+}
+.cl-plate-phone:hover,
+.cl-plate-phone:focus-visible {
+  color: #d9b981;
 }
 .cl-plate .cl-orbits {
   opacity: 0.5;
@@ -473,7 +541,7 @@
   color: var(--cl-accent);
 }
 
-/* Motion — unhurried rise, orbit lines drift */
+/* Motion: unhurried rise, orbit lines drift */
 @media (prefers-reduced-motion: no-preference) {
   .cleanpro .rv {
     opacity: 0;

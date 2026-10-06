@@ -1,10 +1,15 @@
 import type { DesignBrief } from './design-brief'
 
 /**
- * Headline/subhead templates. Each vertical family carries 3–4 templates
- * tagged with the tones they suit; `pickCopy` scores templates against the
- * brief's tone_descriptors and resolves ties with a stable hash, so the
- * same brief always yields the same copy.
+ * Headline/subhead templates in a contractor's voice. Each vertical family
+ * carries four templates tagged with the tones they suit; `pickCopy` scores
+ * them against the brief's tone_descriptors and breaks ties with a stable
+ * hash, so the same brief always yields the same copy.
+ *
+ * House rules: a headline is eight words or fewer, leads with the service or
+ * the promise, and carries no italics and no dashes. A subhead names the
+ * city, a response promise, and one trust fact. Nothing here invents a
+ * year, a license number, or a price.
  */
 
 export type CopyFamily = 'plumbing' | 'hvac' | 'electrical' | 'generic'
@@ -23,78 +28,89 @@ export interface CopyTemplate {
   subhead: (c: CopyContext) => string
 }
 
-const place = (c: CopyContext) => (c.city ? `in ${c.city}` : 'near you')
+/** "Nampa" or "your area". */
 const area = (c: CopyContext) => c.city ?? 'your area'
+/** "across Nampa" or "in your area". */
+const across = (c: CopyContext) => (c.city ? `across ${c.city}` : 'in your area')
+/** "in Nampa" or "near you". */
+const near = (c: CopyContext) => (c.city ? `in ${c.city}` : 'near you')
+const trade = (c: CopyContext) => c.verticalLabel.toLowerCase()
 
 const FAMILIES: Record<CopyFamily, CopyTemplate[]> = {
   plumbing: [
     {
       tones: ['dependable', 'reliable', 'trusted', 'honest', 'local'],
-      headline: (c) => `Plumbing ${area(c)} can count on.`,
+      headline: (c) => (c.city ? `${c.city} plumbers who show up on time.` : 'Plumbers who show up on time.'),
       subhead: (c) =>
-        `${c.shortName} shows up on time, fixes it right, and tells you the price before the work starts.`,
+        `Same-day service ${across(c)}. Licensed, insured, and upfront pricing from ${c.shortName}.`,
     },
     {
       tones: ['fast', 'emergency', 'responsive', 'quick', '24/7'],
-      headline: () => `Leak, clog, or no hot water? We're on our way.`,
-      subhead: (c) =>
-        `Fast, straightforward plumbing repair ${place(c)} — from drains to water heaters.`,
+      headline: () => `Water heater out? We're on the way.`,
+      subhead: (c) => `Fast plumbing repair ${across(c)}, usually the same day. Licensed and insured.`,
     },
     {
       tones: ['straight-talking', 'no-nonsense', 'upfront', 'transparent', 'fair'],
-      headline: () => `Straight answers. Solid plumbing.`,
+      headline: () => `Honest plumbing. Upfront prices. No surprises.`,
       subhead: (c) =>
-        `${c.shortName} handles repairs and installs ${place(c)} with upfront pricing and no upsell.`,
+        `${c.shortName} serves ${area(c)} with same-day appointments and a price you approve before work starts.`,
     },
     {
       tones: ['family', 'friendly', 'neighborly', 'warm', 'caring'],
-      headline: (c) => `Your neighborhood plumber ${place(c)}.`,
+      headline: (c) => `Your local plumber ${near(c)}.`,
       subhead: (c) =>
-        `Friendly, licensed plumbers who treat your home like their own — ${c.shortName}.`,
+        `Friendly, licensed plumbers serving ${area(c)}, with same-day service when you need it.`,
     },
   ],
   hvac: [
     {
       tones: ['dependable', 'reliable', 'trusted', 'local'],
-      headline: (c) => `Comfort ${area(c)} can rely on, every season.`,
+      headline: (c) => `Reliable heating and cooling ${near(c)}.`,
       subhead: (c) =>
-        `${c.shortName} keeps furnaces and air conditioners running right — repair, replacement, and tune-ups.`,
+        `Repairs, replacements, and tune-ups ${across(c)}. Same-day service, licensed and insured.`,
     },
     {
-      tones: ['fast', 'emergency', 'responsive', 'quick'],
-      headline: () => `No heat? No cool? We fix it today.`,
-      subhead: (c) => `Same-day heating and cooling repair ${place(c)}.`,
+      tones: ['fast', 'emergency', 'responsive', 'quick', '24/7'],
+      headline: () => `No heat? No AC? We're on the way.`,
+      subhead: (c) =>
+        `Same-day heating and cooling repair ${across(c)}. Licensed, insured, upfront pricing.`,
     },
     {
       tones: ['efficient', 'modern', 'smart', 'clean', 'professional'],
-      headline: () => `Efficient systems. Lower bills. Steady comfort.`,
+      headline: () => `Efficient systems installed right the first time.`,
       subhead: (c) =>
-        `${c.shortName} installs and services high-efficiency heating and cooling ${place(c)}.`,
+        `${c.shortName} installs and services high-efficiency HVAC ${across(c)}. Upfront quotes and same-day service.`,
+    },
+    {
+      tones: ['straight-talking', 'upfront', 'honest', 'fair', 'family', 'friendly'],
+      headline: () => `Comfort you can count on, every season.`,
+      subhead: (c) =>
+        `Honest HVAC service ${across(c)}. Same-day appointments, licensed technicians, no surprise fees.`,
     },
   ],
   electrical: [
     {
       tones: ['safe', 'licensed', 'dependable', 'reliable', 'trusted', 'careful'],
-      headline: (c) => `Licensed electrical work ${area(c)} trusts.`,
+      headline: (c) => `Safe, licensed electrical work ${near(c)}.`,
       subhead: (c) =>
-        `${c.shortName} handles panels, wiring, and lighting to code — safely and on schedule.`,
+        `Panels, wiring, and lighting done to code ${across(c)}. Same-day service, licensed and insured.`,
     },
     {
-      tones: ['fast', 'emergency', 'responsive', 'quick'],
-      headline: () => `Power problems don't wait. Neither do we.`,
-      subhead: (c) => `Prompt electrical repair and troubleshooting ${place(c)}.`,
+      tones: ['fast', 'emergency', 'responsive', 'quick', '24/7'],
+      headline: () => `Lost power? We're on the way.`,
+      subhead: (c) => `Same-day electrical repair ${across(c)}. Licensed, insured, upfront pricing.`,
     },
     {
       tones: ['modern', 'smart', 'clean', 'precise', 'professional'],
-      headline: () => `Clean, precise electrical for modern homes.`,
+      headline: () => `Clean, code-compliant electrical work.`,
       subhead: (c) =>
-        `From EV chargers to full rewires, ${c.shortName} does it neatly and to code ${place(c)}.`,
+        `From EV chargers to full rewires, ${c.shortName} serves ${area(c)} with same-day scheduling and licensed crews.`,
     },
     {
-      tones: ['straight-talking', 'upfront', 'honest', 'fair', 'local', 'small'],
-      headline: (c) => `Your local electrician ${place(c)}.`,
+      tones: ['straight-talking', 'upfront', 'honest', 'fair', 'local', 'small', 'family', 'friendly'],
+      headline: (c) => `Your local electrician ${near(c)}.`,
       subhead: (c) =>
-        `Honest quotes and tidy work from ${c.shortName} — no job too small.`,
+        `Honest quotes and tidy work ${across(c)}, with same-day scheduling. Licensed, insured, and no job too small.`,
     },
   ],
   generic: [
@@ -102,21 +118,35 @@ const FAMILIES: Record<CopyFamily, CopyTemplate[]> = {
       tones: ['dependable', 'reliable', 'trusted', 'local', 'honest'],
       headline: (c) => `${c.verticalLabel} ${area(c)} can count on.`,
       subhead: (c) =>
-        `${c.shortName} delivers reliable ${c.verticalLabel.toLowerCase()} with clear pricing and real follow-through.`,
+        `${c.shortName} serves ${area(c)} with same-day scheduling, licensed and insured crews, and upfront pricing.`,
     },
     {
-      tones: ['fast', 'responsive', 'quick', 'emergency'],
-      headline: () => `Need it done? Call us.`,
+      tones: ['fast', 'responsive', 'quick', 'emergency', '24/7'],
+      headline: () => `Need it fixed today? Call us.`,
       subhead: (c) =>
-        `Fast, professional ${c.verticalLabel.toLowerCase()} ${place(c)} from ${c.shortName}.`,
+        `Fast, professional ${trade(c)} ${across(c)}, usually the same day. Licensed, insured, upfront pricing.`,
     },
     {
       tones: ['professional', 'modern', 'clean', 'quality', 'premium', 'expert'],
-      headline: (c) => `${c.verticalLabel}, done properly.`,
+      headline: (c) => `${c.verticalLabel} done right, on time.`,
       subhead: (c) =>
-        `${c.shortName} brings experience and care to every job ${place(c)}.`,
+        `${c.shortName} brings licensed, experienced crews to every job ${across(c)}, with same-day appointments available.`,
+    },
+    {
+      tones: ['family', 'friendly', 'neighborly', 'warm', 'caring', 'upfront', 'fair'],
+      headline: (c) => `Your neighborhood ${trade(c)} pros ${near(c)}.`,
+      subhead: (c) =>
+        `Friendly, licensed service ${across(c)}. Same-day appointments and a price you approve first.`,
     },
   ],
+}
+
+/** The action headline on the quote band, e.g. "Need a plumber today?". */
+const CTA_HEADLINES: Record<CopyFamily, (c: CopyContext) => string> = {
+  plumbing: () => 'Need a plumber today?',
+  hvac: () => 'Need heating or cooling help today?',
+  electrical: () => 'Need an electrician today?',
+  generic: (c) => `Need ${trade(c)} help today?`,
 }
 
 const FAMILY_BY_VERTICAL: Record<string, CopyFamily> = {
@@ -135,7 +165,16 @@ export function copyFamilyFor(vertical: string): CopyFamily {
   return FAMILY_BY_VERTICAL[vertical] ?? 'generic'
 }
 
-/** FNV-1a 32-bit — small, stable, dependency-free. */
+/** Every template for a family, exposed so tests can check the house rules. */
+export function templatesFor(family: CopyFamily): CopyTemplate[] {
+  return FAMILIES[family]
+}
+
+export function ctaHeadlineFor(family: CopyFamily, ctx: CopyContext): string {
+  return CTA_HEADLINES[family](ctx)
+}
+
+/** FNV-1a 32-bit: small, stable, dependency-free. */
 export function stableHash(input: string): number {
   let h = 0x811c9dc5
   for (let i = 0; i < input.length; i++) {

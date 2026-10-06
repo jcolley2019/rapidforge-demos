@@ -1,7 +1,8 @@
-/* Ink Split (preset: ink-split) — dither mono.
-   Stark black and white, 1-bit dither, film grain, serif display, a
-   split-screen hero, a giant cropped wordmark, one red mark.
-   Scoped to .texas so other variants are untouched. */
+/* Ink Split (preset: ink-split).
+   Stark black and white, film grain, Playfair display, a split-screen
+   hero with a black-and-white photograph under a light dot screen, a
+   giant cropped wordmark, one red mark. Scoped to .texas so other
+   variants are untouched. */
 
 .texas {
   --is-bg: #ffffff;
@@ -40,7 +41,7 @@
   text-wrap: balance;
 }
 
-/* Film grain — fixed over everything */
+/* Film grain: fixed over everything */
 .is-grain {
   position: fixed;
   inset: 0;
@@ -67,7 +68,7 @@
   font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 0.96;
+  line-height: 1;
 }
 .is-display .is-mark {
   color: var(--is-accent2);
@@ -84,7 +85,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Blocks — no radius anywhere */
+/* Blocks: no radius anywhere */
 .is-btn {
   display: inline-flex;
   align-items: center;
@@ -119,19 +120,8 @@
   background: var(--is-text);
   color: var(--is-bg);
 }
-.is-btn-white {
-  background: var(--is-bg);
-  color: var(--is-text);
-  border-color: var(--is-bg);
-}
-.is-btn-white:hover,
-.is-btn-white:focus-visible {
-  background: var(--is-accent2);
-  border-color: var(--is-accent2);
-  color: var(--is-bg);
-}
 
-/* Nav — a hard rule under a serif wordmark */
+/* Nav: a hard rule under a serif wordmark */
 .is-nav {
   position: sticky;
   top: 0;
@@ -189,7 +179,7 @@
   white-space: nowrap;
 }
 
-/* Hero — two fields split down the middle */
+/* Hero: two fields split down the middle */
 .is-hero {
   position: relative;
   display: grid;
@@ -198,7 +188,7 @@
 @media (min-width: 1024px) {
   .is-hero {
     grid-template-columns: 1fr 1fr;
-    min-height: calc(100svh - 3.6rem);
+    min-height: calc(92svh - 3.6rem);
   }
 }
 .is-hero-copy {
@@ -220,8 +210,8 @@
 }
 .is-hero-h1 {
   margin-top: 1rem;
-  font-size: clamp(2.75rem, 1.4rem + 6.2vw, 6.5rem);
-  max-width: 12ch;
+  font-size: clamp(2.6rem, 1.4rem + 5.2vw, 5.8rem);
+  max-width: 13ch;
 }
 .is-hero-sub {
   margin-top: 1.5rem;
@@ -246,57 +236,37 @@
     min-height: 0;
   }
 }
-.is-hero-art img {
+.is-hero-art > * {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
+}
+.is-hero-img {
   object-fit: cover;
-  /* Processed, never raw: pushed to 1-bit. */
-  filter: grayscale(1) contrast(1.9) brightness(1.05);
+  /* Black and white with a firm contrast, still a photograph. */
+  filter: grayscale(1) contrast(1.2) brightness(1.02);
 }
-/* 1-bit dither: dot grids of three pitches, each masked to its own band,
-   so density steps across the field like a machine-processed gradient. */
-.is-dither {
-  position: absolute;
-  inset: 0;
+/* A light dot screen over the photo, never past 0.55. */
+.is-screen {
   background:
-    radial-gradient(circle, #fff 1.1px, transparent 1.5px) 0 0 / 4px 4px,
-    radial-gradient(circle, #fff 0.9px, transparent 1.3px) 2px 2px / 4px 4px;
-  mask-image: linear-gradient(165deg, #000 0%, rgba(0, 0, 0, 0.75) 35%, rgba(0, 0, 0, 0.2) 70%, transparent 100%);
-}
-.is-dither-2 {
-  background:
-    radial-gradient(circle, #fff 0.7px, transparent 1.1px) 0 0 / 3px 3px;
-  mask-image: linear-gradient(165deg, transparent 20%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
-}
-.is-dither-3 {
-  background:
-    radial-gradient(circle, #fff 1.6px, transparent 2px) 0 0 / 7px 7px;
-  mask-image: radial-gradient(55% 45% at 68% 38%, #000 0%, transparent 70%);
-}
-.is-dither-sun {
-  position: absolute;
-  left: 58%;
-  top: 30%;
-  width: clamp(8rem, 24vw, 18rem);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff 0.9px, transparent 1.3px) 0 0 / 3px 3px, #fff;
-  mix-blend-mode: difference;
-}
-.is-hero-art-photo .is-dither {
+    radial-gradient(circle, #fff 0.9px, transparent 1.3px) 0 0 / 4px 4px,
+    radial-gradient(circle, #fff 0.7px, transparent 1.1px) 2px 2px / 4px 4px;
+  mask-image: linear-gradient(165deg, #000 0%, rgba(0, 0, 0, 0.6) 45%, transparent 100%);
   mix-blend-mode: overlay;
-  opacity: 0.6;
+  opacity: 0.4;
+  pointer-events: none;
 }
 .is-hero-tag {
-  position: absolute;
-  left: 1rem;
-  bottom: 0.9rem;
-  color: var(--is-bg);
+  inset: auto auto 0.9rem 1rem;
+  width: auto;
+  height: auto;
+  padding: 0.3rem 0.6rem;
+  background: var(--is-bg);
+  color: var(--is-text);
 }
 
-/* Giant cropped wordmark — runs off the right edge inside a clipped band */
+/* Giant cropped wordmark: runs off the right edge inside a clipped band */
 .is-wordmark-band {
   overflow: hidden;
   border-bottom: 2px solid var(--is-text);
@@ -314,6 +284,58 @@
   color: var(--is-text);
 }
 
+/* Trust strip: a hard black rule with boxed chips */
+.texas .ts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  padding-block: 1rem;
+  border-bottom: 2px solid var(--is-text);
+}
+.texas .ts-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.texas .ts-chip {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  border: 2px solid var(--is-text);
+  color: var(--is-text);
+}
+.texas .ts-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--is-muted);
+}
+.texas .ts-stars {
+  letter-spacing: 0.15em;
+  color: var(--is-accent2);
+}
+.texas .ts-call {
+  margin-left: auto;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.875rem;
+  color: var(--is-text);
+  border-bottom: 2px solid var(--is-accent2);
+}
+.texas .ts-call:hover,
+.texas .ts-call:focus-visible {
+  color: var(--is-accent2);
+}
+
 /* Sections */
 .is-section {
   padding-block: clamp(4rem, 3rem + 5vw, 7rem);
@@ -323,51 +345,65 @@
   font-size: clamp(2.25rem, 1.4rem + 3.2vw, 4rem);
 }
 
-/* Services — a stark ledger, inverted on hover */
-.is-ledger {
+/* Services: hard-edged photo tiles, black and white */
+.is-tiles {
   margin-top: 2.5rem;
-  border-top: 2px solid var(--is-text);
-}
-.is-ledger-row {
   display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: 1rem 1.5rem;
-  padding: 1.5rem 0.75rem;
-  border-bottom: 1px solid var(--is-text);
+  gap: 2px;
+  background: var(--is-text);
+  border: 2px solid var(--is-text);
+}
+@media (min-width: 640px) {
+  .is-tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .is-tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.is-tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--is-bg);
   transition:
     background-color 0.3s var(--is-ease),
     color 0.3s var(--is-ease);
 }
-@media (min-width: 768px) {
-  .is-ledger-row {
-    grid-template-columns: 4rem 1.1fr 1fr;
-    align-items: baseline;
-  }
-}
-.is-ledger-row:hover {
+.is-tile:hover {
   background: var(--is-text);
   color: var(--is-bg);
 }
-.is-ledger-row:hover .is-mono,
-.is-ledger-row:hover .is-ledger-blurb {
+.is-tile:hover .is-tile-blurb {
   color: rgba(255, 255, 255, 0.72);
 }
-.is-ledger-title {
-  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+.is-tile-media {
+  background: var(--is-surface);
+  border-bottom: 2px solid var(--is-text);
 }
-.is-ledger-blurb {
-  grid-column: 2;
+.is-tile-media > * {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1);
+}
+.is-tile-body {
+  padding: 1.25rem 1.25rem 1.4rem;
+}
+.is-tile-title {
+  font-size: 1.5rem;
+}
+.is-tile-blurb {
+  margin-top: 0.4rem;
   color: var(--is-muted);
   font-size: 0.9375rem;
   transition: color 0.3s var(--is-ease);
 }
-@media (min-width: 768px) {
-  .is-ledger-blurb {
-    grid-column: auto;
-  }
-}
 
-/* Reviews — white on black */
+/* Reviews: white on black */
 .is-black {
   background: var(--is-text);
   color: var(--is-bg);
@@ -396,10 +432,8 @@
 .is-quote-text {
   flex: 1;
   margin-top: 1rem;
-  font-size: 1.375rem;
-  font-weight: 400;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
+  font-size: 1.0625rem;
+  line-height: 1.55;
 }
 .is-stars {
   font-size: 0.8125rem;
@@ -407,7 +441,7 @@
   color: var(--is-accent2);
 }
 
-/* Hours — on the surface grey */
+/* Hours: on the surface grey */
 .is-surface {
   background: var(--is-surface);
   border-bottom: 2px solid var(--is-text);
@@ -447,19 +481,20 @@
   color: var(--is-accent2);
 }
 
-/* Quote CTA — white, monumental */
+/* Quote CTA: white, monumental */
 .is-cta-h2 {
-  font-size: clamp(3rem, 1.6rem + 7vw, 8rem);
+  font-size: clamp(2.75rem, 1.6rem + 6vw, 7rem);
 }
 .is-cta-phone {
-  font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem);
+  display: inline-block;
+  font-size: clamp(2rem, 1.3rem + 3.2vw, 4rem);
   color: var(--is-text);
-  border-bottom: 3px solid var(--is-text);
-  transition: border-color 0.3s var(--is-ease);
+  border-bottom: 4px solid var(--is-accent2);
+  transition: color 0.3s var(--is-ease);
 }
 .is-cta-phone:hover,
 .is-cta-phone:focus-visible {
-  border-color: var(--is-accent2);
+  color: var(--is-accent2);
 }
 
 /* Footer */
@@ -488,7 +523,7 @@
   color: var(--is-accent2);
 }
 
-/* Motion — hard, short: content snaps in like a frame advance. */
+/* Motion: hard, short, content snaps in like a frame advance. */
 @media (prefers-reduced-motion: no-preference) {
   .texas .rv {
     opacity: 0;

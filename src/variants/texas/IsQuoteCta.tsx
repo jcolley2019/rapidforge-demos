@@ -7,22 +7,25 @@ export default function IsQuoteCta() {
       <div className="is-wrap">
         <Reveal>
           <p className="is-mono">{site.cta.label}</p>
-          <h2 className="is-display is-cta-h2 mt-3">
-            Ready when
-            <br />
-            you are<span className="is-mark">.</span>
-          </h2>
+          <h2 className="is-display is-cta-h2 mt-3">{site.ctaHeadline}</h2>
         </Reveal>
         <Reveal delay={80}>
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-md text-(--is-muted)">{site.subhead}</p>
-            <div className="flex flex-col items-start gap-5">
-              <a href={site.cta.href} className="is-btn is-btn-black">
-                {site.cta.label}
-              </a>
+            <div>
               {site.phoneHref && (
                 <a href={site.phoneHref} className="is-display is-cta-phone is-num">
                   {site.phone}
+                </a>
+              )}
+              <p className="mt-5 max-w-md text-(--is-muted)">{site.subhead}</p>
+            </div>
+            <div className="flex flex-wrap items-start gap-3">
+              <a href={site.cta.href} className="is-btn is-btn-black">
+                {site.cta.label}
+              </a>
+              {site.ctaSecondary && (
+                <a href={site.ctaSecondary.href} className="is-btn is-btn-outline is-num">
+                  {site.ctaSecondary.label}
                 </a>
               )}
             </div>

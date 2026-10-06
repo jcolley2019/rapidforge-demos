@@ -1,6 +1,6 @@
-/* Dusk Horizon (preset: dusk-horizon) — vast quiet cinematic.
-   Deep teal dusk, mist, extreme negative space, tiny centered sans
-   labels, a two-tone headline and one ember call to action.
+/* Dusk Horizon (preset: dusk-horizon).
+   Deep teal ground, a full-bleed photograph graded toward dusk, quiet
+   centered labels, generous negative space and one ember call to action.
    Scoped to .geospatial so other variants are untouched. */
 
 .geospatial {
@@ -71,22 +71,15 @@
   color: var(--dh-muted);
 }
 .dh-display {
-  font-weight: 300;
-  letter-spacing: -0.035em;
-  line-height: 0.98;
-}
-.dh-display strong {
-  font-weight: 500;
-  color: var(--dh-text);
-}
-.dh-display .dh-tone {
-  color: var(--dh-muted);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
 }
 .dh-num {
   font-variant-numeric: tabular-nums;
 }
 
-/* Buttons — quiet, square, one of them ember */
+/* Buttons: quiet, square, one of them ember */
 .dh-btn {
   display: inline-flex;
   align-items: center;
@@ -128,7 +121,7 @@
   border-color: var(--dh-text);
 }
 
-/* Nav — transparent over the dusk, a soft bar once scrolled */
+/* Nav: transparent over the photo, a soft bar once scrolled */
 .dh-nav {
   position: sticky;
   top: 0;
@@ -192,7 +185,7 @@
   white-space: nowrap;
 }
 
-/* Hero — the landscape takes the viewport; type whispers in the sky */
+/* Hero: the photograph takes the viewport; type sits in the darkened top-left */
 .dh-hero {
   position: relative;
   min-height: 100svh;
@@ -206,53 +199,25 @@
   position: absolute;
   inset: 0;
   z-index: -1;
+  background: var(--dh-surface);
 }
-.dh-hero-media img {
+.dh-hero-media > * {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+}
+.dh-hero-img {
   object-fit: cover;
-  /* Processed, never raw: desaturated and graded to the dusk. */
-  filter: saturate(0.35) contrast(0.95) brightness(0.85);
+  /* Graded toward the dusk, still a photograph. */
+  filter: saturate(0.65) contrast(0.98) brightness(0.82);
 }
-.dh-hero-media::after {
-  /* Teal grade + darkened sky at the top-left for the headline */
-  content: '';
-  position: absolute;
-  inset: 0;
+.dh-hero-grade {
+  /* Teal grade: darkest behind the headline, never over 0.55. */
   background:
-    linear-gradient(to bottom, rgba(15, 42, 44, 0.9) 0%, rgba(15, 42, 44, 0.45) 45%, rgba(15, 42, 44, 0.1) 75%, var(--dh-bg) 100%),
-    linear-gradient(to right, rgba(15, 42, 44, 0.55), transparent 60%);
-}
-/* Placeholder dusk: dark teal sky, pale fog bank, deep ground. */
-.dh-dusk {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(70% 28% at 50% 66%, rgba(157, 181, 178, 0.55), transparent 70%),
-    radial-gradient(45% 20% at 20% 72%, rgba(157, 181, 178, 0.35), transparent 70%),
-    radial-gradient(55% 22% at 80% 70%, rgba(232, 116, 58, 0.18), transparent 70%),
-    linear-gradient(to bottom, #0b1f21 0%, #123234 42%, #2e4a46 62%, #9db5b2 70%, #2e4a46 78%, #0b1f21 100%);
-}
-.dh-dusk::before {
-  /* a far ridge line as one hard horizon */
-  content: '';
-  position: absolute;
-  left: -5%;
-  right: -5%;
-  top: 72%;
-  height: 40%;
-  background: #0d2325;
-  clip-path: polygon(0 18%, 12% 10%, 24% 16%, 38% 6%, 52% 14%, 66% 4%, 80% 12%, 92% 6%, 100% 12%, 100% 100%, 0 100%);
-  opacity: 0.92;
-}
-.dh-dusk::after {
-  /* film grain over the fog */
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.12;
-  mix-blend-mode: soft-light;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    linear-gradient(to bottom, rgba(15, 42, 44, 0.55) 0%, rgba(15, 42, 44, 0.25) 55%, rgba(15, 42, 44, 0.5) 100%),
+    linear-gradient(to right, rgba(15, 42, 44, 0.45), transparent 65%);
+  pointer-events: none;
 }
 .dh-hero-body {
   flex: 1;
@@ -264,14 +229,16 @@
 }
 .dh-hero-h1 {
   margin-top: 1rem;
-  font-size: clamp(2.6rem, 1.2rem + 6.4vw, 6.4rem);
-  max-width: 13ch;
+  font-size: clamp(2.5rem, 1.2rem + 5.4vw, 5.6rem);
+  max-width: 14ch;
+  text-shadow: 0 2px 24px rgba(15, 42, 44, 0.6);
 }
 .dh-hero-sub {
   margin-top: 1.5rem;
   max-width: 30rem;
-  color: var(--dh-muted);
+  color: var(--dh-text);
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  text-shadow: 0 1px 12px rgba(15, 42, 44, 0.7);
 }
 .dh-hero-actions {
   margin-top: 2rem;
@@ -338,7 +305,58 @@
   }
 }
 
-/* Sections — generous breathing room */
+/* Trust strip: a hairline register under the hero */
+.geospatial .ts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.75rem;
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--dh-line);
+}
+.geospatial .ts-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.geospatial .ts-chip {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--dh-line-strong);
+  border-radius: 2px;
+  color: var(--dh-text);
+}
+.geospatial .ts-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--dh-muted);
+}
+.geospatial .ts-stars {
+  letter-spacing: 0.15em;
+  color: var(--dh-accent);
+}
+.geospatial .ts-call {
+  margin-left: auto;
+  font-weight: 500;
+  color: var(--dh-text);
+  border-bottom: 1px solid var(--dh-accent);
+  transition: color 0.3s var(--dh-ease);
+}
+.geospatial .ts-call:hover,
+.geospatial .ts-call:focus-visible {
+  color: var(--dh-accent);
+}
+
+/* Sections: generous breathing room */
 .dh-section {
   padding-block: clamp(4.5rem, 3rem + 7vw, 9rem);
 }
@@ -348,45 +366,59 @@
   font-size: clamp(2rem, 1.3rem + 3vw, 3.75rem);
 }
 
-/* Services — long quiet rows, no icon grid */
-.dh-rows {
+/* Services: photo tiles on surface panels */
+.dh-tiles {
   margin-top: 3.5rem;
-  border-top: 1px solid var(--dh-line);
-}
-.dh-row {
   display: grid;
-  grid-template-columns: 3rem 1fr;
-  gap: 1rem 1.5rem;
-  padding-block: 1.5rem;
-  border-bottom: 1px solid var(--dh-line);
-  transition: background-color 0.4s var(--dh-ease);
+  gap: 1px;
+  background: var(--dh-line);
+  border: 1px solid var(--dh-line);
 }
-@media (min-width: 768px) {
-  .dh-row {
-    grid-template-columns: 4rem 1.1fr 1fr;
-    align-items: baseline;
+@media (min-width: 640px) {
+  .dh-tiles {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-.dh-row:hover {
-  background: rgba(22, 59, 61, 0.5);
+@media (min-width: 1024px) {
+  .dh-tiles {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-.dh-row-title {
-  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 2rem);
-  font-weight: 300;
-  letter-spacing: -0.02em;
+.dh-tile {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--dh-surface);
+  transition: background-color 0.4s var(--dh-ease);
 }
-.dh-row-blurb {
-  grid-column: 2;
+.dh-tile:hover {
+  background: var(--dh-accent2);
+}
+.dh-tile-media {
+  background: var(--dh-bg);
+}
+.dh-tile-media > * {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  filter: saturate(0.75) brightness(0.92);
+}
+.dh-tile-body {
+  padding: 1.5rem 1.5rem 1.6rem;
+}
+.dh-tile-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.dh-tile-blurb {
+  margin-top: 0.4rem;
   color: var(--dh-muted);
   font-size: 0.9375rem;
 }
-@media (min-width: 768px) {
-  .dh-row-blurb {
-    grid-column: auto;
-  }
-}
 
-/* Reviews — single pale panels */
+/* Reviews: single pale panels */
 .dh-panels {
   margin-top: 3.5rem;
   display: grid;
@@ -447,7 +479,7 @@
   display: inline-block;
   margin-top: 0.5rem;
   font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--dh-text);
   border-bottom: 1px solid var(--dh-accent);
@@ -458,7 +490,7 @@
   color: var(--dh-accent);
 }
 
-/* Quote CTA — the surface band */
+/* Quote CTA: the surface band */
 .dh-quote-band {
   background: var(--dh-surface);
   border-top: 1px solid var(--dh-line);
@@ -466,8 +498,13 @@
   text-align: center;
 }
 .dh-quote-phone {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.75rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
   color: var(--dh-text);
-  border-bottom: 1px solid var(--dh-muted);
+  border-bottom: 2px solid var(--dh-accent);
   transition: color 0.3s var(--dh-ease);
 }
 .dh-quote-phone:hover,
@@ -497,7 +534,7 @@
   color: var(--dh-text);
 }
 
-/* Motion — slow, heavy fade-up, like fog lifting */
+/* Motion: slow, heavy fade-up, like fog lifting */
 @media (prefers-reduced-motion: no-preference) {
   .geospatial .rv {
     opacity: 0;

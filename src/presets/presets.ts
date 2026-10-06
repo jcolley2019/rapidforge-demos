@@ -1,10 +1,10 @@
 import presetsJson from './presets.json'
 
 /**
- * Presets — five trade-ready design directions lifted from the taste-vault.
- * `presets.json` is the data (brief text verbatim from the vault's
- * briefFor()); this module types it and maps each visual variant to the
- * preset it renders.
+ * Presets: five trade-ready design directions lifted from the taste-vault.
+ * `presets.json` is the data (a short brief in plain language, with the
+ * vault's palette, type pairing and never-list kept intact); this module
+ * types it and maps each visual variant to the preset it renders.
  */
 
 export interface PresetPalette {
@@ -58,7 +58,7 @@ export function presetForVariant(slug: string): Preset {
 }
 
 /** The text after "Aesthetic:" on the brief's first line, e.g.
- *  "print-tech paper (warm editorial x print DNA)". */
+ *  "warm paper (cream ground, serif headlines, one orange accent)". */
 export function aestheticOf(preset: Preset): string {
   const line = preset.brief.split('\n').find((l) => l.startsWith('Aesthetic:'))
   return line ? line.slice('Aesthetic:'.length).trim() : ''
