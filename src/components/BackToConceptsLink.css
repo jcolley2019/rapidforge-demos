@@ -5,7 +5,7 @@
 .bc-back {
   position: fixed;
   bottom: 1rem;
-  left: 1rem;
+  right: 1rem;
   z-index: 60;
   display: inline-flex;
   align-items: center;
@@ -20,7 +20,7 @@
   background: var(--bc-bg, #16191f);
   border: 1px solid var(--bc-border, rgba(255, 255, 255, 0.16));
   border-radius: var(--bc-radius, 999px);
-  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--bc-shadow, 0 10px 24px -14px rgba(0, 0, 0, 0.8));
   transition:
     background-color 0.4s cubic-bezier(0.32, 0.72, 0, 1),
     border-color 0.4s cubic-bezier(0.32, 0.72, 0, 1),
@@ -47,44 +47,47 @@
 /* Per-variant chip, from each preset's palette, so it reads as part of
    the page it is sitting on. */
 .heritage {
-  --bc-bg: #fbf6ec;
-  --bc-fg: #6e6253;
-  --bc-fg-strong: #1e1a14;
-  --bc-border: rgba(193, 95, 60, 0.5);
-  --bc-accent: #c15f3c;
-  --bc-radius: 999px;
+  --bc-bg: #ffffff;
+  --bc-fg: #1e3a8a;
+  --bc-fg-strong: #1e40af;
+  --bc-border: #bfdbfe;
+  --bc-accent: #1e40af;
+  --bc-radius: 4px;
+  --bc-shadow: none;
 }
 .geospatial {
-  --bc-bg: rgba(22, 59, 61, 0.92);
-  --bc-fg: #9db5b2;
-  --bc-fg-strong: #f2f4f0;
-  --bc-border: rgba(232, 116, 58, 0.4);
-  --bc-accent: #e8743a;
-  --bc-radius: 2px;
+  --bc-bg: #0f172a;
+  --bc-fg: #ffffff;
+  --bc-fg-strong: #ffffff;
+  --bc-border: #0f172a;
+  --bc-accent: #ea580c;
+  --bc-radius: 0;
+  --bc-shadow: none;
 }
 .cleanpro {
-  --bc-bg: #ffffff;
-  --bc-fg: #6b7385;
-  --bc-fg-strong: #1c2230;
-  --bc-border: rgba(43, 91, 215, 0.35);
-  --bc-accent: #2b5bd7;
-  --bc-radius: 999px;
+  --bc-bg: #1c1917;
+  --bc-fg: #a8a29e;
+  --bc-fg-strong: #fafaf9;
+  --bc-border: rgba(250, 250, 249, 0.3);
+  --bc-accent: #ca8a04;
+  --bc-radius: 2px;
 }
 .texas {
-  --bc-bg: #141414;
-  --bc-fg: #f2f2f0;
-  --bc-fg-strong: #ffffff;
-  --bc-border: #141414;
-  --bc-accent: #d8432f;
-  --bc-radius: 0;
+  --bc-bg: #ffffff;
+  --bc-fg: #0f172a;
+  --bc-fg-strong: #1d4ed8;
+  --bc-border: #e2e8f0;
+  --bc-accent: #2563eb;
+  --bc-radius: 999px;
 }
 .aerial {
   --bc-bg: #ffffff;
-  --bc-fg: #5f6b62;
-  --bc-fg-strong: #1e2a22;
-  --bc-border: rgba(47, 82, 51, 0.4);
-  --bc-accent: #2f5233;
-  --bc-radius: 8px;
+  --bc-fg: #475569;
+  --bc-fg-strong: #1e293b;
+  --bc-border: #cbd5e1;
+  --bc-accent: #2563eb;
+  --bc-radius: 2px;
+  --bc-shadow: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,6 +1,7 @@
 // Screenshot gate: serves the built site with `vite preview`, shoots the
 // picker and every variant route at desktop and phone widths into shots/,
-// and fails when any page is wider than the phone viewport.
+// fails when any page is wider than the phone viewport, and fails when a
+// variant's services heading starts below the fold at either size.
 //
 //   npm run build && node scripts/shots.mjs
 //
@@ -101,6 +102,26 @@ try {
         } else {
           console.log(`ok   ${route} @${vp.width}: scrollWidth ${width}`)
         }
+
+        // Fold check: on a variant, the services heading must begin inside
+        // the first viewport, so headline, CTA, phone, and trust strip all
+        // sit above it.
+        if (route !== '/') {
+          const top = await page.evaluate(() => {
+            window.scrollTo(0, 0)
+            const h = document.querySelector('#services h2')
+            return h ? Math.round(h.getBoundingClientRect().top) : null
+          })
+          if (top === null) {
+            console.error(`FAIL ${route} @${vp.width}: no #services h2 found`)
+            failures++
+          } else if (top >= vp.height) {
+            console.error(`FAIL ${route} @${vp.width}x${vp.height}: services heading top ${top} >= ${vp.height}`)
+            failures++
+          } else {
+            console.log(`ok   ${route} @${vp.width}x${vp.height}: services heading top ${top}`)
+          }
+        }
       }
       await context.close()
     }
@@ -119,4 +140,4 @@ if (failures > 0) {
   console.error(`${failures} failure(s)`)
   process.exit(1)
 }
-console.log('width check passed at 390px')
+console.log('width check passed at 390px; fold check passed at both sizes')

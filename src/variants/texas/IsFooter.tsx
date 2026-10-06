@@ -12,10 +12,9 @@ export default function IsFooter() {
           <div>
             <p className="is-display text-xl">
               {site.name}
-              <span className="is-mark">.</span>
             </p>
-            <p className="mt-2 text-sm opacity-70">{localityLine(site)}</p>
-            {site.address && <p className="mt-3 text-sm opacity-70">{site.address}</p>}
+            <p className="mt-2 text-sm text-(--is-muted)">{localityLine(site)}</p>
+            {site.address && <p className="mt-3 text-sm text-(--is-muted)">{site.address}</p>}
             {site.phoneHref && (
               <a href={site.phoneHref} className="is-quiet is-num mt-1 block text-sm">
                 {site.phone}
@@ -23,8 +22,7 @@ export default function IsFooter() {
             )}
           </div>
           <div>
-            <p className="is-mono">Hours</p>
-            <p className="mt-3 text-sm opacity-70">{hours ?? 'Call for current hours'}</p>
+            <p className="mt-3 text-sm text-(--is-muted)">{hours ?? 'Call for current hours'}</p>
             <p className="is-mono mt-6">Licensed &amp; insured</p>
             <a href={site.cta.href} className="is-quiet mt-3 block text-sm">
               {site.cta.label}
@@ -43,7 +41,7 @@ export default function IsFooter() {
             </ul>
           </div>
         </div>
-        <p className="is-mono mt-10 border-t border-white/20 pt-5">
+        <p className="is-mono mt-10 border-t border-(--is-border) pt-5">
           &copy; {new Date().getFullYear()} {site.name}
         </p>
       </div>

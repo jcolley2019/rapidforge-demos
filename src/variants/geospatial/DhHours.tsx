@@ -8,7 +8,6 @@ export default function DhHours() {
     <section id="contact" className="dh-section">
       <div className="dh-wrap">
         <Reveal>
-          <p className="dh-label">Hours</p>
           <h2 className="dh-display dh-h2">Hours &amp; Location</h2>
         </Reveal>
         <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">

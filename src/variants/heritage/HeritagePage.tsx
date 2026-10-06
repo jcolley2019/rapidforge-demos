@@ -1,5 +1,5 @@
-import '@fontsource-variable/fraunces'
-import '@fontsource-variable/inter'
+import '@fontsource-variable/lexend'
+import '@fontsource-variable/source-sans-3'
 import './heritage.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
@@ -14,12 +14,11 @@ import PpHours from './PpHours'
 import PpQuoteCta from './PpQuoteCta'
 import PpFooter from './PpFooter'
 
-/** Paper Press: preset `paper-press` (warm paper, serif, one ember accent). */
+/** Clean Trust: preset `clean-trust` (pale blue ground, blue and orange, Lexend). */
 export default function HeritagePage() {
   usePageTitle('heritage')
   return (
     <div className="heritage" id="top">
-      <div className="pp-grain" aria-hidden="true" />
       <BackToConceptsLink />
       <PpNav />
       <main>

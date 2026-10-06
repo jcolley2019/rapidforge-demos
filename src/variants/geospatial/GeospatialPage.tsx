@@ -1,4 +1,8 @@
-import '@fontsource-variable/inter'
+import '@fontsource/barlow-condensed/700.css'
+import '@fontsource/barlow/400.css'
+import '@fontsource/barlow/500.css'
+import '@fontsource/barlow/600.css'
+import '@fontsource/barlow/700.css'
 import './geospatial.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
@@ -13,7 +17,7 @@ import DhHours from './DhHours'
 import DhQuoteCta from './DhQuoteCta'
 import DhFooter from './DhFooter'
 
-/** Dusk Horizon: preset `dusk-horizon` (deep teal, quiet type, one ember accent). */
+/** Bold Local: preset `bold-local` (navy blocks, safety orange, condensed Barlow). */
 export default function GeospatialPage() {
   usePageTitle('geospatial')
   return (

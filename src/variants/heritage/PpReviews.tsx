@@ -9,7 +9,6 @@ export default function PpReviews() {
       <div className="pp-wrap">
         <Reveal>
           <div className="pp-head">
-            <p className="pp-mono">Reviews</p>
             <h2 className="pp-display pp-h2">What Customers Say</h2>
           </div>
         </Reveal>
@@ -17,8 +16,6 @@ export default function PpReviews() {
           {site.reviews.map((review, i) => (
             <Reveal key={i} delay={(i % 3) * 90}>
               <figure className="pp-card">
-                <span className="pp-reg pp-reg-tl" aria-hidden="true" />
-                <span className="pp-reg pp-reg-br" aria-hidden="true" />
                 <Stars rating={review.rating} className="pp-stars" />
                 <blockquote className="pp-quote mt-4">&ldquo;{review.text}&rdquo;</blockquote>
                 {review.author && <figcaption className="pp-mono mt-5">{review.author}</figcaption>}

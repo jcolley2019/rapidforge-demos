@@ -1,5 +1,5 @@
 import '@fontsource-variable/outfit'
-import '@fontsource-variable/figtree'
+import '@fontsource-variable/work-sans'
 import './aerial.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
@@ -14,7 +14,7 @@ import WsHours from './WsHours'
 import WsQuoteCta from './WsQuoteCta'
 import WsFooter from './WsFooter'
 
-/** Warm Story: preset `warm-story` (pale panel, photo panel, chunky green display type). */
+/** Modern Minimal: preset `modern-minimal` (white, hairlines, one blue accent, Outfit). */
 export default function AerialPage() {
   usePageTitle('aerial')
   return (

@@ -2,16 +2,16 @@ import { siteContent as site } from '../../brief/current'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
+import { tilePhotosFor } from '../heroPhoto'
 
 const palette = presetForVariant('cleanpro').palette
-const photos = site.detailPhotos
+const photos = tilePhotosFor('cleanpro')
 
 export default function ClServices() {
   return (
     <section id="services" className="cl-section">
       <div className="cl-wrap">
         <Reveal>
-          <p className="cl-eyebrow">Services</p>
           <h2 className="cl-display cl-h2">Our Services</h2>
         </Reveal>
         <div className="cl-tiles">

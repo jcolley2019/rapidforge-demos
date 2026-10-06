@@ -8,7 +8,6 @@ export default function DhReviews() {
     <section id="reviews" className="dh-section">
       <div className="dh-wrap">
         <Reveal>
-          <p className="dh-label">Reviews</p>
           <h2 className="dh-display dh-h2">What Customers Say</h2>
         </Reveal>
         <div className="dh-panels">

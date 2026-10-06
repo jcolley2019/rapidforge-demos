@@ -1,10 +1,10 @@
 import presetsJson from './presets.json'
 
 /**
- * Presets: five trade-ready design directions lifted from the taste-vault.
- * `presets.json` is the data (a short brief in plain language, with the
- * vault's palette, type pairing and never-list kept intact); this module
- * types it and maps each visual variant to the preset it renders.
+ * Presets: five trade-ready design directions from the UI/UX Pro Max
+ * design-system search (collection = "ui-ux-pro-max:<style>", brief = the
+ * skill's rules text for that direction). This module types the data and
+ * maps each visual variant to the preset it renders.
  */
 
 export interface PresetPalette {
@@ -38,11 +38,11 @@ export const presets: Preset[] = presetsJson as Preset[]
 
 /** Variant slug → preset id. Mirrors the comment block in variants.ts. */
 export const VARIANT_PRESET: Record<string, string> = {
-  heritage: 'paper-press',
-  geospatial: 'dusk-horizon',
-  cleanpro: 'classic-light',
-  texas: 'ink-split',
-  aerial: 'warm-story',
+  heritage: 'clean-trust',
+  geospatial: 'bold-local',
+  cleanpro: 'premium-dark',
+  texas: 'friendly-family',
+  aerial: 'modern-minimal',
 }
 
 export function presetById(id: string): Preset {
@@ -58,7 +58,7 @@ export function presetForVariant(slug: string): Preset {
 }
 
 /** The text after "Aesthetic:" on the brief's first line, e.g.
- *  "warm paper (cream ground, serif headlines, one orange accent)". */
+ *  "Flat Design (2D, minimalist, bold colors, ...)". */
 export function aestheticOf(preset: Preset): string {
   const line = preset.brief.split('\n').find((l) => l.startsWith('Aesthetic:'))
   return line ? line.slice('Aesthetic:'.length).trim() : ''

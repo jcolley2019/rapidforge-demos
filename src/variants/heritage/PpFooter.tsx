@@ -20,7 +20,6 @@ export default function PpFooter() {
             )}
           </div>
           <div>
-            <p className="pp-mono">Hours</p>
             <p className="mt-3 text-sm text-(--pp-muted)">{hours ?? 'Call for current hours'}</p>
             <p className="pp-mono mt-6">Licensed &amp; insured</p>
             <a href={site.cta.href} className="pp-quiet mt-3 block text-sm">
@@ -40,8 +39,7 @@ export default function PpFooter() {
             </ul>
           </div>
         </div>
-        <hr className="pp-dash mt-10" />
-        <p className="pp-mono mt-5 text-center">
+        <p className="pp-mono mt-10 border-t border-(--pp-border) pt-5 text-center">
           &copy; {new Date().getFullYear()} {site.name}
           {site.city ? ` · ${site.city}` : ''}
         </p>

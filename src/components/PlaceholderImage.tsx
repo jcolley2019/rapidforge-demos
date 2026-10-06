@@ -75,12 +75,12 @@ export default function PlaceholderImage({
     ].join(', '),
   }
 
+  const name = label || alt
   return (
     <div
       className={`relative overflow-hidden ${className}`}
       style={style}
-      role="img"
-      aria-label={label ?? alt ?? 'Placeholder image'}
+      {...(name ? { role: 'img', 'aria-label': name } : { 'aria-hidden': true })}
     >
       {label && (
         <span

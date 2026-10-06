@@ -2,18 +2,18 @@ import { siteContent as site } from '../../brief/current'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
+import { tilePhotosFor } from '../heroPhoto'
 
 const palette = presetForVariant('texas').palette
-const photos = site.detailPhotos
+const photos = tilePhotosFor('texas')
 
 export default function IsServices() {
   return (
     <section id="services" className="is-section">
       <div className="is-wrap">
         <Reveal>
-          <p className="is-mono">Services</p>
           <h2 className="is-display is-h2">
-            Our Services<span className="is-mark">.</span>
+            Our Services
           </h2>
         </Reveal>
         <div className="is-tiles">

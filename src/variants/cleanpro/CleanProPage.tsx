@@ -1,5 +1,5 @@
-import '@fontsource-variable/eb-garamond'
-import '@fontsource-variable/figtree'
+import '@fontsource-variable/cormorant'
+import '@fontsource-variable/montserrat'
 import './cleanpro.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
@@ -14,7 +14,7 @@ import ClHours from './ClHours'
 import ClQuoteCta from './ClQuoteCta'
 import ClFooter from './ClFooter'
 
-/** Classic Light: preset `classic-light` (white ground, serif, blue accent). */
+/** Premium Dark: preset `premium-dark` (black ground, gold accent, Cormorant). */
 export default function CleanProPage() {
   usePageTitle('cleanpro')
   return (

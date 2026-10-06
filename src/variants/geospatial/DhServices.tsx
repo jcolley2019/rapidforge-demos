@@ -2,16 +2,16 @@ import { siteContent as site } from '../../brief/current'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
+import { tilePhotosFor } from '../heroPhoto'
 
 const palette = presetForVariant('geospatial').palette
-const photos = site.detailPhotos
+const photos = tilePhotosFor('geospatial')
 
 export default function DhServices() {
   return (
     <section id="services" className="dh-section">
       <div className="dh-wrap">
         <Reveal>
-          <p className="dh-label">Services</p>
           <h2 className="dh-display dh-h2">Our Services</h2>
         </Reveal>
         <div className="dh-tiles">
@@ -28,7 +28,7 @@ export default function DhServices() {
                   />
                 </div>
                 <div className="dh-tile-body">
-                  <h3 className="dh-tile-title">{service.title}</h3>
+                  <h3 className="dh-display dh-tile-title">{service.title}</h3>
                   {service.blurb && <p className="dh-tile-blurb">{service.blurb}</p>}
                 </div>
               </article>

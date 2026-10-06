@@ -5,10 +5,9 @@ import Reveal from '../../components/Reveal'
 export default function WsReviews() {
   if (site.reviews.length === 0) return null
   return (
-    <section id="reviews" className="ws-section" style={{ background: '#efe4d2' }}>
+    <section id="reviews" className="ws-section" style={{ background: 'var(--ws-surface)' }}>
       <div className="ws-wrap">
         <Reveal>
-          <p className="ws-eyebrow">Reviews</p>
           <h2 className="ws-display ws-h2">What Customers Say</h2>
         </Reveal>
         <div className="ws-cards">

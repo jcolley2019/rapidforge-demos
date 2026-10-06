@@ -1,7 +1,5 @@
-import '@fontsource/playfair-display/400.css'
-import '@fontsource/playfair-display/700.css'
-import '@fontsource/playfair-display/900.css'
-import '@fontsource-variable/inter'
+import '@fontsource/varela-round/400.css'
+import '@fontsource-variable/nunito-sans'
 import './texas.css'
 
 import BackToConceptsLink from '../../components/BackToConceptsLink'
@@ -16,12 +14,11 @@ import IsHours from './IsHours'
 import IsQuoteCta from './IsQuoteCta'
 import IsFooter from './IsFooter'
 
-/** Ink Split: preset `ink-split` (stark black and white, split hero, one red mark). */
+/** Friendly Family: preset `friendly-family` (near-white, rounded, family blue and amber). */
 export default function TexasPage() {
   usePageTitle('texas')
   return (
     <div className="texas" id="top">
-      <div className="is-grain" aria-hidden="true" />
       <BackToConceptsLink />
       <IsNav />
       <main>
