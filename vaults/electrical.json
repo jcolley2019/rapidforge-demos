@@ -1,0 +1,4813 @@
+{
+  "meta": {
+    "vertical": "electrical",
+    "brick": "RFD.VAULT.4",
+    "generatedAt": "2026-10-06T20:25:53.380Z",
+    "entries": 12,
+    "picks": [
+      {
+        "slug": "brightlifeelectricnv",
+        "company": "BrightLife Electric NV",
+        "segment": "residential",
+        "metro": "Reno",
+        "query": "Reno electrician",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "buddyelectrical",
+        "company": "Buddy & Sons Electrical Services",
+        "segment": "residential",
+        "metro": "Tucson",
+        "query": "Tucson electrician",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "denniselectricomaha",
+        "company": "Dennis Electric",
+        "segment": "residential",
+        "metro": "Omaha",
+        "query": "Omaha electrician",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "houchinelectric",
+        "company": "Houchin Electric",
+        "segment": "residential",
+        "metro": "Tulsa",
+        "query": "Tulsa electrician",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "leaelectric",
+        "company": "Lea Electric",
+        "segment": "commercial",
+        "metro": "Boise",
+        "query": "commercial electrical contractor Boise",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "ctcelectricalcontracting",
+        "company": "CTC Electrical Contracting",
+        "segment": "commercial",
+        "metro": "Spokane",
+        "query": "commercial electrical contractor Spokane",
+        "rank": 2,
+        "status": "entry"
+      },
+      {
+        "slug": "hayesandlunsford",
+        "company": "Hayes & Lunsford Electric",
+        "segment": "commercial",
+        "metro": "Greenville SC",
+        "query": "commercial electrical contractor Greenville SC",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "canoelectric",
+        "company": "Cano Electric",
+        "segment": "commercial",
+        "metro": "Fort Worth",
+        "query": "commercial electrical contractor Fort Worth",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "alphaelectricspokane",
+        "company": "Alpha Electric",
+        "segment": "new_construction",
+        "metro": "Spokane",
+        "query": "new construction electrical Spokane",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "jacobselectricinc",
+        "company": "Jacob's Electric",
+        "segment": "new_construction",
+        "metro": "Tucson",
+        "query": "new construction electrical Tucson",
+        "rank": 8,
+        "status": "entry"
+      },
+      {
+        "slug": "greenville-electric",
+        "company": "Greenville Electric LLC",
+        "segment": "new_construction",
+        "metro": "Greenville SC",
+        "query": "new construction electrical Greenville SC",
+        "rank": 1,
+        "status": "entry"
+      },
+      {
+        "slug": "parishelectricftw",
+        "company": "Parish Electric Company",
+        "segment": "new_construction",
+        "metro": "Fort Worth",
+        "query": "new construction electrical Fort Worth",
+        "rank": 9,
+        "status": "entry"
+      }
+    ],
+    "search": {
+      "metros": [
+        "Boise",
+        "Spokane",
+        "Reno",
+        "Tucson",
+        "Omaha",
+        "Tulsa",
+        "Greenville SC",
+        "Fort Worth"
+      ],
+      "queries": {
+        "residential": "<city> electrician",
+        "commercial": "commercial electrical contractor <city>",
+        "new_construction": "new construction electrical <city>"
+      },
+      "rankMethod": "rank = 1-based position of the pick in the WebSearch result list for the exact query string. The unfiltered lists were almost entirely directories, job boards and franchise pages, so each query was re-run with the vertical's blockedDomains filter below; rejected results that still came through count toward the rank.",
+      "blockedDomains": [
+        "yelp.com",
+        "angi.com",
+        "angieslist.com",
+        "homeadvisor.com",
+        "thumbtack.com",
+        "networx.com",
+        "houzz.com",
+        "porch.com",
+        "bark.com",
+        "bbb.org",
+        "yellowpages.com",
+        "manta.com",
+        "nextdoor.com",
+        "facebook.com",
+        "expertise.com",
+        "threebestrated.com",
+        "bestpickreports.com",
+        "mapquest.com",
+        "thebuildermarket.com",
+        "lantern.llc",
+        "thisoldhouse.com",
+        "downtobid.com",
+        "buildzoom.com",
+        "experience.com",
+        "zoominfo.com",
+        "datanyze.com",
+        "thebluebook.com",
+        "yext.com",
+        "levelset.com",
+        "homeguide.com",
+        "dispatchcore.io",
+        "namesandnumbers.com",
+        "promptloop.com",
+        "contractorplus.app",
+        "permitmint.com",
+        "myshyft.com",
+        "linkedin.com",
+        "reddit.com",
+        "youtube.com",
+        "indeed.com",
+        "glassdoor.com",
+        "ziprecruiter.com",
+        "ihire.com",
+        "ihireconstruction.com",
+        "talent.com",
+        "dejobs.org",
+        "usajobs.gov",
+        "idahoworks.gov",
+        "roaddogjobs.com",
+        "recruiter.com",
+        "careerbuilder.com",
+        "monster.com",
+        "mrelectric.com",
+        "mistersparky.com",
+        "handymanconnection.com",
+        "acehardwarehomeservices.com",
+        "mrhandyman.com",
+        "fsg.com",
+        "waybackmachine.org",
+        "web.archive.org"
+      ]
+    },
+    "capture": "Playwright Chromium, desktop 1440x900 and mobile 390x844 full-page PNGs; facts from the live DOM (scripts/vault-capture.mjs)",
+    "vision": "claude-sonnet-5-5, effort medium, desktop screenshot strips (scripts/vault-ingest.mjs)",
+    "clustering": {
+      "method": "exhaustive k-medoids on palette/type/hero distance, at least 2 sites per family, k by silhouette",
+      "k": 4,
+      "silhouette": 0.428,
+      "tried": [
+        {
+          "k": 4,
+          "silhouette": 0.428
+        },
+        {
+          "k": 5,
+          "silhouette": 0.39
+        },
+        {
+          "k": 6,
+          "silhouette": null
+        }
+      ]
+    },
+    "familyCopy": "claude-sonnet-5-5, text only, from member entries; House DNA from counted conventions",
+    "contactSheet": "electrical-contact-sheet.jpg"
+  },
+  "conventions": {
+    "sites": 12,
+    "stickyPhone": {
+      "count": 4,
+      "of": 12,
+      "rule": "a phone number or call link stays pinned while scrolling, desktop or mobile (DOM)",
+      "sites": [
+        "buddyelectrical",
+        "denniselectricomaha",
+        "canoelectric",
+        "alphaelectricspokane"
+      ]
+    },
+    "stickyHeader": {
+      "count": 6,
+      "of": 12,
+      "rule": "header bar stays pinned at the top while scrolling on desktop (DOM)",
+      "sites": [
+        "buddyelectrical",
+        "denniselectricomaha",
+        "houchinelectric",
+        "ctcelectricalcontracting",
+        "hayesandlunsford",
+        "canoelectric"
+      ]
+    },
+    "phoneFirstMobileScreen": {
+      "count": 5,
+      "of": 12,
+      "rule": "phone number fully visible in the first 390x844 viewport (DOM)",
+      "sites": [
+        "brightlifeelectricnv",
+        "buddyelectrical",
+        "leaelectric",
+        "ctcelectricalcontracting",
+        "jacobselectricinc"
+      ]
+    },
+    "callLinkFirstMobileScreen": {
+      "count": 8,
+      "of": 12,
+      "rule": "a tap-to-call link (number or icon) visible in the first 390x844 viewport (DOM)",
+      "sites": [
+        "brightlifeelectricnv",
+        "buddyelectrical",
+        "leaelectric",
+        "ctcelectricalcontracting",
+        "canoelectric",
+        "alphaelectricspokane",
+        "jacobselectricinc",
+        "greenville-electric"
+      ]
+    },
+    "trustBar": {
+      "count": 3,
+      "of": 12,
+      "rule": "dedicated strip of trust badges or claims near the top (vision)",
+      "sites": [
+        "buddyelectrical",
+        "denniselectricomaha",
+        "leaelectric"
+      ]
+    },
+    "couponOrFinancing": {
+      "count": 0,
+      "of": 12,
+      "rule": "visible coupon, special-offer or financing block (vision)",
+      "sites": []
+    },
+    "serviceAreaList": {
+      "count": 6,
+      "of": 12,
+      "rule": "visible list or map of towns served (vision)",
+      "sites": [
+        "brightlifeelectricnv",
+        "buddyelectrical",
+        "denniselectricomaha",
+        "ctcelectricalcontracting",
+        "canoelectric",
+        "greenville-electric"
+      ]
+    },
+    "reviewsWidget": {
+      "count": 8,
+      "of": 12,
+      "rule": "reviews section with ratings or testimonials (vision)",
+      "sites": [
+        "brightlifeelectricnv",
+        "buddyelectrical",
+        "denniselectricomaha",
+        "houchinelectric",
+        "leaelectric",
+        "ctcelectricalcontracting",
+        "alphaelectricspokane",
+        "greenville-electric"
+      ]
+    },
+    "bookingForm": {
+      "count": 2,
+      "of": 12,
+      "rule": "on-page form or embedded scheduler (vision, or a 2+ field form in the DOM)",
+      "sites": [
+        "houchinelectric",
+        "greenville-electric"
+      ]
+    },
+    "phoneFirst": {
+      "count": 6,
+      "of": 12,
+      "rule": "the page pushes the phone call hardest (vision)",
+      "sites": [
+        "denniselectricomaha",
+        "ctcelectricalcontracting",
+        "hayesandlunsford",
+        "canoelectric",
+        "alphaelectricspokane",
+        "jacobselectricinc"
+      ]
+    },
+    "formOrBookingFirst": {
+      "count": 3,
+      "of": 12,
+      "rule": "the page pushes a form or online booking hardest (vision)",
+      "sites": [
+        "houchinelectric",
+        "leaelectric",
+        "greenville-electric"
+      ]
+    },
+    "balancedConversion": {
+      "count": 3,
+      "of": 12,
+      "rule": "phone and form/booking pushed about equally (vision)",
+      "sites": [
+        "brightlifeelectricnv",
+        "buddyelectrical",
+        "parishelectricftw"
+      ]
+    },
+    "licenseNumberShown": {
+      "count": 1,
+      "of": 12,
+      "rule": "a license/registration number appears in the page text (DOM)",
+      "sites": [
+        "buddyelectrical"
+      ]
+    },
+    "emergency247": {
+      "count": 6,
+      "of": 12,
+      "rule": "24/7 or emergency wording (DOM)",
+      "sites": [
+        "buddyelectrical",
+        "denniselectricomaha",
+        "leaelectric",
+        "ctcelectricalcontracting",
+        "canoelectric",
+        "greenville-electric"
+      ]
+    },
+    "medianCtaLabel": {
+      "label": "schedule an estimate",
+      "sites": 1,
+      "rule": "most common first action CTA by page position (nav items excluded; any phone-number label = 'call <phone>')"
+    },
+    "ctaLabels": [
+      {
+        "label": "call <phone>",
+        "sites": 4
+      },
+      {
+        "label": "contact us",
+        "sites": 2
+      },
+      {
+        "label": "schedule an estimate",
+        "sites": 1
+      },
+      {
+        "label": "request service",
+        "sites": 1
+      },
+      {
+        "label": "request a free estimate",
+        "sites": 1
+      },
+      {
+        "label": "request an estimate",
+        "sites": 1
+      },
+      {
+        "label": "get a quote",
+        "sites": 1
+      },
+      {
+        "label": "call today",
+        "sites": 1
+      },
+      {
+        "label": "schedule estimate",
+        "sites": 1
+      },
+      {
+        "label": "text us",
+        "sites": 1
+      }
+    ],
+    "paletteHues": {
+      "accent": [
+        {
+          "hue": "blue",
+          "sites": 4
+        },
+        {
+          "hue": "red",
+          "sites": 3
+        },
+        {
+          "hue": "yellow",
+          "sites": 2
+        },
+        {
+          "hue": "orange",
+          "sites": 2
+        },
+        {
+          "hue": "purple",
+          "sites": 1
+        }
+      ],
+      "accent2": [
+        {
+          "hue": "blue",
+          "sites": 5
+        },
+        {
+          "hue": "neutral",
+          "sites": 2
+        },
+        {
+          "hue": "yellow",
+          "sites": 2
+        },
+        {
+          "hue": "green",
+          "sites": 1
+        },
+        {
+          "hue": "red",
+          "sites": 1
+        },
+        {
+          "hue": "teal",
+          "sites": 1
+        }
+      ],
+      "ground": [
+        {
+          "ground": "light",
+          "sites": 12
+        }
+      ]
+    },
+    "displayFonts": [
+      {
+        "font": "Montserrat",
+        "sites": 2
+      },
+      {
+        "font": "Barlow",
+        "sites": 1
+      },
+      {
+        "font": "Bangers (hero headline), Pacifico script (gold accent line), Boogaloo (buttons and card titles), Space Grotesk (H2s)",
+        "sites": 1
+      },
+      {
+        "font": "Public Sans",
+        "sites": 1
+      },
+      {
+        "font": "Prompt",
+        "sites": 1
+      },
+      {
+        "font": "Open Sans",
+        "sites": 1
+      },
+      {
+        "font": "Roboto",
+        "sites": 1
+      },
+      {
+        "font": "Karla",
+        "sites": 1
+      }
+    ],
+    "typeClasses": [
+      {
+        "type": "grotesk sans",
+        "sites": 6
+      },
+      {
+        "type": "geometric sans",
+        "sites": 3
+      },
+      {
+        "type": "condensed sans",
+        "sites": 2
+      },
+      {
+        "type": "script",
+        "sites": 1
+      }
+    ],
+    "heroClasses": [
+      {
+        "hero": "full-bleed photo hero",
+        "sites": 7
+      },
+      {
+        "hero": "split hero",
+        "sites": 3
+      },
+      {
+        "hero": "video hero",
+        "sites": 1
+      },
+      {
+        "hero": "slider hero",
+        "sites": 1
+      }
+    ],
+    "lcpMsMedian": {
+      "desktop": 1224,
+      "mobile": 1168
+    },
+    "imagesAboveFoldMedian": 2,
+    "platforms": [
+      {
+        "platform": "wordpress",
+        "sites": 5
+      },
+      {
+        "platform": "wix",
+        "sites": 2
+      },
+      {
+        "platform": "godaddy",
+        "sites": 1
+      },
+      {
+        "platform": "duda",
+        "sites": 1
+      },
+      {
+        "platform": "squarespace",
+        "sites": 1
+      }
+    ],
+    "schedulers": [
+      {
+        "vendor": "housecallpro",
+        "sites": 1
+      }
+    ]
+  },
+  "families": [
+    {
+      "id": "F1",
+      "name": "Safety Amber Builders",
+      "aesthetic": "Light pages with dark charcoal or navy bands, safety yellow-amber buttons, condensed or tracked uppercase headings, full-bleed jobsite or landmark photo heroes.",
+      "lead": "electrical/leaelectric",
+      "members": [
+        "electrical/leaelectric",
+        "electrical/jacobselectricinc",
+        "electrical/buddyelectrical",
+        "electrical/greenville-electric"
+      ],
+      "medoid": "electrical/jacobselectricinc",
+      "traits": {
+        "ground": "light ground with dark bands",
+        "accent": "yellow",
+        "hero": "full-bleed photo hero",
+        "type": "condensed sans",
+        "darkShare": 0.18
+      },
+      "segments": {
+        "residential": 1,
+        "commercial": 1,
+        "new_construction": 2
+      },
+      "vocabulary": [
+        "full-bleed darkened photo hero",
+        "condensed uppercase headlines",
+        "safety yellow-amber CTA buttons",
+        "charcoal or navy utility bar",
+        "single accent color for all actions",
+        "photo tiles with translucent label bands",
+        "amber eyebrow label tags",
+        "numbered process steps",
+        "rounded photo cards",
+        "light gray CTA band",
+        "Google rating pill or review cards",
+        "check-circle bullet lists"
+      ],
+      "never": [
+        "Tiny headline over a busy photo",
+        "Lead form with no visible fields",
+        "Trust rests on one claim, no license number",
+        "Header without phone number or sticky bar",
+        "Four competing display fonts",
+        "Generic heavy icon grids for industries"
+      ],
+      "risk": "Use a recognizable local landmark or real jobsite as the full-bleed hero, with a dark overlay, huge condensed caps headline and one amber button.",
+      "heroImageRecipe": "16:9 wide photo, eye-level DSLR, 35mm, of [SUBJECT: electrician working on conduit and panel in an unfinished building, or local downtown landmark at dusk]. Moody overcast or golden-hour light, charcoal and navy shadows with small warm safety-yellow accents, slightly desaturated with a dark gradient. Keep the left third and center-upper area calm and uncluttered for a large uppercase headline and button. No text, no logos.",
+      "reference": [
+        "Lea Electric, Boise (leaelectric.com)",
+        "Jacob's Electric, Tucson (jacobselectricinc.com)",
+        "Buddy & Sons Electrical Services, Tucson (buddyelectrical.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: safety amber builders (Light pages with dark charcoal or navy bands, safety yellow-amber buttons, condensed or tracked uppercase headings, full-bleed jobsite or landmark photo heroes.)\nVocabulary: full-bleed darkened photo hero, condensed uppercase headlines, safety yellow-amber CTA buttons, charcoal or navy utility bar, single accent color for all actions, photo tiles with translucent label bands, amber eyebrow label tags, numbered process steps, rounded photo cards, light gray CTA band, Google rating pill or review cards, check-circle bullet lists\nReference feel: Lea Electric, Boise (leaelectric.com), Jacob's Electric, Tucson (jacobselectricinc.com), Buddy & Sons Electrical Services, Tucson (buddyelectrical.com)\nHouse DNA: Star-rated reviews on the homepage (8/12); Header that stays pinned while scrolling (6/12); Named list of towns served (6/12); Call is the primary conversion (6/12)\nNever: Tiny headline over a busy photo, Lead form with no visible fields, Trust rests on one claim, no license number, Header without phone number or sticky bar, Four competing display fonts, Generic heavy icon grids for industries, Phone number below the first mobile screen (7/12 real sites)\nOne risk: Use a recognizable local landmark or real jobsite as the full-bleed hero, with a dark overlay, huge condensed caps headline and one amber button.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide photo, eye-level DSLR, 35mm, of [SUBJECT: electrician working on conduit and panel in an unfinished building, or local downtown landmark at dusk]. Moody overcast or golden-hour light, charcoal and navy shadows with small warm safety-yellow accents, slightly desaturated with a dark gradient. Keep the left third and center-upper area calm and uncluttered for a large uppercase headline and button. No text, no logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F2",
+      "name": "Bright Split Electric",
+      "aesthetic": "White-ground electrician homepages with a split hero, flat saturated blue or navy accents, grotesk sans type, rounded photos and pill buttons.",
+      "lead": "electrical/denniselectricomaha",
+      "members": [
+        "electrical/denniselectricomaha",
+        "electrical/brightlifeelectricnv",
+        "electrical/ctcelectricalcontracting"
+      ],
+      "medoid": "electrical/brightlifeelectricnv",
+      "traits": {
+        "ground": "light ground",
+        "accent": "blue",
+        "hero": "split hero",
+        "type": "grotesk sans",
+        "darkShare": 0.04
+      },
+      "segments": {
+        "residential": 2,
+        "commercial": 1,
+        "new_construction": 0
+      },
+      "vocabulary": [
+        "split hero with photo",
+        "white-heavy canvas",
+        "royal or electric blue buttons",
+        "pill-shaped CTA buttons",
+        "oversized bold grotesk headlines",
+        "rounded photo corners",
+        "navy full-width bands",
+        "grey alternating sections",
+        "Google review card carousel",
+        "real van or owner photo",
+        "trust ticker strip",
+        "photo service cards"
+      ],
+      "never": [
+        "Hero without a clear headline or CTA",
+        "Wrapping the H1 to five lines",
+        "Small light-grey body text on white",
+        "Hazy, small hero photo under flat sky",
+        "Phone number missing from the header",
+        "Text-only service cards with no icons or photos",
+        "Busy photo behind small white copy"
+      ],
+      "risk": "Run a navy scrolling trust-claim ticker directly under the header, then drop a full-width navy reviews band with the star rating right after the split hero.",
+      "heroImageRecipe": "16:9 hero photo, eye-level three-quarter view of [SUBJECT: branded electrician van and uniformed crew in front of a tidy suburban home], bright natural daylight with a clean blue sky, crisp detail, palette of white, navy and electric blue; subject sits in the right half with open, uncluttered space on the left for a large headline; no text or logos.",
+      "reference": [
+        "Dennis Electric, Omaha (denniselectricomaha.com)",
+        "BrightLife Electric NV, Reno (brightlifeelectricnv.com)",
+        "CTC Electrical Contracting, Spokane (ctcelectricalcontracting.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: bright split electric (White-ground electrician homepages with a split hero, flat saturated blue or navy accents, grotesk sans type, rounded photos and pill buttons.)\nVocabulary: split hero with photo, white-heavy canvas, royal or electric blue buttons, pill-shaped CTA buttons, oversized bold grotesk headlines, rounded photo corners, navy full-width bands, grey alternating sections, Google review card carousel, real van or owner photo, trust ticker strip, photo service cards\nReference feel: Dennis Electric, Omaha (denniselectricomaha.com), BrightLife Electric NV, Reno (brightlifeelectricnv.com), CTC Electrical Contracting, Spokane (ctcelectricalcontracting.com)\nHouse DNA: Star-rated reviews on the homepage (8/12); Header that stays pinned while scrolling (6/12); Named list of towns served (6/12); Call is the primary conversion (6/12)\nNever: Hero without a clear headline or CTA, Wrapping the H1 to five lines, Small light-grey body text on white, Hazy, small hero photo under flat sky, Phone number missing from the header, Text-only service cards with no icons or photos, Busy photo behind small white copy, Phone number below the first mobile screen (7/12 real sites)\nOne risk: Run a navy scrolling trust-claim ticker directly under the header, then drop a full-width navy reviews band with the star rating right after the split hero.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 hero photo, eye-level three-quarter view of [SUBJECT: branded electrician van and uniformed crew in front of a tidy suburban home], bright natural daylight with a clean blue sky, crisp detail, palette of white, navy and electric blue; subject sits in the right half with open, uncluttered space on the left for a large headline; no text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F3",
+      "name": "Brick Red Corporate Electric",
+      "aesthetic": "Corporate electrician sites pairing white or black grounds with brick-red and maroon accents, darkened full-bleed trade photo heroes, and card-based credibility blocks.",
+      "lead": "electrical/houchinelectric",
+      "members": [
+        "electrical/houchinelectric",
+        "electrical/alphaelectricspokane",
+        "electrical/canoelectric"
+      ],
+      "medoid": "electrical/houchinelectric",
+      "traits": {
+        "ground": "light ground with dark bands",
+        "accent": "red",
+        "hero": "full-bleed photo hero",
+        "type": "grotesk sans",
+        "darkShare": 0.16
+      },
+      "segments": {
+        "residential": 1,
+        "commercial": 1,
+        "new_construction": 1
+      },
+      "vocabulary": [
+        "brick-red accent",
+        "darkened full-bleed hero photo",
+        "grotesk sans headlines",
+        "red underline rules",
+        "white card grid",
+        "circle icon badges",
+        "dark gradient band",
+        "red nav bar",
+        "stat counter cards",
+        "partner logo row",
+        "rounded red buttons",
+        "phone number in header"
+      ],
+      "never": [
+        "Hero with no call or book button",
+        "Accent colors that clash with brand red",
+        "Identical copy repeated across segment cards",
+        "Dense intro text with no license number",
+        "Dark hero photo that looks dull and flat",
+        "Phone number small and unpinned in header"
+      ],
+      "risk": "Make a high-contrast phone number the brightest element on a dark band, like Alpha's yellow digits, and pin it with a floating red icon rail.",
+      "heroImageRecipe": "16:9 wide photo of [SUBJECT: electrician in uniform working at an open grey electrical panel], shot at eye level with a 35mm lens, cool overcast industrial light with a slight dark vignette, palette of steel grey, charcoal and a single brick-red accent in gear or van, deep shadow gradient on the left half leaving clean negative space for a large left-aligned headline, no text or logos.",
+      "reference": [
+        "Houchin Electric, Tulsa (houchinelectric.com)",
+        "Alpha Electric, Spokane (alphaelectricspokane.com)",
+        "Cano Electric, Fort Worth (canoelectric.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: brick red corporate electric (Corporate electrician sites pairing white or black grounds with brick-red and maroon accents, darkened full-bleed trade photo heroes, and card-based credibility blocks.)\nVocabulary: brick-red accent, darkened full-bleed hero photo, grotesk sans headlines, red underline rules, white card grid, circle icon badges, dark gradient band, red nav bar, stat counter cards, partner logo row, rounded red buttons, phone number in header\nReference feel: Houchin Electric, Tulsa (houchinelectric.com), Alpha Electric, Spokane (alphaelectricspokane.com), Cano Electric, Fort Worth (canoelectric.com)\nHouse DNA: Star-rated reviews on the homepage (8/12); Header that stays pinned while scrolling (6/12); Named list of towns served (6/12); Call is the primary conversion (6/12)\nNever: Hero with no call or book button, Accent colors that clash with brand red, Identical copy repeated across segment cards, Dense intro text with no license number, Dark hero photo that looks dull and flat, Phone number small and unpinned in header, Phone number below the first mobile screen (7/12 real sites)\nOne risk: Make a high-contrast phone number the brightest element on a dark band, like Alpha's yellow digits, and pin it with a floating red icon rail.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide photo of [SUBJECT: electrician in uniform working at an open grey electrical panel], shot at eye level with a 35mm lens, cool overcast industrial light with a slight dark vignette, palette of steel grey, charcoal and a single brick-red accent in gear or van, deep shadow gradient on the left half leaving clean negative space for a large left-aligned headline, no text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    },
+    {
+      "id": "F4",
+      "name": "Corporate Navy Commercial",
+      "aesthetic": "Light off-white pages framed by navy header and footer bands, steel-blue accents and a full-bleed commercial photo hero, built for builders and developers.",
+      "lead": "electrical/hayesandlunsford",
+      "members": [
+        "electrical/hayesandlunsford",
+        "electrical/parishelectricftw"
+      ],
+      "medoid": "electrical/parishelectricftw",
+      "traits": {
+        "ground": "light ground with dark bands",
+        "accent": "blue",
+        "hero": "full-bleed photo hero",
+        "type": "geometric sans",
+        "darkShare": 0.15
+      },
+      "segments": {
+        "residential": 0,
+        "commercial": 1,
+        "new_construction": 1
+      },
+      "vocabulary": [
+        "navy header and footer bands",
+        "full-bleed commercial photo hero",
+        "steel-blue accent text",
+        "off-white content ground",
+        "geometric sans headlines",
+        "bold all-caps hero headline",
+        "flat rectangular buttons",
+        "red active nav tab",
+        "named client project proof",
+        "dual-office contact block",
+        "rounded-top content panel",
+        "dense but orderly paragraph copy"
+      ],
+      "never": [
+        "Thin low-contrast blue body text on off-white",
+        "White headline over busy photo without overlay",
+        "Cropped or overlapping glitchy hero collage",
+        "Long text-only walls with no visual breaks",
+        "Hero without a clear CTA button",
+        "Phone numbers without tel: links or sticky header"
+      ],
+      "risk": "Make the hero a real project photo from a recognizable commercial job, with a navy overlay band carrying a bold headline and a prominent bid-request button.",
+      "heroImageRecipe": "16:9 wide hero photo, [SUBJECT: commercial or industrial site at dusk, such as a container port, retail building or warehouse with electrical work visible]. Shot from an elevated wide angle at blue hour with a 24mm lens, crisp detail, cool navy and steel-blue palette with small warm light accents. Leave the center and lower third calm and darker for a headline, with no text, logos or people in the foreground.",
+      "reference": [
+        "Hayes & Lunsford Electric, Greenville SC (hayesandlunsford.com)",
+        "Parish Electric Company, Fort Worth (parishelectricftw.com)"
+      ],
+      "copyModel": "claude-sonnet-5-5",
+      "brief": "Aesthetic: corporate navy commercial (Light off-white pages framed by navy header and footer bands, steel-blue accents and a full-bleed commercial photo hero, built for builders and developers.)\nVocabulary: navy header and footer bands, full-bleed commercial photo hero, steel-blue accent text, off-white content ground, geometric sans headlines, bold all-caps hero headline, flat rectangular buttons, red active nav tab, named client project proof, dual-office contact block, rounded-top content panel, dense but orderly paragraph copy\nReference feel: Hayes & Lunsford Electric, Greenville SC (hayesandlunsford.com), Parish Electric Company, Fort Worth (parishelectricftw.com)\nHouse DNA: Star-rated reviews on the homepage (8/12); Header that stays pinned while scrolling (6/12); Named list of towns served (6/12); Call is the primary conversion (6/12)\nNever: Thin low-contrast blue body text on off-white, White headline over busy photo without overlay, Cropped or overlapping glitchy hero collage, Long text-only walls with no visual breaks, Hero without a clear CTA button, Phone numbers without tel: links or sticky header, Phone number below the first mobile screen (7/12 real sites)\nOne risk: Make the hero a real project photo from a recognizable commercial job, with a navy overlay band carrying a bold headline and a prominent bid-request button.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide hero photo, [SUBJECT: commercial or industrial site at dusk, such as a container port, retail building or warehouse with electrical work visible]. Shot from an elevated wide angle at blue hour with a 24mm lens, crisp detail, cool navy and steel-blue palette with small warm light accents. Leave the center and lower third calm and darker for a headline, with no text, logos or people in the foreground.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me."
+    }
+  ],
+  "entries": [
+    {
+      "id": "electrical/brightlifeelectricnv",
+      "vertical": "electrical",
+      "segment": "residential",
+      "slug": "brightlifeelectricnv",
+      "company": "BrightLife Electric NV",
+      "metro": "Reno",
+      "url": "https://brightlifeelectricnv.com/",
+      "finalUrl": "https://brightlifeelectricnv.com/",
+      "search": {
+        "query": "Reno electrician",
+        "rank": 1,
+        "resultUrl": "https://brightlifeelectricnv.com/"
+      },
+      "aesthetic": "Plain WordPress Astra layout: white canvas, royal-blue pill buttons, grey panels, Barlow type, photo cards. Clean but sparse.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#e6e9ec",
+        "text": "#3a3a3a",
+        "accent": "#1e3b96",
+        "accent2": "#6bbf1a"
+      },
+      "typePairing": {
+        "display": "Barlow",
+        "body": "Barlow",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "about",
+        "services",
+        "awards",
+        "reviews",
+        "service areas",
+        "footer"
+      ],
+      "heroTreatment": "Boxed split panel on light grey: pendant-lamp photo at left, centered business blurb with a blue phone pill at right; no overlay or large headline.",
+      "trustSignals": [
+        "Woman-owned, family-operated, locally owned",
+        "Over 1000 five-star Google reviews and 100+ on Yelp",
+        "Nextdoor Neighborhood Favorite 2020-2025",
+        "Best of Reno 2023-2025",
+        "Community Choice Award #1 in Reno & Sparks",
+        "Google rating 5.0 of 5 based on 824 reviews"
+      ],
+      "ctaPattern": "Primary is the blue Schedule an Estimate pill top right, with a phone pill in the hero and Meet Our Team below the about copy; no repeat further down.",
+      "distinctiveMoves": [
+        "Three rounded photo cards with bulleted service lists make a simple category grid",
+        "Nextdoor Neighborhood Favorite badge paired with a bold award statement on a grey band",
+        "Embedded Google review carousel with a 5.0 score line",
+        "Blue map-pin bullets for the service town list"
+      ],
+      "weaknesses": [
+        "Hero lacks a real headline, strong image or prominent CTA; it reads like a small text box",
+        "Long, dense about copy in small light-grey text and a large blank gap at the page bottom, with no footer visible",
+        "No lead form, financing, emergency or license info, and the phone number is not in the header"
+      ],
+      "segmentFit": {
+        "residential": 0.55,
+        "commercial": 0.3,
+        "new_construction": 0.2
+      },
+      "vocabulary": [
+        "royal blue pill buttons",
+        "boxed split hero panel",
+        "rounded photo service cards",
+        "grey alternating bands",
+        "Barlow condensed-feel headings",
+        "map-pin bullet list",
+        "Google review carousel",
+        "award badge band",
+        "white-heavy minimal layout",
+        "Astra WordPress template"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Bright, airy interior photo, 35mm, soft daylight from the left, white walls with warm wood and black accents with cool blue highlights. [SUBJECT: modern black pendant lights over a kitchen island or a tidy EV charger on a white wall]. Keep the right third clean and empty for headline and CTA. No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T19:59:54.454Z",
+        "robots": "no matching rule",
+        "title": "BrightLife Electric NV | Electrician in Reno",
+        "metaDescription": "BrightLife Electric NV is among the highest-rated residential electricians servicing Reno, Sparks, Spanish Springs, and surrounding areas.",
+        "headings": {
+          "h1": [
+            "Home",
+            "BRIGHTLIFE ELECTRIC NV"
+          ],
+          "h2": [
+            "About BrightLife Electric NV",
+            "In 2021, 2022, 2023, 2024, and 2025 BrightLife Electric was rated Nextdoor's Neighborhood Favorite for Electricians in over 15 areas, 5 years in a row. Check out the app for reviews in your neighborho",
+            "Read Our Reviews!",
+            "Serving Northern Nevada"
+          ]
+        },
+        "telHrefs": [
+          "tel:7753000059"
+        ],
+        "telLinkCount": 1,
+        "ctaLabels": [
+          {
+            "label": "Schedule an Estimate",
+            "count": 2,
+            "firstY": -5,
+            "tel": false
+          },
+          {
+            "label": "775-300-0059",
+            "count": 2,
+            "firstY": 610,
+            "tel": true
+          },
+          {
+            "label": "Meet Our Team",
+            "count": 2,
+            "firstY": 1373,
+            "tel": false
+          },
+          {
+            "label": "Main Menu",
+            "count": 1,
+            "firstY": 143,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Schedule an Estimate",
+          "mobile": "Schedule an Estimate"
+        },
+        "fonts": {
+          "body": "Barlow, sans-serif",
+          "h1": "Barlow, sans-serif",
+          "h2": "Barlow, sans-serif",
+          "loaded": [
+            "Astra",
+            "Barlow",
+            "Font Awesome 5 Brands",
+            "Font Awesome 5 Free",
+            "Roboto",
+            "Trustindex Poppins"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.589
+            },
+            {
+              "hex": "#e6e9ec",
+              "share": 0.178
+            },
+            {
+              "hex": "#1e3b96",
+              "share": 0.088
+            },
+            {
+              "hex": "#ececef",
+              "share": 0.017
+            }
+          ],
+          "text": [
+            {
+              "hex": "#000000",
+              "share": 0.418
+            },
+            {
+              "hex": "#3a3a3a",
+              "share": 0.415
+            },
+            {
+              "hex": "#414040",
+              "share": 0.089
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.057
+            },
+            {
+              "hex": "#6b6b6b",
+              "share": 0.02
+            }
+          ],
+          "imageShare": 0.128,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "775-300-0059",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Home",
+          "mobile": "Home"
+        },
+        "lcpMs": {
+          "desktop": 1264,
+          "mobile": 1580
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "p"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 847,
+            "domContentLoaded": 1320,
+            "load": 1472
+          },
+          "mobile": {
+            "ttfb": 619,
+            "domContentLoaded": 1608,
+            "load": 1782
+          }
+        },
+        "signals": {
+          "trust": [
+            "family-owned",
+            "locally-owned",
+            "star-rating"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [
+            "trustindex"
+          ],
+          "schedulerVendors": [
+            "housecallpro"
+          ],
+          "chatVendors": [],
+          "badges": [
+            "google"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.3",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 3843,
+          "mobileHeight": 6761,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:19.115Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            3844
+          ]
+        ],
+        "usage": {
+          "input": 8591,
+          "output": 978
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "electrical/buddyelectrical",
+      "vertical": "electrical",
+      "segment": "residential",
+      "slug": "buddyelectrical",
+      "company": "Buddy & Sons Electrical Services",
+      "metro": "Tucson",
+      "url": "https://buddyelectrical.com/",
+      "finalUrl": "https://buddyelectrical.com/",
+      "search": {
+        "query": "Tucson electrician",
+        "rank": 2,
+        "resultUrl": "https://buddyelectrical.com/"
+      },
+      "aesthetic": "Retro-Americana mascot brand: navy and gold with Bangers and Pacifico display type over a dusk Arizona desert electrician photo.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f7f7f8",
+        "text": "#161618",
+        "accent": "#e8b84b",
+        "accent2": "#01235c"
+      },
+      "typePairing": {
+        "display": "Bangers (hero headline), Pacifico script (gold accent line), Boogaloo (buttons and card titles), Space Grotesk (H2s)",
+        "body": "Inter",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "trust bar",
+        "intro copy",
+        "services",
+        "about",
+        "process",
+        "service areas",
+        "reviews",
+        "faq",
+        "cta band",
+        "hours bar",
+        "footer"
+      ],
+      "heroTreatment": "Full-width dusk saguaro-and-electrician photo under a heavy navy overlay, centered eyebrow tag, stacked Bangers/Pacifico headline, short paragraph, gold and outline pill CTAs, zigzag edge at the bottom.",
+      "trustSignals": [
+        "4.9★ Google rating",
+        "347 Google reviews",
+        "20+ years in Tucson",
+        "Licensed AZ ROC 366027",
+        "Licensed Arizona electrical contractor eyebrow tag",
+        "Family-owned and licensed copy",
+        "Three short customer quotes with 5 stars"
+      ],
+      "ctaPattern": "Gold 'Request Service' pill plus outlined phone pill in sticky header and hero; Request Service repeats in the closing band, with phone repeated in the hours bar and footer.",
+      "distinctiveMoves": [
+        "Illustrated 'Who's Your Buddy?' mascot logo and character reused in the about section and footer",
+        "Gold dashed process timeline with numbered navy circles named 'The Buddy System'",
+        "Tilted, taped-style review cards with dashed lightning-bolt stamps",
+        "Wavy and zigzag section edges plus a dotted gold-framed CTA panel over a dark photo"
+      ],
+      "weaknesses": [
+        "No on-page form or scheduler, so every conversion depends on a button or a call",
+        "Only three short review quotes, and the service area is a plain sentence with no map or list",
+        "Four font families (Bangers, Pacifico, Boogaloo, Space Grotesk) make the type busy, and the script gold line is less legible over the photo"
+      ],
+      "segmentFit": {
+        "residential": 0.85,
+        "commercial": 0.35,
+        "new_construction": 0.3
+      },
+      "vocabulary": [
+        "navy and gold palette",
+        "comic Bangers headline",
+        "Pacifico script accent line",
+        "dusk desert hero photo",
+        "gold pill CTA",
+        "cream trust stat bar",
+        "zigzag section edge",
+        "wavy section divider",
+        "mascot illustration",
+        "tilted review cards",
+        "dashed process timeline",
+        "dotted gold-framed CTA panel"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Cinematic 16:9 photo at dusk in the Sonoran desert, [SUBJECT: electrician in a navy work shirt and cap working on an exterior electrical panel on a stucco wall, saguaro cactus in the background], shot on a 35mm lens at shallow depth of field with warm orange sunset rim light fading into deep navy blue shadows, palette of navy, burnt orange and gold, subject placed on the right third, open dark negative space on the left and centre for the headline, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:00:03.528Z",
+        "robots": "no matching rule",
+        "title": "Expert Electrician Repair & Installation in Tucson, AZ",
+        "metaDescription": "Buddy & Sons Electric provides licensed electrical repairs, installations, and upgrades in Tucson, AZ with experienced technicians and honest, upfront pricing. Call today.",
+        "headings": {
+          "h1": [
+            "Electrical Problems Are Stressful. Getting Them Fixed Shouldn’t Be."
+          ],
+          "h2": [
+            "How We Can Help",
+            "Why Tucson Trusts Buddy & Sons",
+            "The Buddy System: How We Work",
+            "Proudly Serving Tucson and Southern Arizona",
+            "Rated 4.9 Stars by 347 Tucson Neighbors",
+            "Frequently Asked Questions"
+          ]
+        },
+        "telHrefs": [
+          "tel:5207774425"
+        ],
+        "telLinkCount": 5,
+        "ctaLabels": [
+          {
+            "label": "Request Service",
+            "count": 5,
+            "firstY": 12,
+            "tel": false
+          },
+          {
+            "label": "(520) 777-4425",
+            "count": 3,
+            "firstY": 12,
+            "tel": true
+          },
+          {
+            "label": "About Us",
+            "count": 2,
+            "firstY": 2218,
+            "tel": false
+          },
+          {
+            "label": "Check Your Service Area",
+            "count": 2,
+            "firstY": 3088,
+            "tel": false
+          },
+          {
+            "label": "Read Our Reviews",
+            "count": 2,
+            "firstY": 3656,
+            "tel": false
+          },
+          {
+            "label": "Call (520) 777-4425",
+            "count": 1,
+            "firstY": 12,
+            "tel": true
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Request Service",
+          "mobile": "Call (520) 777-4425"
+        },
+        "fonts": {
+          "body": "Inter, ui-sans-serif, system-ui, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\"",
+          "h1": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
+          "h2": "\"Space Grotesk\", ui-sans-serif, system-ui, sans-serif",
+          "loaded": [
+            "Inter",
+            "Space Grotesk",
+            "Bangers",
+            "Boogaloo",
+            "Pacifico"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.24
+            },
+            {
+              "hex": "#f7f7f8",
+              "share": 0.229
+            },
+            {
+              "hex": "#01235c",
+              "share": 0.154
+            },
+            {
+              "hex": "#fbf7ee",
+              "share": 0.101
+            },
+            {
+              "hex": "#fcfbfa",
+              "share": 0.097
+            },
+            {
+              "hex": "#e8b84b",
+              "share": 0.013
+            }
+          ],
+          "text": [
+            {
+              "hex": "#161618",
+              "share": 0.589
+            },
+            {
+              "hex": "#565a61",
+              "share": 0.136
+            },
+            {
+              "hex": "#01235c",
+              "share": 0.13
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.109
+            },
+            {
+              "hex": "#e8b84b",
+              "share": 0.036
+            }
+          ],
+          "imageShare": 0.053,
+          "gradientShare": 0.112
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 65,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 65,
+              "phone": true,
+              "text": "RESIDENTIAL COMMERCIAL CUSTOM HOME BUILD ABOUT CONTACT Request Service (520) 777"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 65,
+              "phone": true,
+              "text": "MENU"
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(520) 777-4425",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Electrical Problems Are Stressful. Getting Them Fixed Shouldn’t Be.",
+          "mobile": "Electrical Problems Are Stressful. Getting Them Fixed Shouldn’t Be."
+        },
+        "lcpMs": {
+          "desktop": 732,
+          "mobile": 828
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 425,
+            "domContentLoaded": 666,
+            "load": 772
+          },
+          "mobile": {
+            "ttfb": 569,
+            "domContentLoaded": 832,
+            "load": 939
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "family-owned",
+            "star-rating",
+            "google-reviews"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": "ROC 366027",
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [],
+          "generator": null,
+          "credit": "Rocket Media."
+        },
+        "page": {
+          "desktopHeight": 5348,
+          "mobileHeight": 7760,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:20.038Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            5348
+          ]
+        ],
+        "usage": {
+          "input": 10718,
+          "output": 1160
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "electrical/denniselectricomaha",
+      "vertical": "electrical",
+      "segment": "residential",
+      "slug": "denniselectricomaha",
+      "company": "Dennis Electric",
+      "metro": "Omaha",
+      "url": "https://www.denniselectricomaha.com/",
+      "finalUrl": "https://www.denniselectricomaha.com/",
+      "search": {
+        "query": "Omaha electrician",
+        "rank": 1,
+        "resultUrl": "https://www.denniselectricomaha.com/"
+      },
+      "aesthetic": "Clean navy and electric-blue branding with oversized bold Public Sans headlines, a real van-and-crew photo, and a flat, blocky Wix layout.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#4a5d7a",
+        "text": "#0a1f44",
+        "accent": "#209dd7",
+        "accent2": "#0a1f44"
+      },
+      "typePairing": {
+        "display": "Public Sans",
+        "body": "Public Sans (Arial fallback)",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "scrolling trust ticker",
+        "hero",
+        "reviews",
+        "why choose us",
+        "services",
+        "about",
+        "cta band",
+        "footer"
+      ],
+      "heroTreatment": "Split hero on white: huge navy H1 stacked on the left, rounded real photo of two branded vans and the crew on the right, intro paragraph and two blue buttons below.",
+      "trustSignals": [
+        "Licensed & Insured",
+        "Serving Omaha for 20+ Years",
+        "Family-Owned & Operated",
+        "Free Estimates",
+        "4.9 stars from 612 Google reviews",
+        "Google review cards with dates"
+      ],
+      "ctaPattern": "Blue phone button in the sticky header, then Request a Free Estimate plus phone buttons in the hero, repeated after services and in the closing navy CTA band.",
+      "distinctiveMoves": [
+        "Scrolling marquee ticker of trust claims in a navy strip directly under the header",
+        "Full-width navy reviews band with a 4.9 rating summary and Google review carousel placed right after the hero",
+        "Real branded vans with the owners as the hero image, in blue and orange logo colours matching the brand",
+        "Alternating slate and bright-blue service cards, all with white outlined Learn More buttons"
+      ],
+      "weaknesses": [
+        "No on-page contact form or scheduler, so every lead has to go through a call or a click to another page",
+        "Hero H1 is oversized and wraps to five lines, and the hero photo is small and hazy, with a flat overcast sky",
+        "Service cards are text-heavy with no icons or photos, and the slate cards have only moderate contrast; no license number or badges"
+      ],
+      "segmentFit": {
+        "residential": 0.7,
+        "commercial": 0.5,
+        "new_construction": 0.15
+      },
+      "vocabulary": [
+        "oversized navy headlines",
+        "scrolling trust ticker",
+        "navy full-width bands",
+        "electric blue flat buttons",
+        "real van and crew photo",
+        "Google review card carousel",
+        "slate and blue service cards",
+        "checkmark benefit grid",
+        "white outlined secondary buttons",
+        "rounded photo corners"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Wide 16:9 documentary photo, shot at eye level with a 35mm lens, of two white work vans parked on a grassy roadside at hazy golden hour with soft overcast light. Palette of muted sky tones, green grass and white vans with blue and orange accents. Two electricians in red and blue polos stand between the vans. [SUBJECT: two white branded electrician vans with the crew standing between them]. Keep the left third open with a plain sky and grass for the headline; no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:00:14.951Z",
+        "robots": "Allow: /",
+        "title": "Trusted Electricians in Omaha | Dennis Electric",
+        "metaDescription": "Trusted Electricians in Omaha from Dennis Electric deliver safe, reliable service in Omaha homes and businesses. Call today for a free estimate.",
+        "headings": {
+          "h1": [
+            "Omaha's Top Choice for Residential & Commercial Electricians"
+          ],
+          "h2": [
+            "What our customers say",
+            "Trusted Electricians for Omaha Homeowners & Businesses",
+            "Why Choose Dennis Electric?",
+            "What we offer",
+            "Local Electricians. Local Family.",
+            "Need an Electrician in Omaha?"
+          ]
+        },
+        "telHrefs": [
+          "tel:402-677-6548"
+        ],
+        "telLinkCount": 5,
+        "ctaLabels": [
+          {
+            "label": "402-677-6548",
+            "count": 5,
+            "firstY": 32,
+            "tel": true
+          },
+          {
+            "label": "Request a Free Estimate",
+            "count": 2,
+            "firstY": 854,
+            "tel": false
+          },
+          {
+            "label": "Leave a review",
+            "count": 2,
+            "firstY": 1173,
+            "tel": false
+          },
+          {
+            "label": "Learn More",
+            "count": 12,
+            "firstY": 2937,
+            "tel": false
+          },
+          {
+            "label": "Call 402-677-6548",
+            "count": 2,
+            "firstY": 3565,
+            "tel": true
+          },
+          {
+            "label": "Explore All Services",
+            "count": 2,
+            "firstY": 3565,
+            "tel": false
+          },
+          {
+            "label": "About Dennis Electric",
+            "count": 1,
+            "firstY": 4411,
+            "tel": false
+          },
+          {
+            "label": "About Us",
+            "count": 2,
+            "firstY": 4353,
+            "tel": false
+          },
+          {
+            "label": "Request an Estimate",
+            "count": 2,
+            "firstY": 4980,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "402-677-6548",
+          "mobile": null
+        },
+        "fonts": {
+          "body": "Arial, Helvetica, sans-serif",
+          "h1": "public-sans",
+          "h2": "Arial, sans-serif",
+          "loaded": [
+            "public-sans"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.871
+            },
+            {
+              "hex": "#209dd7",
+              "share": 0.031
+            }
+          ],
+          "text": [
+            {
+              "hex": "#333333",
+              "share": 0.358
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.315
+            },
+            {
+              "hex": "#0a1f44",
+              "share": 0.283
+            },
+            {
+              "hex": "#666666",
+              "share": 0.021
+            },
+            {
+              "hex": "#4285f4",
+              "share": 0.013
+            },
+            {
+              "hex": "#209dd7",
+              "share": 0.01
+            }
+          ],
+          "imageShare": 0.099,
+          "gradientShare": 0
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 137,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 137,
+              "phone": true,
+              "text": "Residential Services Commercial Services Service Area About Us Contact Us 402-67"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 48,
+              "phone": true,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": false,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Omaha's Top Choice for Residential & Commercial Electricians",
+          "mobile": "Omaha's Top Choice for Residential & Commercial Electricians"
+        },
+        "lcpMs": {
+          "desktop": 564,
+          "mobile": 684
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 45,
+            "domContentLoaded": 356,
+            "load": 957
+          },
+          "mobile": {
+            "ttfb": 129,
+            "domContentLoaded": 456,
+            "load": 852
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "family-owned",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "google"
+          ],
+          "platform": [
+            "wix"
+          ],
+          "generator": "Wix.com Website Builder",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 5706,
+          "mobileHeight": 8481,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 2,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:29.371Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            5706
+          ]
+        ],
+        "usage": {
+          "input": 10952,
+          "output": 1054
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "electrical/houchinelectric",
+      "vertical": "electrical",
+      "segment": "residential",
+      "slug": "houchinelectric",
+      "company": "Houchin Electric",
+      "metro": "Tulsa",
+      "url": "https://www.houchinelectric.com/",
+      "finalUrl": "https://www.houchinelectric.com/",
+      "search": {
+        "query": "Tulsa electrician",
+        "rank": 1,
+        "resultUrl": "https://www.houchinelectric.com/"
+      },
+      "aesthetic": "Clean white corporate layout with brick-red accents, industrial electrical-panel hero and a team-portrait emphasis",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#ffffff",
+        "text": "#1d1d1d",
+        "accent": "#ac2430",
+        "accent2": "#231f20"
+      },
+      "typePairing": {
+        "display": "Prompt",
+        "body": "Prompt",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "nav bar",
+        "hero",
+        "intro columns",
+        "segment cards",
+        "team",
+        "reviews",
+        "estimate form band",
+        "who we work for",
+        "footer"
+      ],
+      "heroTreatment": "Full-width photo of grey electrical panels with dark left gradient; large white left-aligned headline, red rule, tagline and one red button.",
+      "trustSignals": [
+        "Since 1974 tagline",
+        "Licensed, insured, uniformed, background-checked electrician",
+        "Honest options and fair up-front pricing",
+        "Team bios with 30+ years experience",
+        "5-star client testimonials with star badges",
+        "1 Year Limited Warranty seal",
+        "Client logos: Ruhrpumpen, Cairnbrae Realty, Ergon, Lamar, Safety-Kleen"
+      ],
+      "ctaPattern": "Primary red 'Learn More About Us' in hero, per-segment 'Explore ... Services' buttons, plus header Get Quote and phone link and a bottom estimate form.",
+      "distinctiveMoves": [
+        "Full team portrait gallery with names, tenure and roles, with staff photographed by branded flag-wrapped vans",
+        "Three segment cards (commercial, industrial, residential) with red circle icons and red underline rules",
+        "Red-to-black gradient band holding warranty seal beside estimate form",
+        "Client logo strip 'Who We Work For' in a shadowed card"
+      ],
+      "weaknesses": [
+        "Hero CTA is 'Learn More About Us' rather than call or book, and the phone is small in the header and not pinned",
+        "Segment cards repeat identical commercial copy, and intro text is dense with no license number or emergency messaging",
+        "Estimate form sits at the bottom with a lot of empty space, and there are no services list, service-area list or review rating source"
+      ],
+      "segmentFit": {
+        "residential": 0.5,
+        "commercial": 0.75,
+        "new_construction": 0.3
+      },
+      "vocabulary": [
+        "brick-red accent",
+        "electrical panel hero photo",
+        "white card grid",
+        "circle icon badges",
+        "red underline rules",
+        "team portrait cards",
+        "red-to-black gradient band",
+        "star rating badges",
+        "client logo strip",
+        "rounded red buttons"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": true,
+        "bookingForm": true,
+        "conversion": "form-or-booking-first"
+      },
+      "heroImageRecipe": "Wide 16:9 photo, eye-level, 35mm, soft cool fluorescent light, concrete-grey and muted steel palette with small brick-red accents, [SUBJECT: wall of grey electrical panels and a meter with conduit runs in a utility room], dark falloff on the left third leaving negative space for the headline, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:00:28.825Z",
+        "robots": "no matching rule",
+        "title": "Houchin Electric | Licensed Electrician in Tulsa, OK",
+        "metaDescription": "Licensed electrician in Tulsa, OK providing residential and commercial electrical services. Call Houchin Electric for reliable repairs and installations.",
+        "headings": {
+          "h1": [
+            "Tulsa's Best Electrician",
+            "Test newsletter"
+          ],
+          "h2": [
+            "Keeping You In Power Since 1974",
+            "Here’s What Our Clients Are Saying",
+            "Who We Work For"
+          ]
+        },
+        "telHrefs": [
+          "tel:918.663.1818"
+        ],
+        "telLinkCount": 1,
+        "ctaLabels": [
+          {
+            "label": "Learn More About Us",
+            "count": 2,
+            "firstY": 541,
+            "tel": false
+          },
+          {
+            "label": "Explore Commercial Services",
+            "count": 2,
+            "firstY": 2080,
+            "tel": false
+          },
+          {
+            "label": "Explore Industrial Services",
+            "count": 2,
+            "firstY": 2080,
+            "tel": false
+          },
+          {
+            "label": "Explore Residential Services",
+            "count": 2,
+            "firstY": 2080,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Learn More About Us",
+          "mobile": "Learn More About Us"
+        },
+        "fonts": {
+          "body": "prompt",
+          "h1": "prompt",
+          "h2": "prompt",
+          "loaded": [
+            "Prompt",
+            "Material Symbols Outlined"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.529
+            },
+            {
+              "hex": "#1d1d1d",
+              "share": 0.071
+            },
+            {
+              "hex": "#231f20",
+              "share": 0.014
+            },
+            {
+              "hex": "#ac2430",
+              "share": 0.008
+            }
+          ],
+          "text": [
+            {
+              "hex": "#1d1d1d",
+              "share": 0.606
+            },
+            {
+              "hex": "#333333",
+              "share": 0.18
+            },
+            {
+              "hex": "#ac2430",
+              "share": 0.093
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.091
+            },
+            {
+              "hex": "#000000",
+              "share": 0.025
+            },
+            {
+              "hex": "#ee2e24",
+              "share": 0.006
+            }
+          ],
+          "imageShare": 0.242,
+          "gradientShare": 0.135
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 38,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 38,
+              "phone": false,
+              "text": "About Us Residential Commercial Industrial Specialty Services FAQ Contact"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 64,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": false,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 1,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Tulsa's Best Electrician",
+          "mobile": "Tulsa's Best Electrician"
+        },
+        "lcpMs": {
+          "desktop": 10584,
+          "mobile": 9924
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 612,
+            "domContentLoaded": 1495,
+            "load": 10189
+          },
+          "mobile": {
+            "ttfb": 702,
+            "domContentLoaded": 1636,
+            "load": 9517
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "years-in-business",
+            "upfront-pricing",
+            "background-checked"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 6785,
+          "mobileHeight": 13116,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:38.630Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            6785
+          ]
+        ],
+        "usage": {
+          "input": 12316,
+          "output": 1017
+        }
+      },
+      "family": "F3"
+    },
+    {
+      "id": "electrical/leaelectric",
+      "vertical": "electrical",
+      "segment": "commercial",
+      "slug": "leaelectric",
+      "company": "Lea Electric",
+      "metro": "Boise",
+      "url": "https://leaelectric.com/",
+      "finalUrl": "https://leaelectric.com/",
+      "search": {
+        "query": "commercial electrical contractor Boise",
+        "rank": 1,
+        "resultUrl": "https://leaelectric.com/"
+      },
+      "aesthetic": "Corporate navy and safety-amber commercial electrical site with video hero, blueprint line textures and rounded cards",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f2f2f2",
+        "text": "#08142b",
+        "accent": "#ffa300",
+        "accent2": "#173b7f"
+      },
+      "typePairing": {
+        "display": "Montserrat",
+        "body": "Montserrat",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "review pill",
+        "testimonial",
+        "about",
+        "services",
+        "projects",
+        "why choose us",
+        "stats",
+        "process",
+        "cta band",
+        "testimonials",
+        "benefits",
+        "industries",
+        "cta card",
+        "footer"
+      ],
+      "heroTreatment": "Full-width jobsite video with navy overlay of conduit runs and a worker; left-aligned headline with amber corner rule, two CTAs below, Google rating pill overlapping the bottom edge.",
+      "trustSignals": [
+        "4.5 on Google, 20+ reviews",
+        "42+ years of experience",
+        "Fully licensed, bonded, and insured team",
+        "Certified",
+        "#1 Electrical Contractor in Idaho",
+        "Thousands of clients",
+        "Client testimonial from Tom McClung"
+      ],
+      "ctaPattern": "Amber Get A Quote button in header, hero, mid-page band, final card and footer, with Recent Projects outline secondary and a phone number in the rating pill.",
+      "distinctiveMoves": [
+        "Amber eyebrow label tags with a thin corner bracket rule above each heading",
+        "Two-tone headlines with the second half in brand blue or amber",
+        "Dashed-outline process cards with numbered circles breaking the top border",
+        "Faint blueprint and circuit-line textures behind sections plus offset blue shadow block behind photos"
+      ],
+      "weaknesses": [
+        "No on-page form or scheduler; every path goes through a quote button",
+        "Testimonial carousel and CTA card render blank or washed out, and industries icons are heavy and generic",
+        "No service-area list, license number, or certification badges, and the header is not sticky"
+      ],
+      "segmentFit": {
+        "residential": 0.1,
+        "commercial": 0.92,
+        "new_construction": 0.7
+      },
+      "vocabulary": [
+        "navy and amber palette",
+        "jobsite video hero",
+        "amber eyebrow tags",
+        "two-tone Montserrat headlines",
+        "rounded project photo cards",
+        "blueprint line texture",
+        "dashed process cards",
+        "offset blue photo shadow",
+        "overlapping rating pill",
+        "outlined stat cards"
+      ],
+      "flags": {
+        "trustBar": true,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "form-or-booking-first"
+      },
+      "heroImageRecipe": "16:9 documentary-style photo of [SUBJECT: electrician in hi-vis and hard hat working beside rows of grey conduit stubs at a commercial construction site], shot at eye level with a 35mm lens, soft overcast daylight, muted dusty earth tones with a deep navy tint, shallow depth of field, negative space on the left half for headline and buttons, no text or logos",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:00:46.878Z",
+        "robots": "no matching rule",
+        "title": "Commercial & Industrial Electrical Contractor | Lea Electric",
+        "metaDescription": "Trusted commercial & industrial electrical contractor serving Meridian, Boise & the Treasure Valley. Design-build, installation & service. Get a quote.",
+        "headings": {
+          "h1": [
+            "We Meet Idaho's Electrical Needs With Safety and Efficiency"
+          ],
+          "h2": [
+            "Your Electrical Contractor Should Never Hold You Back",
+            "Lea Electric's Services",
+            "Featured Projects",
+            "Why Idaho Contractors, Facility Managers, and Owners Choose Lea Electric",
+            "Work With Us",
+            "Let’s Power Your Next Project — the Right Way",
+            "Testimonials from people who valued out team and process.",
+            "With Lea Electric, You Get:",
+            "Industries We Work With",
+            "Get Started With a Quote for Your Project",
+            "Links",
+            "Legal"
+          ]
+        },
+        "telHrefs": [
+          "tel:(208) 888-2523"
+        ],
+        "telLinkCount": 3,
+        "ctaLabels": [
+          {
+            "label": "Skip To Footer",
+            "count": 2,
+            "firstY": -61,
+            "tel": false
+          },
+          {
+            "label": "Home",
+            "count": 1,
+            "firstY": 73,
+            "tel": false
+          },
+          {
+            "label": "Get A Quote",
+            "count": 9,
+            "firstY": 73,
+            "tel": false
+          },
+          {
+            "label": "Recent Projects",
+            "count": 2,
+            "firstY": 584,
+            "tel": false
+          },
+          {
+            "label": "Pause Video",
+            "count": 1,
+            "firstY": 739,
+            "tel": false
+          },
+          {
+            "label": "Call: (208) 888-2523",
+            "count": 2,
+            "firstY": 801,
+            "tel": true
+          },
+          {
+            "label": "View All Projects",
+            "count": 2,
+            "firstY": 3897,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Home",
+          "mobile": "Get A Quote"
+        },
+        "fonts": {
+          "body": "Montserrat, sans-serif",
+          "h1": "Montserrat, sans-serif",
+          "h2": "Montserrat, sans-serif",
+          "loaded": [
+            "Montserrat",
+            "Ionicons"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#173b7f",
+              "share": 0.313
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.201
+            },
+            {
+              "hex": "#f2f2f2",
+              "share": 0.037
+            },
+            {
+              "hex": "#ffbe4d",
+              "share": 0.011
+            },
+            {
+              "hex": "#ffa300",
+              "share": 0.004
+            },
+            {
+              "hex": "#08142b",
+              "share": 0.003
+            }
+          ],
+          "text": [
+            {
+              "hex": "#08142b",
+              "share": 0.64
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.259
+            },
+            {
+              "hex": "#173b7f",
+              "share": 0.036
+            },
+            {
+              "hex": "#404040",
+              "share": 0.026
+            },
+            {
+              "hex": "#332000",
+              "share": 0.019
+            },
+            {
+              "hex": "#ffa300",
+              "share": 0.013
+            }
+          ],
+          "imageShare": 0.347,
+          "gradientShare": 0.084
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(208) 888-2523",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 1,
+        "aboveFold": {
+          "desktop": {
+            "img": 0,
+            "bgImage": 0,
+            "video": 1,
+            "total": 1
+          },
+          "mobile": {
+            "img": 0,
+            "bgImage": 0,
+            "video": 1,
+            "total": 1
+          }
+        },
+        "heroH1": {
+          "desktop": "We Meet Idaho's Electrical Needs With Safety and Efficiency",
+          "mobile": "We Meet Idaho's Electrical Needs With Safety and Efficiency"
+        },
+        "lcpMs": {
+          "desktop": 1344,
+          "mobile": 1460
+        },
+        "lcpElement": {
+          "desktop": "video",
+          "mobile": "video"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 102,
+            "domContentLoaded": 664,
+            "load": 705
+          },
+          "mobile": {
+            "ttfb": 198,
+            "domContentLoaded": 576,
+            "load": 588
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "bonded",
+            "certified",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WordPress 7.1.2",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 9428,
+          "mobileHeight": 13290,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:39.163Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            9428
+          ]
+        ],
+        "usage": {
+          "input": 15916,
+          "output": 992
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "electrical/ctcelectricalcontracting",
+      "vertical": "electrical",
+      "segment": "commercial",
+      "slug": "ctcelectricalcontracting",
+      "company": "CTC Electrical Contracting",
+      "metro": "Spokane",
+      "url": "https://ctcelectricalcontracting.com/",
+      "finalUrl": "https://ctcelectricalcontracting.com/",
+      "search": {
+        "query": "commercial electrical contractor Spokane",
+        "rank": 2,
+        "resultUrl": "https://ctcelectricalcontracting.com/"
+      },
+      "aesthetic": "Patriotic purple-and-gold personality brand: flag-overlay hero fronted by a mascot-style owner photo, quirky and dated.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f5f5f5",
+        "text": "#676767",
+        "accent": "#6d298c",
+        "accent2": "#ffd401"
+      },
+      "typePairing": {
+        "display": "Open Sans",
+        "body": "Open Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "logo banner",
+        "header",
+        "hero",
+        "value pillars",
+        "owner bio",
+        "careers band",
+        "client logos",
+        "why choose us tabs",
+        "testimonial",
+        "cta phone line",
+        "footer"
+      ],
+      "heroTreatment": "Purple-tinted American flag photo background; left column has H1, intro copy, gold phone numbers and Call Today button; right column shows full-length owner photo with emergency number.",
+      "trustSignals": [
+        "24/7 emergency service line",
+        "Master electricians and degreed engineer claim",
+        "Trilogy of Power Protection guarantee (On Time, On Budget, On Specification)",
+        "Recognizable client logos (Ulta, Ford, Walgreens, Hobby Lobby, Avista, Kootenay County)",
+        "5-star customer testimonial",
+        "Serves WA, ID, MT, OR, CA"
+      ],
+      "ctaPattern": "Gold CALL TODAY button in hero, purple CONTACT US button mid-page, phone numbers repeated in gold or purple text and again in the footer; no form.",
+      "distinctiveMoves": [
+        "Owner as full-length cut-out character with nickname 'The Chaz' creating a memorable personality brand",
+        "Three photo tiles with gold icons framing a promise: On Time, On Budget, On Specification",
+        "Greyscale commercial client logo wall for B2B credibility",
+        "Before/after slider placed on a dark power-line backdrop beside a purple recruiting card"
+      ],
+      "weaknesses": [
+        "Large lightning-bolt slogan banner and Hawaiian-shirt owner photo feel amateur and dilute commercial professionalism",
+        "Body text is small and low-contrast grey; white small copy over busy flag hero is hard to read",
+        "No lead form, license number, or review count; fax number given equal prominence to the office line"
+      ],
+      "segmentFit": {
+        "residential": 0.35,
+        "commercial": 0.6,
+        "new_construction": 0.3
+      },
+      "vocabulary": [
+        "purple flag-overlay hero",
+        "gold CTA button",
+        "lightning-bolt logo banner",
+        "cut-out owner portrait",
+        "three photo pillar tiles",
+        "greyscale client logo grid",
+        "purple testimonial bubble",
+        "dark charcoal footer",
+        "before/after slider",
+        "icon tab list"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Wide 16:9 photo of [SUBJECT: commercial electrician inspecting a switchgear panel in a modern retail building], shot at eye level on a 35mm lens, cool diffused light with a purple-violet colour grade and warm gold highlights, shallow depth of field, large calm negative space on the left half for the headline and phone numbers, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:00:39.713Z",
+        "robots": "no matching rule",
+        "title": "CTC Electrical Contracting Inc. - Spokane Commercial Electrician",
+        "metaDescription": "When you are in need of a Commercial Electrician, look no further. Contact CTC Electrical Contracting, Inc.",
+        "headings": {
+          "h1": [
+            "Your Spokane Commercial Electrician"
+          ],
+          "h2": [
+            "(509) 290-6940 Office",
+            "(509) 290-6950 Fax",
+            "CTC’s Trilogy of Power Protection",
+            "(509) 290-6950",
+            "Meet your Spokane Electrician",
+            "CTC Electrical is always looking for talented electricians and journeyman to join the team. See what employment opportunities are available!",
+            "Committed To our Customers",
+            "GO WITH SOMEONE WHO'S BEEN THERE",
+            "PROFESSIONAL ELECTRICIANS YOU CAN TRUST",
+            "UTILIZED A HIGHLY TRAINED COMMERCIAL ELECTRICIAN TODAY!",
+            "SPOKANE INDUSTRIAL ELECTRICAL CONTRACTORS",
+            "509-630-6266"
+          ]
+        },
+        "telHrefs": [
+          "tel:5092906940",
+          "tel:5092906950",
+          "tel:5096306266"
+        ],
+        "telLinkCount": 7,
+        "ctaLabels": [
+          {
+            "label": "CALL TODAY",
+            "count": 2,
+            "firstY": 966,
+            "tel": true
+          },
+          {
+            "label": "Experienced Electricians",
+            "count": 2,
+            "firstY": 4409,
+            "tel": false
+          },
+          {
+            "label": "CONTACT US",
+            "count": 2,
+            "firstY": 4592,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": null,
+          "mobile": "CALL TODAY"
+        },
+        "fonts": {
+          "body": "\"Open Sans\"",
+          "h1": "\"Open Sans\"",
+          "h2": "\"Open Sans\"",
+          "loaded": [
+            "FontAwesome",
+            "Open Sans",
+            "icomoon",
+            "steadysets",
+            "iconsmind",
+            "Roboto"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.621
+            },
+            {
+              "hex": "#252525",
+              "share": 0.079
+            },
+            {
+              "hex": "#6d298c",
+              "share": 0.044
+            },
+            {
+              "hex": "#000000",
+              "share": 0.031
+            },
+            {
+              "hex": "#ffd401",
+              "share": 0.001
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.406
+            },
+            {
+              "hex": "#676767",
+              "share": 0.379
+            },
+            {
+              "hex": "#cccccc",
+              "share": 0.065
+            },
+            {
+              "hex": "#444444",
+              "share": 0.065
+            },
+            {
+              "hex": "#888888",
+              "share": 0.026
+            },
+            {
+              "hex": "#6d298c",
+              "share": 0.023
+            }
+          ],
+          "imageShare": 0.224,
+          "gradientShare": 0
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 273,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 273,
+              "phone": false,
+              "text": "Hit enter to search or ESC to close Home Services Commercial Electrical Industri"
+            },
+            {
+              "edge": "top",
+              "width": 480,
+              "height": 900,
+              "phone": false,
+              "text": ""
+            },
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 900,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 81,
+              "phone": false,
+              "text": "Hit enter to search or ESC to close"
+            },
+            {
+              "edge": "top",
+              "width": 304,
+              "height": 844,
+              "phone": false,
+              "text": "Home Services Commercial Electrical Industrial Electric Residential Electrical E"
+            },
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 844,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "(509) 290-6940",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 1,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Your Spokane Commercial Electrician",
+          "mobile": "Your Spokane Commercial Electrician"
+        },
+        "lcpMs": {
+          "desktop": 1256,
+          "mobile": 1168
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 52,
+            "domContentLoaded": 800,
+            "load": 1813
+          },
+          "mobile": {
+            "ttfb": 173,
+            "domContentLoaded": 792,
+            "load": 1324
+          }
+        },
+        "signals": {
+          "trust": [
+            "guarantee",
+            "certified",
+            "master-license"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress",
+            "godaddy"
+          ],
+          "generator": "Powered by WPBakery Page Builder - drag and drop page builder for WordPress.",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 6636,
+          "mobileHeight": 9439,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:29.997Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            6636
+          ]
+        ],
+        "usage": {
+          "input": 12292,
+          "output": 1057
+        }
+      },
+      "family": "F2"
+    },
+    {
+      "id": "electrical/hayesandlunsford",
+      "vertical": "electrical",
+      "segment": "commercial",
+      "slug": "hayesandlunsford",
+      "company": "Hayes & Lunsford Electric",
+      "metro": "Greenville SC",
+      "url": "https://hayesandlunsford.com/",
+      "finalUrl": "https://hayesandlunsford.com/",
+      "search": {
+        "query": "commercial electrical contractor Greenville SC",
+        "rank": 1,
+        "resultUrl": "https://hayesandlunsford.com/"
+      },
+      "aesthetic": "Corporate navy and white commercial-industrial site: container-port hero banner above long, plain text-only content.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#ffffff",
+        "text": "#000000",
+        "accent": "#004a87",
+        "accent2": "#db0632"
+      },
+      "typePairing": {
+        "display": "Montserrat",
+        "body": "Montserrat",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "social bar",
+        "header",
+        "navigation",
+        "hero",
+        "intro text",
+        "services text",
+        "legacy text",
+        "why choose us text",
+        "industries list",
+        "closing text",
+        "footer"
+      ],
+      "heroTreatment": "Full-width night aerial photo of a shipping container port with centered white all-caps headline 'Serving South Carolina, North Carolina & Georgia' directly on the image, no overlay panel or CTA.",
+      "trustSignals": [
+        "Third-generation family-owned",
+        "Founded in 1926, almost 100 years",
+        "Two office locations with addresses and phones",
+        "Healthcare, industrial and commercial sector experience"
+      ],
+      "ctaPattern": "No explicit CTA buttons; phone numbers for the Greer and Arden offices in the header and footer plus a Contact Us nav link.",
+      "distinctiveMoves": [
+        "Industrial port-logistics hero photo signals commercial scale rather than residential service",
+        "Dual-office header with both addresses and phone numbers side by side",
+        "Full-bleed navy nav bar with a red active-state tab echoing logo colours",
+        "Sector list (healthcare, distribution, municipal) that speaks directly to commercial buyers"
+      ],
+      "weaknesses": [
+        "Very long wall of text with no cards, icons, imagery or visual breaks",
+        "No CTA button, form, reviews, project photos or badges; weak conversion path",
+        "Large empty white gap above footer and a hero headline that is hard to read over a busy photo"
+      ],
+      "segmentFit": {
+        "residential": 0.05,
+        "commercial": 0.6,
+        "new_construction": 0.35
+      },
+      "vocabulary": [
+        "navy header and footer bands",
+        "red active nav tab",
+        "container port hero photo",
+        "centered white caps headline",
+        "plain text-only body",
+        "bold Montserrat subheads",
+        "three-column navy footer",
+        "dual-office contact block",
+        "small social icon bar",
+        "underlined blue H1"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Wide 16:9 aerial photo at dusk of [SUBJECT: busy industrial container yard with stacked colorful shipping containers and a gantry crane], shot from a drone at 35mm, deep blue twilight sky with warm sodium floodlights, saturated orange, yellow and blue containers, converging perspective lines; keep the upper third darker and uncluttered as negative space for a centered headline. No text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:00:52.390Z",
+        "robots": "no matching rule",
+        "title": "Commercial Electrical Contractor Services in Greenville SC | Hayes & Lunsford Electric Inc",
+        "metaDescription": "Hayes & Lunsford are an electrical company that has provided electrical contractor services in the Greenville, SC area for over 90 years. Specializing in areas like commercial, industrial, healthcare, and design-build. Click to learn more!",
+        "headings": {
+          "h1": [
+            "Electrical Contractors Serving South Carolina"
+          ],
+          "h2": [
+            "Electrical Services",
+            "Sectors We Support",
+            "Contact Us",
+            "Navigation",
+            "Business Hours"
+          ]
+        },
+        "telHrefs": [
+          "tel:+18642973198",
+          "tel:+18284125852"
+        ],
+        "telLinkCount": 2,
+        "ctaLabels": [
+          {
+            "label": "Home",
+            "count": 1,
+            "firstY": 202,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Home",
+          "mobile": "Allow all"
+        },
+        "fonts": {
+          "body": "Montserrat",
+          "h1": "Montserrat",
+          "h2": "Montserrat",
+          "loaded": [
+            "Montserrat",
+            "Font Awesome 5 Brands",
+            "Font Awesome 5 Free"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.658
+            },
+            {
+              "hex": "#004a87",
+              "share": 0.163
+            },
+            {
+              "hex": "#db0632",
+              "share": 0.003
+            }
+          ],
+          "text": [
+            {
+              "hex": "#000000",
+              "share": 0.795
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.167
+            },
+            {
+              "hex": "#004a87",
+              "share": 0.021
+            },
+            {
+              "hex": "#e10e40",
+              "share": 0.012
+            },
+            {
+              "hex": "#071230",
+              "share": 0.006
+            }
+          ],
+          "imageShare": 0.176,
+          "gradientShare": 0
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 48,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 48,
+              "phone": false,
+              "text": "Home Our History Projects Asheville, NC Show Submenu for Asheville, NC Greenvill"
+            },
+            {
+              "edge": "bottom",
+              "width": 48,
+              "height": 48,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 48,
+              "phone": false,
+              "text": "Hayes & Lunsford Electric LLC"
+            },
+            {
+              "edge": "bottom",
+              "width": 48,
+              "height": 48,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": false,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "Electrical Contractors Serving South Carolina",
+          "mobile": "Electrical Contractors Serving South Carolina"
+        },
+        "lcpMs": {
+          "desktop": 1196,
+          "mobile": 1304
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 329,
+            "domContentLoaded": 678,
+            "load": 967
+          },
+          "mobile": {
+            "ttfb": 645,
+            "domContentLoaded": 962,
+            "load": 1203
+          }
+        },
+        "signals": {
+          "trust": [
+            "family-owned",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": "WP Rocket 3.23.3.3",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 4341,
+          "mobileHeight": 6818,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": "Allow all"
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:29.099Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4342
+          ]
+        ],
+        "usage": {
+          "input": 9101,
+          "output": 936
+        }
+      },
+      "family": "F4"
+    },
+    {
+      "id": "electrical/canoelectric",
+      "vertical": "electrical",
+      "segment": "commercial",
+      "slug": "canoelectric",
+      "company": "Cano Electric",
+      "metro": "Fort Worth",
+      "url": "https://www.canoelectric.com/",
+      "finalUrl": "https://www.canoelectric.com/",
+      "search": {
+        "query": "commercial electrical contractor Fort Worth",
+        "rank": 1,
+        "resultUrl": "https://www.canoelectric.com/"
+      },
+      "aesthetic": "Corporate maroon and white electrical contractor site with dark worker hero, card-based service tiles and commercial/multifamily focus.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f4f4f4",
+        "text": "#000000",
+        "accent": "#8a121c",
+        "accent2": "#1a0dab"
+      },
+      "typePairing": {
+        "display": "Roboto",
+        "body": "Roboto",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "nav bar",
+        "hero",
+        "intro",
+        "segment cards",
+        "services",
+        "cta band",
+        "service areas",
+        "partners",
+        "stats",
+        "footer"
+      ],
+      "heroTreatment": "Full-width slider photo of an electrician with headlamp at a panel, dark tone, centered white '24/7 Emergency Service' headline, orange 24/7 badge at right, no buttons, slide indicator dashes.",
+      "trustSignals": [
+        "A Can Do Company Since 2009 tagline",
+        "24/7 emergency service badge",
+        "Since 2009 and 100 years combined staff experience",
+        "1400 satisfied customers",
+        "56 years combined experience",
+        "Partner logos: Square D, Legrand, Eaton, HUB",
+        "Two office phone numbers (DFW and Houston)"
+      ],
+      "ctaPattern": "Maroon SCHEDULE ESTIMATE button and dual office phone numbers in header; black band with CALL US phone button mid-page; pay invoice button in footer.",
+      "distinctiveMoves": [
+        "Two large segment cards (commercial, multifamily) with photo and overlapping white content panel with icon column",
+        "Dual-office phone numbers side by side in the header for DFW and Houston",
+        "Service area section pairing a branded-pin map with a scrolling town list in maroon links",
+        "Stats counters on white cards over a darkened photo band"
+      ],
+      "weaknesses": [
+        "Hero has no CTA or form and the headline is generic, with the 24/7 badge cropped at the edge",
+        "No reviews, license number or certifications; trust relies on stats and partner logos",
+        "Blue-purple headings clash with the maroon brand colour, and the page has no on-page lead form"
+      ],
+      "segmentFit": {
+        "residential": 0.35,
+        "commercial": 0.8,
+        "new_construction": 0.4
+      },
+      "vocabulary": [
+        "maroon nav bar",
+        "white-on-maroon caps nav",
+        "dark headlamp worker hero",
+        "overlapping card panels",
+        "icon-left service tiles",
+        "black CTA band",
+        "map plus town list",
+        "stat counter cards",
+        "partner logo row",
+        "textured light grey background"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Cinematic 16:9 photo of [SUBJECT: electrician in headlamp working at an open commercial electrical panel], low-key dark moody lighting, shallow depth of field, cool blue panel glow against deep shadows with a hint of warm orange accent, handheld close angle, negative space centered across the middle and left for the headline, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:00:56.389Z",
+        "robots": "no matching rule",
+        "title": "Multi-Family, Commercial, and Residential Electrician Services in Dallas-Fort Worth and Houston",
+        "metaDescription": "Cano Electric is a full-service Electrical Contracting company proudly serving our valued Dallas - Fort Worth, Houston & Corpus Christi customers since 2009.",
+        "headings": {
+          "h1": [
+            "Multi-Family, Commercial & Residential Electrician Dallas-Fort Worth & Houston"
+          ],
+          "h2": [
+            "Commercial Electrical Service",
+            "Multi-Family Electrical Repair"
+          ]
+        },
+        "telHrefs": [
+          "tel:817-242-2826",
+          "tel:832-307-3757"
+        ],
+        "telLinkCount": 8,
+        "ctaLabels": [
+          {
+            "label": "SCHEDULE ESTIMATE",
+            "count": 1,
+            "firstY": 38,
+            "tel": false
+          },
+          {
+            "label": "LEARN ABOUT MULTI-FAMILY PROJECTS",
+            "count": 6,
+            "firstY": 414,
+            "tel": false
+          },
+          {
+            "label": "PAY YOUR CANO INVOICE",
+            "count": 2,
+            "firstY": 3662,
+            "tel": false
+          },
+          {
+            "label": "Text Us",
+            "count": 1,
+            "firstY": 749,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "SCHEDULE ESTIMATE",
+          "mobile": "LEARN ABOUT MULTI-FAMILY PROJECTS"
+        },
+        "fonts": {
+          "body": "Roboto, sans-serif",
+          "h1": "Roboto, sans-serif",
+          "h2": "Roboto, sans-serif",
+          "loaded": [
+            "Roboto",
+            "FontAwesome"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.455
+            },
+            {
+              "hex": "#8a121c",
+              "share": 0.067
+            },
+            {
+              "hex": "#000000",
+              "share": 0.066
+            },
+            {
+              "hex": "#f4f4f4",
+              "share": 0.015
+            }
+          ],
+          "text": [
+            {
+              "hex": "#000000",
+              "share": 0.528
+            },
+            {
+              "hex": "#8a121c",
+              "share": 0.246
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.174
+            },
+            {
+              "hex": "#1a0dab",
+              "share": 0.047
+            },
+            {
+              "hex": "#1e1e1e",
+              "share": 0.005
+            }
+          ],
+          "imageShare": 0.396,
+          "gradientShare": 0
+        },
+        "stickyHeader": true,
+        "stickyHeaderHeight": 49,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "top",
+              "width": 1440,
+              "height": 49,
+              "phone": true,
+              "text": "HOME ABOUT US MULTIFAMILY COMMERCIAL ON-DEMAND REPAIR BREAKER PANELS LIGHTING OU"
+            },
+            {
+              "edge": "bottom",
+              "width": 50,
+              "height": 50,
+              "phone": false,
+              "text": ""
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 86,
+              "phone": true,
+              "text": "Fort Worth Office Houston Office"
+            },
+            {
+              "edge": "bottom",
+              "width": 50,
+              "height": 50,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 2,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 2,
+            "video": 0,
+            "total": 3
+          }
+        },
+        "heroH1": {
+          "desktop": "Multi-Family, Commercial & Residential Electrician Dallas-Fort Worth & Houston",
+          "mobile": "Multi-Family, Commercial & Residential Electrician Dallas-Fort Worth & Houston"
+        },
+        "lcpMs": {
+          "desktop": 1688,
+          "mobile": 1168
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 252,
+            "domContentLoaded": 1654,
+            "load": 1672
+          },
+          "mobile": {
+            "ttfb": 393,
+            "domContentLoaded": 1034,
+            "load": 1151
+          }
+        },
+        "signals": {
+          "trust": [
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 3883,
+          "mobileHeight": 6363,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:19.323Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            3883
+          ]
+        ],
+        "usage": {
+          "input": 8594,
+          "output": 995
+        }
+      },
+      "family": "F3"
+    },
+    {
+      "id": "electrical/alphaelectricspokane",
+      "vertical": "electrical",
+      "segment": "new_construction",
+      "slug": "alphaelectricspokane",
+      "company": "Alpha Electric",
+      "metro": "Spokane",
+      "url": "https://www.alphaelectricspokane.com/",
+      "finalUrl": "https://www.alphaelectricspokane.com/",
+      "search": {
+        "query": "new construction electrical Spokane",
+        "rank": 1,
+        "resultUrl": "https://www.alphaelectricspokane.com/new-construction-wiring"
+      },
+      "aesthetic": "Black-dominant electrician site with red accents, yellow phone numbers and moody wolf-silhouette and American flag photography.",
+      "palette": {
+        "bg": "#000000",
+        "surface": "#cb1c19",
+        "text": "#ffffff",
+        "accent": "#cb1c19",
+        "accent2": "#ffea20"
+      },
+      "typePairing": {
+        "display": "Karla",
+        "body": "Poppins",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "nav",
+        "hero",
+        "intro",
+        "local electrician panel",
+        "what we offer",
+        "outstanding service",
+        "why choose us",
+        "call band",
+        "reviews",
+        "footer nav",
+        "contact info and hours",
+        "legal"
+      ],
+      "heroTreatment": "Full-width darkened photo of the shop building with wolf logo sign, centered Karla headline and single red Contact Us Today button, chat popup overlapping lower right.",
+      "trustSignals": [
+        "Over 35 years of electrical experience",
+        "License number shown in header and footer",
+        "Master Electrician certification",
+        "Customer testimonial from Jerelee H.",
+        "Visa, Mastercard, cash and money order payment icons",
+        "Wolf-pack brand identity with Leading The Pack tagline"
+      ],
+      "ctaPattern": "Red Contact Us Today button in hero, yellow phone numbers in header, copy and footer, plus floating red icon rail and Schedule Now chat popup.",
+      "distinctiveMoves": [
+        "Yellow (#ffea20) phone numbers on black make the call path stand out in every block",
+        "Floating vertical rail of red circular icons (account, calendar, pay, phone, docs, email, map) pinned right",
+        "Wolf brand storytelling with full-bleed sunset wolf silhouette parallax band behind the value copy",
+        "Header combining branded van photo, address, license number and two phone lines (office and WIRE vanity number)"
+      ],
+      "weaknesses": [
+        "Large empty black areas and a blank left space beside the red panel make the page feel unfinished and heavy",
+        "No on-page contact form, no review ratings, no service area list or offers, so conversion relies on phone",
+        "Service photos of meter banks and panels have no captions or links, and the hero image is dark and dull"
+      ],
+      "segmentFit": {
+        "residential": 0.5,
+        "commercial": 0.4,
+        "new_construction": 0.45
+      },
+      "vocabulary": [
+        "black page canvas",
+        "red nav bar",
+        "yellow phone numbers",
+        "wolf silhouette parallax band",
+        "flag texture footer",
+        "darkened building hero",
+        "red text panel on black",
+        "line-icon why-choose row",
+        "floating red icon rail",
+        "outlined call-out box"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": true,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "Moody 16:9 photograph of [SUBJECT: modern electrician's shop exterior with metal siding and a dark door], overcast dusk light, desaturated slate and charcoal tones with warm tan siding and a touch of deep red, shot at eye level with a slight wide-angle lens, heavy dark vignette, calm open space across the center and lower middle for a centered headline and button, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:01:03.587Z",
+        "robots": "no matching rule",
+        "title": "Electrician | Spokane, WA | Alpha Electric",
+        "metaDescription": "Alpha Electric of Spokane, WA, provides expert electrical services for your home or business. Call us at 509-324-6377 today!",
+        "headings": {
+          "h1": [
+            "PROFESSIONAL ELECTRICAL SERVICES IN SPOKANE COUNTY, WA"
+          ],
+          "h2": [
+            "Your Local Trusted Electrician",
+            "What We Offer",
+            "Outstanding Service & Value",
+            "Why Choose Alpha Electric?"
+          ]
+        },
+        "telHrefs": [
+          "tel:509-324-6377",
+          "tel:509-326-9473"
+        ],
+        "telLinkCount": 9,
+        "ctaLabels": [
+          {
+            "label": "Home",
+            "count": 2,
+            "firstY": 4724,
+            "tel": false
+          },
+          {
+            "label": "Contact",
+            "count": 2,
+            "firstY": 853,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "Contact",
+          "mobile": "Home"
+        },
+        "fonts": {
+          "body": "\"Source Sans Pro\"",
+          "h1": "Karla",
+          "h2": "Karla",
+          "loaded": [
+            "Poppins",
+            "Open Sans",
+            "ls-icomoon",
+            "Karla",
+            "Source Sans Pro",
+            "dm-common-icons",
+            "flexslider-icon"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#000000",
+              "share": 0.263
+            },
+            {
+              "hex": "#cb1c19",
+              "share": 0.074
+            },
+            {
+              "hex": "#6f6864",
+              "share": 0.003
+            },
+            {
+              "hex": "#477cdf",
+              "share": 0.001
+            },
+            {
+              "hex": "#1877f2",
+              "share": 0
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.911
+            },
+            {
+              "hex": "#ffea20",
+              "share": 0.084
+            },
+            {
+              "hex": "#cb1c19",
+              "share": 0.005
+            }
+          ],
+          "imageShare": 0.66,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": true,
+          "mobile": true
+        },
+        "pinnedBars": {
+          "desktop": [
+            {
+              "edge": "bottom",
+              "width": 200,
+              "height": 47,
+              "phone": false,
+              "text": "Contact"
+            },
+            {
+              "edge": "top",
+              "width": 80,
+              "height": 478,
+              "phone": true,
+              "text": "My Account 0 Schedule now Make a payment Click-to-call 509-324-6377 Send us a fi"
+            }
+          ],
+          "mobile": [
+            {
+              "edge": "top",
+              "width": 390,
+              "height": 180,
+              "phone": true,
+              "text": "ALPHA ELECTRIC"
+            },
+            {
+              "edge": "bottom",
+              "width": 390,
+              "height": 77,
+              "phone": false,
+              "text": "Contact"
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 1,
+            "bgImage": 1,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "PROFESSIONAL ELECTRICAL SERVICES IN SPOKANE COUNTY, WA",
+          "mobile": "PROFESSIONAL ELECTRICAL SERVICES IN SPOKANE COUNTY, WA"
+        },
+        "lcpMs": {
+          "desktop": 508,
+          "mobile": 740
+        },
+        "lcpElement": {
+          "desktop": "div",
+          "mobile": "div"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 93,
+            "domContentLoaded": 390,
+            "load": 1424
+          },
+          "mobile": {
+            "ttfb": 433,
+            "domContentLoaded": 807,
+            "load": 1367
+          }
+        },
+        "signals": {
+          "trust": [
+            "master-license",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [
+            "ngage"
+          ],
+          "badges": [],
+          "platform": [
+            "duda"
+          ],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 5314,
+          "mobileHeight": 5504,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:19.675Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            5314
+          ]
+        ],
+        "usage": {
+          "input": 10423,
+          "output": 1027
+        }
+      },
+      "family": "F3"
+    },
+    {
+      "id": "electrical/jacobselectricinc",
+      "vertical": "electrical",
+      "segment": "new_construction",
+      "slug": "jacobselectricinc",
+      "company": "Jacob's Electric",
+      "metro": "Tucson",
+      "url": "https://www.jacobselectricinc.com/",
+      "finalUrl": "https://www.jacobselectricinc.com/",
+      "search": {
+        "query": "new construction electrical Tucson",
+        "rank": 8,
+        "resultUrl": "https://www.jacobselectricinc.com/"
+      },
+      "aesthetic": "Charcoal and safety-yellow builder-focused layout with construction-site photography and wide-tracked uppercase Oswald headings.",
+      "palette": {
+        "bg": "#ffffff",
+        "surface": "#f4f4f4",
+        "text": "#2f2f2f",
+        "accent": "#fddc25",
+        "accent2": "#2ba6cb"
+      },
+      "typePairing": {
+        "display": "Oswald",
+        "body": "Open Sans",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "utility bar",
+        "header",
+        "hero",
+        "welcome intro",
+        "dark intro with image tiles",
+        "about with checklist",
+        "cta band",
+        "question banner with meter photo",
+        "footer"
+      ],
+      "heroTreatment": "Full-width darkened photo of an electrician holding a cable spool in an unfinished brick room, with centered white uppercase headline, tracked subline and a single yellow button.",
+      "trustSignals": [
+        "Since 1988 in business",
+        "Electrical contractor of choice for several of Arizona's largest homebuilders",
+        "Competitive pricing / Superior service / Verified quality checklist",
+        "Warranty scheduling page"
+      ],
+      "ctaPattern": "Yellow phone button in the top bar and yellow CONTACT US buttons in the hero, about and CTA band; the phone repeats in the band and footer.",
+      "distinctiveMoves": [
+        "Builder-first message: hero headline targets single and multi-family residential projects rather than homeowner repairs",
+        "Three photo tiles with translucent dark label bands acting as navigation to new construction, warranty and contact",
+        "Charcoal-and-safety-yellow palette with one yellow accent for all actions",
+        "Full-bleed grayscale smart-meter photo as a backdrop for the question section"
+      ],
+      "weaknesses": [
+        "The 'ask a question' section shows no visible form, so the lead capture is empty and the space feels wasted",
+        "No reviews, license number, service-area list or badges, so trust rests on a single since-1988 claim",
+        "Thin content with stock photography and a nav limited to four items; the logo is small and dated"
+      ],
+      "segmentFit": {
+        "residential": 0.35,
+        "commercial": 0.2,
+        "new_construction": 0.8
+      },
+      "vocabulary": [
+        "charcoal and yellow palette",
+        "darkened construction-site hero",
+        "wide-tracked uppercase headings",
+        "yellow rectangular CTA buttons",
+        "photo tiles with translucent label bands",
+        "dark utility bar with phone button",
+        "grayscale meter photo background",
+        "centered stacked intro text",
+        "yellow check-circle bullet list",
+        "light gray CTA band"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "phone-first"
+      },
+      "heroImageRecipe": "16:9 photograph of [SUBJECT: electrician in work belt carrying a spool of black cable through an unfinished interior with exposed cinder-block and brick walls], shot at eye level on a 35mm lens with soft diffused daylight from a side window, muted warm brick browns and grays with a darkened overlay, subject placed slightly right of center and cropped at the torso, large open negative space in the center and lower third for a headline and button, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:01:11.329Z",
+        "robots": "no matching rule",
+        "title": "Electrical Contractor | Residential Electrician | Tucson, AZ",
+        "metaDescription": "Since 1988, Jacob’s Electric has been the electrical contractor of choice for many of Arizona’s biggest home builders. Jacob’s works on residential projects, new construction, and more. From wiring, to lighting, in-home entertainment, data networking, energy efficiency, and everything in between, contact Jacob’s today!",
+        "headings": {
+          "h1": [
+            "ELECTRICIANS FOCUSED ON SINGLE AND MULTI-FAMILY RESIDENTIAL PROJECTS",
+            "WELCOME TO JACOB’S ELECTRIC, INC"
+          ],
+          "h2": [
+            "SOUTHERN ARIZONA",
+            "CONTACT US TODAY FOR ALL YOUR ELECTRICAL AND TECHNOLOGY SERVICES"
+          ]
+        },
+        "telHrefs": [
+          "tel:520-544-9314"
+        ],
+        "telLinkCount": 3,
+        "ctaLabels": [
+          {
+            "label": "CONTACT US",
+            "count": 4,
+            "firstY": 531,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": "CONTACT US",
+          "mobile": "CONTACT US"
+        },
+        "fonts": {
+          "body": "\"Open Sans\", sans-serif",
+          "h1": "Oswald, sans-serif",
+          "h2": "Oswald, sans-serif",
+          "loaded": [
+            "Font Awesome 5 Free",
+            "Open Sans"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#2f2f2f",
+              "share": 0.208
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.199
+            },
+            {
+              "hex": "#f4f4f4",
+              "share": 0.159
+            },
+            {
+              "hex": "#fddc25",
+              "share": 0.007
+            }
+          ],
+          "text": [
+            {
+              "hex": "#ffffff",
+              "share": 0.568
+            },
+            {
+              "hex": "#2f2f2f",
+              "share": 0.419
+            },
+            {
+              "hex": "#2ba6cb",
+              "share": 0.011
+            },
+            {
+              "hex": "#707070",
+              "share": 0.003
+            }
+          ],
+          "imageShare": 0.427,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": true,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": "520-544-9314",
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": "ELECTRICIANS FOCUSED ON SINGLE AND MULTI-FAMILY RESIDENTIAL PROJECTS",
+          "mobile": "ELECTRICIANS FOCUSED ON SINGLE AND MULTI-FAMILY RESIDENTIAL PROJECTS"
+        },
+        "lcpMs": {
+          "desktop": 1252,
+          "mobile": 1560
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "h1"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 94,
+            "domContentLoaded": 1097,
+            "load": 3524
+          },
+          "mobile": {
+            "ttfb": 562,
+            "domContentLoaded": 2530,
+            "load": 3102
+          }
+        },
+        "signals": {
+          "trust": [
+            "warranty",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "angi"
+          ],
+          "platform": [
+            "wordpress"
+          ],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 2972,
+          "mobileHeight": 4223,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:38.648Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            2972
+          ]
+        ],
+        "usage": {
+          "input": 7502,
+          "output": 1035
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "electrical/greenville-electric",
+      "vertical": "electrical",
+      "segment": "new_construction",
+      "slug": "greenville-electric",
+      "company": "Greenville Electric LLC",
+      "metro": "Greenville SC",
+      "url": "https://www.greenville-electric.com/",
+      "finalUrl": "https://www.greenville-electric.com/",
+      "search": {
+        "query": "new construction electrical Greenville SC",
+        "rank": 1,
+        "resultUrl": "https://www.greenville-electric.com/new-construction-electrical-services"
+      },
+      "aesthetic": "Bold condensed Anton caps in black and amber-orange on a dark charcoal header, with saturated local-landmark photography",
+      "palette": {
+        "bg": "#e5e4e0",
+        "surface": "#f8f8f8",
+        "text": "#111111",
+        "accent": "#fe9925",
+        "accent2": "#1e1d1a"
+      },
+      "typePairing": {
+        "display": "Anton",
+        "body": "Epilogue",
+        "source": "google-fonts"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "about",
+        "services accordion",
+        "free consultation banner",
+        "google reviews",
+        "instagram feed",
+        "why us",
+        "contact form",
+        "cta band",
+        "footer with service areas"
+      ],
+      "heroTreatment": "Full-width saturated photo of the Greenville riverfront downtown with the logo centered large, an Anton 'RESIDENTIAL ELECTRICIAN' headline and one orange gradient quote button below.",
+      "trustSignals": [
+        "5-Star Google Reviews heading",
+        "Excellent on Google 5.0 out of 5 based on 156 reviews",
+        "Licensed, insured, highly-rated copy",
+        "Licensed and certified electricians",
+        "24/7 hours in footer",
+        "Elfsight Google review cards with verified marks"
+      ],
+      "ctaPattern": "Orange gradient 'GET MY QUOTE' in header and hero, repeated with Call Now, Book Now, Submit and Free Quote in the footer band; no phone number in the header.",
+      "distinctiveMoves": [
+        "Local landmark photo (Greenville riverfront) as the hero instead of a truck or tech stock shot",
+        "Oversized '100% FREE ELECTRICAL CONSULTATION' banner over a branded van photo as a mid-page offer",
+        "Anton-caps accordion service list with hairline dividers and plus icons",
+        "Orange-to-yellow gradient buttons tied to the bulb logo color"
+      ],
+      "weaknesses": [
+        "No phone number in the header or hero, and no sticky header, so call conversion is weak",
+        "Hero is a huge logo over a busy photo, with a tiny headline and no supporting copy or proof",
+        "Thin on proof: no license number, no real project gallery, and the Instagram feed shows only a few product shots; the flat form is plain"
+      ],
+      "segmentFit": {
+        "residential": 0.78,
+        "commercial": 0.3,
+        "new_construction": 0.3
+      },
+      "vocabulary": [
+        "Anton condensed caps headlines",
+        "charcoal header bar",
+        "orange-yellow gradient buttons",
+        "landmark hero photo",
+        "accordion service list",
+        "rounded photo cards",
+        "oversized free-offer banner",
+        "Google review carousel card",
+        "warm gray page background",
+        "dark footer with town columns"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": true,
+        "reviewsWidget": true,
+        "bookingForm": true,
+        "conversion": "form-or-booking-first"
+      },
+      "heroImageRecipe": "Wide 16:9 photo of [SUBJECT: a recognizable local downtown riverfront with a historic bridge and waterfall at golden hour], shot at eye level with a 24mm lens, saturated warm amber and deep blue palette, slightly dramatic sky, clear open water area in the lower center and the center-upper mid-frame left calm for a logo and a headline, no text or logos.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:01:20.953Z",
+        "robots": "no matching rule",
+        "title": "Greenville County SC Electrical Repairs & Upgrades | Greenville Electrician - Get My Free Quote!",
+        "metaDescription": "Licensed, insured, and highly recommended electrician in Greenville, SC including electrical repairs, electrical upgrades, and new electrical installations for homes and businesses. ",
+        "headings": {
+          "h1": [
+            "RESIDENTIAL ELECTRICIAN",
+            "100% FREE",
+            "ELECTRICAL CONSULTATION",
+            "FOLLOW GREENVILLE ELECTRIC",
+            "CONTACT US"
+          ],
+          "h2": [
+            "ABOUT GREENVILLE ELECTRIC",
+            "ELECTRICAL SERVICES",
+            "5-STAR GOOGLE REVIEWS 🎉",
+            "WHY GREENVILLE ELECTRIC?"
+          ]
+        },
+        "telHrefs": [
+          "tel:8647572012"
+        ],
+        "telLinkCount": 4,
+        "ctaLabels": [
+          {
+            "label": "GET MY QUOTE",
+            "count": 4,
+            "firstY": 41,
+            "tel": false
+          },
+          {
+            "label": "ABOUT US",
+            "count": 2,
+            "firstY": 1498,
+            "tel": false
+          },
+          {
+            "label": "CALL NOW",
+            "count": 4,
+            "firstY": 2292,
+            "tel": true
+          },
+          {
+            "label": "BOOK NOW",
+            "count": 4,
+            "firstY": 3429,
+            "tel": false
+          },
+          {
+            "label": "Review us on Google",
+            "count": 2,
+            "firstY": 3925,
+            "tel": false
+          },
+          {
+            "label": "Previous Slide",
+            "count": 2,
+            "firstY": 5144,
+            "tel": false
+          },
+          {
+            "label": "Next Slide",
+            "count": 2,
+            "firstY": 5144,
+            "tel": false
+          },
+          {
+            "label": "FOLLOW US ON INSTAGRAM",
+            "count": 2,
+            "firstY": 5304,
+            "tel": false
+          },
+          {
+            "label": "SUBMIT",
+            "count": 2,
+            "firstY": 6936,
+            "tel": false
+          },
+          {
+            "label": "EMAIL US",
+            "count": 2,
+            "firstY": 6913,
+            "tel": false
+          },
+          {
+            "label": "FREE QUOTE",
+            "count": 2,
+            "firstY": 7165,
+            "tel": false
+          },
+          {
+            "label": "📞 CALL NOW",
+            "count": 1,
+            "firstY": 365,
+            "tel": true
+          }
+        ],
+        "primaryCta": {
+          "desktop": "GET MY QUOTE",
+          "mobile": "📞 CALL NOW"
+        },
+        "fonts": {
+          "body": "sans-serif",
+          "h1": "Anton",
+          "h2": "Anton",
+          "loaded": [
+            "Almarai",
+            "Anton",
+            "Epilogue"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#e5e4e0",
+              "share": 0.886
+            },
+            {
+              "hex": "#1e1d1a",
+              "share": 0.032
+            },
+            {
+              "hex": "#f8f8f8",
+              "share": 0.021
+            },
+            {
+              "hex": "#ff7800",
+              "share": 0.001
+            },
+            {
+              "hex": "#d2d2d2",
+              "share": 0.001
+            }
+          ],
+          "text": [
+            {
+              "hex": "#000000",
+              "share": 0.408
+            },
+            {
+              "hex": "#111111",
+              "share": 0.395
+            },
+            {
+              "hex": "#ffffff",
+              "share": 0.156
+            },
+            {
+              "hex": "#fe9925",
+              "share": 0.037
+            },
+            {
+              "hex": "#ff7800",
+              "share": 0.004
+            }
+          ],
+          "imageShare": 0.044,
+          "gradientShare": 0.015
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": []
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": true,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": false,
+        "imageCountAboveFold": 3,
+        "aboveFold": {
+          "desktop": {
+            "img": 3,
+            "bgImage": 0,
+            "video": 0,
+            "total": 3
+          },
+          "mobile": {
+            "img": 4,
+            "bgImage": 0,
+            "video": 0,
+            "total": 4
+          }
+        },
+        "heroH1": {
+          "desktop": "RESIDENTIAL ELECTRICIAN",
+          "mobile": "RESIDENTIAL ELECTRICIAN"
+        },
+        "lcpMs": {
+          "desktop": 668,
+          "mobile": 900
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 98,
+            "domContentLoaded": 1089,
+            "load": 2256
+          },
+          "mobile": {
+            "ttfb": 273,
+            "domContentLoaded": 1359,
+            "load": 2534
+          }
+        },
+        "signals": {
+          "trust": [
+            "licensed",
+            "insured",
+            "certified",
+            "star-rating",
+            "google-reviews"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": true,
+          "emergency": true,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 1,
+          "reviewVendors": [
+            "elfsight"
+          ],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [
+            "bbb",
+            "angi",
+            "google"
+          ],
+          "platform": [
+            "squarespace"
+          ],
+          "generator": null,
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 7775,
+          "mobileHeight": 8934,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:29.858Z",
+        "strips": [
+          [
+            0,
+            2400
+          ],
+          [
+            2400,
+            4800
+          ],
+          [
+            4800,
+            7200
+          ],
+          [
+            7200,
+            7775
+          ]
+        ],
+        "usage": {
+          "input": 13837,
+          "output": 1056
+        }
+      },
+      "family": "F1"
+    },
+    {
+      "id": "electrical/parishelectricftw",
+      "vertical": "electrical",
+      "segment": "new_construction",
+      "slug": "parishelectricftw",
+      "company": "Parish Electric Company",
+      "metro": "Fort Worth",
+      "url": "https://www.parishelectricftw.com/",
+      "finalUrl": "https://www.parishelectricftw.com/",
+      "search": {
+        "query": "new construction electrical Fort Worth",
+        "rank": 9,
+        "resultUrl": "https://www.parishelectricftw.com/"
+      },
+      "aesthetic": "Corporate navy and steel-blue Wix template with a glitchy collage hero of commercial project photos over wiring imagery",
+      "palette": {
+        "bg": "#f6f6f6",
+        "surface": "#ffffff",
+        "text": "#5185a8",
+        "accent": "#5185a8",
+        "accent2": "#072a57"
+      },
+      "typePairing": {
+        "display": "Avenir LT Heavy",
+        "body": "League Spartan",
+        "source": "custom"
+      },
+      "sectionOrder": [
+        "header",
+        "hero",
+        "about",
+        "footer"
+      ],
+      "heroTreatment": "Strip of colored wiring photo behind an overlapping collage of finished commercial and residential building photos; headline and button sit below on a steel-blue panel and are cropped off the left edge.",
+      "trustSignals": [
+        "Family-owned electrical construction business",
+        "Over 50 years of experience",
+        "Named client projects: Chick-Fil-A, McDonalds, 7-11, Dutch Brothers Coffee"
+      ],
+      "ctaPattern": "Weak: a cropped Services button in the hero and a Meet The Team button under About; phone and email appear only in the header and footer.",
+      "distinctiveMoves": [
+        "Hero collage of real completed commercial buildings shows project scale rather than stock photos",
+        "Naming national brand clients in the about copy as proof for builders and developers",
+        "Rounded-top off-white panel overlapping the blue hero section"
+      ],
+      "weaknesses": [
+        "Hero looks broken: images overlap, stretch and glitch, and the headline is cropped off the left edge, with a large empty navy block",
+        "No H1, no reviews, no license number, no service area and no form; the tiny low-contrast blue body text is hard to read",
+        "Very thin page with a small crowded logo and contact text in the header, no tel: links and no sticky header"
+      ],
+      "segmentFit": {
+        "residential": 0.2,
+        "commercial": 0.5,
+        "new_construction": 0.45
+      },
+      "vocabulary": [
+        "navy header bar",
+        "steel-blue text on off-white",
+        "collage hero of building photos",
+        "wire-strand photo banner",
+        "rounded-top content panel",
+        "flat rectangular button",
+        "light-blue pill CTA",
+        "dense small paragraph copy",
+        "dark navy footer",
+        "Avenir heavy headlines"
+      ],
+      "flags": {
+        "trustBar": false,
+        "couponOrFinancingBlock": false,
+        "serviceAreaList": false,
+        "reviewsWidget": false,
+        "bookingForm": false,
+        "conversion": "balanced"
+      },
+      "heroImageRecipe": "Wide 16:9 photo of [SUBJECT: finished commercial strip-center or fuel-station building at dusk with electrical gear visible], shot at eye level with a 24mm lens, bright Texas blue sky, crisp daylight, palette of navy, steel blue and warm tan stone, clean concrete foreground, with open negative space on the lower left for the headline and a button.",
+      "facts": {
+        "httpStatus": 200,
+        "capturedAt": "2026-10-06T20:01:22.890Z",
+        "robots": "Allow: /",
+        "title": "Parish Electric Company, Inc of Fort Worth Texas | Electrical company | 5725 Hart Street, Fort Worth, TX, USA",
+        "metaDescription": "Parish Electric Company is a family owned and operated business since 1963 serving the greater Dallas, Fort Worth Metroplex and surrounding areas. We specialize in fuel service electrical construction, residential and commercial new builds and remodels, and basic electric servicing needs. ",
+        "headings": {
+          "h1": [],
+          "h2": [
+            "817-451-2931 bids@parishelectric.net",
+            "Electrical Contracting and Engineering",
+            "About Us",
+            "Parish Electric Company"
+          ]
+        },
+        "telHrefs": [],
+        "telLinkCount": 0,
+        "ctaLabels": [
+          {
+            "label": "Services",
+            "count": 2,
+            "firstY": 977,
+            "tel": false
+          },
+          {
+            "label": "Meet The Team",
+            "count": 2,
+            "firstY": 1550,
+            "tel": false
+          }
+        ],
+        "primaryCta": {
+          "desktop": null,
+          "mobile": "Services"
+        },
+        "fonts": {
+          "body": "Arial, Helvetica, sans-serif",
+          "h1": null,
+          "h2": "avenir-lt-w01_85-heavy1475544, sans-serif",
+          "loaded": [
+            "avenir-lt-w01_85-heavy1475544",
+            "league spartan"
+          ]
+        },
+        "colors": {
+          "background": [
+            {
+              "hex": "#ffffff",
+              "share": 0.494
+            },
+            {
+              "hex": "#072a57",
+              "share": 0.137
+            },
+            {
+              "hex": "#f6f6f6",
+              "share": 0.058
+            },
+            {
+              "hex": "#5185a8",
+              "share": 0.039
+            },
+            {
+              "hex": "#bde9fb",
+              "share": 0.001
+            }
+          ],
+          "text": [
+            {
+              "hex": "#5185a8",
+              "share": 0.809
+            },
+            {
+              "hex": "#f6f6f6",
+              "share": 0.188
+            },
+            {
+              "hex": "#bde9fb",
+              "share": 0.003
+            }
+          ],
+          "imageShare": 0.272,
+          "gradientShare": 0
+        },
+        "stickyHeader": false,
+        "stickyHeaderHeight": null,
+        "stickyPhone": {
+          "desktop": false,
+          "mobile": false
+        },
+        "pinnedBars": {
+          "desktop": [],
+          "mobile": [
+            {
+              "edge": "bottom",
+              "width": 44,
+              "height": 44,
+              "phone": false,
+              "text": ""
+            }
+          ]
+        },
+        "phoneVisibleFirstViewport390": false,
+        "callLinkVisibleFirstViewport390": false,
+        "phoneSeen390": null,
+        "phoneVisibleFirstViewportDesktop": true,
+        "imageCountAboveFold": 2,
+        "aboveFold": {
+          "desktop": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          },
+          "mobile": {
+            "img": 2,
+            "bgImage": 0,
+            "video": 0,
+            "total": 2
+          }
+        },
+        "heroH1": {
+          "desktop": null,
+          "mobile": null
+        },
+        "lcpMs": {
+          "desktop": 436,
+          "mobile": 432
+        },
+        "lcpElement": {
+          "desktop": "img",
+          "mobile": "img"
+        },
+        "timing": {
+          "desktop": {
+            "ttfb": 56,
+            "domContentLoaded": 465,
+            "load": 813
+          },
+          "mobile": {
+            "ttfb": 166,
+            "domContentLoaded": 399,
+            "load": 717
+          }
+        },
+        "signals": {
+          "trust": [
+            "family-owned",
+            "years-in-business"
+          ],
+          "coupon": false,
+          "financing": false,
+          "membership": false,
+          "serviceArea": false,
+          "emergency": false,
+          "sameDay": false,
+          "licenseNumber": null,
+          "leadForms": 0,
+          "reviewVendors": [],
+          "schedulerVendors": [],
+          "chatVendors": [],
+          "badges": [],
+          "platform": [
+            "wix"
+          ],
+          "generator": "Wix.com Website Builder",
+          "credit": null
+        },
+        "page": {
+          "desktopHeight": 1980,
+          "mobileHeight": 1932,
+          "desktopTruncated": false,
+          "mobileTruncated": false,
+          "unhiddenBlocks": {
+            "desktop": 0,
+            "mobile": 0
+          },
+          "consentDismissed": null
+        },
+        "files": {
+          "desktop": "desktop.png",
+          "mobile": "mobile.png",
+          "fold": "desktop-fold.jpg"
+        }
+      },
+      "ingest": {
+        "model": "claude-sonnet-5-5",
+        "effort": "medium",
+        "at": "2026-10-06T20:02:38.090Z",
+        "strips": [
+          [
+            0,
+            1980
+          ]
+        ],
+        "usage": {
+          "input": 6072,
+          "output": 909
+        }
+      },
+      "family": "F4"
+    }
+  ]
+}
