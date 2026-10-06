@@ -4,6 +4,8 @@ import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { siteContent } from '../brief/current'
 import { allTradePhotoUrls } from '../brief/trade-photos'
+import { presetForVariant } from '../presets/presets'
+import { previewFor } from '../presets/previews'
 import { variants } from './variants'
 import { heroPhotoFor, tilePhotosFor } from './heroPhoto'
 
@@ -74,13 +76,22 @@ describe('variants', () => {
     }
   })
 
-  it('renders the picker with the business name on every card', () => {
+  it('renders the picker headline and one screenshot card per variant', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
         <App />
       </MemoryRouter>,
     )
-    const hits = document.body.textContent?.split(siteContent.name).length ?? 0
-    expect(hits - 1).toBeGreaterThanOrEqual(variants.length)
+    expect(document.querySelector('h1')?.textContent).toBe(`${siteContent.name} — five looks, pick one`)
+    const cards = [...document.querySelectorAll('a.pk-card')]
+    expect(cards).toHaveLength(variants.length)
+    variants.forEach((variant, i) => {
+      const { desktop, mobile } = previewFor(variant.slug)
+      expect(cards[i].getAttribute('href')).toBe(`/${variant.slug}`)
+      const srcs = [...cards[i].querySelectorAll('img')].map((img) => img.getAttribute('src'))
+      expect(srcs).toEqual([desktop, mobile])
+      expect(cards[i].textContent).toContain(presetForVariant(variant.slug).name)
+      expect(cards[i].querySelectorAll('.pk-swatch')).toHaveLength(4)
+    })
   })
 })

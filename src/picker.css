@@ -1,20 +1,20 @@
-/* Picker — the index the client lands on. Deliberately neutral so it
-   never competes with the five concepts it presents: a plan-room wall
-   with the drawings pinned to it. Scoped to .pk. */
+/* Picker — the index the prospect lands on. A neutral charcoal viewing
+   wall: the five screenshots carry all the colour, the chrome stays out
+   of their way. The one moving part is the phone shot that slides into
+   each frame on hover or focus. Scoped to .pk. */
 
 .pk {
-  --pk-ink: #0d0f12;
-  --pk-ink-2: #14171c;
-  --pk-ink-3: #1b1f26;
-  --pk-line: #2a2f38;
-  --pk-text: #e9ecf1;
-  --pk-text-dim: #99a1ae;
-  --pk-text-faint: #6c7482;
+  --pk-ground: #1d1f22;
+  --pk-surface: #26292d;
+  --pk-line: #3a3e44;
+  --pk-text: #ece9e4;
+  --pk-text-dim: #a3a6ab;
+  --pk-text-faint: #8b9098;
   --pk-mark: #c8a06a; /* brass, the one accent */
   --pk-ease: cubic-bezier(0.32, 0.72, 0, 1);
 
   min-height: 100dvh;
-  background-color: var(--pk-ink);
+  background-color: var(--pk-ground);
   color: var(--pk-text);
   font-family: 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
   font-size: 1rem;
@@ -25,12 +25,12 @@
 
 .pk ::selection {
   background: var(--pk-mark);
-  color: var(--pk-ink);
+  color: var(--pk-ground);
 }
 
 .pk :focus-visible {
   outline: 2px solid var(--pk-mark);
-  outline-offset: 4px;
+  outline-offset: 6px;
 }
 
 .pk-shell {
@@ -43,6 +43,7 @@
 /* Head ------------------------------------------------------------------ */
 .pk-title {
   margin: 0;
+  max-width: 24ch;
   font-size: clamp(1.9rem, 1.1rem + 2.6vw, 3.1rem);
   font-weight: 600;
   line-height: 1.1;
@@ -52,100 +53,128 @@
 
 .pk-lead {
   margin: 1.125rem 0 0;
-  max-width: 46rem;
+  max-width: 40rem;
+  font-size: 1.0625rem;
   color: var(--pk-text-dim);
 }
 
-/* Grid ------------------------------------------------------------------ */
+/* Grid ------------------------------------------------------------------
+   Five equal cards: one column, then two, then three. A short last row
+   sits centred under the full rows instead of stretching. */
 .pk-grid {
   display: grid;
-  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 4vw, 3.25rem) clamp(1.25rem, 2.5vw, 2rem);
   margin: clamp(2.75rem, 6vw, 4.5rem) 0 0;
   padding: 0;
   list-style: none;
 }
+.pk-grid > li {
+  display: flex;
+  min-width: 0;
+}
 @media (min-width: 640px) {
   .pk-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .pk-grid > li {
+    grid-column: span 2;
+  }
+  .pk-grid > li:last-child:nth-child(odd) {
+    grid-column: 2 / span 2;
   }
 }
 @media (min-width: 1024px) {
   .pk-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
+  .pk-grid > li:last-child:nth-child(odd) {
+    grid-column: auto / span 2;
+  }
+  .pk-grid > li:nth-child(3n + 1):nth-last-child(2) {
+    grid-column: 2 / span 2;
+  }
+  .pk-grid > li:nth-child(3n + 1):last-child {
+    grid-column: 3 / span 2;
+  }
 }
 
 /* Card ------------------------------------------------------------------ */
 .pk-card {
   display: flex;
-  height: 100%;
+  width: 100%;
   flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--pk-line);
-  background: var(--pk-ink-2);
   color: inherit;
   text-decoration: none;
-  transition:
-    border-color 0.5s var(--pk-ease),
-    background-color 0.5s var(--pk-ease),
-    transform 0.5s var(--pk-ease),
-    box-shadow 0.5s var(--pk-ease);
 }
-.pk-card:hover,
-.pk-card:focus-visible {
+
+/* The desktop shot, cropped to the top of the page. */
+.pk-frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--pk-line);
+  border-radius: 6px;
+  background: var(--pk-surface);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 14px 30px -20px rgba(0, 0, 0, 0.75);
+  transition: border-color 0.4s var(--pk-ease);
+}
+.pk-shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* The phone shot: parked off the right edge, slides in on hover/focus and
+   runs off the bottom of the frame like a phone held up to the screen. */
+.pk-phone {
+  position: absolute;
+  top: 9%;
+  right: 5%;
+  width: 40%;
+  height: auto;
+  border: 3px solid #0e0f11;
+  border-radius: 12px;
+  background: #0e0f11;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    -18px 18px 40px -16px rgba(0, 0, 0, 0.6);
+  transform: translateX(125%);
+  transition: transform 0.6s var(--pk-ease);
+}
+
+.pk-card:focus-visible .pk-frame {
   border-color: var(--pk-mark);
-  background: var(--pk-ink-3);
-  transform: translateY(-3px);
-  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.9);
 }
-.pk-card:active {
-  transform: translateY(-1px);
+.pk-card:focus-visible .pk-phone {
+  transform: none;
 }
-
-.pk-card-media {
-  border-bottom: 1px solid var(--pk-line);
-}
-
-.pk-card-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  padding: 1.5rem;
+@media (hover: hover) {
+  .pk-card:hover .pk-frame {
+    border-color: var(--pk-mark);
+  }
+  .pk-card:hover .pk-phone {
+    transform: none;
+  }
 }
 
-.pk-card-index {
-  margin: 0;
-  font-family: ui-monospace, 'SF Mono', Consolas, monospace;
-  font-size: 0.6875rem;
-  letter-spacing: 0.18em;
-  font-variant-numeric: tabular-nums;
-  color: var(--pk-text-faint);
-}
-
-.pk-card-name {
-  display: flex;
-  align-items: baseline;
-  gap: 0.625rem;
-  margin: 0.5rem 0 0;
-  font-size: 1.375rem;
+.pk-name {
+  margin: 1.125rem 0 0;
+  font-size: 1.3125rem;
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.2;
-}
-.pk-card-mark {
-  color: var(--pk-mark);
-  font-size: 1rem;
-  transition: transform 0.5s var(--pk-ease);
-}
-.pk-card:hover .pk-card-mark,
-.pk-card:focus-visible .pk-card-mark {
-  transform: translateX(0.375rem);
+  line-height: 1.25;
 }
 
-.pk-card-desc {
-  margin: 0.75rem 0 0;
+.pk-desc {
+  margin: 0.375rem 0 0;
+  max-width: 40ch;
   font-size: 0.9375rem;
-  line-height: 1.6;
+  line-height: 1.55;
   color: var(--pk-text-dim);
 }
 
@@ -153,12 +182,13 @@
   display: flex;
   gap: 0.25rem;
   margin-top: auto;
-  padding-top: 1.5rem;
+  padding-top: 1rem;
 }
 .pk-swatch {
   width: 1.75rem;
   height: 0.625rem;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
 }
 
 /* Foot ------------------------------------------------------------------ */
@@ -166,7 +196,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 1.75rem;
-  margin-top: clamp(3rem, 6vw, 4.5rem);
+  margin-top: clamp(3.5rem, 7vw, 5rem);
   padding-top: 1.5rem;
   border-top: 1px solid var(--pk-line);
   font-size: 0.8125rem;
@@ -184,44 +214,18 @@
 }
 
 /* Motion ---------------------------------------------------------------- */
-@media (prefers-reduced-motion: no-preference) {
-  .pk-grid > li {
-    animation: pk-rise 0.7s var(--pk-ease) both;
-    animation-delay: calc(var(--pk-i, 0) * 0.06s);
-  }
-  @keyframes pk-rise {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-  .pk-grid > li:nth-child(1) {
-    --pk-i: 0;
-  }
-  .pk-grid > li:nth-child(2) {
-    --pk-i: 1;
-  }
-  .pk-grid > li:nth-child(3) {
-    --pk-i: 2;
-  }
-  .pk-grid > li:nth-child(4) {
-    --pk-i: 3;
-  }
-  .pk-grid > li:nth-child(5) {
-    --pk-i: 4;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .pk-card:hover,
-  .pk-card:focus-visible,
-  .pk-card:active,
-  .pk-card:hover .pk-card-mark,
-  .pk-card:focus-visible .pk-card-mark {
+  .pk-phone {
+    opacity: 0;
     transform: none;
+    transition: opacity 0.2s linear;
+  }
+  .pk-card:focus-visible .pk-phone {
+    opacity: 1;
+  }
+  @media (hover: hover) {
+    .pk-card:hover .pk-phone {
+      opacity: 1;
+    }
   }
 }
