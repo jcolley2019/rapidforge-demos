@@ -178,10 +178,11 @@ try {
             }
 
             // Picker preview: the top of the page, viewport only, without the
-            // fixed "All concepts" chip (picker chrome, not the prospect's site).
+            // fixed "All concepts" chip and "I like this one" button (picker
+            // chrome, not the prospect's site).
             const previewName = `${route.slice(1)}${vp.previewSuffix}.jpg`
             const preview = join(previewDir, previewName)
-            await page.addStyleTag({ content: '.bc-back { display: none !important; }' })
+            await page.addStyleTag({ content: '.bc-back, .pick-fab { display: none !important; }' })
             await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
             await page.screenshot({ path: preview, type: 'jpeg', quality: 80 })
             written.push(preview)
