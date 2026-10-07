@@ -1,18 +1,18 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import { hasContactInfo, hoursLabel } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function IsHours() {
+  const site = useSite()
   if (!hasContactInfo(site)) return null
   return (
-    <section id="contact" className="is-surface is-section">
+    <section id="contact" className="is-section is-grey">
       <div className="is-wrap">
         <Reveal>
-          <h2 className="is-display is-h2">
-            Hours &amp; Location
-          </h2>
+          <h2 className="is-display is-h2">Hours &amp; Location</h2>
+          {site.hoursNote && <p className="is-hours-note">{site.hoursNote}</p>}
         </Reveal>
-        <div className="mt-10 grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           {site.hours && (
             <Reveal delay={70}>
               <table className="is-table">
@@ -30,11 +30,11 @@ export default function IsHours() {
           )}
           {(site.address || site.phoneHref) && (
             <Reveal delay={140}>
-              <div className="flex flex-col gap-7">
+              <div className="is-contact">
                 {site.address && (
                   <div>
                     <p className="is-mono">Address</p>
-                    <p className="is-display mt-2 text-2xl font-normal">{site.address}</p>
+                    <p className="mt-1">{site.address}</p>
                   </div>
                 )}
                 {site.phoneHref && (

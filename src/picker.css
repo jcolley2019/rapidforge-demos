@@ -41,6 +41,42 @@
 }
 
 /* Head ------------------------------------------------------------------ */
+
+/* Residential / Commercial: which of the prospect's two sites the cards open. */
+.pk-segment {
+  display: inline-flex;
+  margin-bottom: 1.75rem;
+  padding: 0.25rem;
+  border: 1px solid var(--pk-line);
+  border-radius: 999px;
+  background: var(--pk-surface);
+}
+.pk-seg {
+  min-height: 2.75rem;
+  padding: 0 1.15rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--pk-text-dim);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--pk-ease),
+    color 0.3s var(--pk-ease);
+}
+.pk-seg:hover {
+  color: var(--pk-text);
+}
+.pk-seg[aria-pressed='true'] {
+  background: var(--pk-mark);
+  color: var(--pk-ground);
+}
+.pk-seg:focus-visible {
+  outline-offset: 2px;
+}
+
 .pk-title {
   margin: 0;
   max-width: 24ch;

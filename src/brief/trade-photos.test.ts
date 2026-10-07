@@ -3,17 +3,18 @@ import { TRADE_PHOTOS, allTradePhotoUrls } from './trade-photos'
 import { hoursSummary } from './site-helpers'
 
 describe('TRADE_PHOTOS', () => {
-  it('holds four hero and four detail Unsplash URLs per family at 1600px', () => {
+  it('holds four hero, four detail and three crew Unsplash URLs per family at 1600px', () => {
     for (const [family, set] of Object.entries(TRADE_PHOTOS)) {
       expect(set.hero, family).toHaveLength(4)
       expect(set.detail, family).toHaveLength(4)
-      for (const url of [...set.hero, ...set.detail]) {
+      expect(set.crew, family).toHaveLength(3)
+      for (const url of [...set.hero, ...set.detail, ...set.crew]) {
         expect(url).toMatch(/^https:\/\/images\.unsplash\.com\/photo-[0-9]+-[a-f0-9]+\?w=1600&q=80$/)
       }
     }
     const all = allTradePhotoUrls()
-    expect(all).toHaveLength(32)
-    expect(new Set(all).size).toBe(32)
+    expect(all).toHaveLength(44)
+    expect(new Set(all).size).toBe(44)
   })
 })
 

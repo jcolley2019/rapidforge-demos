@@ -1,10 +1,10 @@
-import { siteContent as site } from '../../brief/current'
-import { hoursSummary, localityLine, navLinks } from '../../brief/site-helpers'
-
-const links = navLinks(site, 'Hours & Location')
-const hours = hoursSummary(site.hours)
+import { useSite } from '../../brief/site-context'
+import { credentialLines, hoursSummary, localityLine, navLinks } from '../../brief/site-helpers'
 
 export default function ClFooter() {
+  const site = useSite()
+  const links = navLinks(site, 'Hours & Location')
+  const hours = hoursSummary(site.hours)
   return (
     <footer className="cl-footer">
       <div className="cl-wrap py-12">
@@ -22,7 +22,14 @@ export default function ClFooter() {
           <div>
             <p className="cl-mono">Hours</p>
             <p className="mt-3 text-sm text-(--cl-muted)">{hours ?? 'Call for current hours'}</p>
-            <p className="cl-mono mt-6">Licensed &amp; insured</p>
+            {site.hoursNote && <p className="mt-1 text-sm text-(--cl-gold-2)">{site.hoursNote}</p>}
+            <ul className="mt-6 space-y-1">
+              {credentialLines(site).map((line) => (
+                <li key={line} className="cl-mono">
+                  {line}
+                </li>
+              ))}
+            </ul>
             <a href={site.cta.href} className="cl-quiet mt-3 block text-sm">
               {site.cta.label}
             </a>

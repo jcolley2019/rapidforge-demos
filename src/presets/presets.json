@@ -2,64 +2,70 @@
   {
     "id": "clean-trust",
     "name": "Clean Trust",
-    "collection": "ui-ux-pro-max:flat-design",
-    "entryId": "home-services-plumber-electrician",
-    "brief": "Aesthetic: Flat Design (2D, minimalist, bold colors, no shadows, clean lines, simple shapes, typography-focused)\nPattern: Trust & Authority + Conversion. Hero (mission/credibility) > Proof (certs, stats) > Solution overview > Clear CTA path. CTA: Get Quote (primary) + Nav.\nColor strategy: Professional blue + urgent orange. Accent for CTA only.\nTypography: Lexend / Source Sans 3 (Corporate Trust: trustworthy, accessible, readable).\nKey effects: No gradients/shadows, simple hover (color/opacity shift), fast loading, clean transitions (150-200ms ease), minimal icons.\nNever: Hidden contact info, No certifications, Emoji as icons, Text under 12px, Removing focus rings, Horizontal scroll.",
+    "description": "Established and trustworthy: navy and blue, with your license and awards out front.",
+    "lean": "residential",
+    "collection": "rfd-vault:plumbing",
+    "entryId": "plumbing/F4",
+    "brief": "Aesthetic: mountain blue heritage (Light-ground plumbing sites with blue brand accents, mountain imagery, photo-backed heroes and rounded or pill shapes, grounded by license, award and badge trust marks.)\nVocabulary: mountain photo backdrop, navy photo overlay, pill-shaped buttons, angled hero divider, translucent contact card, uppercase navy H2 headings, italic serif tagline, rounded white feature cards, accreditation and badge band, phone number in sticky nav, checkbox service-area list, dashed coupon card\nReference feel: Everest Plumbing, Greenville SC (everestplumbing.com), Master Service Plumbing, Reno (masterserviceplumbing.com)\nHouse DNA: Phone number on the first mobile screen (9/12); Star-rated reviews on the homepage (7/12); Named list of towns served (7/12); Phone or call button pinned while scrolling (6/12); Trust strip of licenses, ratings and years near the top (6/12); Call is the primary conversion (6/12)\nNever: Thin light-blue headings on white, Vague Read More as the only CTA, Faded grey text over busy photos, Muddy grey sections with weak hierarchy, Missing H1 and no lead form, Stray logos floating in white gaps, Phone number below the first mobile screen (3/12 real sites)\nOne risk: Make the mountain a brand device: a navy-overlaid summit photo behind the hero and reviews, with an angled cut edge and a mid-page call bar with a hand-drawn underline on the phone number.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 full-bleed photo, 35mm lens at eye level, soft natural daylight, cool navy and teal palette with white highlights. [SUBJECT: plumber's gloved hands tightening copper pipe fittings in a clean utility space, with a faint mountain ridge in the far background]. Subject sits in the right third; the left two-thirds is a darker, smooth navy-toned area for a headline and a single button.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
     "palette": {
-      "bg": "#EFF6FF",
-      "surface": "#FFFFFF",
-      "text": "#1E3A8A",
-      "muted": "#475569",
-      "accent": "#1E40AF",
-      "accent2": "#C2410C"
+      "bg": "#FFFFFF",
+      "surface": "#F2F4F7",
+      "text": "#1C2B40",
+      "muted": "#4B5B70",
+      "accent": "#003068",
+      "accent2": "#3D67BD"
     },
     "type": {
-      "display": "Lexend Variable",
-      "body": "Source Sans 3 Variable",
+      "display": "Montserrat Variable",
+      "body": "Open Sans Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Two columns on a pale blue ground: headline, subhead, orange booking button and blue call button on the left; the trade photo on the right in a plain rectangle with a 2px blue rule. No overlay on the photo. Mobile stacks the photo above the copy at a short height so the trust strip and services heading stay in the fold.",
+    "heroTreatment": "Full-bleed crew photo under a navy grade that is deepest behind the copy; an italic serif since-line, a white Montserrat headline, a white booking pill and an outlined call pill; a mountain-ridge edge cuts the photo off at the bottom. Mobile keeps the copy on the photo at a shorter height.",
     "neverList": [
-      "Hidden contact info",
-      "No certifications",
-      "Emoji as icons",
-      "Gradients or drop shadows",
-      "Removing focus rings",
-      "Horizontal scroll"
+      "Thin light-blue headings on white",
+      "Vague Read More as the only CTA",
+      "Faded grey text over busy photos",
+      "Muddy grey sections with weak hierarchy",
+      "Missing H1 and no lead form",
+      "Stray logos floating in white gaps"
     ]
   },
   {
     "id": "bold-local",
     "name": "Bold Local",
-    "collection": "ui-ux-pro-max:brutalism",
-    "entryId": "construction-architecture",
-    "brief": "Aesthetic: Brutalism (raw, stark, high contrast, plain text, visible borders, asymmetric)\nPattern: Trust & Authority + Conversion. Hero > Proof > Solution overview > Clear CTA path.\nColor strategy: Industrial navy + safety orange, high contrast, accent for CTA only.\nTypography: Barlow Condensed / Barlow (condensed for impact headlines, regular for body).\nKey effects: Sharp corners (0px), bold typography (700+), visible 2-4px borders, large blocks, instant or near-instant transitions.\nNever: Hidden contact info, No certifications, Rounded-everything, Soft shadows, Pastel palettes, Decorative gradients.",
+    "description": "Bold and local: your crew in a big photo, one strong red, and your ratings right on it.",
+    "lean": "residential",
+    "collection": "rfd-vault:plumbing",
+    "entryId": "plumbing/F1",
+    "brief": "Aesthetic: red banner plumbers (Clean white pages with a single saturated red or orange accent, darkened full-bleed hero photos, geometric sans headlines and badge-led trust proof.)\nVocabulary: full-bleed darkened photo hero, single saturated red accent, geometric sans headlines, red line-icon service grid, ghost outline hero buttons, red pill phone button, association badge row, stat grid with big numerals, red underline heading accent, black or dark service panel, light grey section panels, dark footer with license details\nReference feel: Lasiter & Lasiter Plumbing, Fort Worth (lasiter.com), Johnson Plumbing, Reno (johnsonplumbingnv.com), Tucson Plumbing, Tucson (tucsonplumbing.com)\nHouse DNA: Phone number on the first mobile screen (9/12); Star-rated reviews on the homepage (7/12); Named list of towns served (7/12); Phone or call button pinned while scrolling (6/12); Trust strip of licenses, ratings and years near the top (6/12); Call is the primary conversion (6/12)\nNever: Hero with no headline or call to action, Thin colored subline over a busy photo, Dense small paragraph over hero imagery, Repeating the same stat twice in one view, Claiming reviews without showing any testimonial content, Phone number only in a non-sticky top bar, Phone number below the first mobile screen (3/12 real sites)\nOne risk: Pair a hero stat grid of big numerals (years, review count, BBB, licensed) beside the headline so the trust bar sits inside the hero photo.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide photograph, [SUBJECT: branded plumbing van parked in front of a white brick suburban home, or a smiling homeowner at a kitchen faucet], shot at eye level with a 35mm lens in soft overcast daylight, palette of crisp whites, charcoal and one punch of red, darkened tonal grade on the left half, clear negative space on the left third for a headline and buttons, no text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
     "palette": {
       "bg": "#FFFFFF",
-      "surface": "#F1F5F9",
-      "text": "#0F172A",
-      "muted": "#475569",
-      "accent": "#0F172A",
-      "accent2": "#C2410C"
+      "surface": "#F4F4F4",
+      "text": "#333333",
+      "muted": "#5C5C5C",
+      "accent": "#D20001",
+      "accent2": "#1A1A1A"
     },
     "type": {
-      "display": "Barlow Condensed",
-      "body": "Barlow",
+      "display": "DM Sans Variable",
+      "body": "DM Sans Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Full-bleed trade photo with no filter and a bottom-left navy gradient capped at 0.35; the copy sits on an opaque navy block anchored bottom-left with a 4px orange top rule, condensed uppercase headline, orange booking button, white outline call button. Mobile: photo band on top with a 4px orange rule under it, navy block below.",
+    "heroTreatment": "Full-bleed crew photo darkened from the left; a heavy white DM Sans headline, a red booking pill and a ghost outlined call button; the badge and stat trust bar runs across the bottom of the photo. Mobile stacks the trust bar under the copy on the same photo.",
     "neverList": [
-      "Hidden contact info",
-      "No certifications",
-      "Rounded-everything friendliness",
-      "Soft shadows",
-      "Pastel palettes",
-      "Decorative gradients"
+      "Hero with no headline or call to action",
+      "Thin colored subline over a busy photo",
+      "Dense small paragraph over hero imagery",
+      "Repeating the same stat twice in one view",
+      "Claiming reviews without showing any testimonial content",
+      "Phone number only in a non-sticky top bar"
     ]
   },
   {
     "id": "premium-dark",
     "name": "Premium Dark",
+    "description": "Dark and gold on purpose: none of the 36 contractor sites we studied looks like this, so you will not look like anyone else in town.",
+    "lean": "residential",
     "collection": "ui-ux-pro-max:dark-mode-oled",
     "entryId": "luxury-premium-brand",
     "brief": "Aesthetic: Dark Mode (OLED) (deep black, dark grey, high contrast, low white emission, visible focus)\nPattern: Trust & Authority + Conversion with a premium register. Hero > Proof > Solution overview > Clear CTA path.\nColor strategy: Premium black + gold accent; gold reserved for the call to action and ratings.\nTypography: Cormorant / Montserrat (Luxury Serif: elegant heading, geometric body).\nKey effects: Minimal glow, dark-to-light transitions (200-300ms), hairline gold rules, no cheap visuals, no fast animations.\nNever: Hidden contact info, No certifications, Cheap visuals, Fast animations, Gray-on-gray text, Neon accents.",
@@ -76,7 +82,7 @@
       "body": "Montserrat Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Dark page. Copy left with a tall serif headline, a gold booking button and an outlined call button; the trade photo right inside a hairline gold frame with a 0.25 black vignette at the lower edge only, no filter. Mobile: framed photo band on top at a short height, copy below.",
+    "heroTreatment": "Dark page. Copy left with a tall serif headline, a gold booking button and an outlined call button; the crew or trade photo right inside a hairline gold frame with a 0.25 black vignette at the lower edge only, no filter. Mobile: framed photo band on top at a short height, copy below.",
     "neverList": [
       "Hidden contact info",
       "No certifications",
@@ -89,59 +95,63 @@
   {
     "id": "friendly-family",
     "name": "Friendly Family",
-    "collection": "ui-ux-pro-max:soft-ui-evolution",
-    "entryId": "family-calendar-chores",
-    "brief": "Aesthetic: Soft UI Evolution (improved contrast, subtle depth, rounded 8-16px, modern 200-300ms motion)\nPattern: Trust & Authority + Conversion in a neighborly register. Hero > Proof > Solution overview > Clear CTA path.\nColor strategy: Family blue + amber accent on a near-white ground; amber only on the call to action and stars.\nTypography: Varela Round / Nunito Sans (Soft Rounded: friendly, approachable, warm).\nKey effects: Soft multi-layer shadows with offset and blur, 16px radii, gentle hover lift, visible focus, measured contrast.\nNever: Hidden contact info, No certifications, Sharp corners everywhere, Harsh black, Stock icon grids, Aggressive urgency.",
+    "description": "Family-owned and friendly: your crew up front, royal blue panels, and coupons right under the photo.",
+    "lean": "residential",
+    "collection": "rfd-vault:plumbing",
+    "entryId": "plumbing/F3",
+    "brief": "Aesthetic: royal blue fleet (Light-ground plumbing sites with saturated royal-blue panels, bold condensed or heavy caps, branded truck and team photo heroes, and card-based service grids.)\nVocabulary: royal blue hero panel, branded truck photo, angled photo cut, condensed caps headlines, icon-suffixed CTA buttons, award badge strip, white service cards on grey, three-column service grid, navy closing band, Google rating pill, coupon or quote cards, dual call and schedule buttons\nReference feel: Gold Seal Plumbing, Spokane (goldsealplumbing.com), Williams Plumbing & Drain, Tulsa (williamsplumbinganddrain.com)\nHouse DNA: Phone number on the first mobile screen (9/12); Star-rated reviews on the homepage (7/12); Named list of towns served (7/12); Phone or call button pinned while scrolling (6/12); Trust strip of licenses, ratings and years near the top (6/12); Call is the primary conversion (6/12)\nNever: Thin light-weight body text on white, Tall uneven text-heavy service cards with no relief, Phone number that scrolls away with no sticky header, Service area towns buried in the footer, Dense copy blocks without photos or icons, Small grey review text that hurts legibility, Phone number below the first mobile screen (3/12 real sites)\nOne risk: Overlap a row of perforated ticket-style coupon cards onto the base of the hero, with a diagonal-cut fleet photo against a solid blue panel.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide photo of [SUBJECT: branded plumbing van and uniformed technicians parked in front of a suburban home], shot at eye level with a 35mm lens in bright clear daylight, crisp and slightly saturated, palette of royal blue, navy and white with a small pop of accent color. Subject sits on the right third, left side is clean sky and driveway for a headline. No text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
     "palette": {
-      "bg": "#F8FAFC",
-      "surface": "#FFFFFF",
-      "text": "#0F172A",
-      "muted": "#475569",
-      "accent": "#2563EB",
-      "accent2": "#B45309"
+      "bg": "#FFFFFF",
+      "surface": "#F5F5F5",
+      "text": "#363636",
+      "muted": "#4D5563",
+      "accent": "#21519A",
+      "accent2": "#CFFC40"
     },
     "type": {
-      "display": "Varela Round",
-      "body": "Nunito Sans Variable",
+      "display": "Bebas Neue",
+      "body": "Quicksand Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Photo left in a 24px-radius card with a soft offset shadow, copy right with a rounded headline, amber booking button and blue call button; no overlay or filter on the photo. Mobile: rounded photo band on top at a short height, copy below.",
+    "heroTreatment": "A royal-blue panel with a Google rating pill, a Bebas Neue caps headline, a lime booking button and an outlined call button; the crew photo is cut on a diagonal against the panel, and coupon tickets overlap the bottom edge. Mobile: the diagonal photo band on top, the blue panel below.",
     "neverList": [
-      "Hidden contact info",
-      "No certifications",
-      "Sharp corners everywhere",
-      "Harsh black",
-      "Stock icon grids",
-      "Aggressive urgency"
+      "Thin light-weight body text on white",
+      "Tall uneven text-heavy service cards with no relief",
+      "Phone number that scrolls away with no sticky header",
+      "Service area towns buried in the footer",
+      "Dense copy blocks without photos or icons",
+      "Small grey review text that hurts legibility"
     ]
   },
   {
     "id": "modern-minimal",
     "name": "Modern Minimal",
-    "collection": "ui-ux-pro-max:minimalism-swiss",
-    "entryId": "knowledge-base-documentation",
-    "brief": "Aesthetic: Minimalism & Swiss Style (clean, spacious, functional, white space, high contrast, geometric, grid-based)\nPattern: Trust & Authority + Conversion. Hero > Proof > Solution overview > Clear CTA path.\nColor strategy: Neutral grey + link blue; a single accent, used for the call to action and links only.\nTypography: Outfit / Work Sans (Geometric Modern: clean, balanced, contemporary).\nKey effects: Subtle hover (200-250ms), 1px hairline borders, no shadows, 0-2px radii, clear type hierarchy.\nNever: Hidden contact info, No certifications, Shadows and gradients, Decorative ornament, More than one accent, Centered everything.",
+    "description": "Built for the job site: heavy type, black and red, and copy that talks spec and schedule.",
+    "lean": "commercial",
+    "collection": "rfd-vault:plumbing",
+    "entryId": "plumbing/F2",
+    "brief": "Aesthetic: jobsite red commercial (Full-bleed construction-site photography under dark overlays, flat red buttons, heavy bold sans caps, white icon cards and black bands on a light ground.)\nVocabulary: full-bleed construction photo hero, dark or red gradient overlay, huge white caps headline, flat red CTA buttons, pill or rectangular red buttons, white cards with red line icons, full-black section bands, grayscale badge or logo row, edge-to-edge project photo strip, condensed or heavy grotesk headings, outlined ghost secondary button, full-bleed red feature band\nReference feel: S & K Plumbing of Fort Worth, Fort Worth (skplumbinginc.com), Goodson Plumbing Services, Boise (robgoodsonplumbing.com), All American Plumbing, Tulsa (aapiok.com)\nHouse DNA: Phone number on the first mobile screen (9/12); Star-rated reviews on the homepage (7/12); Named list of towns served (7/12); Phone or call button pinned while scrolling (6/12); Trust strip of licenses, ratings and years near the top (6/12); Call is the primary conversion (6/12)\nNever: Thin white headline over a busy unlit photo, Phone number buried small in header only, Muted low-contrast grey trust badges, Repetitive Read More buttons without detail, No quote form or scheduler anywhere, Mixed fonts and colors that feel heavy, Phone number below the first mobile screen (3/12 real sites)\nOne risk: Cut a black rounded-corner project teaser tab into the bottom of the hero over a red-gradient aerial construction photo, linking straight to project proof.\n\nWORKFLOW - asset first, page second:\nStep 1. Generate the hero asset NOW, before any code. Fill [SUBJECT], then Higgsfield gpt_image_2, 16:9, resolution 2k, quality high:\n  \"16:9 wide hero photograph, [SUBJECT: unfinished concrete commercial building under construction, shot aerial or from low interior angle, with pipe runs and a plumber's truck visible], 28mm lens, overcast late-afternoon light with crisp contrast, desaturated concrete greys and black shadows with a single oxblood red accent such as a truck or safety vest, deep darker tonal falloff on the left half for negative space for a large white headline, no text or logos.\"\n  It must read as a full-bleed hero background (camera inside the scene, edges bleed, negative space held for the headline) - not an isolated 3D asset or product render.\nStep 2. Build the page AROUND the real asset - measure its negative space and place typography where the image leaves room.\nEverything else: your call. Surprise me.",
     "palette": {
       "bg": "#FFFFFF",
-      "surface": "#F8FAFC",
-      "text": "#1E293B",
-      "muted": "#475569",
-      "accent": "#2563EB",
-      "accent2": "#E2E8F0"
+      "surface": "#F2F2F2",
+      "text": "#000000",
+      "muted": "#5F6970",
+      "accent": "#9B130B",
+      "accent2": "#D6D6D6"
     },
     "type": {
-      "display": "Outfit Variable",
-      "body": "Work Sans Variable",
+      "display": "Rubik Variable",
+      "body": "Manrope Variable",
       "source": "fontsource"
     },
-    "heroTreatment": "Left-aligned copy across the top of a hairline grid, blue booking button and outlined call button, then the trade photo as a wide panoramic band under the copy with no filter or overlay. Mobile: the same order at a shorter band height.",
+    "heroTreatment": "Full-bleed crew photo under a black-to-oxblood grade from the left; a huge white Rubik caps headline, a flat red booking button and an outlined call button; a black rounded tab of stats is cut into the bottom-left corner. Mobile: the tab sits under the copy.",
     "neverList": [
-      "Hidden contact info",
-      "No certifications",
-      "Shadows and gradients",
-      "Decorative ornament",
-      "More than one accent",
-      "Centered everything"
+      "Thin white headline over a busy unlit photo",
+      "Phone number buried small in header only",
+      "Muted low-contrast grey trust badges",
+      "Repetitive Read More buttons without detail",
+      "No quote form or scheduler anywhere",
+      "Mixed fonts and colors that feel heavy"
     ]
   }
 ]

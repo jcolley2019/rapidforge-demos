@@ -8,7 +8,8 @@ import type { CopyFamily } from './copy'
  *
  * Order matters: hero[0] is the first thing a visitor sees. Each family
  * covers the same four subjects: a technician at work, a service van, a
- * finished install, and hands on a tool.
+ * finished install, and hands on a tool. `crew` is people with their
+ * trucks or crews at work, for a brief's crew_photo_urls.
  */
 
 export interface TradePhotoSet {
@@ -16,6 +17,8 @@ export interface TradePhotoSet {
   hero: string[]
   /** Smaller supporting shots for service tiles. */
   detail: string[]
+  /** People with their trucks, or crews at work. */
+  crew: string[]
 }
 
 const u = (id: string) => `https://images.unsplash.com/photo-${id}?w=1600&q=80`
@@ -34,6 +37,11 @@ export const TRADE_PHOTOS: Record<CopyFamily, TradePhotoSet> = {
       u('1521207418485-99c705420785'), // kitchen faucet running
       u('1749532125405-70950966b0e5'), // plumber in a bathroom
     ],
+    crew: [
+      u('1746095792963-74106bae8658'), // crew repairing a pipe in the ground
+      u('1787672357497-9d9e025f01b3'), // two techs in blue work uniforms
+      u('1710058959636-0588a837357e'), // loading the back of a work van
+    ],
   },
   hvac: {
     hero: [
@@ -47,6 +55,11 @@ export const TRADE_PHOTOS: Record<CopyFamily, TradePhotoSet> = {
       u('1718203862467-c33159fdc504'), // condenser on a brick wall
       u('1762341123870-d706f257a12e'), // wall-mounted indoor unit
       u('1615309662243-70f6df917b59'), // ductwork
+    ],
+    crew: [
+      u('1705579605238-24a90c8799c5'), // technician among rooftop units
+      u('1594581835488-0b95b8b0bacd'), // three techs walking an equipment yard
+      u('1732395805034-e0bf859665e5'), // technician in uniform outside a building
     ],
   },
   electrical: {
@@ -62,6 +75,11 @@ export const TRADE_PHOTOS: Record<CopyFamily, TradePhotoSet> = {
       u('1553873002-785d775854c9'), // clamp meter and tools
       u('1635335874521-7987db781153'), // wired switch box
     ],
+    crew: [
+      u('1759542877886-39d81e8f2eee'), // linemen working from a bucket truck
+      u('1679000265956-3bd0f356b2b3'), // two crew members in hard hats
+      u('1615774925655-a0e97fc85c14'), // electrician in a face shield at a panel
+    ],
   },
   generic: {
     hero: [
@@ -76,10 +94,15 @@ export const TRADE_PHOTOS: Record<CopyFamily, TradePhotoSet> = {
       u('1570129477492-45c003edd2be'), // suburban house
       u('1739203469638-d6f54c24a5da'), // worker on a ladder in a garage
     ],
+    crew: [
+      u('1652303518379-c0ef1c9fb2b1'), // two crew members at a trench
+      u('1647735282077-c12699af40be'), // crew beside a mixer truck and excavator
+      u('1626885930974-4b69aa21bbf9'), // two crew members walking a job site
+    ],
   },
 }
 
 /** Every URL in the registry, flattened, for verification scripts and tests. */
 export function allTradePhotoUrls(): string[] {
-  return Object.values(TRADE_PHOTOS).flatMap((set) => [...set.hero, ...set.detail])
+  return Object.values(TRADE_PHOTOS).flatMap((set) => [...set.hero, ...set.detail, ...set.crew])
 }

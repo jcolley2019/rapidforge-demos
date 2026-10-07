@@ -149,6 +149,101 @@ const CTA_HEADLINES: Record<CopyFamily, (c: CopyContext) => string> = {
   generic: (c) => `Need ${trade(c)} help today?`,
 }
 
+/** Headline, subhead and quote-band line for one register. */
+export interface RegisterCopy {
+  headline: string
+  subhead: string
+  ctaHeadline: string
+}
+
+/** The trade as a noun phrase: "plumbing", "HVAC", "electrical", or the vertical. */
+const TRADE_NOUN: Record<CopyFamily, (c: CopyContext) => string> = {
+  plumbing: () => 'plumbing',
+  hvac: () => 'HVAC',
+  electrical: () => 'electrical',
+  generic: trade,
+}
+
+/**
+ * Commercial register, used when a brief's segment is commercial or
+ * new_construction (and for mixed briefs on a commercial-leaning preset).
+ * The subhead names the audience; the promise is the schedule, not same-day.
+ */
+export function commercialCopyFor(
+  family: CopyFamily,
+  segment: 'commercial' | 'new_construction',
+  c: CopyContext,
+): RegisterCopy {
+  const noun = TRADE_NOUN[family](c)
+  const service: Record<CopyFamily, string> = {
+    plumbing: 'Plumbing',
+    hvac: 'Heating and cooling',
+    electrical: 'Electrical work',
+    generic: c.verticalLabel,
+  }
+  if (segment === 'new_construction') {
+    return {
+      headline: `New construction ${noun}, rough-in to final.`,
+      subhead: `${service[family]} for builders, developers and general contractors ${across(c)}. Licensed crews that keep your schedule from rough-in to final.`,
+      ctaHeadline: 'Have a project to bid?',
+    }
+  }
+  return {
+    headline: `Commercial ${noun} that holds the schedule.`,
+    subhead: `${service[family]} for general contractors, property managers and builders ${across(c)}. Licensed crews that keep your schedule.`,
+    ctaHeadline: 'Have a project to bid?',
+  }
+}
+
+/**
+ * Jobsite register for a commercial-leaning preset on a residential brief:
+ * the voice of spec and schedule, with the same-day promise kept and no
+ * claim about who the clients are.
+ */
+export function jobsiteCopyFor(family: CopyFamily, c: CopyContext): RegisterCopy {
+  const work: Record<CopyFamily, string> = {
+    plumbing: 'repairs, repipes and new installs',
+    hvac: 'repairs, replacements and new systems',
+    electrical: 'repairs, panel upgrades and new circuits',
+    generic: 'repairs and new work',
+  }
+  const headlines: Record<CopyFamily, string> = {
+    plumbing: 'Plumbing done to spec, on schedule.',
+    hvac: 'Heating and cooling done to spec.',
+    electrical: 'Electrical work done to code, on schedule.',
+    generic: `${c.verticalLabel} done to spec, on schedule.`,
+  }
+  return {
+    headline: headlines[family],
+    subhead: `Licensed crews for ${work[family]} ${across(c)}, with same-day service when it cannot wait.`,
+    ctaHeadline: 'Got a repair or a project?',
+  }
+}
+
+export interface AudienceTile {
+  title: string
+  blurb: string
+}
+
+/** "Who we work with" tiles for the commercial register: three or four, no place names. */
+export function audiencesFor(segment: 'commercial' | 'new_construction', c: CopyContext): AudienceTile[] {
+  const label = c.verticalLabel
+  const lower = label.toLowerCase()
+  if (segment === 'new_construction') {
+    return [
+      { title: 'Home builders', blurb: `${label} for every plan in the community, rough-in to final.` },
+      { title: 'Developers', blurb: 'Multifamily and mixed-use work priced per plan and built to code.' },
+      { title: 'General contractors', blurb: 'Scheduled around your other trades, with inspections booked ahead.' },
+    ]
+  }
+  return [
+    { title: 'General contractors', blurb: `${label} from rough-in to final, scheduled around your other trades.` },
+    { title: 'Property managers', blurb: 'Repairs, turnovers and preventive maintenance across every building you run.' },
+    { title: 'Builders and developers', blurb: `New construction ${lower} priced per plan and built to code.` },
+    { title: 'Facility managers', blurb: 'Planned maintenance and fast response for occupied buildings.' },
+  ]
+}
+
 const FAMILY_BY_VERTICAL: Record<string, CopyFamily> = {
   plumber: 'plumbing',
   plumbing: 'plumbing',

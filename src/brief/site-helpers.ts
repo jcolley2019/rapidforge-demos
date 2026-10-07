@@ -1,4 +1,4 @@
-import type { SiteContent, SiteHoursRow } from './site-content'
+import type { SiteBadge, SiteContent, SiteHoursRow } from './site-content'
 
 /** "7:00 AM – 6:00 PM", or "Closed" when either side is missing. */
 export function hoursLabel(row: SiteHoursRow): string {
@@ -33,6 +33,65 @@ export function navLinks(site: SiteContent, contactLabel = 'Contact'): NavLink[]
 /** "Plumbing in Nampa" / "Plumbing" — a short locality line. */
 export function localityLine(site: SiteContent): string {
   return site.city ? `${site.verticalLabel} in ${site.city}` : site.verticalLabel
+}
+
+/**
+ * How a badge reads as a mark: the large line and the small one under it.
+ * A rating leads with its score, a BBB badge with its grade, everything
+ * else with its label.
+ */
+export function badgeFace(badge: SiteBadge): { big: string; small: string | null } {
+  if (badge.kind === 'rating' && badge.value) return { big: badge.value, small: badge.label }
+  if (badge.kind === 'bbb' && badge.value) return { big: badge.value, small: badge.label }
+  return { big: badge.label, small: badge.value ?? null }
+}
+
+/** A star score parsed from a rating badge's value, or null. */
+export function badgeScore(badge: SiteBadge): number | null {
+  if (badge.kind !== 'rating' || !badge.value) return null
+  const score = Number.parseFloat(badge.value)
+  return Number.isFinite(score) && score >= 0 && score <= 5 ? score : null
+}
+
+/**
+ * The service-areas heading from the data alone: "Serving Nampa and 7
+ * nearby towns", led by the business's own city when it is on the list.
+ */
+export function servingHeading(site: SiteContent): string {
+  const areas = site.serviceAreas
+  if (areas.length === 0) return ''
+  const lead = site.city && areas.includes(site.city) ? site.city : areas[0]
+  const others = areas.length - 1
+  if (others === 0) return `Serving ${lead}`
+  return `Serving ${lead} and ${others} nearby ${others === 1 ? 'town' : 'towns'}`
+}
+
+export interface SiteAction {
+  label: string
+  href: string
+  /** True for the click-to-call action. */
+  call: boolean
+}
+
+/**
+ * The two hero (and quote band) actions, in rank order. Plumbing sites lead
+ * with the call, so a residential page with a phone puts Call first and the
+ * brief's own action second; a commercial page leads with the bid request.
+ * A brief whose action already dials the phone gets one action, not two.
+ */
+export function heroActions(site: SiteContent): { primary: SiteAction; secondary: SiteAction | null } {
+  const own: SiteAction = { label: site.cta.label, href: site.cta.href, call: site.cta.href.startsWith('tel:') }
+  const call: SiteAction | null = site.ctaSecondary ? { ...site.ctaSecondary, call: true } : null
+  if (!call || own.href === call.href) return { primary: own, secondary: null }
+  return site.mode === 'residential' ? { primary: call, secondary: own } : { primary: own, secondary: call }
+}
+
+/** "Licensed & insured", then the license number and founding year when the brief has them. */
+export function credentialLines(site: SiteContent): string[] {
+  const lines = ['Licensed & insured']
+  if (site.licenseNumber) lines.push(`License ${site.licenseNumber}`)
+  if (site.foundedYear) lines.push(`In business since ${site.foundedYear}`)
+  return lines
 }
 
 /**

@@ -1,10 +1,10 @@
-import { siteContent as site } from '../../brief/current'
-import { hoursSummary, localityLine, navLinks } from '../../brief/site-helpers'
-
-const links = navLinks(site, 'Hours & Location')
-const hours = hoursSummary(site.hours)
+import { useSite } from '../../brief/site-context'
+import { credentialLines, hoursSummary, localityLine, navLinks } from '../../brief/site-helpers'
 
 export default function PpFooter() {
+  const site = useSite()
+  const links = navLinks(site, 'Hours & Location')
+  const hours = hoursSummary(site.hours)
   return (
     <footer className="pp-footer">
       <div className="pp-wrap py-12">
@@ -21,7 +21,14 @@ export default function PpFooter() {
           </div>
           <div>
             <p className="mt-3 text-sm text-(--pp-muted)">{hours ?? 'Call for current hours'}</p>
-            <p className="pp-mono mt-6">Licensed &amp; insured</p>
+            {site.hoursNote && <p className="mt-1 text-sm font-semibold text-(--pp-navy)">{site.hoursNote}</p>}
+            <ul className="mt-6 space-y-1">
+              {credentialLines(site).map((line) => (
+                <li key={line} className="pp-mono">
+                  {line}
+                </li>
+              ))}
+            </ul>
             <a href={site.cta.href} className="pp-quiet mt-3 block text-sm">
               {site.cta.label}
             </a>

@@ -1,19 +1,19 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
 const palette = presetForVariant('geospatial').palette
-const photos = tilePhotosFor('geospatial')
 
 export default function DhServices() {
+  const site = useSite()
+  const photos = tilePhotosFor('geospatial', site.photos, site.detailPhotos)
   return (
-    <section id="services" className="dh-section">
+    <section id="services" className="dh-section dh-services">
       <div className="dh-wrap">
-        <Reveal>
-          <h2 className="dh-display dh-h2">Our Services</h2>
-        </Reveal>
+        {/* Not revealed: it sits at the fold and must be visible on load. */}
+        <h2 className="dh-display dh-h2">Our Services</h2>
         <div className="dh-tiles">
           {site.services.map((service, i) => (
             <Reveal key={service.title} delay={(i % 3) * 90}>

@@ -1,12 +1,16 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
+import { heroActions } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function ClQuoteCta() {
+  const site = useSite()
+  const { primary, secondary } = heroActions(site)
   return (
     <section id="quote" className="cl-plate">
       <div className="cl-wrap cl-section">
         <Reveal>
-          <h2 className="cl-display cl-h2 mx-auto max-w-[18ch]">{site.ctaHeadline}</h2>
+          {/* Cormorant's zero is narrow, so its ch runs short: measure wider. */}
+          <h2 className="cl-display cl-h2 mx-auto max-w-[24ch]">{site.ctaHeadline}</h2>
           {site.phoneHref && (
             <a href={site.phoneHref} className="cl-display cl-plate-phone cl-num">
               {site.phone}
@@ -14,12 +18,12 @@ export default function ClQuoteCta() {
           )}
           <p className="cl-plate-sub mx-auto mt-5 max-w-xl">{site.subhead}</p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a href={site.cta.href} className="cl-btn cl-btn-gold">
-              {site.cta.label}
+            <a href={primary.href} className={`cl-btn cl-btn-gold ${primary.call ? 'cl-num' : ''}`.trim()}>
+              {primary.label}
             </a>
-            {site.ctaSecondary && (
-              <a href={site.ctaSecondary.href} className="cl-btn cl-btn-outline cl-num">
-                {site.ctaSecondary.label}
+            {secondary && (
+              <a href={secondary.href} className={`cl-btn cl-btn-outline ${secondary.call ? 'cl-num' : ''}`.trim()}>
+                {secondary.label}
               </a>
             )}
           </div>

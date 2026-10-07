@@ -1,16 +1,18 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import { hasContactInfo, hoursLabel } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function DhHours() {
+  const site = useSite()
   if (!hasContactInfo(site)) return null
   return (
     <section id="contact" className="dh-section">
       <div className="dh-wrap">
         <Reveal>
           <h2 className="dh-display dh-h2">Hours &amp; Location</h2>
+          {site.hoursNote && <p className="dh-hours-note">{site.hoursNote}</p>}
         </Reveal>
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+        <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           {site.hours && (
             <Reveal delay={80}>
               <table className="dh-table">

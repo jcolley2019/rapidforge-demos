@@ -1,48 +1,50 @@
-/* Friendly Family (preset: friendly-family). UI/UX Pro Max Soft UI
-   Evolution: near-white ground, white cards, family blue, amber on the
-   action and the stars, 16px radii, soft offset shadows. Varela Round
-   headings, Nunito Sans body. Class prefix is- is a namespace carried
-   over from the earlier skin; scoped to .texas. */
+/* Friendly Family (preset: friendly-family), vault family F3 Royal Blue
+   Fleet, in the family-owned register the report gives Goodson: a royal
+   blue hero panel with a Google rating pill and the crew photo cut on a
+   diagonal, coupon tickets overlapping its base, white cards on grey, a
+   navy closing band. Lime is the one pop, always on blue or navy. Bebas
+   Neue caps for headlines, Quicksand for reading. Class prefix is- is a
+   namespace carried over from the earlier skin; scoped to .texas. */
 
 .texas {
-  --is-bg: #f8fafc;
-  --is-surface: #ffffff;
-  --is-text: #0f172a;
-  --is-muted: #475569;
-  --is-blue: #2563eb;
-  --is-blue-2: #1d4ed8;
-  --is-blue-soft: #dbeafe;
-  --is-amber: #b45309;
-  --is-amber-2: #92400e;
-  --is-border: #e2e8f0;
-  --is-shadow: 0 8px 24px -12px rgba(15, 23, 42, 0.18);
-  --is-shadow-lg: 0 20px 40px -20px rgba(15, 23, 42, 0.28);
+  --is-royal: #21519a;
+  --is-royal-2: #1a4380;
+  --is-navy: #080f3b;
+  --is-lime: #cffc40;
+  --is-lime-2: #bdeb2b;
+  --is-grey: #f5f5f5;
+  --is-line: #e1e5ec;
+  --is-text: #363636;
+  --is-muted: #4d5563;
+  --is-on-blue: #dde7f7;
+  --is-on-navy-line: rgba(255, 255, 255, 0.16);
+  --is-shadow: 0 10px 24px -14px rgba(8, 15, 59, 0.35);
   --is-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
-  background-color: var(--is-bg);
+  background-color: #ffffff;
   color: var(--is-text);
-  font-family: 'Nunito Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Quicksand Variable', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.0625rem;
+  font-weight: 500;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
-  --bc-bg: #ffffff;
-  --bc-fg: #0f172a;
-  --bc-border: #e2e8f0;
-  --bc-accent: #2563eb;
+  --bc-bg: #080f3b;
+  --bc-fg: #ffffff;
+  --bc-fg-strong: #ffffff;
+  --bc-border: #080f3b;
+  --bc-accent: #cffc40;
   --bc-radius: 999px;
+  --bc-shadow: none;
 }
 
 .texas ::selection {
-  background: var(--is-blue);
+  background: var(--is-royal);
   color: #ffffff;
 }
 .texas :focus-visible {
-  outline: 3px solid var(--is-amber);
+  outline: 3px solid var(--is-royal);
   outline-offset: 3px;
-}
-.texas [id] {
-  scroll-margin-top: 4.5rem;
 }
 .texas h1,
 .texas h2,
@@ -61,12 +63,16 @@
   }
 }
 
-/* Type: rounded display, humanist body */
+/* Type: condensed caps for headlines, a rounded sans for reading */
 .is-display {
-  font-family: 'Varela Round', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'Bebas Neue', 'Arial Narrow', system-ui, sans-serif;
   font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.12;
+  letter-spacing: 0.01em;
+  line-height: 0.95;
+}
+.is-h2 {
+  font-size: clamp(2.25rem, 1.7rem + 2.2vw, 3.375rem);
+  color: var(--is-navy);
 }
 .is-mono {
   font-size: 0.8125rem;
@@ -77,87 +83,124 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Buttons: pills, one amber, one blue, one white */
+/* Buttons: pills; lime only ever sits on blue or navy */
 .is-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
-  gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
-  font-family: 'Varela Round', system-ui, sans-serif;
-  font-size: 0.9375rem;
+  gap: 0.45rem;
+  padding: 0.65rem 1.35rem;
+  font-size: 1rem;
+  font-weight: 700;
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   cursor: pointer;
+  white-space: nowrap;
   transition:
-    background-color 0.25s var(--is-ease),
-    border-color 0.25s var(--is-ease),
-    color 0.25s var(--is-ease),
-    transform 0.25s var(--is-ease),
-    box-shadow 0.25s var(--is-ease);
+    background-color 0.2s var(--is-ease),
+    border-color 0.2s var(--is-ease),
+    color 0.2s var(--is-ease);
 }
-.is-btn:hover,
-.is-btn:focus-visible {
-  transform: translateY(-1px);
+.is-btn-lime {
+  background: var(--is-lime);
+  border-color: var(--is-lime);
+  color: var(--is-navy);
 }
-.is-btn-amber {
-  background: var(--is-amber);
+.is-btn-lime:hover,
+.is-btn-lime:focus-visible {
+  background: var(--is-lime-2);
+  border-color: var(--is-lime-2);
+}
+.is-btn-outline {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.85);
   color: #ffffff;
-  border-color: var(--is-amber);
-  box-shadow: var(--is-shadow);
 }
-.is-btn-amber:hover,
-.is-btn-amber:focus-visible {
-  background: var(--is-amber-2);
-  border-color: var(--is-amber-2);
-}
-.is-btn-blue {
-  background: var(--is-blue);
-  color: #ffffff;
-  border-color: var(--is-blue);
-}
-.is-btn-blue:hover,
-.is-btn-blue:focus-visible {
-  background: var(--is-blue-2);
-  border-color: var(--is-blue-2);
-}
-.is-btn-white {
+.is-btn-outline:hover,
+.is-btn-outline:focus-visible {
   background: #ffffff;
-  color: var(--is-blue);
   border-color: #ffffff;
-}
-.is-btn-white:hover,
-.is-btn-white:focus-visible {
-  background: var(--is-blue-soft);
-  border-color: var(--is-blue-soft);
+  color: var(--is-navy);
 }
 
-/* Nav: white, soft shadow */
+/* Utility bar: navy, the serving line and lime links */
+.texas .ub {
+  background: var(--is-navy);
+  color: #c9d3ee;
+  font-size: 0.8125rem;
+}
+.texas .ub-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.125rem;
+}
+.texas .ub-line {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.texas .ub-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1.25rem;
+}
+.texas .ub-call,
+.texas .ub-book {
+  color: var(--is-lime);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.texas .ub-call:hover,
+.texas .ub-book:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.texas .ub :focus-visible {
+  outline-color: var(--is-lime);
+}
+@media (max-width: 639px) {
+  .texas .ub-actions,
+  .texas .ub-more {
+    display: none;
+  }
+}
+
+/* Nav: a royal blue bar */
 .is-nav {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(255, 255, 255, 0.94);
-  border-bottom: 1px solid var(--is-border);
-  backdrop-filter: blur(8px);
+  background: var(--is-royal);
+  color: #ffffff;
+  box-shadow: 0 1px 0 rgba(8, 15, 59, 0.35);
+}
+.is-nav :focus-visible {
+  outline-color: var(--is-lime);
 }
 .is-nav-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 0.7rem;
+  padding-block: 0.55rem;
 }
 .is-brand {
-  font-size: 1.25rem;
-  color: var(--is-blue);
+  min-width: 6.5rem;
+  overflow: hidden;
+  font-size: 1.875rem;
+  color: #ffffff;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .is-nav-links {
   display: none;
   gap: 1.5rem;
 }
-/* Section links join the nav only once they fit beside the phone and button. */
 @media (min-width: 1024px) {
   .is-nav-links {
     display: flex;
@@ -166,43 +209,51 @@
 .is-navlink {
   font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--is-muted);
-  transition: color 0.25s var(--is-ease);
+  color: var(--is-on-blue);
   white-space: nowrap;
+  transition: color 0.2s var(--is-ease);
 }
 .is-navlink:hover,
 .is-navlink:focus-visible {
-  color: var(--is-blue);
+  color: #ffffff;
 }
 .is-nav-right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.875rem;
 }
 .is-nav-phone {
   display: inline-flex;
   align-items: center;
-  font-size: 0.9375rem;
-  font-weight: 800;
-  color: var(--is-text);
-  transition: color 0.25s var(--is-ease);
+  min-height: 2.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
   white-space: nowrap;
 }
 .is-nav-phone:hover,
 .is-nav-phone:focus-visible {
-  color: var(--is-amber);
+  color: var(--is-lime);
 }
 .is-nav-call {
   display: none;
 }
-/* Phones: the number collapses to a Call button so click-to-call stays
-   in the sticky nav after the hero scrolls away. */
 @media (max-width: 479px) {
+  .is-nav-inner {
+    gap: 0.625rem;
+  }
+  .is-nav-right {
+    gap: 0.5rem;
+  }
+  .is-brand {
+    font-size: 1.5rem;
+  }
   .is-nav-phone {
     min-height: 2.75rem;
-    padding-inline: 0.9rem;
-    border: 2px solid var(--is-blue);
+    padding-inline: 0.85rem;
+    border: 2px solid rgba(255, 255, 255, 0.85);
     border-radius: 999px;
+    font-size: 0.875rem;
   }
   .is-nav-number {
     display: none;
@@ -213,101 +264,342 @@
 }
 .is-nav-cta {
   min-height: 2.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  white-space: nowrap;
+  padding: 0.45rem 1.05rem;
+  font-size: 0.9375rem;
 }
 @media (max-width: 479px) {
   .is-nav-cta {
     min-height: 2.75rem;
+    padding-inline: 0.85rem;
+    font-size: 0.875rem;
   }
 }
 
-/* Hero: rounded photo card left, copy right; compact so the fold holds */
+/* Hero: the royal panel, the crew photo cut on a diagonal */
 .is-hero {
-  padding-block: 1.25rem 2rem;
-}
-@media (min-width: 1024px) {
-  .is-hero {
-    padding-block: 2.5rem;
-  }
-}
-.is-hero-grid {
-  display: grid;
-  gap: 1.5rem;
-}
-@media (min-width: 1024px) {
-  .is-hero-grid {
-    grid-template-columns: 0.95fr 1.05fr;
-    align-items: center;
-    gap: 3.5rem;
-  }
-}
-.is-hero-art {
   position: relative;
-  height: 9.5rem;
   overflow: hidden;
-  border-radius: 20px;
-  background: var(--is-surface);
-  box-shadow: var(--is-shadow-lg);
+  background: var(--is-royal);
+  color: #ffffff;
 }
-@media (min-width: 1024px) {
-  .is-hero-art {
-    height: auto;
-    aspect-ratio: 5 / 4;
-    max-height: 27rem;
-    border-radius: 24px;
-  }
+.is-hero :focus-visible {
+  outline-color: var(--is-lime);
 }
-.is-hero-art > * {
+.is-hero-photo {
+  position: relative;
+  height: 8.5rem;
+  clip-path: polygon(0 0, 100% 0, 100% 78%, 0 100%);
+  background: var(--is-royal-2);
+}
+.is-hero-photo > * {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-}
-.is-hero-img {
   object-fit: cover;
+  /* Keep the crew's faces in the short phone band. */
+  object-position: 50% 18%;
+}
+.is-hero-inner {
+  position: relative;
+}
+.is-hero-copy {
+  padding-block: 0.75rem 1.5rem;
+}
+@media (min-width: 1024px) {
+  .is-hero-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: auto;
+    clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .is-hero-copy {
+    max-width: 33rem;
+    padding-block: 2.5rem 4.25rem;
+  }
+}
+.is-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.85rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(8, 15, 59, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  font-size: 0.875rem;
+}
+.is-pill-stars {
+  font-size: 0.8125rem;
+  color: var(--is-lime);
+}
+.is-pill-score {
+  font-weight: 700;
+}
+.is-pill-label {
+  color: var(--is-on-blue);
 }
 .is-hero-h1 {
-  font-size: clamp(1.875rem, 1.2rem + 2.8vw, 3.5rem);
-  max-width: 16ch;
+  font-size: clamp(2.375rem, 1.5rem + 3.8vw, 4.25rem);
+  /* Bebas capitals run wider than the "0" a ch measures. */
+  max-width: 22ch;
 }
 .is-hero-sub {
-  margin-top: 0.7rem;
-  max-width: 32rem;
-  color: var(--is-muted);
+  margin-top: 0.6rem;
+  max-width: 31rem;
+  color: var(--is-on-blue);
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
 }
 .is-hero-actions {
-  margin-top: 1rem;
+  margin-top: 1.15rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.625rem;
 }
-
 @media (max-width: 639px) {
   .is-hero-actions > * {
     flex: 1 1 auto;
-    padding-inline: 0.8rem;
-    white-space: nowrap;
-  }
-  .texas .ts-rating {
-    font-size: 0.8125rem;
-  }
-  .texas .ts-call {
-    display: none;
+    padding-inline: 0.7rem;
+    font-size: 0.875rem;
   }
 }
 
-/* Trust strip: soft blue chips */
+/* Offers: perforated tickets overlapping the base of the hero */
+.is-offers {
+  position: relative;
+  z-index: 2;
+  margin-top: -1rem;
+}
+@media (min-width: 1024px) {
+  .is-offers {
+    margin-top: -2.5rem;
+  }
+}
+.texas .of-list {
+  display: flex;
+  gap: 0.75rem;
+  margin-block: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  scrollbar-width: none;
+}
+@media (min-width: 640px) {
+  .texas .of-list {
+    scroll-padding-inline: 2rem;
+  }
+}
+@media (min-width: 768px) {
+  .texas .of-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 22rem));
+    overflow: visible;
+    /* The shadow follows the perforated shapes; only once the row stops scrolling. */
+    filter: drop-shadow(0 10px 14px rgba(8, 15, 59, 0.22));
+  }
+}
+.texas .of-item {
+  flex: 0 0 min(84%, 22rem);
+  scroll-snap-align: start;
+  display: flex;
+  align-items: stretch;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: inset 0 0 0 1px var(--is-line);
+}
+.texas .of-coupon {
+  --notch: 0.7rem;
+  --stub: 3rem;
+  -webkit-mask:
+    radial-gradient(circle at var(--stub) 0, transparent var(--notch), #000 calc(var(--notch) + 0.5px)),
+    radial-gradient(circle at var(--stub) 100%, transparent var(--notch), #000 calc(var(--notch) + 0.5px));
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle at var(--stub) 0, transparent var(--notch), #000 calc(var(--notch) + 0.5px)),
+    radial-gradient(circle at var(--stub) 100%, transparent var(--notch), #000 calc(var(--notch) + 0.5px));
+  mask-composite: intersect;
+}
+.texas .of-stub {
+  flex: 0 0 3rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  border-radius: 0 14px 14px 0;
+  font-family: 'Bebas Neue', system-ui, sans-serif;
+  font-size: 1.125rem;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  background: var(--is-navy);
+}
+.texas .of-coupon .of-stub {
+  background: var(--is-royal);
+  border-left: 2px dashed rgba(255, 255, 255, 0.7);
+}
+.texas .of-body {
+  padding: 0.75rem 1rem;
+  min-width: 0;
+}
+.texas .of-title {
+  margin: 0;
+  font-family: 'Bebas Neue', system-ui, sans-serif;
+  font-size: 1.75rem;
+  line-height: 0.95;
+  color: var(--is-navy);
+}
+.texas .of-detail {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--is-muted);
+}
+.texas .of-expires {
+  margin: 0.3rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--is-royal);
+}
+
+/* Award badge strip. On a phone the numbers lead and the marks wrap
+   underneath as one-line credits, so nothing hides off-screen. */
+.texas .br {
+  display: grid;
+  gap: 0.6rem;
+  padding-block: 1rem 0.5rem;
+}
+@media (min-width: 768px) {
+  .texas .br {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 2rem;
+    padding-block: 1rem 0.75rem;
+  }
+}
+.texas .br-marks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 768px) {
+  .texas .br-marks {
+    gap: 0.75rem 1.75rem;
+  }
+}
+.texas .br-mark {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.texas .br-icon {
+  flex: 0 0 auto;
+  font-size: 1.875rem;
+  color: var(--is-royal);
+}
+.texas .br-mark-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.texas .br-mark-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--is-navy);
+}
+.texas .br-mark-award .br-mark-big {
+  max-width: 11rem;
+}
+.texas .br-stars {
+  font-size: 0.75rem;
+  color: var(--is-royal);
+}
+.texas .br-mark-small {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: var(--is-muted);
+}
+.texas .br-stats {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+}
+@media (min-width: 1024px) {
+  .texas .br-stats {
+    gap: 1.75rem;
+    margin-left: auto;
+  }
+}
+.texas .br-stat {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.texas .br-stat-value {
+  margin: 0;
+  font-family: 'Bebas Neue', system-ui, sans-serif;
+  font-size: 2.5rem;
+  line-height: 0.9;
+  color: var(--is-royal);
+}
+.texas .br-stat-word .br-stat-value {
+  padding-top: 0.35rem;
+  font-size: 1.625rem;
+}
+.texas .br-stat-label {
+  margin-top: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--is-muted);
+}
+@media (max-width: 767px) {
+  .texas .br-stats {
+    order: -1;
+  }
+  .texas .br-stat-value {
+    font-size: 2.125rem;
+  }
+  .texas .br-mark {
+    gap: 0.35rem;
+  }
+  .texas .br-icon {
+    font-size: 1.25rem;
+  }
+  .texas .br-mark-text {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.3rem;
+  }
+  .texas .br-mark-big {
+    font-size: 0.8125rem;
+  }
+  .texas .br-mark-award .br-mark-big {
+    max-width: none;
+  }
+}
+
+/* The chip strip, for a brief with no badges or stats */
 .texas .ts {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem 1rem;
-  padding-block: 0.7rem;
-  border-top: 1px solid var(--is-border);
-  border-bottom: 1px solid var(--is-border);
+  padding-block: 1rem 0.75rem;
 }
 .texas .ts-chips {
   display: flex;
@@ -318,12 +610,12 @@
   list-style: none;
 }
 .texas .ts-chip {
-  font-size: 0.8125rem;
-  font-weight: 700;
-  padding: 0.35rem 0.75rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  background: var(--is-blue-soft);
-  color: var(--is-blue-2);
+  background: #e6edf8;
+  color: var(--is-royal-2);
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 .texas .ts-rating {
   display: inline-flex;
@@ -334,33 +626,36 @@
   color: var(--is-muted);
 }
 .texas .ts-stars {
-  color: var(--is-amber);
+  color: var(--is-royal);
 }
 .texas .ts-call {
   margin-left: auto;
-  font-family: 'Varela Round', system-ui, sans-serif;
-  color: var(--is-blue);
+  font-weight: 700;
+  color: var(--is-royal);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.texas .ts-call:hover,
-.texas .ts-call:focus-visible {
-  color: var(--is-amber);
+@media (max-width: 639px) {
+  .texas .ts-call {
+    display: none;
+  }
 }
 
 /* Sections */
 .is-section {
-  padding-block: clamp(2rem, 1.25rem + 3vw, 5rem);
+  padding-block: clamp(2rem, 1.25rem + 3vw, 4.75rem);
 }
-.is-h2 {
-  font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+.is-grey,
+.is-services,
+.is-who {
+  background: var(--is-grey);
 }
 
-/* Services: rounded cards with a soft shadow */
+/* Services: white cards on grey, three across */
 .is-tiles {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 @media (min-width: 640px) {
   .is-tiles {
@@ -370,6 +665,7 @@
 @media (min-width: 1024px) {
   .is-tiles {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 }
 .is-tile {
@@ -377,20 +673,12 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  background: var(--is-surface);
-  border: 1px solid var(--is-border);
-  border-radius: 16px;
+  background: #ffffff;
+  border-radius: 14px;
   box-shadow: var(--is-shadow);
-  transition:
-    transform 0.25s var(--is-ease),
-    box-shadow 0.25s var(--is-ease);
-}
-.is-tile:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--is-shadow-lg);
 }
 .is-tile-media {
-  background: var(--is-bg);
+  background: var(--is-grey);
 }
 .is-tile-media > * {
   display: block;
@@ -402,16 +690,17 @@
   padding: 1rem 1.2rem 1.25rem;
 }
 .is-tile-title {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--is-navy);
 }
 .is-tile-blurb {
   margin-top: 0.3rem;
-  color: var(--is-muted);
   font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--is-muted);
 }
-
-/* Phones: tiles become compact rows so six services do not push the
-   reviews thousands of pixels down. */
 @media (max-width: 639px) {
   .is-tile {
     flex-direction: row;
@@ -427,18 +716,82 @@
   .is-tile-body {
     align-self: center;
     padding: 0.85rem 1rem;
+    border-top: 0;
   }
+}
+
+/* Service areas: royal outline pills with pins */
+.texas .sa-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.texas .sa-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem 0.5rem 0.8rem;
+  border: 2px solid var(--is-royal);
+  border-radius: 999px;
+  font-weight: 700;
+  color: var(--is-navy);
+}
+.texas .sa-pin {
+  font-size: 1.125rem;
+  color: var(--is-royal);
+}
+
+/* Who we work with: white cards on grey */
+.texas .ww-tiles {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 640px) {
+  .texas .ww-tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .texas .ww-tiles {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.texas .ww-tile {
+  padding: 1.25rem 1.2rem;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: var(--is-shadow);
+}
+.texas .ww-tile-title {
+  font-family: 'Bebas Neue', system-ui, sans-serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--is-navy);
+}
+.texas .ww-tile-blurb {
+  margin-top: 0.4rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--is-muted);
 }
 
 /* Reviews */
 .is-quotes {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 @media (min-width: 768px) {
   .is-quotes {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 }
 .is-quote {
@@ -446,93 +799,119 @@
   flex-direction: column;
   height: 100%;
   padding: 1.5rem 1.4rem;
-  background: var(--is-surface);
-  border: 1px solid var(--is-border);
-  border-radius: 16px;
-  box-shadow: var(--is-shadow);
+  background: var(--is-grey);
+  border-radius: 14px;
 }
 .is-quote-text {
   flex: 1;
   margin-top: 0.75rem;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.6;
+  color: var(--is-text);
+}
+.is-cite {
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--is-navy);
 }
 .is-stars {
-  font-size: 0.8125rem;
-  color: var(--is-amber);
+  font-size: 0.875rem;
+  color: var(--is-royal);
 }
 
-/* Hours */
-.is-surface {
-  background: var(--is-surface);
-  border-top: 1px solid var(--is-border);
-  border-bottom: 1px solid var(--is-border);
+/* Hours: the hours note first, so "Closed" never reads as "no answer" */
+.is-hours-note {
+  display: inline-block;
+  margin: 0.85rem 0 0;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  background: var(--is-navy);
+  color: var(--is-lime);
+  font-size: 0.9375rem;
+  font-weight: 700;
 }
 .is-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 .is-table th,
 .is-table td {
   padding: 0.6rem 0;
-  border-bottom: 1px solid var(--is-border);
+  border-bottom: 1px solid var(--is-line);
 }
 .is-table th {
   text-align: left;
   font-weight: 700;
+  color: var(--is-navy);
 }
 .is-table td {
   text-align: right;
   color: var(--is-muted);
   font-variant-numeric: tabular-nums;
 }
+.is-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 1.4rem;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: var(--is-shadow);
+}
 .is-contact-phone {
-  display: inline-block;
-  margin-top: 0.3rem;
-  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
-  color: var(--is-blue);
-  text-decoration: underline;
-  text-decoration-color: var(--is-amber);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 6px;
-  transition: color 0.25s var(--is-ease);
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  margin-top: 0.2rem;
+  font-size: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+  color: var(--is-royal);
+  transition: color 0.2s var(--is-ease);
 }
 .is-contact-phone:hover,
 .is-contact-phone:focus-visible {
-  color: var(--is-amber);
+  color: var(--is-navy);
 }
 
-/* Quote band: solid blue with rounded corners inside the page */
+/* Quote band: the navy closing band */
 .is-band {
-  background: var(--is-blue);
+  background: var(--is-navy);
   color: #ffffff;
   text-align: center;
 }
 .is-band :focus-visible {
-  outline-color: #ffffff;
+  outline-color: var(--is-lime);
 }
 .is-band .is-h2 {
   color: #ffffff;
 }
 .is-band-sub {
-  color: #ffffff;
+  color: #c9d3ee;
 }
 .is-band-phone {
   display: inline-block;
-  margin-top: 1rem;
-  font-size: clamp(1.875rem, 1.3rem + 2.6vw, 3.5rem);
-  color: #ffffff;
+  margin-top: 0.75rem;
+  font-size: clamp(2.75rem, 1.9rem + 3.6vw, 4.75rem);
+  color: var(--is-lime);
+}
+.is-band-phone:hover,
+.is-band-phone:focus-visible {
   text-decoration: underline;
-  text-decoration-color: var(--is-amber);
-  text-decoration-thickness: 4px;
-  text-underline-offset: 8px;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
 }
 
-/* Footer */
+/* Footer: navy */
 .is-footer {
-  background: var(--is-surface);
-  border-top: 1px solid var(--is-border);
+  background: var(--is-navy);
+  color: #ffffff;
+}
+.is-footer .is-mono {
+  color: #c9d3ee;
+}
+.is-footer :focus-visible {
+  outline-color: var(--is-lime);
 }
 .is-footer-grid {
   display: grid;
@@ -544,12 +923,15 @@
   }
 }
 .is-quiet {
-  color: var(--is-muted);
-  transition: color 0.25s var(--is-ease);
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: #ffffff;
+  transition: color 0.2s var(--is-ease);
 }
 .is-quiet:hover,
 .is-quiet:focus-visible {
-  color: var(--is-blue);
+  color: var(--is-lime);
 }
 
 /* Motion: a gentle lift, once, on scroll */
@@ -583,12 +965,6 @@
   }
   to {
     opacity: 1;
-    transform: none;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .texas .is-btn:hover,
-  .texas .is-tile:hover {
     transform: none;
   }
 }

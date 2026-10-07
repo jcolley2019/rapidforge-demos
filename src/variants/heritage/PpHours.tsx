@@ -1,16 +1,16 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import { hasContactInfo, hoursLabel } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function PpHours() {
+  const site = useSite()
   if (!hasContactInfo(site)) return null
   return (
     <section id="contact" className="pp-section">
       <div className="pp-wrap">
         <Reveal>
-          <div className="pp-head">
-            <h2 className="pp-display pp-h2">Hours &amp; Location</h2>
-          </div>
+          <h2 className="pp-display pp-h2">Hours &amp; Location</h2>
+          {site.hoursNote && <p className="pp-hours-note">{site.hoursNote}</p>}
         </Reveal>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           {site.hours && (

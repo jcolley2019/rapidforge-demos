@@ -82,5 +82,71 @@
     "audit_id": "audit_acme_plumbing_0001",
     "haiku_model": "claude-haiku-4-5-20251001",
     "template_fallback": false
-  }
+  },
+  "service_areas": [
+    "Nampa",
+    "Caldwell",
+    "Meridian",
+    "Boise",
+    "Kuna",
+    "Star",
+    "Middleton",
+    "Eagle"
+  ],
+  "badges": [
+    {
+      "label": "BBB",
+      "kind": "bbb",
+      "value": "A+"
+    },
+    {
+      "label": "Idaho license",
+      "kind": "license",
+      "value": "PLB-C-12345"
+    },
+    {
+      "label": "Best of Treasure Valley 2025",
+      "kind": "award"
+    },
+    {
+      "label": "312 Google reviews",
+      "kind": "rating",
+      "value": "4.9"
+    }
+  ],
+  "stats": [
+    {
+      "label": "years in business",
+      "value": "22"
+    },
+    {
+      "label": "jobs completed",
+      "value": "9,000+"
+    },
+    {
+      "label": "and insured",
+      "value": "Licensed"
+    }
+  ],
+  "offers": [
+    {
+      "title": "$50 off any repair",
+      "detail": "Mention this coupon when you book. One per household.",
+      "kind": "coupon",
+      "expires": "Dec 31, 2026"
+    },
+    {
+      "title": "0% for 12 months",
+      "detail": "Financing on water heaters, repipes and sewer lines, with approved credit.",
+      "kind": "financing"
+    }
+  ],
+  "founded_year": 2004,
+  "license_number": "PLB-C-12345",
+  "crew_photo_urls": [
+    "https://images.unsplash.com/photo-1746095792963-74106bae8658?w=1600&q=80",
+    "https://images.unsplash.com/photo-1787672357497-9d9e025f01b3?w=1600&q=80"
+  ],
+  "segment": "residential",
+  "hours_note": "24/7 emergency service"
 }

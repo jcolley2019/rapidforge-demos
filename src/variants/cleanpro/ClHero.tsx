@@ -1,12 +1,15 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
+import { heroActions } from '../../brief/site-helpers'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import { presetForVariant } from '../../presets/presets'
 import { heroPhotoFor } from '../heroPhoto'
 
 const palette = presetForVariant('cleanpro').palette
-const photo = heroPhotoFor('cleanpro')
 
 export default function ClHero() {
+  const site = useSite()
+  const photo = heroPhotoFor('cleanpro', site.photos, site.crewPhotos)
+  const { primary, secondary } = heroActions(site)
   return (
     <section className="cl-hero" aria-label="Introduction">
       <div className="cl-wrap cl-hero-grid">
@@ -14,21 +17,21 @@ export default function ClHero() {
           <h1 className="cl-display cl-hero-h1">{site.headline}</h1>
           <p className="cl-hero-sub">{site.subhead}</p>
           <div className="cl-hero-actions">
-            <a href={site.cta.href} className="cl-btn cl-btn-gold">
-              {site.cta.label}
+            <a href={primary.href} className={`cl-btn cl-btn-gold ${primary.call ? 'cl-num' : ''}`.trim()}>
+              {primary.label}
             </a>
-            {site.ctaSecondary && (
-              <a href={site.ctaSecondary.href} className="cl-btn cl-btn-outline cl-num">
-                {site.ctaSecondary.label}
+            {secondary && (
+              <a href={secondary.href} className={`cl-btn cl-btn-outline ${secondary.call ? 'cl-num' : ''}`.trim()}>
+                {secondary.label}
               </a>
             )}
           </div>
         </div>
 
-        <figure className="cl-panel">
+        <div className="cl-panel">
           <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="cl-panel-img" />
           <div className="cl-panel-vignette" aria-hidden="true" />
-        </figure>
+        </div>
       </div>
     </section>
   )

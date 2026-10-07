@@ -1,46 +1,46 @@
-/* Bold Local (preset: bold-local). UI/UX Pro Max Brutalism, toned to
-   borders and blocks: white ground, navy blocks, safety orange on the
-   action, 2px borders, 0 radius. Barlow Condensed uppercase headings,
-   Barlow body. Class prefix dh- is a namespace carried over from the
-   earlier skin; scoped to .geospatial. */
+/* Bold Local (preset: bold-local), vault family F1 Red Banner Plumbers:
+   a white page and one saturated red, a crew photo darkened from the left
+   with the stat grid beside the headline and the badge row inside the
+   photo, a specials banner under it, a dark services panel and a dark
+   footer with the license. DM Sans throughout. Class prefix dh- is a
+   namespace carried over from the earlier skin; scoped to .geospatial. */
 
 .geospatial {
-  --dh-bg: #ffffff;
-  --dh-surface: #f1f5f9;
-  --dh-text: #0f172a;
-  --dh-muted: #475569;
-  --dh-navy: #0f172a;
-  --dh-orange: #c2410c;
-  --dh-orange-2: #9a3412;
-  /* The brighter orange is for text and rules on navy, where #c2410c is too dim. */
-  --dh-orange-hi: #ea580c;
-  --dh-line: #0f172a;
+  --dh-red: #d20001;
+  --dh-red-2: #a80001;
+  --dh-ink: #1a1a1a;
+  --dh-ink-2: #242424;
+  --dh-text: #333333;
+  --dh-muted: #5c5c5c;
+  --dh-grey: #f4f4f4;
+  --dh-line: #e2e2e2;
+  --dh-on-ink-muted: #bdbdbd;
+  --dh-on-ink-line: rgba(255, 255, 255, 0.16);
   --dh-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
-  background-color: var(--dh-bg);
+  background-color: #ffffff;
   color: var(--dh-text);
-  font-family: 'Barlow', 'Segoe UI', system-ui, sans-serif;
+  font-family: 'DM Sans Variable', 'Segoe UI', system-ui, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
-  --bc-bg: #0f172a;
+  --bc-bg: #1a1a1a;
   --bc-fg: #ffffff;
-  --bc-border: #0f172a;
-  --bc-accent: #ea580c;
-  --bc-radius: 0px;
+  --bc-fg-strong: #ffffff;
+  --bc-border: #1a1a1a;
+  --bc-accent: #d20001;
+  --bc-radius: 999px;
+  --bc-shadow: none;
 }
 
 .geospatial ::selection {
-  background: var(--dh-orange);
+  background: var(--dh-red);
   color: #ffffff;
 }
 .geospatial :focus-visible {
-  outline: 3px solid var(--dh-orange);
+  outline: 3px solid var(--dh-red);
   outline-offset: 2px;
-}
-.geospatial [id] {
-  scroll-margin-top: 4.5rem;
 }
 .geospatial h1,
 .geospatial h2,
@@ -59,82 +59,146 @@
   }
 }
 
-/* Type: condensed uppercase for headings, plain Barlow for reading */
+/* Type: heavy geometric headings, a red bar under each section heading */
 .dh-display {
-  font-family: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 0.98;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+.dh-h2 {
+  font-size: clamp(1.75rem, 1.35rem + 1.6vw, 2.625rem);
+  color: var(--dh-ink);
+}
+.dh-h2::after {
+  content: '';
+  display: block;
+  width: 3.25rem;
+  height: 4px;
+  margin-top: 0.75rem;
+  background: var(--dh-red);
 }
 .dh-mono {
   font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
   color: var(--dh-muted);
 }
 .dh-num {
   font-variant-numeric: tabular-nums;
 }
 
-/* Buttons: hard blocks */
+/* Buttons: red pill, ink pill, white pill, ghost outline */
 .dh-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 2.75rem;
   gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
-  font-family: 'Barlow Condensed', system-ui, sans-serif;
-  font-size: 1.0625rem;
+  padding: 0.65rem 1.35rem;
+  font-size: 1rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: 2px solid var(--dh-navy);
+  border-radius: 999px;
+  border: 2px solid transparent;
   cursor: pointer;
+  white-space: nowrap;
   transition:
-    background-color 0.12s linear,
-    color 0.12s linear,
-    border-color 0.12s linear;
+    background-color 0.15s var(--dh-ease),
+    border-color 0.15s var(--dh-ease),
+    color 0.15s var(--dh-ease);
 }
-.dh-btn-orange {
-  background: var(--dh-orange);
+.dh-btn-red {
+  background: var(--dh-red);
+  border-color: var(--dh-red);
   color: #ffffff;
-  border-color: var(--dh-orange);
 }
-.dh-btn-orange:hover,
-.dh-btn-orange:focus-visible {
-  background: var(--dh-orange-2);
-  border-color: var(--dh-orange-2);
+.dh-btn-red:hover,
+.dh-btn-red:focus-visible {
+  background: var(--dh-red-2);
+  border-color: var(--dh-red-2);
 }
-.dh-btn-outline {
-  background: transparent;
+.dh-btn-ink {
+  background: var(--dh-ink);
+  border-color: var(--dh-ink);
   color: #ffffff;
-  border-color: #ffffff;
 }
-.dh-btn-outline:hover,
-.dh-btn-outline:focus-visible {
+.dh-btn-ink:hover,
+.dh-btn-ink:focus-visible {
+  background: #000000;
+  border-color: #000000;
+}
+.dh-btn-white {
   background: #ffffff;
-  color: var(--dh-navy);
-}
-.dh-btn-outline-light {
-  background: transparent;
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.6);
-}
-.dh-btn-outline-light:hover,
-.dh-btn-outline-light:focus-visible {
   border-color: #ffffff;
+  color: var(--dh-red-2);
+}
+.dh-btn-white:hover,
+.dh-btn-white:focus-visible {
+  background: var(--dh-grey);
+  border-color: var(--dh-grey);
+}
+.dh-btn-ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.85);
+  color: #ffffff;
+}
+.dh-btn-ghost:hover,
+.dh-btn-ghost:focus-visible {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--dh-ink);
 }
 
-/* Nav: a navy bar */
+/* Utility bar: an ink line above the nav */
+.geospatial .ub {
+  background: var(--dh-ink);
+  color: #e6e6e6;
+  font-size: 0.8125rem;
+}
+.geospatial .ub-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.125rem;
+}
+.geospatial .ub-line {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.geospatial .ub-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1.25rem;
+}
+.geospatial .ub-call,
+.geospatial .ub-book {
+  color: #ffffff;
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-decoration-color: var(--dh-red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.geospatial .ub :focus-visible {
+  outline-color: #ffffff;
+}
+@media (max-width: 639px) {
+  .geospatial .ub-actions,
+  .geospatial .ub-more {
+    display: none;
+  }
+}
+
+/* Nav: white, a red pill for the phone */
 .dh-nav {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--dh-navy);
-  color: #ffffff;
+  background: #ffffff;
+  border-bottom: 1px solid var(--dh-line);
 }
 .dh-nav-inner {
   display: flex;
@@ -144,61 +208,74 @@
   padding-block: 0.6rem;
 }
 .dh-brand {
-  font-size: 1.375rem;
-  color: #ffffff;
+  min-width: 6.5rem;
+  overflow: hidden;
+  font-size: 1.3125rem;
+  color: var(--dh-ink);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+@media (max-width: 479px) {
+  .dh-brand {
+    font-size: 1.0625rem;
+  }
 }
 .dh-nav-links {
   display: none;
   gap: 1.5rem;
 }
-/* Section links join the nav only once they fit beside the phone and button. */
 @media (min-width: 1024px) {
   .dh-nav-links {
     display: flex;
   }
 }
 .dh-navlink {
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.82);
-  transition: color 0.12s linear;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--dh-muted);
   white-space: nowrap;
+  transition: color 0.15s var(--dh-ease);
 }
 .dh-navlink:hover,
 .dh-navlink:focus-visible {
-  color: var(--dh-orange-hi);
+  color: var(--dh-red);
 }
 .dh-nav-right {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.625rem;
 }
 .dh-nav-phone {
   display: inline-flex;
   align-items: center;
+  min-height: 2.75rem;
+  padding-inline: 1.1rem;
+  border-radius: 999px;
+  background: var(--dh-red);
+  color: #ffffff;
   font-size: 0.9375rem;
   font-weight: 700;
-  color: #ffffff;
-  transition: color 0.12s linear;
   white-space: nowrap;
+  transition: background-color 0.15s var(--dh-ease);
 }
 .dh-nav-phone:hover,
 .dh-nav-phone:focus-visible {
-  color: var(--dh-orange-hi);
+  background: var(--dh-red-2);
 }
 .dh-nav-call {
   display: none;
 }
-/* Phones: the number collapses to a Call button so click-to-call stays
-   in the sticky nav after the hero scrolls away. */
 @media (max-width: 479px) {
+  .dh-nav-inner {
+    gap: 0.625rem;
+  }
+  .dh-nav-right {
+    gap: 0.5rem;
+  }
   .dh-nav-phone {
     min-height: 2.75rem;
     padding-inline: 0.9rem;
-    border: 2px solid #ffffff;
-    border-radius: 0;
+    font-size: 0.875rem;
   }
   .dh-nav-number {
     display: none;
@@ -209,117 +286,201 @@
 }
 .dh-nav-cta {
   min-height: 2.5rem;
-  padding: 0.45rem 1rem;
+  padding: 0.45rem 1.1rem;
   font-size: 0.9375rem;
-  white-space: nowrap;
 }
 @media (max-width: 479px) {
   .dh-nav-cta {
     min-height: 2.75rem;
+    padding-inline: 0.9rem;
+    font-size: 0.875rem;
   }
 }
 
-/* Hero: unfiltered photo, a navy block anchored bottom-left */
+/* Hero: the crew photo darkened from the left, the trust bar inside it */
 .dh-hero {
   position: relative;
   isolation: isolate;
-  background: var(--dh-navy);
-}
-.dh-hero-media {
-  position: relative;
-  height: 9.5rem;
   overflow: hidden;
-  background: var(--dh-surface);
-}
-.dh-hero-media > * {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.dh-hero-img {
-  object-fit: cover;
-}
-.dh-hero-grade {
-  /* Navy from the bottom-left corner, capped at 0.35. */
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0) 55%);
-  pointer-events: none;
-}
-.dh-hero-inner {
-  position: relative;
-}
-.dh-hero-block {
-  padding: 1.5rem 0 1.75rem;
+  background: var(--dh-ink);
   color: #ffffff;
 }
-/* Phones: the orange rule runs between the photo band and the navy block. */
-@media (max-width: 1023px) {
-  .dh-hero-media {
-    border-bottom: 4px solid var(--dh-orange-hi);
+.dh-hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.dh-hero-media > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 68% 30%;
+}
+.dh-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(14, 14, 14, 0.78) 0%, rgba(14, 14, 14, 0.9) 100%);
+}
+@media (min-width: 768px) {
+  .dh-hero::before {
+    background:
+      linear-gradient(0deg, rgba(14, 14, 14, 0.85) 0%, rgba(14, 14, 14, 0) 34%),
+      linear-gradient(
+        90deg,
+        rgba(14, 14, 14, 0.9) 0%,
+        rgba(14, 14, 14, 0.76) 45%,
+        rgba(14, 14, 14, 0.42) 75%,
+        rgba(14, 14, 14, 0.55) 100%
+      );
   }
 }
+.dh-hero :focus-visible {
+  outline-color: #ffffff;
+}
+.dh-hero-copy {
+  padding-block: 1.5rem 1.25rem;
+}
 @media (min-width: 1024px) {
-  .dh-hero {
-    min-height: 31rem;
-    display: flex;
-    align-items: flex-end;
-  }
-  .dh-hero-media {
-    position: absolute;
-    inset: 0;
-    height: auto;
-    z-index: -1;
-  }
-  .dh-hero-inner {
-    width: 100%;
-  }
-  .dh-hero-block {
-    max-width: 34rem;
-    margin-block: 2rem;
-    padding: 1.75rem 2rem 2rem;
-    background: var(--dh-navy);
-    border-top: 4px solid var(--dh-orange-hi);
+  .dh-hero-copy {
+    max-width: 46rem;
+    padding-block: 2.75rem 2rem;
   }
 }
 .dh-hero-h1 {
-  font-size: clamp(2.25rem, 1.4rem + 3.2vw, 4rem);
-  max-width: 14ch;
+  font-size: clamp(2.125rem, 1.3rem + 3.2vw, 3.875rem);
+  max-width: 16ch;
 }
 .dh-hero-sub {
-  margin-top: 0.7rem;
-  max-width: 32rem;
-  color: #cbd5e1;
-  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  margin-top: 0.75rem;
+  max-width: 34rem;
+  color: #e8e8e8;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
 }
 .dh-hero-actions {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.625rem;
 }
-
 @media (max-width: 639px) {
   .dh-hero-actions > * {
     flex: 1 1 auto;
-    padding-inline: 0.8rem;
-    white-space: nowrap;
-  }
-  .geospatial .ts-rating {
-    font-size: 0.8125rem;
-  }
-  .geospatial .ts-call {
-    display: none;
+    padding-inline: 0.75rem;
+    font-size: 0.9375rem;
   }
 }
 
-/* Trust strip: boxed chips on a 2px rule */
+/* The trust bar along the bottom of the photo: marks, then the
+   big-number stats, clear of the faces in the crew photo. */
+.geospatial .dh-trustbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 2.25rem;
+  padding-block: 0.9rem 1.1rem;
+  border-top: 1px solid var(--dh-on-ink-line);
+}
+.dh-trustbar .br-marks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 768px) {
+  .dh-trustbar .br-marks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+  }
+}
+.dh-trustbar .br-mark {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.dh-trustbar .br-icon {
+  flex: 0 0 auto;
+  font-size: 1.875rem;
+  color: #ffffff;
+}
+.dh-trustbar .br-mark-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.dh-trustbar .br-mark-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #ffffff;
+}
+.dh-trustbar .br-mark-award .br-mark-big {
+  max-width: 11rem;
+}
+.dh-trustbar .br-stars {
+  font-size: 0.8125rem;
+  color: #ffffff;
+}
+.dh-trustbar .br-mark-small {
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: #d4d4d4;
+}
+.dh-trustbar .br-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  width: 100%;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .dh-trustbar .br-stats {
+    gap: 2rem;
+    width: auto;
+    padding-left: 2rem;
+    border-left: 1px solid var(--dh-on-ink-line);
+  }
+}
+.dh-trustbar .br-stat {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.dh-trustbar .br-stat-value {
+  margin: 0;
+  font-size: clamp(1.625rem, 1.3rem + 1.2vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+.dh-trustbar .br-stat-word .br-stat-value {
+  padding-top: 0.45rem;
+  font-size: 1.125rem;
+  letter-spacing: 0;
+}
+.dh-trustbar .br-stat-label {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: #d4d4d4;
+}
+
+/* The chip strip, for a brief with no badges or stats */
 .geospatial .ts {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem 1rem;
-  padding-block: 0.7rem;
-  border-bottom: 2px solid var(--dh-line);
+  padding-block: 0.9rem 1.1rem;
+  border-top: 1px solid var(--dh-on-ink-line);
 }
 .geospatial .ts-chips {
   display: flex;
@@ -330,14 +491,12 @@
   list-style: none;
 }
 .geospatial .ts-chip {
-  font-family: 'Barlow Condensed', system-ui, sans-serif;
-  font-size: 0.9375rem;
+  padding: 0.3rem 0.8rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.6rem;
-  border: 2px solid var(--dh-line);
-  color: var(--dh-text);
+  color: #ffffff;
 }
 .geospatial .ts-rating {
   display: inline-flex;
@@ -345,40 +504,134 @@
   gap: 0.5rem;
   margin: 0;
   font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--dh-muted);
+  color: #e0e0e0;
 }
 .geospatial .ts-stars {
-  color: var(--dh-orange);
+  color: #ffffff;
 }
 .geospatial .ts-call {
   margin-left: auto;
-  font-family: 'Barlow Condensed', system-ui, sans-serif;
-  font-size: 1.0625rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--dh-text);
-  border-bottom: 3px solid var(--dh-orange);
+  font-weight: 800;
+  color: #ffffff;
+  border-bottom: 3px solid var(--dh-red);
 }
-.geospatial .ts-call:hover,
-.geospatial .ts-call:focus-visible {
-  color: var(--dh-orange);
+@media (max-width: 639px) {
+  .geospatial .ts-call {
+    display: none;
+  }
+}
+
+/* Specials banner: coupon tickets straight under the hero */
+.dh-specials {
+  padding-block: 0.875rem;
+  background: var(--dh-grey);
+  border-bottom: 1px solid var(--dh-line);
+}
+.geospatial .of-list {
+  display: flex;
+  gap: 0.75rem;
+  margin-block: 0;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  scrollbar-width: none;
+}
+@media (min-width: 640px) {
+  .geospatial .of-list {
+    scroll-padding-inline: 2rem;
+  }
+}
+@media (min-width: 768px) {
+  .geospatial .of-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    overflow: visible;
+  }
+}
+.geospatial .of-item {
+  flex: 0 0 min(84%, 22rem);
+  scroll-snap-align: start;
+  display: flex;
+  align-items: stretch;
+  background: #ffffff;
+  border: 2px solid var(--dh-ink);
+  border-radius: 10px;
+}
+.geospatial .of-coupon {
+  --notch: 0.65rem;
+  --stub: 2.75rem;
+  border: 2px dashed var(--dh-red);
+  -webkit-mask:
+    radial-gradient(circle at var(--stub) 0, transparent var(--notch), #000 calc(var(--notch) + 0.5px)),
+    radial-gradient(circle at var(--stub) 100%, transparent var(--notch), #000 calc(var(--notch) + 0.5px));
+  -webkit-mask-composite: source-in;
+  mask:
+    radial-gradient(circle at var(--stub) 0, transparent var(--notch), #000 calc(var(--notch) + 0.5px)),
+    radial-gradient(circle at var(--stub) 100%, transparent var(--notch), #000 calc(var(--notch) + 0.5px));
+  mask-composite: intersect;
+}
+.geospatial .of-stub {
+  flex: 0 0 2.75rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  background: var(--dh-ink);
+}
+.geospatial .of-coupon .of-stub {
+  background: var(--dh-red);
+  border-left: 2px dashed #ffffff;
+}
+.geospatial .of-body {
+  padding: 0.7rem 1rem;
+  min-width: 0;
+}
+.geospatial .of-title {
+  margin: 0;
+  font-size: 1.1875rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--dh-ink);
+}
+.geospatial .of-coupon .of-title {
+  color: var(--dh-red-2);
+}
+.geospatial .of-detail {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--dh-muted);
+}
+.geospatial .of-expires {
+  margin: 0.3rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--dh-ink);
 }
 
 /* Sections */
 .dh-section {
-  padding-block: clamp(2rem, 1.25rem + 3vw, 5rem);
-}
-.dh-h2 {
-  margin-top: 0.25rem;
-  text-align: left;
-  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  padding-block: clamp(2rem, 1.25rem + 3vw, 4.75rem);
 }
 
-/* Services: hard-bordered tiles */
+/* Services: a dark panel */
+.dh-services {
+  background: var(--dh-ink);
+  color: #ffffff;
+}
+.dh-services .dh-h2 {
+  color: #ffffff;
+}
 .dh-tiles {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   display: grid;
   gap: 1rem;
 }
@@ -390,22 +643,19 @@
 @media (min-width: 1024px) {
   .dh-tiles {
     grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
   }
 }
 .dh-tile {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: var(--dh-bg);
-  border: 2px solid var(--dh-line);
-  transition: border-color 0.12s linear;
-}
-.dh-tile:hover {
-  border-color: var(--dh-orange);
+  overflow: hidden;
+  background: var(--dh-ink-2);
+  border-radius: 10px;
 }
 .dh-tile-media {
-  background: var(--dh-surface);
-  border-bottom: 2px solid var(--dh-line);
+  background: #2e2e2e;
 }
 .dh-tile-media > * {
   display: block;
@@ -414,27 +664,23 @@
   object-fit: cover;
 }
 .dh-tile-body {
-  padding: 1rem 1.1rem 1.2rem;
+  padding: 1rem 1.15rem 1.25rem;
 }
 .dh-tile-title {
-  font-size: 1.5rem;
+  font-size: 1.1875rem;
+  color: #ffffff;
 }
 .dh-tile-blurb {
   margin-top: 0.3rem;
-  color: var(--dh-muted);
   font-size: 0.9375rem;
+  color: #c9c9c9;
 }
-
-/* Phones: tiles become compact rows so six services do not push the
-   reviews thousands of pixels down. */
 @media (max-width: 639px) {
   .dh-tile {
     flex-direction: row;
   }
   .dh-tile-media {
     flex: 0 0 6.5rem;
-    border-bottom: 0;
-    border-right: 2px solid var(--dh-line);
   }
   .dh-tile-media > * {
     height: 100%;
@@ -447,9 +693,74 @@
   }
 }
 
-/* Reviews: grey panels with a navy edge */
+/* Service areas: pinned town chips */
+.geospatial .sa-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.geospatial .sa-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem 0.5rem 0.8rem;
+  border: 1.5px solid var(--dh-line);
+  border-radius: 999px;
+  font-weight: 700;
+  color: var(--dh-ink);
+}
+.geospatial .sa-pin {
+  font-size: 1.125rem;
+  color: var(--dh-red);
+}
+
+/* Who we work with: white cards on grey, a red top edge */
+.dh-who {
+  background: #ffffff;
+}
+.geospatial .ww-tiles {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 640px) {
+  .geospatial .ww-tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .geospatial .ww-tiles {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.geospatial .ww-tile {
+  padding: 1.25rem 1.2rem;
+  border-top: 4px solid var(--dh-red);
+  border-radius: 0 0 10px 10px;
+  background: var(--dh-grey);
+}
+.geospatial .ww-tile-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--dh-ink);
+}
+.geospatial .ww-tile-blurb {
+  margin-top: 0.35rem;
+  font-size: 0.9375rem;
+  color: var(--dh-muted);
+}
+
+/* Reviews: white panels on grey */
+.dh-reviews {
+  background: var(--dh-grey);
+}
 .dh-panels {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   display: grid;
   gap: 1rem;
 }
@@ -463,8 +774,8 @@
   flex-direction: column;
   height: 100%;
   padding: 1.5rem 1.4rem;
-  background: var(--dh-surface);
-  border: 2px solid var(--dh-line);
+  background: #ffffff;
+  border-radius: 10px;
 }
 .dh-quote {
   flex: 1;
@@ -472,17 +783,32 @@
   font-size: 1rem;
   line-height: 1.55;
 }
+.dh-cite {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: var(--dh-ink);
+}
 .dh-stars {
-  font-size: 0.8125rem;
-  color: var(--dh-orange);
+  font-size: 0.875rem;
+  color: var(--dh-red);
 }
 
-/* Hours */
+/* Hours: the hours note first, so "Closed" never reads as "no answer" */
+.dh-hours-note {
+  display: inline-block;
+  margin: 1rem 0 0;
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  background: var(--dh-red);
+  color: #ffffff;
+  font-size: 0.9375rem;
+  font-weight: 800;
+}
 .dh-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9375rem;
-  border-top: 2px solid var(--dh-line);
 }
 .dh-table th,
 .dh-table td {
@@ -492,9 +818,7 @@
 .dh-table th {
   text-align: left;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 0.8125rem;
+  color: var(--dh-ink);
 }
 .dh-table td {
   text-align: right;
@@ -502,55 +826,69 @@
 }
 .dh-contact {
   padding: 1.5rem 1.4rem;
-  background: var(--dh-surface);
-  border: 2px solid var(--dh-line);
+  background: var(--dh-grey);
+  border-radius: 10px;
 }
 .dh-contact-phone {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   margin-top: 0.3rem;
-  font-family: 'Barlow Condensed', system-ui, sans-serif;
-  font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
-  font-weight: 700;
-  color: var(--dh-text);
-  border-bottom: 4px solid var(--dh-orange);
-  transition: color 0.12s linear;
+  font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--dh-ink);
+  border-bottom: 4px solid var(--dh-red);
+  transition: color 0.15s var(--dh-ease);
 }
 .dh-contact-phone:hover,
 .dh-contact-phone:focus-visible {
-  color: var(--dh-orange);
+  color: var(--dh-red);
 }
 
-/* Quote band: solid navy */
+/* Quote band: the red banner */
 .dh-quote-band {
-  background: var(--dh-navy);
+  background: var(--dh-red);
   color: #ffffff;
-  text-align: left;
 }
 .dh-quote-band .dh-h2 {
   color: #ffffff;
 }
+.dh-quote-band .dh-h2::after {
+  background: #ffffff;
+}
+.dh-quote-band :focus-visible {
+  outline-color: #ffffff;
+}
 .dh-quote-band p {
-  color: #cbd5e1;
+  color: #ffffff;
 }
 .dh-quote-phone {
   display: inline-block;
   margin-top: 1rem;
-  font-family: 'Barlow Condensed', system-ui, sans-serif;
-  font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4.5rem);
-  font-weight: 700;
+  font-size: clamp(2.25rem, 1.5rem + 3.4vw, 4.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
   color: #ffffff;
-  border-bottom: 5px solid var(--dh-orange-hi);
-  transition: color 0.12s linear;
 }
 .dh-quote-phone:hover,
 .dh-quote-phone:focus-visible {
-  color: var(--dh-orange-hi);
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 8px;
 }
 
-/* Footer */
+/* Footer: dark, with the license */
 .dh-footer {
   padding-block: 3rem;
-  border-top: 2px solid var(--dh-line);
+  background: var(--dh-ink);
+  color: #ffffff;
+}
+.dh-footer .dh-mono {
+  color: var(--dh-on-ink-muted);
+}
+.dh-footer :focus-visible {
+  outline-color: #ffffff;
 }
 .dh-footer-grid {
   display: grid;
@@ -562,22 +900,27 @@
   }
 }
 .dh-quiet {
-  color: var(--dh-muted);
-  transition: color 0.12s linear;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  color: #ffffff;
+  transition: color 0.15s var(--dh-ease);
 }
 .dh-quiet:hover,
 .dh-quiet:focus-visible {
-  color: var(--dh-orange);
+  text-decoration: underline;
+  text-decoration-color: var(--dh-red);
+  text-underline-offset: 4px;
 }
 
-/* Motion: a short snap in, once, on scroll */
+/* Motion: one short entrance on scroll */
 @media (prefers-reduced-motion: no-preference) {
   .geospatial .rv {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
     transition:
-      opacity 0.3s steps(3, end),
-      transform 0.3s steps(3, end);
+      opacity 0.35s var(--dh-ease),
+      transform 0.35s var(--dh-ease);
   }
   .geospatial .rv.rv-in {
     opacity: 1;
@@ -588,16 +931,16 @@
       opacity: 1;
       transform: none;
       transition: none;
-      animation: dh-snap 0.4s steps(3, end) both;
+      animation: dh-rise 0.4s var(--dh-ease) both;
       animation-timeline: view();
       animation-range: entry 5% entry 30%;
     }
   }
 }
-@keyframes dh-snap {
+@keyframes dh-rise {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;

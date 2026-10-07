@@ -1,9 +1,9 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
 
-const links = navLinks(site, 'Hours & Location')
-
 export default function ClNav() {
+  const site = useSite()
+  const links = navLinks(site, 'Hours & Location')
   return (
     <header className="cl-nav">
       <div className="cl-wrap cl-nav-inner">
@@ -25,7 +25,7 @@ export default function ClNav() {
             </a>
           )}
           <a href={site.cta.href} className="cl-btn cl-btn-gold cl-nav-cta">
-            {site.cta.label}
+            {site.navCtaLabel}
           </a>
         </div>
       </div>

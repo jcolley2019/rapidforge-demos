@@ -1,19 +1,19 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
 const palette = presetForVariant('cleanpro').palette
-const photos = tilePhotosFor('cleanpro')
 
 export default function ClServices() {
+  const site = useSite()
+  const photos = tilePhotosFor('cleanpro', site.photos, site.detailPhotos)
   return (
     <section id="services" className="cl-section">
       <div className="cl-wrap">
-        <Reveal>
-          <h2 className="cl-display cl-h2">Our Services</h2>
-        </Reveal>
+        {/* Not revealed: it sits at the fold and must be visible on load. */}
+        <h2 className="cl-display cl-h2">Our Services</h2>
         <div className="cl-tiles">
           {site.services.map((service, i) => (
             <Reveal key={service.title} delay={(i % 3) * 90}>

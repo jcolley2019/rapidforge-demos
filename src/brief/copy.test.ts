@@ -1,6 +1,16 @@
 import { describe, expect, it } from 'vitest'
 import { DesignBriefSchema } from './design-brief'
-import { copyFamilyFor, ctaHeadlineFor, pickCopy, templatesFor, type CopyContext, type CopyFamily } from './copy'
+import {
+  audiencesFor,
+  commercialCopyFor,
+  copyFamilyFor,
+  ctaHeadlineFor,
+  jobsiteCopyFor,
+  pickCopy,
+  templatesFor,
+  type CopyContext,
+  type CopyFamily,
+} from './copy'
 import { toSiteContent } from './site-content'
 import acme from './fixtures/acme-plumbing.json'
 import sparse from './fixtures/sparse-electric.json'
@@ -56,6 +66,48 @@ describe('copy house rules', () => {
         expect(s, s).toMatch(/same-day|same day|on the way/i)
         expect(s, s).toMatch(/licensed|insured|upfront|approve/i)
       }
+    }
+  })
+
+  it('keeps the commercial and jobsite registers to the same house rules', () => {
+    const banned = /[—–]|<em>|\*/
+    for (const family of FAMILIES) {
+      for (const ctx of contexts) {
+        const registers = [
+          commercialCopyFor(family, 'commercial', ctx),
+          commercialCopyFor(family, 'new_construction', ctx),
+          jobsiteCopyFor(family, ctx),
+        ]
+        for (const r of registers) {
+          expect(words(r.headline), r.headline).toBeLessThanOrEqual(8)
+          for (const line of [r.headline, r.subhead, r.ctaHeadline]) expect(line).not.toMatch(banned)
+        }
+      }
+      const [commercial, builders, jobsite] = [
+        commercialCopyFor(family, 'commercial', contexts[0]),
+        commercialCopyFor(family, 'new_construction', contexts[0]),
+        jobsiteCopyFor(family, contexts[0]),
+      ]
+      for (const r of [commercial, builders, jobsite]) {
+        expect(r.subhead, r.subhead).toContain('Nampa')
+        expect(r.subhead, r.subhead).toMatch(/licensed/i)
+      }
+      // Commercial copy names its audience and promises the schedule.
+      expect(commercial.subhead).toMatch(/general contractors, property managers and builders/)
+      expect(builders.subhead).toMatch(/builders, developers and general contractors/)
+      for (const r of [commercial, builders]) expect(r.subhead).toMatch(/schedule/)
+      // The jobsite register keeps the same-day promise and claims no clients.
+      expect(jobsite.subhead).toMatch(/same-day/)
+      expect(jobsite.subhead).not.toMatch(/contractors|property managers|developers/)
+    }
+  })
+
+  it('gives three or four audience tiles with no place names', () => {
+    for (const segment of ['commercial', 'new_construction'] as const) {
+      const tiles = audiencesFor(segment, contexts[0])
+      expect(tiles.length).toBeGreaterThanOrEqual(3)
+      expect(tiles.length).toBeLessThanOrEqual(4)
+      for (const t of tiles) expect(`${t.title} ${t.blurb}`).not.toMatch(/Nampa|Boise|Caldwell/)
     }
   })
 

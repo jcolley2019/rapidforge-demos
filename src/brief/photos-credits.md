@@ -16,6 +16,9 @@ for each, in registry order.
 | detail 2 | Marian Florinel Condruz | https://unsplash.com/photos/C-oYJoIfgCs |
 | detail 3 | Imani | https://unsplash.com/photos/vDQ-e3RtaoE |
 | detail 4 | bhagya laxmi | https://unsplash.com/photos/jaP5ClBdIyU |
+| crew 1 · crew repairing a pipe | Firas Wardhana | https://unsplash.com/photos/KdOwLBmZAbI |
+| crew 2 · two techs in uniform | Divaris Shirichena | https://unsplash.com/photos/ndR5lv2aK10 |
+| crew 3 · loading a work van | Lukas Čerkauskas | https://unsplash.com/photos/W75YFfXRVPo |
 
 ## HVAC
 
@@ -29,6 +32,9 @@ for each, in registry order.
 | detail 2 | Everett Pachmann | https://unsplash.com/photos/JsPkVrHMQoo |
 | detail 3 | Zulfugar Karimov | https://unsplash.com/photos/mM0vW68NY0g |
 | detail 4 | Compagnons | https://unsplash.com/photos/yZmHFF-g-W0 |
+| crew 1 · technician among rooftop units | ThisisEngineering | https://unsplash.com/photos/BU8lpW2Bn30 |
+| crew 2 · three techs in a yard | Christina Hawkins | https://unsplash.com/photos/VDpYOvZm2Ok |
+| crew 3 · technician in uniform | Iain Feeney | https://unsplash.com/photos/KP1lfW7ipOk |
 
 ## Electrical
 
@@ -42,6 +48,9 @@ for each, in registry order.
 | detail 2 | Jimmy Nilsson Masth | https://unsplash.com/photos/U3GiK1u5j24 |
 | detail 3 | Hobi industri | https://unsplash.com/photos/NLBJ2I0lNr4 |
 | detail 4 | mostafa mahmoudi | https://unsplash.com/photos/47jO5Y8nsYo |
+| crew 1 · linemen at a bucket truck | Mario Spencer | https://unsplash.com/photos/UyqxlMS8X84 |
+| crew 2 · two crew in hard hats | Aldward Castillo | https://unsplash.com/photos/wbRVsqNtDpk |
+| crew 3 · electrician at a panel | colsan ltda | https://unsplash.com/photos/LMb98OOtoYU |
 
 ## Generic
 
@@ -55,3 +64,6 @@ for each, in registry order.
 | detail 2 | Markus Spiske | https://unsplash.com/photos/14GHBTWJiSE |
 | detail 3 | todd kent | https://unsplash.com/photos/178j8tJrNlc |
 | detail 4 | Jay Piper | https://unsplash.com/photos/_8X5kOa5K4U |
+| crew 1 · two crew at a trench | John Kakuk | https://unsplash.com/photos/hfj5CG9dvuU |
+| crew 2 · crew beside a mixer truck | Remy Gieling | https://unsplash.com/photos/QADRnW0D2zw |
+| crew 3 · two crew walking a site | Joe Holland | https://unsplash.com/photos/80zZ1s24Nag |

@@ -7,13 +7,13 @@ related_targets: ["src/variants/heritage/heritage.css"]
 
 # Surface: /heritage (Clean Trust)
 
-Mode: Persuade. Audience: a homeowner with an urgent repair, on a phone, deciding whether to call. Job: see the phone number and a booking button inside the first viewport, with proof (trust chips, star average) and the first service tiles visible before scrolling.
+Mode: Persuade. Audience: a homeowner with an urgent repair, on a phone, deciding whether to call. Job: see the phone number and a booking button inside the first viewport, with the license, awards and rating visible before the services heading.
 
 ## Direction contract
 
-THESIS: The dependable local contractor site, done cleanly. It refuses the dark-overlay hero and the icon-grid feature row; the photo stays a plain photograph next to the copy.
-OWN-WORLD: Pale blue ground #EFF6FF, white surfaces, navy text #1E3A8A, blue #1E40AF for structure, orange #C2410C only on the primary action. Lexend headings, Source Sans 3 body. 4px radii, 1px #BFDBFE borders, no shadows, no gradients.
-STORY: "These people show up, they are licensed, I can call right now."
-FIRST VIEWPORT: White nav with phone and orange button. Two columns: headline, subhead, orange booking button and blue call button on the left; trade photo in a 2px blue-ruled rectangle on the right. Trust strip directly under, then the services heading. Mobile stacks the photo first at 152px.
-FORM: Flat Design from UI/UX Pro Max, pinned by brick RFD.PRESETS.2c; no concept roll.
+THESIS: The established local plumber whose credentials do the talking: vault family F4 Mountain Blue Heritage (Everest, Master Service). The mountain is the brand device; the license seal leads the proof.
+OWN-WORLD: White ground, mist panels #F2F4F7, navy #003068 for headings, nav pill and quote band, blue #3D67BD for links and marks, sky #9CC3EC on navy, text #1C2B40, muted #4B5B70, #D5DCE6 borders. Montserrat headings (uppercase navy H2s), Open Sans body, a Cormorant italic since-line. Pill buttons, 14px card radii.
+STORY: "Licensed, awarded, been here since 2004, and I can call right now."
+FIRST VIEWPORT: Navy utility bar (24/7 line, towns, Call, Book). White sticky nav with the phone and a navy pill. Full-bleed crew photo under a navy grade deepest behind the copy; italic since-line, white headline, white booking pill, outlined call pill; a mountain-ridge edge cuts the photo off. Dashed coupon cards under the ridge, then the mist accreditation band (BBB shield, license seal, award ribbon, rating with count, stat tiles), then the services heading. Mobile: copy on the photo, coupons in a sideways row, marks in a 2x2 grid.
+FORM: vault family F4 Mountain Blue Heritage, pinned by brick RFD.PRESETS.5 (preset brief = the family's distilled brief, verbatim); no concept roll.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

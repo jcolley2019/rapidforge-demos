@@ -1,21 +1,19 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
 const palette = presetForVariant('texas').palette
-const photos = tilePhotosFor('texas')
 
 export default function IsServices() {
+  const site = useSite()
+  const photos = tilePhotosFor('texas', site.photos, site.detailPhotos)
   return (
-    <section id="services" className="is-section">
+    <section id="services" className="is-section is-services">
       <div className="is-wrap">
-        <Reveal>
-          <h2 className="is-display is-h2">
-            Our Services
-          </h2>
-        </Reveal>
+        {/* Not revealed: it sits at the fold and must be visible on load. */}
+        <h2 className="is-display is-h2">Our Services</h2>
         <div className="is-tiles">
           {site.services.map((service, i) => (
             <Reveal key={service.title} delay={(i % 3) * 70}>
@@ -30,7 +28,7 @@ export default function IsServices() {
                   />
                 </div>
                 <div className="is-tile-body">
-                  <h3 className="is-display is-tile-title">{service.title}</h3>
+                  <h3 className="is-tile-title">{service.title}</h3>
                   {service.blurb && <p className="is-tile-blurb">{service.blurb}</p>}
                 </div>
               </article>

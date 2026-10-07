@@ -1,7 +1,10 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
+import { heroActions } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function DhQuoteCta() {
+  const site = useSite()
+  const { primary, secondary } = heroActions(site)
   return (
     <section id="quote" className="dh-quote-band">
       <div className="dh-wrap dh-section">
@@ -12,14 +15,14 @@ export default function DhQuoteCta() {
               {site.phone}
             </a>
           )}
-          <p className="mt-6 max-w-xl">{site.subhead}</p>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href={site.cta.href} className="dh-btn dh-btn-orange">
-              {site.cta.label}
+          <p className="mt-5 max-w-xl">{site.subhead}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a href={primary.href} className={`dh-btn dh-btn-white ${primary.call ? 'dh-num' : ''}`.trim()}>
+              {primary.label}
             </a>
-            {site.ctaSecondary && (
-              <a href={site.ctaSecondary.href} className="dh-btn dh-btn-outline-light dh-num">
-                {site.ctaSecondary.label}
+            {secondary && (
+              <a href={secondary.href} className={`dh-btn dh-btn-ghost ${secondary.call ? 'dh-num' : ''}`.trim()}>
+                {secondary.label}
               </a>
             )}
           </div>

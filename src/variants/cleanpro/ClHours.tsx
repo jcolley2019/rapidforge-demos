@@ -1,14 +1,16 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import { hasContactInfo, hoursLabel } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function ClHours() {
+  const site = useSite()
   if (!hasContactInfo(site)) return null
   return (
     <section id="contact" className="cl-section">
       <div className="cl-wrap">
         <Reveal>
           <h2 className="cl-display cl-h2">Hours &amp; Location</h2>
+          {site.hoursNote && <p className="cl-hours-note">{site.hoursNote}</p>}
         </Reveal>
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
           {site.hours && (
