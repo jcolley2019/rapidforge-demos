@@ -38,9 +38,18 @@ export function aliasFor(sub: string): string {
   return `${sub}.${DOMAIN}`
 }
 
-/** The build env: the parent's, plus the brief this build carries. */
-export function buildEnv(base: NodeJS.ProcessEnv, slug: string): NodeJS.ProcessEnv {
-  return { ...base, VITE_BRIEF: `lead-${slug}` }
+export interface BuildOptions {
+  /** Let the build mount webedit-connect.js when framed with ?edit (see src/edit/mount.ts). */
+  edit?: boolean
+}
+
+/**
+ * The build env: the parent's, plus the brief this build carries, plus
+ * VITE_EDIT='1' only with --edit. Without it VITE_EDIT is pinned to '0',
+ * because a value in the shell or a .env file would otherwise switch it on.
+ */
+export function buildEnv(base: NodeJS.ProcessEnv, slug: string, opts: BuildOptions = {}): NodeJS.ProcessEnv {
+  return { ...base, VITE_BRIEF: `lead-${slug}`, VITE_EDIT: opts.edit ? '1' : '0' }
 }
 
 export interface LeadIdentity {

@@ -52,6 +52,15 @@ describe('build env', () => {
     expect(env.VITE_BRIEF).toBe('lead-goodson')
     expect(env.PATH).toBe('/usr/bin')
   })
+
+  it('sets VITE_EDIT=1 with --edit', () => {
+    expect(buildEnv({ PATH: '/usr/bin' }, 'goodson', { edit: true }).VITE_EDIT).toBe('1')
+  })
+
+  it('keeps edit off without --edit, even when the shell has VITE_EDIT=1', () => {
+    expect(buildEnv({ PATH: '/usr/bin' }, 'goodson').VITE_EDIT).toBe('0')
+    expect(buildEnv({ VITE_EDIT: '1' }, 'goodson', { edit: false }).VITE_EDIT).toBe('0')
+  })
 })
 
 describe('isolation', () => {
