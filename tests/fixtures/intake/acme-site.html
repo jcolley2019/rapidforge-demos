@@ -1,0 +1,103 @@
+<!doctype html>
+<!-- Synthetic contractor homepage for the intake tests (RFD.INTAKE.6). Not a real business. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plumber in Nampa, ID | Acme Plumbing</title>
+    <meta property="og:site_name" content="Acme Plumbing Co." />
+    <meta property="og:image" content="https://acme-plumbing.example/images/crew.jpg" />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+    <style>
+      :root {
+        --brand: #1d4ed8;
+        --accent: #f97316;
+        --ink: #111827;
+        --paper: #ffffff;
+      }
+      body { color: var(--ink); background: var(--paper); }
+      a { color: var(--brand); }
+      .btn { background: var(--brand); border: 2px solid var(--brand); }
+      .nav a:hover { color: var(--brand); }
+      .hero { border-bottom: 4px solid var(--brand); }
+      .badge { background: var(--accent); color: #fff; }
+      hr { border-color: #e5e7eb; }
+      .muted { color: #6b7280; }
+      .shadow { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Plumber",
+        "name": "Acme Plumbing",
+        "telephone": "+1-208-555-0142",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "1480 Caldwell Blvd",
+          "addressLocality": "Nampa",
+          "addressRegion": "ID",
+          "postalCode": "83651"
+        },
+        "openingHours": ["Mo-Fr 07:00-18:00", "Sa 08:00-14:00"],
+        "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "312" },
+        "review": [
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Dana R." },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+            "reviewBody": "Showed up within the hour and had our water heater back on before dinner."
+          },
+          {
+            "@type": "Review",
+            "author": "Marcus T.",
+            "reviewRating": { "@type": "Rating", "ratingValue": 4 },
+            "reviewBody": "Found a slab leak two other companies missed and explained every step."
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="brand"><img class="logo" src="/images/acme-mark.png" alt="Acme Plumbing" /></a>
+      <nav class="nav" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="/services/drain-cleaning">Drain Cleaning</a>
+        <a href="/services/water-heaters">Water Heater Repair</a>
+        <a href="/services/leak-detection">Leak Detection</a>
+        <a href="/services/sewer-line-repair">Sewer Line Repair</a>
+        <a href="/about">About Us</a>
+        <a href="/reviews">Reviews</a>
+        <a href="/contact">Contact</a>
+      </nav>
+      <a class="call" href="tel:+12085550142">(208) 555-0142</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Plumbing done right the first time</h1>
+        <p class="badge">Family owned. Since 1998.</p>
+        <a class="btn" href="/book">Book Online</a>
+        <img src="/images/crew.jpg" alt="The Acme crew in front of the shop" width="1600" height="1067" />
+      </section>
+
+      <section>
+        <h2>Our Services</h2>
+        <h3>Water Heater Installation</h3>
+        <h3>Emergency Plumbing</h3>
+        <img src="/images/van.jpg" alt="An Acme service van" />
+        <img src="https://cdn.acme-plumbing.example/uploads/job-repipe.jpg" alt="A finished repipe" />
+      </section>
+
+      <section>
+        <h2>Where we work</h2>
+        <p>Serving Boise, Meridian, Nampa</p>
+      </section>
+    </main>
+
+    <footer>
+      <p class="muted">Licensed &amp; insured · Lic #PL-12345</p>
+      <p>24/7 emergency service available</p>
+    </footer>
+  </body>
+</html>

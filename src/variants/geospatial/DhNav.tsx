@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
+import BrandMark from '../../components/BrandMark'
 
 export default function DhNav() {
   const site = useSite()
@@ -8,7 +9,7 @@ export default function DhNav() {
     <header className="dh-nav">
       <div className="dh-wrap dh-nav-inner">
         <a href="#top" className="dh-display dh-brand">
-          {site.shortName}
+          <BrandMark />
         </a>
         <nav className="dh-nav-links" aria-label="Page sections">
           {links.map((link) => (

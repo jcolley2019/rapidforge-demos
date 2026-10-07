@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
+import BrandMark from '../../components/BrandMark'
 
 export default function PpNav() {
   const site = useSite()
@@ -8,7 +9,7 @@ export default function PpNav() {
     <header className="pp-nav">
       <div className="pp-wrap pp-nav-inner">
         <a href="#top" className="pp-display pp-brand">
-          {site.shortName}
+          <BrandMark />
         </a>
         <nav className="pp-nav-links" aria-label="Page sections">
           {links.map((link) => (

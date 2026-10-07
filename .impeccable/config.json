@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "tests/fixtures/intake/acme-site.html"
+        ],
+        "createdAt": "2026-10-07T02:06:19.664Z",
+        "reason": "Claude: synthetic HTML parsed by intake extractor tests, never rendered to users"
+      }
+    ]
+  }
+}

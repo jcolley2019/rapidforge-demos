@@ -110,6 +110,16 @@ export interface SiteContent {
   audiences: SiteAudience[]
   /** Copy for each register, so a preset can lean (see `forLean`). */
   registers: Record<'residential' | 'commercial' | 'jobsite', RegisterCopy>
+  /** logo_url: when present, variant headers show it in place of the text wordmark. */
+  logoUrl: string | null
+  /** current_site: the picker's "Your site today" card, or null to leave it out. */
+  currentSite: SiteCurrentSite | null
+}
+
+export interface SiteCurrentSite {
+  desktopUrl: string
+  mobileUrl: string
+  capturedAt: string
 }
 
 const VERTICAL_LABELS: Record<string, string> = {
@@ -324,6 +334,14 @@ export function toSiteContent(brief: DesignBrief): SiteContent {
     utilityLine: utilityLineOf(hoursNote, serviceAreas),
     audiences: audiencesFor(commercialFlavor, ctx),
     registers,
+    logoUrl: brief.logo_url?.trim() || null,
+    currentSite: brief.current_site
+      ? {
+          desktopUrl: brief.current_site.desktop_url,
+          mobileUrl: brief.current_site.mobile_url,
+          capturedAt: brief.current_site.captured_at,
+        }
+      : null,
   }
 }
 

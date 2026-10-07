@@ -12,3 +12,20 @@ body {
 html {
   scroll-padding: 4.5rem 0 4rem;
 }
+
+/* The prospect's logo in place of a variant's text wordmark (BrandMark).
+   Height-capped so it sits in every nav without moving the fold. */
+.brand-logo {
+  display: block;
+  width: auto;
+  max-width: min(11rem, 100%);
+  height: auto;
+  max-height: 40px;
+  object-fit: contain;
+}
+.brand-logo-plate {
+  box-sizing: border-box;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
