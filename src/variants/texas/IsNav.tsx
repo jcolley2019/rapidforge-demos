@@ -1,9 +1,9 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
 
-const links = navLinks(site, 'Hours & Location')
-
 export default function IsNav() {
+  const site = useSite()
+  const links = navLinks(site, 'Hours & Location')
   return (
     <header className="is-nav">
       <div className="is-wrap is-nav-inner">
@@ -24,8 +24,8 @@ export default function IsNav() {
               <span className="is-nav-call">Call</span>
             </a>
           )}
-          <a href={site.cta.href} className="is-btn is-btn-amber is-nav-cta">
-            {site.cta.label}
+          <a href={site.cta.href} className="is-btn is-btn-lime is-nav-cta">
+            {site.navCtaLabel}
           </a>
         </div>
       </div>

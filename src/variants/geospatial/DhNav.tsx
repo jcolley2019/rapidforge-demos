@@ -1,9 +1,9 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
 
-const links = navLinks(site, 'Hours & Location')
-
 export default function DhNav() {
+  const site = useSite()
+  const links = navLinks(site, 'Hours & Location')
   return (
     <header className="dh-nav">
       <div className="dh-wrap dh-nav-inner">
@@ -24,8 +24,8 @@ export default function DhNav() {
               <span className="dh-nav-call">Call</span>
             </a>
           )}
-          <a href={site.cta.href} className="dh-btn dh-btn-orange dh-nav-cta">
-            {site.cta.label}
+          <a href={site.cta.href} className="dh-btn dh-btn-ink dh-nav-cta">
+            {site.navCtaLabel}
           </a>
         </div>
       </div>

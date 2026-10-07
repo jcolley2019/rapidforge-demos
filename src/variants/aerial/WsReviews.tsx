@@ -1,11 +1,12 @@
 import Stars from '../../components/Stars'
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import Reveal from '../../components/Reveal'
 
 export default function WsReviews() {
+  const site = useSite()
   if (site.reviews.length === 0) return null
   return (
-    <section id="reviews" className="ws-section" style={{ background: 'var(--ws-surface)' }}>
+    <section id="reviews" className="ws-section ws-black">
       <div className="ws-wrap">
         <Reveal>
           <h2 className="ws-display ws-h2">What Customers Say</h2>
@@ -16,7 +17,7 @@ export default function WsReviews() {
               <figure className="ws-card">
                 <Stars rating={review.rating} className="ws-stars" />
                 <blockquote className="ws-quote">&ldquo;{review.text}&rdquo;</blockquote>
-                {review.author && <figcaption className="ws-mono mt-5">{review.author}</figcaption>}
+                {review.author && <figcaption className="ws-cite">{review.author}</figcaption>}
               </figure>
             </Reveal>
           ))}

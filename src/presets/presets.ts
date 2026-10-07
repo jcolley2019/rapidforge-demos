@@ -1,10 +1,11 @@
 import presetsJson from './presets.json'
 
 /**
- * Presets: five trade-ready design directions from the UI/UX Pro Max
- * design-system search (collection = "ui-ux-pro-max:<style>", brief = the
- * skill's rules text for that direction). This module types the data and
- * maps each visual variant to the preset it renders.
+ * Presets: five trade-ready design directions. Four come from the plumbing
+ * taste vault (collection = "rfd-vault:plumbing", entryId = the family,
+ * brief = that family's distilled brief from vaults/plumbing.json); the
+ * fifth, premium-dark, keeps its UI/UX Pro Max direction on purpose. This
+ * module types the data and maps each visual variant to the preset it renders.
  */
 
 export interface PresetPalette {
@@ -25,6 +26,14 @@ export interface PresetType {
 export interface Preset {
   id: string
   name: string
+  /** One line for the picker card, in a business owner's words. */
+  description: string
+  /**
+   * The register this preset leans to: "commercial" speaks in the jobsite
+   * register on a residential brief and takes the full commercial switch
+   * on a mixed one (see forLean in site-content.ts).
+   */
+  lean: 'residential' | 'commercial'
   collection: string
   entryId: string
   brief: string

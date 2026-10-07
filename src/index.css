@@ -6,3 +6,9 @@ html,
 body {
   overflow-x: clip;
 }
+
+/* Every variant's nav is sticky and the "All concepts" chip is fixed at the
+   bottom right: in-page jumps and keyboard focus scroll clear of both. */
+html {
+  scroll-padding: 4.5rem 0 4rem;
+}

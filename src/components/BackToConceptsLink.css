@@ -28,6 +28,9 @@
     transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
 }
 .bc-back-mark {
+  /* A system face for the arrow, so no page downloads a web-font symbol
+     subset for one glyph. */
+  font-family: system-ui, 'Segoe UI', sans-serif;
   transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
 }
 .bc-back:hover,
@@ -44,51 +47,8 @@
   transform: translateY(0);
 }
 
-/* Per-variant chip, from each preset's palette, so it reads as part of
-   the page it is sitting on. */
-.heritage {
-  --bc-bg: #ffffff;
-  --bc-fg: #1e3a8a;
-  --bc-fg-strong: #1e40af;
-  --bc-border: #bfdbfe;
-  --bc-accent: #1e40af;
-  --bc-radius: 4px;
-  --bc-shadow: none;
-}
-.geospatial {
-  --bc-bg: #0f172a;
-  --bc-fg: #ffffff;
-  --bc-fg-strong: #ffffff;
-  --bc-border: #0f172a;
-  --bc-accent: #ea580c;
-  --bc-radius: 0;
-  --bc-shadow: none;
-}
-.cleanpro {
-  --bc-bg: #1c1917;
-  --bc-fg: #a8a29e;
-  --bc-fg-strong: #fafaf9;
-  --bc-border: rgba(250, 250, 249, 0.3);
-  --bc-accent: #ca8a04;
-  --bc-radius: 2px;
-}
-.texas {
-  --bc-bg: #ffffff;
-  --bc-fg: #0f172a;
-  --bc-fg-strong: #1d4ed8;
-  --bc-border: #e2e8f0;
-  --bc-accent: #2563eb;
-  --bc-radius: 999px;
-}
-.aerial {
-  --bc-bg: #ffffff;
-  --bc-fg: #475569;
-  --bc-fg-strong: #1e293b;
-  --bc-border: #cbd5e1;
-  --bc-accent: #2563eb;
-  --bc-radius: 2px;
-  --bc-shadow: none;
-}
+/* Each variant sets the --bc-* variables in its own root rule, from its
+   preset's palette, so the chip reads as part of the page it sits on. */
 
 @media (prefers-reduced-motion: reduce) {
   .bc-back,

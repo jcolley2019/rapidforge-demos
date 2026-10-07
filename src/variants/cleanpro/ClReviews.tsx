@@ -1,8 +1,9 @@
 import Stars from '../../components/Stars'
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import Reveal from '../../components/Reveal'
 
 export default function ClReviews() {
+  const site = useSite()
   if (site.reviews.length === 0) return null
   return (
     <section id="reviews" className="cl-section" style={{ background: 'var(--cl-surface)' }}>

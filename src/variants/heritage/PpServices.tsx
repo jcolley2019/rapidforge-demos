@@ -1,21 +1,19 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
 const palette = presetForVariant('heritage').palette
-const photos = tilePhotosFor('heritage')
 
 export default function PpServices() {
+  const site = useSite()
+  const photos = tilePhotosFor('heritage', site.photos, site.detailPhotos)
   return (
-    <section id="services" className="pp-section">
+    <section id="services" className="pp-section pp-services">
       <div className="pp-wrap">
-        <Reveal>
-          <div className="pp-head">
-            <h2 className="pp-display pp-h2">Our Services</h2>
-          </div>
-        </Reveal>
+        {/* Not revealed: it sits at the fold and must be visible on load. */}
+        <h2 className="pp-display pp-h2">Our Services</h2>
         <div className="pp-tiles">
           {site.services.map((service, i) => (
             <Reveal key={service.title} delay={(i % 3) * 90}>

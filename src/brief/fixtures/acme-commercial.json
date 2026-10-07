@@ -1,0 +1,116 @@
+{
+  "business_name": "Acme Plumbing",
+  "vertical": "plumbing",
+  "tone_descriptors": [
+    "dependable",
+    "professional",
+    "on-schedule",
+    "local"
+  ],
+  "services": [
+    "Tenant improvements",
+    "New construction rough-in and finish",
+    "Backflow testing and certification",
+    "Grease interceptor service",
+    "Commercial water heaters and boilers",
+    "Preventive maintenance plans"
+  ],
+  "review_quotes": [
+    {
+      "text": "Rough-in for all 24 units landed on schedule and passed inspection the first time. An easy crew to build around.",
+      "rating": 5,
+      "author": "Ray M., general contractor"
+    },
+    {
+      "text": "They test the backflow devices and take the service calls across our buildings, and the paperwork is always filed on time.",
+      "rating": 5,
+      "author": "Linda P., property manager"
+    },
+    {
+      "text": "Fair bid, a clear schedule, and the site was clean every evening. The interceptor install went smoother than we planned for.",
+      "rating": 4
+    }
+  ],
+  "photo_urls": [],
+  "hours": [
+    {
+      "day": "Monday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Tuesday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Wednesday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Thursday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Friday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "open": null,
+      "close": null
+    },
+    {
+      "day": "Sunday",
+      "open": null,
+      "close": null
+    }
+  ],
+  "phone": "(208) 555-0142",
+  "address": "1480 Caldwell Blvd, Nampa, ID 83651",
+  "primary_cta": {
+    "label": "Request a bid",
+    "kind": "form",
+    "href": "https://example.com/acme-plumbing/bid"
+  },
+  "current_site_problem": "The commercial division has no page of its own; general contractors land on the residential coupon page and call the dispatch line for bids.",
+  "generated_at": "2026-10-06T16:20:00Z",
+  "source": {
+    "audit_id": "audit_acme_plumbing_0003",
+    "haiku_model": "claude-haiku-4-5-20251001",
+    "template_fallback": false
+  },
+  "service_areas": [
+    "Nampa",
+    "Caldwell",
+    "Meridian",
+    "Boise",
+    "Kuna",
+    "Star",
+    "Middleton",
+    "Eagle"
+  ],
+  "badges": [
+    {
+      "label": "Idaho license",
+      "kind": "license",
+      "value": "PLB-C-12345"
+    }
+  ],
+  "stats": [
+    {
+      "label": "years in business",
+      "value": "22"
+    },
+    {
+      "label": "commercial projects",
+      "value": "400+"
+    }
+  ],
+  "founded_year": 2004,
+  "license_number": "PLB-C-12345",
+  "segment": "commercial"
+}

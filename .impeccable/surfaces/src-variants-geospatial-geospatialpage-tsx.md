@@ -7,13 +7,13 @@ related_targets: ["src/variants/geospatial/geospatial.css"]
 
 # Surface: /geospatial (Bold Local)
 
-Mode: Persuade. Audience: a homeowner with an urgent repair, on a phone. Job: call now; the phone and the booking button sit inside the first viewport with the trust strip and the services heading.
+Mode: Persuade. Audience: a homeowner with an urgent repair, on a phone. Job: call now; the phone and the booking button sit inside the first viewport with the stats, the badges and the services heading.
 
 ## Direction contract
 
-THESIS: The truck-lettering contractor: big condensed type on solid navy blocks over a real photo. It refuses the softened, desaturated hero; the photo is unfiltered with at most a 0.35 gradient.
-OWN-WORLD: White ground, #F1F5F9 panels, navy #0F172A blocks, safety orange #C2410C for the action (#EA580C for orange text and rules on navy), 2px navy borders, 0 radius. Barlow Condensed 700 uppercase headings, Barlow body.
-STORY: "Straight-talking crew, here today, one number to call."
-FIRST VIEWPORT: Navy nav. Full-bleed trade photo (no filter), a bottom-left navy gradient capped at 0.35, and an opaque navy block bottom-left carrying the headline, subhead, orange booking button, white-outline call button, with a 4px orange top rule. Trust strip under, then the services heading. Mobile: 152px photo band with a 4px orange rule under it, navy block below.
-FORM: Brutalism from UI/UX Pro Max (toned to borders and blocks), pinned by brick RFD.PRESETS.2c; no concept roll.
+THESIS: The red-banner local plumber: vault family F1 Red Banner Plumbers (Lasiter, Johnson, Tucson Plumbing, In-Law). One saturated red on a white page, a darkened crew photo, badge-led trust that lives inside the photo.
+OWN-WORLD: White ground, grey panels #F4F4F4, red #D20001 (hover #A80001), ink #1A1A1A for the utility bar, services panel and footer, text #333333, muted #5C5C5C. DM Sans throughout, 800 for headings with a red bar under each H2. Pill buttons, 10px card radii.
+STORY: "Big local crew, real ratings, one red button to call."
+FIRST VIEWPORT: Ink utility bar. White sticky nav with a red pill phone and an ink booking pill. Full-bleed crew photo darkened from the left; heavy white headline, red booking pill, ghost outlined call button; the stat grid (big numerals on red-topped dark cells) beside the headline and the badge row along the bottom of the photo. A grey specials banner of coupon tickets under the hero, then the dark services panel. Mobile: stats in a row and marks in a 2x2 grid under the copy, on the same photo.
+FORM: vault family F1 Red Banner Plumbers, pinned by brick RFD.PRESETS.5 (preset brief = the family's distilled brief, verbatim; its one risk, the stat grid in the hero photo, is taken); no concept roll.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance

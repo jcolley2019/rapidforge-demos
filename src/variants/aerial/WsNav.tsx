@@ -1,9 +1,9 @@
-import { siteContent as site } from '../../brief/current'
+import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
 
-const links = navLinks(site, 'Hours & Location')
-
 export default function WsNav() {
+  const site = useSite()
+  const links = navLinks(site, 'Hours & Location')
   return (
     <header className="ws-nav">
       <div className="ws-wrap ws-nav-inner">
@@ -24,8 +24,8 @@ export default function WsNav() {
               <span className="ws-nav-call">Call</span>
             </a>
           )}
-          <a href={site.cta.href} className="ws-btn ws-btn-blue ws-nav-cta">
-            {site.cta.label}
+          <a href={site.cta.href} className="ws-btn ws-btn-red ws-nav-cta">
+            {site.navCtaLabel}
           </a>
         </div>
       </div>

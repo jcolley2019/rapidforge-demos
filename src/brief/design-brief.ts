@@ -30,6 +30,24 @@ const SourceSchema = z.object({
   template_fallback: z.boolean(),
 })
 
+const BadgeSchema = z.object({
+  label: z.string(),
+  kind: z.enum(['bbb', 'license', 'award', 'dealer', 'association', 'rating', 'other']),
+  value: z.string().optional(),
+})
+
+const StatSchema = z.object({
+  label: z.string(),
+  value: z.string(),
+})
+
+const OfferSchema = z.object({
+  title: z.string(),
+  detail: z.string(),
+  kind: z.enum(['coupon', 'financing', 'special']),
+  expires: z.string().optional(),
+})
+
 export const DesignBriefSchema = z.object({
   business_name: z.string(),
   /** snake_case vertical key, e.g. "plumbing" or "dental_office". */
@@ -45,6 +63,20 @@ export const DesignBriefSchema = z.object({
   current_site_problem: z.string(),
   generated_at: z.string(),
   source: SourceSchema,
+  // RFD.PRESETS.5: optional, defaulted, so every earlier brief still parses.
+  /** Towns served, e.g. ["Nampa", "Caldwell"]. */
+  service_areas: z.array(z.string()).max(24).default([]),
+  badges: z.array(BadgeSchema).max(8).default([]),
+  /** Big-number proof, e.g. { label: "Years in business", value: "40+" }. */
+  stats: z.array(StatSchema).max(4).default([]),
+  offers: z.array(OfferSchema).max(3).default([]),
+  founded_year: z.number().int().nullable().default(null),
+  license_number: z.string().nullable().default(null),
+  /** Owners, crew, branded vans; distinct from photo_urls. */
+  crew_photo_urls: z.array(z.string()).max(4).default([]),
+  segment: z.enum(['residential', 'commercial', 'new_construction', 'mixed']).default('residential'),
+  /** e.g. "24/7 emergency service". */
+  hours_note: z.string().nullable().default(null),
 })
 
 export type DesignBrief = z.infer<typeof DesignBriefSchema>
