@@ -238,6 +238,8 @@ async function main(argv: string[]): Promise<number> {
   step(`vision (${kept.length} photos)`)
   const vision = await tagPhotos(ai, kept)
   const plan = mapTaggedPhotos(vision.tagged)
+  const byUrl = vision.tagged.filter((t) => t.vendor).length
+  if (byUrl > 0) note(`${byUrl} stock by URL, not sent to vision`)
   for (const t of vision.tagged) if (t.error) flags.push(`vision: ${t.item.url} untagged (${t.error})`)
   if (plan.fallback.length > 0) {
     flags.push(
@@ -285,7 +287,7 @@ async function main(argv: string[]): Promise<number> {
     url: site.homeUrl,
     brief: merged.brief,
     provenance: merged.provenance,
-    photos: vision.tagged.map((t, i) => ({ file: photoFile(i), source: t.item.url, tag: t.tag, use: use(t), error: t.error })),
+    photos: vision.tagged.map((t, i) => ({ file: photoFile(i), source: t.item.url, tag: t.tag, use: use(t), error: t.error, vendor: t.vendor })),
     segmentReason: merged.provenance.segment.status === 'lead' ? 'from the lead brief' : refined.segment_reason,
     models: { vision: vision.model, text: refined.model },
     flags,

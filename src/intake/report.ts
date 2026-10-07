@@ -14,6 +14,15 @@ export interface PhotoRow {
   tag: PhotoTag
   use: 'photo' | 'crew' | 'stock fallback' | 'unused'
   error?: string
+  /** The stock vendor its URL names, when vision was skipped for it. */
+  vendor?: string
+}
+
+/** The Note cell: why a photo is untagged or stock-by-URL, otherwise what vision saw. */
+function photoNote(p: PhotoRow): string {
+  if (p.error) return `untagged: ${clip(p.error, 80)}`
+  if (p.vendor) return `${p.tag.note} (${p.vendor}); not sent to vision`
+  return p.tag.note
 }
 
 export interface ReportInput {
@@ -83,7 +92,7 @@ export function intakeReport(input: ReportInput): string {
           '| --- | --- | --- | --- | --- | --- |',
           ...input.photos.map(
             (p) =>
-              `| ${p.file} | ${p.tag.kind} | ${p.tag.quality} | ${p.use} | ${(p.error ? `untagged: ${clip(p.error, 80)}` : p.tag.note).replace(/\|/g, '/')} | ${p.source} |`,
+              `| ${p.file} | ${p.tag.kind} | ${p.vendor ? '—' : p.tag.quality} | ${p.use} | ${photoNote(p).replace(/\|/g, '/')} | ${p.source} |`,
           ),
         ]
   return [
