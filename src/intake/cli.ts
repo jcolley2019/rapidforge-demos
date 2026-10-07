@@ -2,15 +2,17 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseArgs } from 'node:util'
+import { loadEnv } from '@rapidforge/ai-core'
 import sharp from 'sharp'
 import { ZodError } from 'zod'
 import { DesignBriefSchema, type DesignBrief } from '../brief/design-brief'
 import { VISION_MODEL, createAiClient, describeError } from './ai'
 import { extractSite, type SiteExtract } from './extract'
 import { FETCH_TIMEOUT_MS, USER_AGENT, fetchSite } from './fetch'
+import { fetchLeadBrief, fetchLeadWebsite, leadsApiUrl, signIn } from './leads'
 import { isEmpty, mergeBrief, parseLeadBrief, rebaseAssets, type SiteFields } from './merge'
 import { assertLeadPath, defaultSlug, leadPaths, type LeadPaths } from './paths'
-import { collectPhotoUrls, downloadImages, selectPhotos, type KeptPhoto } from './photos'
+import { collectPhotoUrls, downloadImages, selectPhotos, type KeptPhoto, type OriginBearer } from './photos'
 import { refineWithAi, type RefineResult } from './refine'
 import { intakeReport, summaryTable, type PhotoRow } from './report'
 import { captureCurrentSite, type CurrentSiteShots } from './screenshot'
@@ -22,11 +24,22 @@ import { mapTaggedPhotos, tagPhotos, type PhotoPlan, type Tagged } from './visio
  * validates the brief, and only then writes leads/<slug>/, public/leads/<slug>/
  * and src/brief/fixtures/lead-<slug>.json. Exits non-zero when the brief
  * does not validate.
+ *
+ * RFD.LEADS.10: `--lead <businessId>` takes the lead brief from the leads
+ * API instead of a file (see leads.ts). Its photos join the site's in the
+ * photos step, downloaded with the worker's Bearer token, so the brief ends
+ * up with local files rather than auth-only worker URLs.
  */
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
-const USAGE = `Usage: npm run intake -- --url https://prospect.com [--brief path/to/design-brief.json] [--slug name]`
+const USAGE = `Usage: npm run intake -- --url https://prospect.com [--brief path/to/design-brief.json] [--slug name]
+       npm run intake -- --lead <businessId> [--url https://prospect.com] [--slug name] [--force] [--dry]
+
+  --lead   pull the DesignBrief from the leads API (LEADS_* in .env); not with --brief.
+           --url is optional when the business has a website_url in the leads app.
+  --force  re-run the leads design-brief agent instead of taking its stored brief
+  --dry    sign in, fetch, write leads/<slug>/lead-api-brief.json, print the brief; no crawl`
 
 function step(name: string) {
   console.log(`\n▸ ${name}`)
@@ -155,7 +168,15 @@ function siteFields(args: {
 
 async function writeLead(
   paths: LeadPaths,
-  files: { brief: DesignBrief; appBrief: DesignBrief; report: string; kept: KeptPhoto[]; logo: Logo | null; shots: CurrentSiteShots },
+  files: {
+    brief: DesignBrief
+    appBrief: DesignBrief
+    report: string
+    kept: KeptPhoto[]
+    logo: Logo | null
+    shots: CurrentSiteShots
+    apiResponse: unknown
+  },
 ): Promise<void> {
   const put = async (target: string, data: string | Buffer) => {
     const abs = assertLeadPath(paths, target)
@@ -178,18 +199,43 @@ async function writeLead(
   }
   await put(join(paths.leadDir, 'brief.json'), `${JSON.stringify(files.brief, null, 2)}\n`)
   await put(join(paths.leadDir, 'intake-report.md'), files.report)
+  if (files.apiResponse !== undefined) await writeApiResponse(paths, files.apiResponse)
   await put(paths.fixture, `${JSON.stringify(files.appBrief, null, 2)}\n`)
+}
+
+/** leads/<slug>/lead-api-brief.json: the leads API's response exactly as received. */
+async function writeApiResponse(paths: LeadPaths, raw: unknown): Promise<void> {
+  const abs = assertLeadPath(paths, join(paths.leadDir, 'lead-api-brief.json'))
+  await mkdir(dirname(abs), { recursive: true })
+  await writeFile(abs, `${JSON.stringify(raw, null, 2)}\n`)
 }
 
 async function main(argv: string[]): Promise<number> {
   const { values } = parseArgs({
     args: argv,
-    options: { url: { type: 'string' }, brief: { type: 'string' }, slug: { type: 'string' }, help: { type: 'boolean', short: 'h' } },
+    options: {
+      url: { type: 'string' },
+      brief: { type: 'string' },
+      slug: { type: 'string' },
+      lead: { type: 'string' },
+      force: { type: 'boolean' },
+      dry: { type: 'boolean' },
+      help: { type: 'boolean', short: 'h' },
+    },
   })
   if (values.help) {
     console.log(USAGE)
     return 0
   }
+  if (values.lead !== undefined && values.brief !== undefined) {
+    console.error(`--lead and --brief cannot be used together: --lead fetches the brief that --brief would read.\n\n${USAGE}`)
+    return 2
+  }
+  if ((values.force || values.dry) && values.lead === undefined) {
+    console.error(`--force and --dry only apply with --lead.\n\n${USAGE}`)
+    return 2
+  }
+  if (values.lead !== undefined) return intakeLead(values)
   if (!values.url) {
     console.error(USAGE)
     return 2
@@ -206,8 +252,86 @@ async function main(argv: string[]): Promise<number> {
     }
   }
   const paths = leadPaths(ROOT, values.slug ?? defaultSlug(lead?.business_name, url))
+  return intake({ url, lead, paths })
+}
+
+/**
+ * --lead: sign in, find the website (--url, else the business record),
+ * fetch the brief, always keep the raw response, then the usual intake
+ * with that brief as the lead brief, or stop there with --dry.
+ */
+async function intakeLead(values: { lead?: string; url?: string; slug?: string; force?: boolean; dry?: boolean }): Promise<number> {
+  const businessId = values.lead?.trim() ?? ''
+  if (!businessId) {
+    console.error(`--lead needs a business id.\n\n${USAGE}`)
+    return 2
+  }
+  loadEnv()
+  step(`lead ${businessId}`)
+  let token: string
+  let url: string
+  let fetched: Awaited<ReturnType<typeof fetchLeadBrief>>
+  try {
+    token = await signIn()
+    note('signed in to the leads app')
+    let website = values.url ?? null
+    if (!website) {
+      const record = await fetchLeadWebsite(businessId, token)
+      if (!record) throw new Error(`leads API: business not found in your workspace (${businessId})`)
+      if (!record.website_url) {
+        console.error(`Business ${businessId} has no website_url in the leads app; pass --url https://<prospect site>.\n\n${USAGE}`)
+        return 2
+      }
+      website = record.website_url
+      note(`website ${website} (from the leads app)`)
+    }
+    url = siteUrl(website)
+    fetched = await fetchLeadBrief(businessId, token, { force: values.force === true })
+  } catch (error) {
+    console.error(`\n${describeError(error)}`)
+    return 1
+  }
+  note(`design brief ${fetched.stored ? 'stored in the leads app' : 'generated just now by the leads agent'}`)
+  for (const line of fetched.coerced) note(`coerced ${line}`)
+
+  // Host-based, as a --url-only intake names it, so a lead re-intaken from the API keeps its folder.
+  const paths = leadPaths(ROOT, values.slug ?? defaultSlug(null, url))
+  await writeApiResponse(paths, fetched.raw)
+  note(`leads/${paths.slug}/lead-api-brief.json`)
+
+  if (values.dry) {
+    const preview = mergeBrief(fetched.fields, {})
+    console.log(`\n${summaryTable(preview.brief, preview.provenance)}`)
+    console.log(`\nDry run: stopped before crawling ${url}. Rerun without --dry to intake it.`)
+    return 0
+  }
+
+  // The worker's photo URLs need its Bearer token, so they would not load in the app. They go to
+  // the photos step as download candidates instead, and the lead-wins merge takes the local files.
+  const { photo_urls: leadPhotos = [], ...lead } = fetched.fields
+  return intake({
+    url,
+    lead,
+    paths,
+    leadPhotos,
+    bearer: { origin: new URL(leadsApiUrl()).origin, token },
+    apiResponse: fetched.raw,
+    flags: fetched.coerced.map((line) => `lead: coerced ${line}`),
+  })
+}
+
+async function intake(args: {
+  url: string
+  lead: Partial<DesignBrief> | null
+  paths: LeadPaths
+  leadPhotos?: string[]
+  bearer?: OriginBearer
+  apiResponse?: unknown
+  flags?: string[]
+}): Promise<number> {
+  const { url, lead, paths } = args
   const ai = createAiClient()
-  const flags: string[] = []
+  const flags: string[] = [...(args.flags ?? [])]
 
   step(`fetch ${url}`)
   const site = await fetchSite(url)
@@ -219,10 +343,12 @@ async function main(argv: string[]): Promise<number> {
   note(`${ex.serviceCandidates.length} service candidates, ${ex.brandColors?.value.length ?? 0} brand colors`)
 
   step('photos')
-  const photoUrls = collectPhotoUrls(site.pages, site.homeUrl).filter((u) => u !== ex.logoUrl?.value)
-  const downloads = await downloadImages(photoUrls)
+  const leadPhotos = args.leadPhotos ?? []
+  const photoUrls = [...leadPhotos, ...collectPhotoUrls(site.pages, site.homeUrl).filter((u) => u !== ex.logoUrl?.value)]
+  const downloads = await downloadImages(photoUrls, fetch, args.bearer)
   const kept = await selectPhotos(downloads.candidates)
   note(`${photoUrls.length} found, ${downloads.candidates.length} downloaded, ${kept.length} kept (≥ 600px)`)
+  if (leadPhotos.length > 0) note(`${leadPhotos.length} of the found came from the leads app`)
   if (downloads.failures.length > 0) flags.push(`photos: ${downloads.failures.length} download(s) failed`)
 
   let logo: Logo | null = null
@@ -294,7 +420,7 @@ async function main(argv: string[]): Promise<number> {
   })
 
   step('write')
-  await writeLead(paths, { brief: merged.brief, appBrief, report, kept, logo, shots })
+  await writeLead(paths, { brief: merged.brief, appBrief, report, kept, logo, shots, apiResponse: args.apiResponse })
   note(`leads/${paths.slug}/ · public/leads/${paths.slug}/ · src/brief/fixtures/${paths.briefName}.json`)
 
   console.log(`\n${summaryTable(merged.brief, merged.provenance)}`)
