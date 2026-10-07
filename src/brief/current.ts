@@ -1,3 +1,4 @@
+import leadBrief, { stem as leadStem } from 'virtual:lead-brief'
 import { DesignBriefSchema } from './design-brief'
 import { toSiteContent, type SiteContent } from './site-content'
 
@@ -7,16 +8,41 @@ import { toSiteContent, type SiteContent } from './site-content'
  * defaults to acme-plumbing; at run time a `?brief=<stem>` query picks any
  * other one from the same map, which is how the picker's Residential /
  * Commercial toggle swaps fixtures without a rebuild.
+ *
+ * Acme and sparse fixtures are globbed. Lead fixtures (lead-*.json, one per
+ * prospect, gitignored) are not: a build carries at most the one lead that
+ * VITE_BRIEF names, through `virtual:lead-brief`, so a deploy for one
+ * prospect never contains another's data.
  */
 const DEFAULT_BRIEF = 'acme-plumbing'
 
-const fixtures = import.meta.glob<{ default: unknown }>('./fixtures/*.json', { eager: true })
+const fixtures = import.meta.glob<{ default: unknown }>(['./fixtures/*.json', '!./fixtures/lead-*.json'], {
+  eager: true,
+})
 
 function stemOf(path: string): string {
   return path.replace(/^.*\//, '').replace(/\.json$/, '')
 }
 
-const briefModules = new Map(Object.entries(fixtures).map(([path, mod]) => [stemOf(path), mod.default]))
+export interface LeadModule {
+  stem: string
+  brief: unknown
+}
+
+/** Stem → raw brief: every globbed fixture plus the built lead, when there is one. */
+export function briefRegistry(globbed: Record<string, { default: unknown }>, lead: LeadModule | null): Map<string, unknown> {
+  const map = new Map(Object.entries(globbed).map(([path, mod]) => [stemOf(path), mod.default]))
+  if (lead) map.set(lead.stem, lead.brief)
+  return map
+}
+
+/** The stem `requested` resolves to within `registry`: itself when present, else `fallback`. */
+export function resolveStem(registry: Map<string, unknown>, requested: string | null | undefined, fallback: string): string {
+  const stem = requested?.trim()
+  return stem && registry.has(stem) ? stem : fallback
+}
+
+const briefModules = briefRegistry(fixtures, leadStem ? { stem: leadStem, brief: leadBrief } : null)
 
 const requested = import.meta.env.VITE_BRIEF?.trim() || DEFAULT_BRIEF
 
@@ -42,8 +68,7 @@ export const siteContent = siteContentFor(requested)!
 
 /** The stem a `?brief=` value resolves to: itself when it names a fixture, else the default. */
 export function resolveBriefName(param: string | null | undefined): string {
-  const stem = param?.trim()
-  return stem && briefModules.has(stem) ? stem : briefName
+  return resolveStem(briefModules, param, briefName)
 }
 
 /** Residential and commercial fixtures of one business, for the picker's segment toggle. */

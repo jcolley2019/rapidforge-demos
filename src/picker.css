@@ -231,6 +231,36 @@
   }
 }
 
+/* Each cell: the card (a link) with its "I like this" below, so the button
+   never nests inside the link. */
+.pk-cell {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.pk-like {
+  align-self: flex-start;
+  min-height: 2.5rem;
+  margin-top: 0.875rem;
+  padding: 0 1rem;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--pk-text);
+  background: transparent;
+  border: 1px solid var(--pk-line);
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    border-color 0.3s var(--pk-ease),
+    color 0.3s var(--pk-ease);
+}
+.pk-like:hover,
+.pk-like:focus-visible {
+  border-color: var(--pk-mark);
+  color: var(--pk-mark);
+}
+
 /* Card ------------------------------------------------------------------ */
 .pk-card {
   display: flex;
