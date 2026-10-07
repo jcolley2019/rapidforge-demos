@@ -16,10 +16,14 @@
   --pp-muted: #4b5b70;
   --pp-border: #d5dce6;
   --pp-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --pp-font-body: 'Open Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  --pp-font-display: 'Montserrat Variable', 'Segoe UI', system-ui, sans-serif;
+  --pp-grade: 0, 36, 79;
+  --pp-grade-2: 0, 48, 104;
 
   background-color: var(--pp-ground);
   color: var(--pp-text);
-  font-family: 'Open Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--pp-font-body);
   font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -60,7 +64,7 @@
 
 /* Type: Montserrat headings, uppercase at H2; Open Sans for reading */
 .pp-display {
-  font-family: 'Montserrat Variable', 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.1;
@@ -88,7 +92,7 @@
   min-height: 2.75rem;
   gap: 0.5rem;
   padding: 0.65rem 1.4rem;
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: 0.9375rem;
   font-weight: 700;
   border-radius: 999px;
@@ -231,7 +235,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: 0.9375rem;
   font-weight: 700;
   color: var(--pp-navy);
@@ -309,18 +313,18 @@
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(0, 36, 79, 0.7) 0%,
-    rgba(0, 36, 79, 0.86) 100%
+    rgba(var(--pp-grade), 0.7) 0%,
+    rgba(var(--pp-grade), 0.86) 100%
   );
 }
 @media (min-width: 768px) {
   .pp-hero::before {
     background: linear-gradient(
       90deg,
-      rgba(0, 36, 79, 0.92) 0%,
-      rgba(0, 36, 79, 0.84) 40%,
-      rgba(0, 48, 104, 0.4) 72%,
-      rgba(0, 48, 104, 0.18) 100%
+      rgba(var(--pp-grade), 0.92) 0%,
+      rgba(var(--pp-grade), 0.84) 40%,
+      rgba(var(--pp-grade-2), 0.4) 72%,
+      rgba(var(--pp-grade-2), 0.18) 100%
     );
   }
 }
@@ -462,7 +466,7 @@
   justify-content: center;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -478,7 +482,7 @@
 }
 .heritage .of-title {
   margin: 0;
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.2;
@@ -558,7 +562,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: 0.9375rem;
   font-weight: 700;
   line-height: 1.2;
@@ -598,7 +602,7 @@
 }
 .heritage .br-stat-value {
   margin: 0;
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: clamp(1.375rem, 1.2rem + 0.6vw, 1.625rem);
   font-weight: 800;
   line-height: 1;
@@ -791,7 +795,7 @@
   background: var(--pp-ground);
 }
 .heritage .ww-tile-title {
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: 1.0625rem;
   font-weight: 700;
   color: var(--pp-navy);
@@ -835,7 +839,7 @@
 }
 .pp-cite {
   margin-top: 1.1rem;
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: 0.875rem;
   font-weight: 700;
   color: var(--pp-navy);
@@ -853,7 +857,7 @@
   border-radius: 999px;
   background: var(--pp-navy);
   color: #ffffff;
-  font-family: 'Montserrat Variable', system-ui, sans-serif;
+  font-family: var(--pp-font-display);
   font-size: 0.875rem;
   font-weight: 700;
 }

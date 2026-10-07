@@ -2,14 +2,24 @@ import { describe, expect, it } from 'vitest'
 import { fireEvent, render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
-import { siteContent } from '../brief/current'
+import { siteContent, siteContentFor } from '../brief/current'
 import { allTradePhotoUrls } from '../brief/trade-photos'
 import { presetForVariant } from '../presets/presets'
 import { previewFor } from '../presets/previews'
+import { variantTokens } from '../presets/tokens'
 import { variants } from './variants'
 import { heroPhotoFor, tilePhotosFor } from './heroPhoto'
 
-const allowedHeroSrcs = new Set([...allTradePhotoUrls(), ...siteContent.photos, ...siteContent.crewPhotos])
+/**
+ * The three residential fixtures, one per preset vertical. The build's own
+ * brief (acme-plumbing) needs no query; the others are picked at run time
+ * with ?brief=, the way the picker's toggle picks one.
+ */
+const FIXTURES = [
+  { stem: 'acme-plumbing', query: '', vertical: 'plumbing' },
+  { stem: 'acme-hvac', query: '?brief=acme-hvac', vertical: 'hvac' },
+  { stem: 'acme-electric', query: '?brief=acme-electric', vertical: 'electrical' },
+].map((f) => ({ ...f, site: siteContentFor(f.stem)! }))
 
 function renderRoute(path: string) {
   return render(
@@ -23,72 +33,121 @@ const FOLLOWING = Node.DOCUMENT_POSITION_FOLLOWING
 
 /**
  * Regression net: every registered variant must mount through its route
- * without throwing, render the business name from the brief, lead with the
- * brief's crew photo, and put its sections in the agreed order.
+ * without throwing on every residential fixture, render the business name
+ * from the brief, lead with the brief's crew photo, and put its sections in
+ * the agreed order.
  */
 describe('variants', () => {
   it('registers at least one variant', () => {
     expect(variants.length).toBeGreaterThan(0)
   })
 
-  for (const variant of variants) {
-    it(`renders /${variant.slug} (${variant.name}) with the business name`, () => {
-      expect(() => renderRoute(`/${variant.slug}`)).not.toThrow()
-      expect(document.body.textContent).toContain(siteContent.name)
-      expect(document.title).toBe(`${siteContent.name} — ${variant.name}`)
-    })
+  it('renders the build brief by default', () => {
+    expect(FIXTURES[0].site).toBe(siteContent)
+  })
 
-    it(`renders /${variant.slug} with a crew photo in the hero and the badge row with it`, () => {
-      renderRoute(`/${variant.slug}`)
-      const hero = document.querySelector('section[aria-label="Introduction"]')
-      expect(hero).not.toBeNull()
-      const img = hero!.querySelector('img')
-      expect(img).not.toBeNull()
-      expect(allowedHeroSrcs.has(img!.getAttribute('src') ?? '')).toBe(true)
-      // The brief has crew photos, so variant i leads with crew[i % crew.length].
-      const i = variants.indexOf(variant)
-      expect(img!.getAttribute('src')).toBe(siteContent.crewPhotos[i % siteContent.crewPhotos.length])
+  for (const { stem, query, vertical, site } of FIXTURES) {
+    const allowedHeroSrcs = new Set([...allTradePhotoUrls(), ...site.photos, ...site.crewPhotos])
+    const tel = site.phoneHref!
 
-      // The badge row sits inside the hero or after it, never before.
-      const rows = [...document.querySelectorAll('.br')]
-      expect(rows.length).toBeGreaterThan(0)
-      for (const row of rows) expect(hero!.contains(row) || Boolean(hero!.compareDocumentPosition(row) & FOLLOWING)).toBe(true)
-      expect(document.querySelectorAll('.br-mark').length).toBeGreaterThan(0)
-      expect(document.querySelectorAll('.br-stat').length).toBeGreaterThan(0)
-    })
+    describe(stem, () => {
+      it('is the fixture it claims to be', () => {
+        expect(site.vertical).toBe(vertical)
+        expect(site.mode).toBe('residential')
+        expect(site.crewPhotos.length).toBeGreaterThan(0)
+        expect(tel).toMatch(/^tel:\d+$/)
+      })
 
-    it(`renders /${variant.slug} with the utility bar, offers under the hero, and towns after services`, () => {
-      renderRoute(`/${variant.slug}`)
-      const bar = document.querySelector('.ub')
-      const nav = document.querySelector('header')
-      expect(bar).not.toBeNull()
-      expect(bar!.compareDocumentPosition(nav!) & FOLLOWING).toBeTruthy()
-      expect(bar!.querySelector('a[href="tel:2085550142"]')).not.toBeNull()
+      for (const variant of variants) {
+        const path = `/${variant.slug}${query}`
 
-      const hero = document.querySelector('section[aria-label="Introduction"]')!
-      expect(hero.nextElementSibling?.classList.contains('of')).toBe(true)
-      expect(document.querySelectorAll('.of-coupon')).toHaveLength(1)
+        it(`renders /${variant.slug} (${variant.name}) with the business name and its preset's tokens`, () => {
+          expect(() => renderRoute(path)).not.toThrow()
+          expect(document.body.textContent).toContain(site.name)
+          expect(document.title).toBe(`${site.name} — ${variant.name}`)
+          // The vertical's preset drives the root tokens; plumbing keeps the stylesheet's own.
+          const root = document.getElementById('top')!
+          const tokens = variantTokens(variant.slug, vertical)
+          if (tokens) {
+            for (const [name, value] of Object.entries(tokens)) expect(root.style.getPropertyValue(name)).toBe(value)
+          } else {
+            expect(root.getAttribute('style')).toBeNull()
+          }
+        })
 
-      const services = document.querySelector('#services')!
-      const areas = document.querySelector('#areas')
-      expect(areas).not.toBeNull()
-      expect(services.compareDocumentPosition(areas!) & FOLLOWING).toBeTruthy()
-      expect(areas!.querySelectorAll('.sa-chip')).toHaveLength(siteContent.serviceAreas.length)
-      expect(document.querySelector('#who')).toBeNull()
-    })
+        it(`renders /${variant.slug} with a crew photo in the hero and the badge row with it`, () => {
+          renderRoute(path)
+          const hero = document.querySelector('section[aria-label="Introduction"]')
+          expect(hero).not.toBeNull()
+          const img = hero!.querySelector('img')
+          expect(img).not.toBeNull()
+          expect(allowedHeroSrcs.has(img!.getAttribute('src') ?? '')).toBe(true)
+          // The brief has crew photos, so variant i leads with crew[i % crew.length].
+          const i = variants.indexOf(variant)
+          expect(img!.getAttribute('src')).toBe(site.crewPhotos[i % site.crewPhotos.length])
 
-    it(`renders /${variant.slug} call-first, with the hours note by the hours and the services heading shown on load`, () => {
-      renderRoute(`/${variant.slug}`)
-      const hero = document.querySelector('section[aria-label="Introduction"]')!
-      const actions = [...hero.querySelectorAll('a[href]')]
-      expect(actions[0].getAttribute('href')).toBe('tel:2085550142')
-      expect(actions[1].textContent).toBe(siteContent.cta.label)
+          // The badge row sits inside the hero or after it, never before.
+          const rows = [...document.querySelectorAll('.br')]
+          expect(rows.length).toBeGreaterThan(0)
+          for (const row of rows) expect(hero!.contains(row) || Boolean(hero!.compareDocumentPosition(row) & FOLLOWING)).toBe(true)
+          expect(document.querySelectorAll('.br-mark').length).toBeGreaterThan(0)
+          expect(document.querySelectorAll('.br-stat').length).toBeGreaterThan(0)
+        })
 
-      expect(document.querySelector('#contact')?.textContent).toContain(siteContent.hoursNote)
-      expect(document.querySelector('footer')?.textContent).toContain(siteContent.hoursNote)
+        it(`renders /${variant.slug} with the utility bar, offers under the hero, and towns after services`, () => {
+          renderRoute(path)
+          const bar = document.querySelector('.ub')
+          const nav = document.querySelector('header')
+          expect(bar).not.toBeNull()
+          expect(bar!.compareDocumentPosition(nav!) & FOLLOWING).toBeTruthy()
+          expect(bar!.querySelector(`a[href="${tel}"]`)).not.toBeNull()
 
-      const heading = document.querySelector('#services h2')!
-      expect(heading.closest('.rv')).toBeNull()
+          const hero = document.querySelector('section[aria-label="Introduction"]')!
+          expect(hero.nextElementSibling?.classList.contains('of')).toBe(true)
+          expect(document.querySelectorAll('.of-coupon')).toHaveLength(1)
+
+          const services = document.querySelector('#services')!
+          const areas = document.querySelector('#areas')
+          expect(areas).not.toBeNull()
+          expect(services.compareDocumentPosition(areas!) & FOLLOWING).toBeTruthy()
+          expect(areas!.querySelectorAll('.sa-chip')).toHaveLength(site.serviceAreas.length)
+          expect(document.querySelector('#who')).toBeNull()
+        })
+
+        it(`renders /${variant.slug} call-first, with the hours note by the hours and the services heading shown on load`, () => {
+          renderRoute(path)
+          const hero = document.querySelector('section[aria-label="Introduction"]')!
+          const actions = [...hero.querySelectorAll('a[href]')]
+          expect(actions[0].getAttribute('href')).toBe(tel)
+          expect(actions[1].textContent).toBe(site.cta.label)
+
+          expect(document.querySelector('#contact')?.textContent).toContain(site.hoursNote)
+          expect(document.querySelector('footer')?.textContent).toContain(site.hoursNote)
+
+          const heading = document.querySelector('#services h2')!
+          expect(heading.closest('.rv')).toBeNull()
+        })
+      }
+
+      it('renders the picker headline and one screenshot card per variant, described by the vertical preset', () => {
+        renderRoute(`/${query}`)
+        expect(document.querySelector('h1')?.textContent).toBe(`${site.name} — five looks, pick one`)
+        const cards = [...document.querySelectorAll('a.pk-card')]
+        expect(cards).toHaveLength(variants.length)
+        variants.forEach((variant, i) => {
+          const { desktop, mobile } = previewFor(variant.slug, vertical)
+          const preset = presetForVariant(variant.slug, vertical)
+          expect(cards[i].getAttribute('href')).toBe(`/${variant.slug}${query}`)
+          const srcs = [...cards[i].querySelectorAll('img')].map((img) => img.getAttribute('src'))
+          expect(srcs).toEqual([desktop, mobile])
+          expect(desktop).toContain(`/previews/${vertical}/`)
+          expect(cards[i].textContent).toContain(preset.name)
+          expect(cards[i].querySelector('.pk-desc')?.textContent).toBe(preset.description)
+          expect(cards[i].querySelectorAll('.pk-swatch')).toHaveLength(4)
+        })
+        // Only plumbing has a commercial twin, so only it gets the segment toggle.
+        expect(document.querySelector('.pk-segment') !== null).toBe(vertical === 'plumbing')
+      })
     })
   }
 
@@ -122,23 +181,6 @@ describe('variants', () => {
       expect(tiles.slice(0, detail.length)).toEqual(detail)
       expect(new Set(tiles).size).toBe(tiles.length)
     }
-  })
-
-  it('renders the picker headline and one screenshot card per variant, described by its preset', () => {
-    renderRoute('/')
-    expect(document.querySelector('h1')?.textContent).toBe(`${siteContent.name} — five looks, pick one`)
-    const cards = [...document.querySelectorAll('a.pk-card')]
-    expect(cards).toHaveLength(variants.length)
-    variants.forEach((variant, i) => {
-      const { desktop, mobile } = previewFor(variant.slug)
-      const preset = presetForVariant(variant.slug)
-      expect(cards[i].getAttribute('href')).toBe(`/${variant.slug}`)
-      const srcs = [...cards[i].querySelectorAll('img')].map((img) => img.getAttribute('src'))
-      expect(srcs).toEqual([desktop, mobile])
-      expect(cards[i].textContent).toContain(preset.name)
-      expect(cards[i].querySelector('.pk-desc')?.textContent).toBe(preset.description)
-      expect(cards[i].querySelectorAll('.pk-swatch')).toHaveLength(4)
-    })
   })
 
   it('swaps the picker between the residential and commercial fixture at run time', () => {

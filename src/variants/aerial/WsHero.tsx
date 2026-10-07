@@ -5,14 +5,13 @@ import PlaceholderImage from '../../components/PlaceholderImage'
 import { presetForVariant } from '../../presets/presets'
 import { heroPhotoFor } from '../heroPhoto'
 
-const palette = presetForVariant('aerial').palette
-
 /**
  * The family's risk, taken: a black rounded tab cut into the bottom of the
  * photo carries the stats, the proof, with a link down to the reviews.
  */
 export default function WsHero() {
   const site = useSite()
+  const palette = presetForVariant('aerial', site.vertical).palette
   const photo = heroPhotoFor('aerial', site.photos, site.crewPhotos)
   const hasStats = site.stats.length > 0
   const { primary, secondary } = heroActions(site)

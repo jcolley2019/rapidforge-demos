@@ -5,10 +5,9 @@ import { presetForVariant } from '../../presets/presets'
 import { heroPhotoFor } from '../heroPhoto'
 import PpRidge from './PpRidge'
 
-const palette = presetForVariant('heritage').palette
-
 export default function PpHero() {
   const site = useSite()
+  const palette = presetForVariant('heritage', site.vertical).palette
   const photo = heroPhotoFor('heritage', site.photos, site.crewPhotos)
   const { primary, secondary } = heroActions(site)
   return (

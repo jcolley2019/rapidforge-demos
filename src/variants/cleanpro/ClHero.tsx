@@ -4,10 +4,9 @@ import PlaceholderImage from '../../components/PlaceholderImage'
 import { presetForVariant } from '../../presets/presets'
 import { heroPhotoFor } from '../heroPhoto'
 
-const palette = presetForVariant('cleanpro').palette
-
 export default function ClHero() {
   const site = useSite()
+  const palette = presetForVariant('cleanpro', site.vertical).palette
   const photo = heroPhotoFor('cleanpro', site.photos, site.crewPhotos)
   const { primary, secondary } = heroActions(site)
   return (

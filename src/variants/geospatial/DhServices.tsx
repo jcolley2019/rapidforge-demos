@@ -4,10 +4,9 @@ import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
-const palette = presetForVariant('geospatial').palette
-
 export default function DhServices() {
   const site = useSite()
+  const palette = presetForVariant('geospatial', site.vertical).palette
   const photos = tilePhotosFor('geospatial', site.photos, site.detailPhotos)
   return (
     <section id="services" className="dh-section dh-services">

@@ -1,8 +1,10 @@
+import { presetVerticalOf } from './presets'
+
 /**
  * Picker preview screenshots: the top of each variant at desktop
- * (1280x800) and phone (390x844) size. `npm run shots` writes them to
- * public/previews/ from the built site, and Vite serves public/ at the
- * root, so these are URL paths.
+ * (1280x800) and phone (390x844) size, one set per preset vertical.
+ * `npm run shots` writes them to public/previews/<vertical>/ from the built
+ * site, and Vite serves public/ at the root, so these are URL paths.
  */
 
 export interface Preview {
@@ -10,9 +12,10 @@ export interface Preview {
   mobile: string
 }
 
-export function previewFor(slug: string): Preview {
+export function previewFor(slug: string, vertical = 'plumbing'): Preview {
+  const dir = `/previews/${presetVerticalOf(vertical)}`
   return {
-    desktop: `/previews/${slug}.jpg`,
-    mobile: `/previews/${slug}-mobile.jpg`,
+    desktop: `${dir}/${slug}.jpg`,
+    mobile: `${dir}/${slug}-mobile.jpg`,
   }
 }

@@ -72,8 +72,8 @@ export default function PickerPage() {
 
         <ul className="pk-grid">
           {variants.map((variant) => {
-            const preset = presetForVariant(variant.slug)
-            const preview = previewFor(variant.slug)
+            const preset = presetForVariant(variant.slug, site.vertical)
+            const preview = previewFor(variant.slug, site.vertical)
             return (
               <li key={variant.slug}>
                 <Link to={{ pathname: `/${variant.slug}`, search }} className="pk-card">

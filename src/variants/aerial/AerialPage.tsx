@@ -10,6 +10,7 @@ import ServiceAreas from '../../components/ServiceAreas'
 import UtilityBar from '../../components/UtilityBar'
 import { useSite } from '../../brief/site-context'
 import { usePageTitle } from '../usePageTitle'
+import { variantTokens } from '../../presets/tokens'
 import VariantSite from '../VariantSite'
 import WsNav from './WsNav'
 import WsHero from './WsHero'
@@ -36,7 +37,7 @@ export default function AerialPage() {
 function AerialBody() {
   const site = useSite()
   return (
-    <div className="aerial" id="top">
+    <div className="aerial" id="top" style={variantTokens('aerial', site.vertical)}>
       <BackToConceptsLink />
       <UtilityBar site={site} wrapClassName="ws-wrap" />
       <WsNav />

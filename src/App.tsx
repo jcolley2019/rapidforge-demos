@@ -1,6 +1,7 @@
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import { resolveBriefName, siteContentFor } from './brief/current'
 import { SiteContext } from './brief/site-context'
+import './presets/vertical-fonts'
 import PickerPage from './PickerPage'
 import HeritagePage from './variants/heritage/HeritagePage'
 import GeospatialPage from './variants/geospatial/GeospatialPage'

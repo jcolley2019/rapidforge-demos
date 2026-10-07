@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { DesignBriefSchema } from './design-brief'
 import acmePlumbing from './fixtures/acme-plumbing.json'
 import acmeCommercial from './fixtures/acme-commercial.json'
+import acmeHvac from './fixtures/acme-hvac.json'
+import acmeElectric from './fixtures/acme-electric.json'
 import sparseElectric from './fixtures/sparse-electric.json'
 import { TRADE_PHOTOS } from './trade-photos'
 
@@ -82,6 +84,30 @@ describe('DesignBriefSchema', () => {
     expect(brief.segment).toBe('residential')
     expect(brief.crew_photo_urls).toHaveLength(2)
     for (const url of brief.crew_photo_urls) expect(TRADE_PHOTOS.plumbing.crew).toContain(url)
+  })
+
+  it('parses acme-hvac and acme-electric as richly as acme-plumbing, crew photos from their own trade sets', () => {
+    const cases = [
+      { fixture: acmeHvac, name: 'Acme Heating & Air', vertical: 'hvac', crew: TRADE_PHOTOS.hvac.crew },
+      { fixture: acmeElectric, name: 'Acme Electric', vertical: 'electrical', crew: TRADE_PHOTOS.electrical.crew },
+    ]
+    for (const { fixture, name, vertical, crew } of cases) {
+      const brief = DesignBriefSchema.parse(fixture)
+      expect(brief.business_name).toBe(name)
+      expect(brief.vertical).toBe(vertical)
+      expect(brief.segment).toBe('residential')
+      expect(brief.services.length).toBeGreaterThanOrEqual(5)
+      expect(brief.service_areas).toHaveLength(8)
+      expect(brief.badges.map((b) => b.kind)).toContain('license')
+      expect(brief.badges.map((b) => b.kind)).toContain('rating')
+      expect(brief.stats).toHaveLength(3)
+      expect(brief.offers.length).toBeGreaterThanOrEqual(2)
+      expect(brief.founded_year).not.toBeNull()
+      expect(brief.hours_note).toBe('24/7 emergency service')
+      expect(brief.review_quotes).toHaveLength(3)
+      expect(brief.crew_photo_urls).toHaveLength(2)
+      for (const url of brief.crew_photo_urls) expect(crew, vertical).toContain(url)
+    }
   })
 
   it('parses the commercial twin: two stats, one badge, no offers, a bid request', () => {

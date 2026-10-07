@@ -10,7 +10,7 @@ import { presetForVariant } from '../presets/presets'
  */
 export default function VariantSite({ slug, children }: { slug: string; children: ReactNode }) {
   const site = useSite()
-  const lean = presetForVariant(slug).lean
+  const lean = presetForVariant(slug, site.vertical).lean
   const leaned = useMemo(() => forLean(site, lean), [site, lean])
   return <SiteContext.Provider value={leaned}>{children}</SiteContext.Provider>
 }

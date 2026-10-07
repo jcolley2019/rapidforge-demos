@@ -59,6 +59,8 @@ export interface SiteContent {
   name: string
   /** First two words of the name, or the whole name when it is ≤ 2 words. */
   shortName: string
+  /** The brief's vertical key as given, e.g. "plumbing" or "electrician"; presets resolve from it. */
+  vertical: string
   /** Human label for the vertical, e.g. "Plumbing". */
   verticalLabel: string
   /** City parsed from the address, or null. */
@@ -299,6 +301,7 @@ export function toSiteContent(brief: DesignBrief): SiteContent {
   return {
     name,
     shortName,
+    vertical: brief.vertical,
     verticalLabel,
     city,
     headline: copy.headline,
