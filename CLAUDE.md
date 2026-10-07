@@ -20,11 +20,11 @@ npm run lint       # oxlint
 
 ## Git
 
-- Work on the `claude/<brick-id>` branch you were given. Never commit to `main`.
+- Work directly on `main`.
 - Stage with explicit paths (`git add path/a path/b`). Never `git add -A` or `git add .`.
-- Two-line commit message: line 1 `RFD.AREA.N: title`; line 2 the files touched and the behavior change.
+- Two-line commit message: line 1 is the brick ID as prefix, `RFD.AREA.N: title`; line 2 the files touched and the behavior change.
 - One commit per brick, made only after the gate passes.
-- Push and open the PR to `main` without being asked.
+- Push to `origin main` without being asked.
 
 ## Protected files
 
