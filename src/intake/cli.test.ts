@@ -20,9 +20,9 @@ describe('intake CLI usage', () => {
     expect(run.stderr).toContain('--lead <businessId>')
   }, 60_000)
 
-  it('refuses --dry and --force without --lead', () => {
+  it('refuses --dry without --lead', () => {
     const run = intake('--url', 'https://acme-plumbing.example', '--dry')
     expect(run.status).toBe(2)
-    expect(run.stderr).toContain('--force and --dry only apply with --lead')
+    expect(run.stderr).toContain('--dry only applies with --lead')
   }, 60_000)
 })

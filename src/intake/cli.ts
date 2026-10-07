@@ -9,10 +9,10 @@ import { DesignBriefSchema, type DesignBrief } from '../brief/design-brief'
 import { VISION_MODEL, createAiClient, describeError } from './ai'
 import { extractSite, type SiteExtract } from './extract'
 import { FETCH_TIMEOUT_MS, USER_AGENT, fetchSite } from './fetch'
-import { fetchLeadBrief, fetchLeadWebsite, leadsApiUrl, signIn } from './leads'
+import { LEAD_PHOTOS_SKIPPED, fetchLeadBrief } from './leads'
 import { isEmpty, mergeBrief, parseLeadBrief, rebaseAssets, type SiteFields } from './merge'
 import { assertLeadPath, defaultSlug, leadPaths, type LeadPaths } from './paths'
-import { collectPhotoUrls, downloadImages, selectPhotos, type KeptPhoto, type OriginBearer } from './photos'
+import { collectPhotoUrls, downloadImages, selectPhotos, type KeptPhoto } from './photos'
 import { refineWithAi, type RefineResult } from './refine'
 import { intakeReport, summaryTable, type PhotoRow } from './report'
 import { captureCurrentSite, type CurrentSiteShots } from './screenshot'
@@ -25,21 +25,20 @@ import { mapTaggedPhotos, tagPhotos, type PhotoPlan, type Tagged } from './visio
  * and src/brief/fixtures/lead-<slug>.json. Exits non-zero when the brief
  * does not validate.
  *
- * RFD.LEADS.10: `--lead <businessId>` takes the lead brief from the leads
- * API instead of a file (see leads.ts). Its photos join the site's in the
- * photos step, downloaded with the worker's Bearer token, so the brief ends
- * up with local files rather than auth-only worker URLs.
+ * RFD.LEADS.10b: `--lead <businessId>` takes the lead brief from the leads
+ * Supabase instead of a file (see leads.ts). Its photo_urls are worker-only
+ * routes, so they are dropped and the site's own photos fill in.
  */
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
 const USAGE = `Usage: npm run intake -- --url https://prospect.com [--brief path/to/design-brief.json] [--slug name]
-       npm run intake -- --lead <businessId> [--url https://prospect.com] [--slug name] [--force] [--dry]
+       npm run intake -- --lead <businessId> [--url https://prospect.com] [--slug name] [--dry]
 
-  --lead   pull the DesignBrief from the leads API (LEADS_* in .env); not with --brief.
-           --url is optional when the business has a website_url in the leads app.
-  --force  re-run the leads design-brief agent instead of taking its stored brief
-  --dry    sign in, fetch, write leads/<slug>/lead-api-brief.json, print the brief; no crawl`
+  --lead   read the DesignBrief from the leads Supabase (LEADS_SUPABASE_URL and
+           LEADS_SUPABASE_SERVICE_ROLE_KEY in .env); not with --brief. --url is
+           optional when the business has a website_url in the leads app.
+  --dry    read, write leads/<slug>/lead-api-brief.json, print the brief; no crawl`
 
 function step(name: string) {
   console.log(`\n▸ ${name}`)
@@ -218,7 +217,6 @@ async function main(argv: string[]): Promise<number> {
       brief: { type: 'string' },
       slug: { type: 'string' },
       lead: { type: 'string' },
-      force: { type: 'boolean' },
       dry: { type: 'boolean' },
       help: { type: 'boolean', short: 'h' },
     },
@@ -231,8 +229,8 @@ async function main(argv: string[]): Promise<number> {
     console.error(`--lead and --brief cannot be used together: --lead fetches the brief that --brief would read.\n\n${USAGE}`)
     return 2
   }
-  if ((values.force || values.dry) && values.lead === undefined) {
-    console.error(`--force and --dry only apply with --lead.\n\n${USAGE}`)
+  if (values.dry && values.lead === undefined) {
+    console.error(`--dry only applies with --lead.\n\n${USAGE}`)
     return 2
   }
   if (values.lead !== undefined) return intakeLead(values)
@@ -256,11 +254,11 @@ async function main(argv: string[]): Promise<number> {
 }
 
 /**
- * --lead: sign in, find the website (--url, else the business record),
- * fetch the brief, always keep the raw response, then the usual intake
+ * --lead: read the business and its brief, find the website (--url, else
+ * the business record), always keep the raw rows, then the usual intake
  * with that brief as the lead brief, or stop there with --dry.
  */
-async function intakeLead(values: { lead?: string; url?: string; slug?: string; force?: boolean; dry?: boolean }): Promise<number> {
+async function intakeLead(values: { lead?: string; url?: string; slug?: string; dry?: boolean }): Promise<number> {
   const businessId = values.lead?.trim() ?? ''
   if (!businessId) {
     console.error(`--lead needs a business id.\n\n${USAGE}`)
@@ -268,31 +266,27 @@ async function intakeLead(values: { lead?: string; url?: string; slug?: string; 
   }
   loadEnv()
   step(`lead ${businessId}`)
-  let token: string
   let url: string
   let fetched: Awaited<ReturnType<typeof fetchLeadBrief>>
   try {
-    token = await signIn()
-    note('signed in to the leads app')
+    fetched = await fetchLeadBrief(businessId)
+    note(`${fetched.business.name}: design brief read from the leads Supabase`)
     let website = values.url ?? null
     if (!website) {
-      const record = await fetchLeadWebsite(businessId, token)
-      if (!record) throw new Error(`leads API: business not found in your workspace (${businessId})`)
-      if (!record.website_url) {
+      if (!fetched.business.website_url) {
         console.error(`Business ${businessId} has no website_url in the leads app; pass --url https://<prospect site>.\n\n${USAGE}`)
         return 2
       }
-      website = record.website_url
+      website = fetched.business.website_url
       note(`website ${website} (from the leads app)`)
     }
     url = siteUrl(website)
-    fetched = await fetchLeadBrief(businessId, token, { force: values.force === true })
   } catch (error) {
     console.error(`\n${describeError(error)}`)
     return 1
   }
-  note(`design brief ${fetched.stored ? 'stored in the leads app' : 'generated just now by the leads agent'}`)
   for (const line of fetched.coerced) note(`coerced ${line}`)
+  if (fetched.skippedPhotos > 0) note(`${LEAD_PHOTOS_SKIPPED} (${fetched.skippedPhotos} skipped)`)
 
   // Host-based, as a --url-only intake names it, so a lead re-intaken from the API keeps its folder.
   const paths = leadPaths(ROOT, values.slug ?? defaultSlug(null, url))
@@ -306,17 +300,15 @@ async function intakeLead(values: { lead?: string; url?: string; slug?: string; 
     return 0
   }
 
-  // The worker's photo URLs need its Bearer token, so they would not load in the app. They go to
-  // the photos step as download candidates instead, and the lead-wins merge takes the local files.
-  const { photo_urls: leadPhotos = [], ...lead } = fetched.fields
   return intake({
     url,
-    lead,
+    lead: fetched.fields,
     paths,
-    leadPhotos,
-    bearer: { origin: new URL(leadsApiUrl()).origin, token },
     apiResponse: fetched.raw,
-    flags: fetched.coerced.map((line) => `lead: coerced ${line}`),
+    flags: [
+      ...fetched.coerced.map((line) => `lead: coerced ${line}`),
+      ...(fetched.skippedPhotos > 0 ? [LEAD_PHOTOS_SKIPPED] : []),
+    ],
   })
 }
 
@@ -324,8 +316,6 @@ async function intake(args: {
   url: string
   lead: Partial<DesignBrief> | null
   paths: LeadPaths
-  leadPhotos?: string[]
-  bearer?: OriginBearer
   apiResponse?: unknown
   flags?: string[]
 }): Promise<number> {
@@ -343,12 +333,10 @@ async function intake(args: {
   note(`${ex.serviceCandidates.length} service candidates, ${ex.brandColors?.value.length ?? 0} brand colors`)
 
   step('photos')
-  const leadPhotos = args.leadPhotos ?? []
-  const photoUrls = [...leadPhotos, ...collectPhotoUrls(site.pages, site.homeUrl).filter((u) => u !== ex.logoUrl?.value)]
-  const downloads = await downloadImages(photoUrls, fetch, args.bearer)
+  const photoUrls = collectPhotoUrls(site.pages, site.homeUrl).filter((u) => u !== ex.logoUrl?.value)
+  const downloads = await downloadImages(photoUrls)
   const kept = await selectPhotos(downloads.candidates)
   note(`${photoUrls.length} found, ${downloads.candidates.length} downloaded, ${kept.length} kept (≥ 600px)`)
-  if (leadPhotos.length > 0) note(`${leadPhotos.length} of the found came from the leads app`)
   if (downloads.failures.length > 0) flags.push(`photos: ${downloads.failures.length} download(s) failed`)
 
   let logo: Logo | null = null

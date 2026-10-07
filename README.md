@@ -51,16 +51,13 @@ Turn a prospect's live site into a lead brief under `leads/<slug>/` (gitignored)
 npm run intake -- --url https://prospect.com [--brief path/to/design-brief.json] [--slug name]
 ```
 
-Or pull the DesignBrief the leads app already made for a business, then crawl its site to fill the rest:
+Or take the DesignBrief the leads app already made for a business, then crawl its site to fill the rest:
 
 ```
-npm run intake -- --lead <businessId> [--url https://prospect.com] [--force] [--dry]
+npm run intake -- --lead <businessId> [--url https://prospect.com] [--dry]
 ```
 
-`--url` is optional when the business has a website in the leads app. `--force` re-runs the leads design-brief agent, `--dry` stops after fetching (it still writes `leads/<slug>/lead-api-brief.json`), and `--lead` can't be combined with `--brief`. It needs these keys in `.env` (see `.env.example`):
+`--lead` reads the business and its newest completed audit's design brief straight from the leads Supabase, so the leads worker does not need to be running. `--url` is optional when the business has a website in the leads app, `--dry` stops after the read (it still writes `leads/<slug>/lead-api-brief.json`), and `--lead` can't be combined with `--brief`. The brief's photos are worker-only URLs, so the site's own photos are used instead. It needs two keys in `.env` (see `.env.example`):
 
-- `LEADS_API_URL`: the leads worker, e.g. `http://localhost:8788`
 - `LEADS_SUPABASE_URL`: the leads app's Supabase project URL
-- `LEADS_SUPABASE_ANON_KEY`: that project's anon key
-- `LEADS_EMAIL`: your leads dashboard login
-- `LEADS_PASSWORD`: its password
+- `LEADS_SUPABASE_SERVICE_ROLE_KEY`: that project's service-role key; local only, never pushed

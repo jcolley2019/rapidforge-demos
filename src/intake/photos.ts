@@ -90,30 +90,10 @@ export function collectPhotoUrls(pages: FetchedPage[], siteUrl: string): string[
   return urls
 }
 
-/** A Bearer token for one origin, e.g. the leads worker's photo route. */
-export interface OriginBearer {
-  origin: string
-  token: string
-}
-
-/** The Authorization header for `url`: only when it is on the bearer's origin, never for any other host. */
-export function authHeaderFor(url: string, bearer?: OriginBearer): Record<string, string> {
-  if (!bearer) return {}
-  try {
-    return new URL(url).origin === bearer.origin ? { authorization: `Bearer ${bearer.token}` } : {}
-  } catch {
-    return {}
-  }
-}
-
-/**
- * Downloads at most `MAX_DOWNLOADS` images, five at a time; failures are
- * reported, not thrown. With `bearer`, URLs on its origin carry its token.
- */
+/** Downloads at most `MAX_DOWNLOADS` images, five at a time; failures are reported, not thrown. */
 export async function downloadImages(
   urls: string[],
   fetcher: Fetcher = fetch,
-  bearer?: OriginBearer,
 ): Promise<{ candidates: PhotoCandidate[]; failures: string[] }> {
   const queue = urls.slice(0, MAX_DOWNLOADS)
   const results: Array<PhotoCandidate | null> = new Array(queue.length).fill(null)
@@ -124,7 +104,7 @@ export async function downloadImages(
       const i = next++
       try {
         const res = await fetcher(queue[i], {
-          headers: { 'user-agent': USER_AGENT, accept: 'image/*', ...authHeaderFor(queue[i], bearer) },
+          headers: { 'user-agent': USER_AGENT, accept: 'image/*' },
           signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
         })
         if (!res.ok) throw new Error(`HTTP ${res.status}`)

@@ -1,13 +1,14 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { absolutePhotoUrls, fetchLeadBrief, fetchLeadWebsite, signIn } from './leads'
-import { authHeaderFor, downloadImages } from './photos'
+import { LEAD_PHOTOS_SKIPPED, fetchLeadBrief } from './leads'
+import { mergeBrief } from './merge'
 
-const API = 'http://localhost:8788'
 const SUPABASE = 'https://leads-project.supabase.co'
+const KEY = 'service-role-key'
+const BUSINESS_ID = '6f1c2d3e-0000-4000-8000-000000000001'
 const PHOTO = '/api/places/photo/places%2FChIJabc%2Fphotos%2FAtY123?maxWidthPx=1600'
 
-/** A brief as the leads worker's design-brief agent writes it (packages/shared/src/design-brief.ts). */
+/** A brief as the leads worker's design-brief agent stores it in audits.design_brief. */
 function leadsBrief(overrides: Record<string, unknown> = {}) {
   return {
     business_name: 'Goodson Plumbing Services',
@@ -27,20 +28,30 @@ function leadsBrief(overrides: Record<string, unknown> = {}) {
   }
 }
 
+const BUSINESS = { id: BUSINESS_ID, name: 'Goodson Plumbing Services', website_url: 'https://www.robgoodsonplumbing.com/' }
+
 function json(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } })
 }
 
 let fetchMock: ReturnType<typeof vi.fn>
 
+/** Answers the businesses read and the audits read with these rows. */
+function rows(businesses: unknown[], audits: unknown[] = []) {
+  fetchMock.mockImplementation(async (url: string) => json(200, new URL(url).pathname.endsWith('/businesses') ? businesses : audits))
+}
+
+function call(i: number) {
+  const [url, init] = fetchMock.mock.calls[i] as [string, RequestInit]
+  const parsed = new URL(url)
+  return { path: parsed.pathname, query: Object.fromEntries(parsed.searchParams), headers: init.headers }
+}
+
 beforeEach(() => {
   fetchMock = vi.fn()
   vi.stubGlobal('fetch', fetchMock)
-  vi.stubEnv('LEADS_API_URL', `${API}/`)
-  vi.stubEnv('LEADS_SUPABASE_URL', SUPABASE)
-  vi.stubEnv('LEADS_SUPABASE_ANON_KEY', 'anon-key')
-  vi.stubEnv('LEADS_EMAIL', 'joey@example.com')
-  vi.stubEnv('LEADS_PASSWORD', 'hunter2')
+  vi.stubEnv('LEADS_SUPABASE_URL', `${SUPABASE}/`)
+  vi.stubEnv('LEADS_SUPABASE_SERVICE_ROLE_KEY', KEY)
 })
 
 afterEach(() => {
@@ -48,128 +59,107 @@ afterEach(() => {
   vi.unstubAllEnvs()
 })
 
-describe('signIn', () => {
-  it('posts the password grant with the anon key and returns the access token', async () => {
-    fetchMock.mockResolvedValueOnce(json(200, { access_token: 'jwt-123', token_type: 'bearer' }))
-    await expect(signIn()).resolves.toBe('jwt-123')
-    const [url, init] = fetchMock.mock.calls[0]
-    expect(url).toBe(`${SUPABASE}/auth/v1/token?grant_type=password`)
-    expect(init.method).toBe('POST')
-    expect(init.headers).toEqual({ apikey: 'anon-key', 'Content-Type': 'application/json' })
-    expect(JSON.parse(init.body)).toEqual({ email: 'joey@example.com', password: 'hunter2' })
-  })
-
-  it('names LEADS_EMAIL and LEADS_PASSWORD when Supabase answers 400', async () => {
-    fetchMock.mockResolvedValueOnce(json(400, { error: 'invalid_grant', error_description: 'Invalid login credentials' }))
-    const error = await signIn().then(
-      () => new Error('signIn resolved'),
-      (e: Error) => e,
-    )
-    expect(error.message).toMatch(/LEADS_EMAIL/)
-    expect(error.message).toMatch(/LEADS_PASSWORD/)
-    expect(error.message).toMatch(/Invalid login credentials/)
-  })
-
-  it('names the missing keys before calling anything', async () => {
-    vi.stubEnv('LEADS_SUPABASE_ANON_KEY', '')
-    vi.stubEnv('LEADS_PASSWORD', '')
-    await expect(signIn()).rejects.toThrow('Set LEADS_SUPABASE_ANON_KEY, LEADS_PASSWORD in .env')
-    expect(fetchMock).not.toHaveBeenCalled()
-  })
-})
-
 describe('fetchLeadBrief', () => {
-  it('posts with the Bearer token, validates the brief and makes photo URLs absolute', async () => {
-    const body = { design_brief: leadsBrief(), stored: true }
-    fetchMock.mockResolvedValueOnce(json(200, body))
-    const got = await fetchLeadBrief('biz-1', 'jwt-123')
-    const [url, init] = fetchMock.mock.calls[0]
-    expect(url).toBe(`${API}/api/businesses/biz-1/design-brief`)
-    expect(init).toMatchObject({ method: 'POST', headers: { Authorization: 'Bearer jwt-123' } })
-    expect(got.raw).toEqual(body)
-    expect(got.stored).toBe(true)
-    expect(got.coerced).toEqual([])
-    expect(got.brief.photo_urls).toEqual([`${API}${PHOTO}`])
+  it('reads the business, then its newest completed audit that has a brief', async () => {
+    const audit = { id: 'audit-1', completed_at: '2026-10-07T20:00:00Z', design_brief: leadsBrief() }
+    rows([BUSINESS], [audit])
+    const got = await fetchLeadBrief(BUSINESS_ID)
+
+    expect(fetchMock).toHaveBeenCalledTimes(2)
+    expect(call(0)).toMatchObject({ path: '/rest/v1/businesses', query: { select: 'id,name,website_url', id: `eq.${BUSINESS_ID}` } })
+    expect(call(1)).toMatchObject({
+      path: '/rest/v1/audits',
+      query: {
+        select: 'id,completed_at,design_brief',
+        business_id: `eq.${BUSINESS_ID}`,
+        status: 'eq.completed',
+        completed_at: 'not.is.null',
+        design_brief: 'not.is.null',
+        order: 'completed_at.desc',
+        limit: '1',
+      },
+    })
+    expect(got.business).toEqual(BUSINESS)
+    expect(got.raw).toEqual({ business: BUSINESS, audit })
     expect(got.brief.business_name).toBe('Goodson Plumbing Services')
-    // fields keeps only what the leads app sent, so mergeBrief's site values still fill the rest.
+    expect(got.coerced).toEqual([])
+  })
+
+  it('sends the service-role key as apikey and as the Bearer token on both reads', async () => {
+    rows([BUSINESS], [{ id: 'audit-1', design_brief: leadsBrief() }])
+    await fetchLeadBrief(BUSINESS_ID)
+    for (const i of [0, 1]) {
+      expect(call(i).headers).toMatchObject({ apikey: KEY, Authorization: `Bearer ${KEY}` })
+    }
+  })
+
+  it('says the business was not found, without reading audits', async () => {
+    rows([])
+    await expect(fetchLeadBrief(BUSINESS_ID)).rejects.toThrow(`business ${BUSINESS_ID} not found`)
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('says to run the audit and the design brief when no completed audit has one', async () => {
+    rows([BUSINESS], [])
+    await expect(fetchLeadBrief(BUSINESS_ID)).rejects.toThrow(
+      'no completed audit with a design brief — run the audit and generate the design brief in the leads dashboard first',
+    )
+  })
+
+  it('empties photo_urls for the merge, counts what it dropped, and lets the site photos fill in', async () => {
+    rows([BUSINESS], [{ id: 'audit-1', design_brief: leadsBrief() }])
+    const got = await fetchLeadBrief(BUSINESS_ID)
+    expect(got.fields.photo_urls).toEqual([])
+    expect(got.skippedPhotos).toBe(1)
+    expect(got.brief.photo_urls).toEqual([PHOTO])
+    expect(LEAD_PHOTOS_SKIPPED).toBe('lead photos skipped (worker-only URLs); site photos used')
+
+    const merged = mergeBrief(got.fields, { photo_urls: { value: ['photos/01.jpg'], status: 'inferred', how: 'tagged by vision' } })
+    expect(merged.brief.photo_urls).toEqual(['photos/01.jpg'])
+    expect(merged.provenance.photo_urls.status).toBe('inferred')
+    expect(merged.provenance.business_name.status).toBe('lead')
+  })
+
+  it('keeps only the fields the leads app set, so site values still fill the rest', async () => {
+    rows([BUSINESS], [{ id: 'audit-1', design_brief: leadsBrief() }])
+    const got = await fetchLeadBrief(BUSINESS_ID)
     expect(got.fields.segment).toBeUndefined()
     expect(got.fields.website_url).toBeUndefined()
     expect(got.brief.segment).toBe('residential')
   })
 
-  it('adds ?force=true with force', async () => {
-    fetchMock.mockResolvedValueOnce(json(200, { design_brief: leadsBrief(), stored: false }))
-    const got = await fetchLeadBrief('biz-1', 'jwt-123', { force: true })
-    expect(fetchMock.mock.calls[0][0]).toBe(`${API}/api/businesses/biz-1/design-brief?force=true`)
-    expect(got.stored).toBe(false)
-  })
-
   it('coerces a vertical our schema would reject, and says so', async () => {
-    fetchMock.mockResolvedValueOnce(json(200, { design_brief: leadsBrief({ vertical: 'Plumbing Contractor' }), stored: true }))
-    const got = await fetchLeadBrief('biz-1', 'jwt-123')
+    rows([BUSINESS], [{ id: 'audit-1', design_brief: leadsBrief({ vertical: 'Plumbing Contractor' }) }])
+    const got = await fetchLeadBrief(BUSINESS_ID)
     expect(got.brief.vertical).toBe('plumbing_contractor')
+    expect(got.fields.vertical).toBe('plumbing_contractor')
     expect(got.coerced).toEqual(['vertical "Plumbing Contractor" → "plumbing_contractor" (our schema wants snake_case)'])
   })
 
-  it.each([
-    [401, { error: 'Invalid or expired Supabase JWT' }, 'token rejected'],
-    [404, { error: 'Business not found' }, 'business not found in your workspace'],
-    [409, { error: 'No completed audit for a design brief' }, 'no completed audit — run the audit in the leads dashboard first'],
-  ])('maps HTTP %i to a clear message', async (status, body, message) => {
-    fetchMock.mockResolvedValueOnce(json(status, body))
-    await expect(fetchLeadBrief('biz-1', 'jwt-123')).rejects.toThrow(message)
-  })
-
   it('reports a brief that does not validate, field by field', async () => {
-    fetchMock.mockResolvedValueOnce(json(200, { design_brief: leadsBrief({ tone_descriptors: ['one'] }), stored: true }))
-    await expect(fetchLeadBrief('biz-1', 'jwt-123')).rejects.toThrow(/tone_descriptors/)
+    rows([BUSINESS], [{ id: 'audit-1', design_brief: leadsBrief({ tone_descriptors: ['one'] }) }])
+    await expect(fetchLeadBrief(BUSINESS_ID)).rejects.toThrow(/tone_descriptors/)
   })
 
-  it('says where it could not connect when the worker is down', async () => {
-    fetchMock.mockRejectedValueOnce(new TypeError('fetch failed'))
-    await expect(fetchLeadBrief('biz-1', 'jwt-123')).rejects.toThrow(`could not reach the leads API at ${API}`)
-  })
-})
-
-describe('fetchLeadWebsite', () => {
-  it("reads the business's website_url off GET /api/leads", async () => {
-    const leads = [
-      { business: { id: 'biz-0', website_url: 'https://other.example/' } },
-      { business: { id: 'biz-1', website_url: 'https://www.robgoodsonplumbing.com/' } },
-    ]
-    fetchMock.mockImplementation(async () => json(200, { leads }))
-    await expect(fetchLeadWebsite('biz-1', 'jwt-123')).resolves.toEqual({ website_url: 'https://www.robgoodsonplumbing.com/' })
-    expect(fetchMock.mock.calls[0][0]).toBe(`${API}/api/leads`)
-    expect(fetchMock.mock.calls[0][1]).toMatchObject({ headers: { Authorization: 'Bearer jwt-123' } })
+  it('reads a blank website_url as null', async () => {
+    rows([{ ...BUSINESS, website_url: '  ' }], [{ id: 'audit-1', design_brief: leadsBrief() }])
+    expect((await fetchLeadBrief(BUSINESS_ID)).business.website_url).toBeNull()
   })
 
-  it('returns null website_url when the record has none, and null when the business is absent', async () => {
-    fetchMock.mockImplementation(async () => json(200, { leads: [{ business: { id: 'biz-1', website_url: null } }] }))
-    await expect(fetchLeadWebsite('biz-1', 'jwt-123')).resolves.toEqual({ website_url: null })
-    await expect(fetchLeadWebsite('biz-9', 'jwt-123')).resolves.toBeNull()
-  })
-})
-
-describe('photo URLs and the Bearer header', () => {
-  it('rewrites worker-relative photo paths to absolute LEADS_API_URL URLs and keeps absolute ones', () => {
-    expect(absolutePhotoUrls([PHOTO, 'https://cdn.example/a.jpg'], API)).toEqual([`${API}${PHOTO}`, 'https://cdn.example/a.jpg'])
+  it('passes on what PostgREST says when a read fails', async () => {
+    fetchMock.mockResolvedValueOnce(json(400, { code: '22P02', message: 'invalid input syntax for type uuid: "nope"' }))
+    await expect(fetchLeadBrief('nope')).rejects.toThrow('reading businesses failed (HTTP 400: invalid input syntax for type uuid: "nope")')
   })
 
-  it('sends the Bearer header only to the LEADS_API_URL origin', async () => {
-    fetchMock.mockImplementation(async () => new Response(new Uint8Array([0xff, 0xd8]), { headers: { 'content-type': 'image/jpeg' } }))
-    const bearer = { origin: new URL(API).origin, token: 'jwt-123' }
-    const urls = [`${API}${PHOTO}`, 'https://www.robgoodsonplumbing.com/hero.jpg', `http://localhost:9999${PHOTO}`, `https://localhost:8788${PHOTO}`]
-    const { candidates } = await downloadImages(urls, undefined, bearer)
-    expect(candidates).toHaveLength(4)
-    const sent = new Map(fetchMock.mock.calls.map(([url, init]) => [url, (init.headers as Record<string, string>).authorization]))
-    expect(sent.get(urls[0])).toBe('Bearer jwt-123')
-    expect(sent.get(urls[1])).toBeUndefined()
-    expect(sent.get(urls[2])).toBeUndefined()
-    expect(sent.get(urls[3])).toBeUndefined()
-  })
-
-  it('sends no Authorization header at all without a bearer', () => {
-    expect(authHeaderFor(`${API}${PHOTO}`)).toEqual({})
-    expect(authHeaderFor('not a url', { origin: API, token: 't' })).toEqual({})
+  it('names only LEADS_SUPABASE_URL and LEADS_SUPABASE_SERVICE_ROLE_KEY when the env is incomplete', async () => {
+    vi.stubEnv('LEADS_SUPABASE_SERVICE_ROLE_KEY', '')
+    const error = await fetchLeadBrief(BUSINESS_ID).then(
+      () => new Error('fetchLeadBrief resolved'),
+      (e: Error) => e,
+    )
+    expect(error.message).toBe(
+      '--lead reads the leads Supabase directly: set LEADS_SUPABASE_URL and LEADS_SUPABASE_SERVICE_ROLE_KEY in .env (missing: LEADS_SUPABASE_SERVICE_ROLE_KEY)',
+    )
+    expect(fetchMock).not.toHaveBeenCalled()
   })
 })
