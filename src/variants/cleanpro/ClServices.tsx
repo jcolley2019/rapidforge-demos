@@ -4,10 +4,9 @@ import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
-const palette = presetForVariant('cleanpro').palette
-
 export default function ClServices() {
   const site = useSite()
+  const palette = presetForVariant('cleanpro', site.vertical).palette
   const photos = tilePhotosFor('cleanpro', site.photos, site.detailPhotos)
   return (
     <section id="services" className="cl-section">

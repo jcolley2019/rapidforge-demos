@@ -5,8 +5,6 @@ import PlaceholderImage from '../../components/PlaceholderImage'
 import { presetForVariant } from '../../presets/presets'
 import { heroPhotoFor } from '../heroPhoto'
 
-const palette = presetForVariant('geospatial').palette
-
 /**
  * The family's risk, taken the In-Law way: the whole trust bar (marks and
  * big-number stats) runs along the bottom of the darkened photo, clear of
@@ -14,6 +12,7 @@ const palette = presetForVariant('geospatial').palette
  */
 export default function DhHero() {
   const site = useSite()
+  const palette = presetForVariant('geospatial', site.vertical).palette
   const photo = heroPhotoFor('geospatial', site.photos, site.crewPhotos)
   const { primary, secondary } = heroActions(site)
   return (

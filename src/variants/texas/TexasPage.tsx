@@ -10,6 +10,7 @@ import ServiceAreas from '../../components/ServiceAreas'
 import UtilityBar from '../../components/UtilityBar'
 import { useSite } from '../../brief/site-context'
 import { usePageTitle } from '../usePageTitle'
+import { variantTokens } from '../../presets/tokens'
 import VariantSite from '../VariantSite'
 import IsNav from './IsNav'
 import IsHero from './IsHero'
@@ -32,7 +33,7 @@ export default function TexasPage() {
 function TexasBody() {
   const site = useSite()
   return (
-    <div className="texas" id="top">
+    <div className="texas" id="top" style={variantTokens('texas', site.vertical)}>
       <BackToConceptsLink />
       <UtilityBar site={site} wrapClassName="is-wrap" />
       <IsNav />

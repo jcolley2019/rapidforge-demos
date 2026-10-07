@@ -5,8 +5,6 @@ import Stars from '../../components/Stars'
 import { presetForVariant } from '../../presets/presets'
 import { heroPhotoFor } from '../heroPhoto'
 
-const palette = presetForVariant('texas').palette
-
 function PhoneGlyph() {
   return (
     <svg viewBox="0 0 24 24" width="1.1em" height="1.1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
@@ -17,6 +15,7 @@ function PhoneGlyph() {
 
 export default function IsHero() {
   const site = useSite()
+  const palette = presetForVariant('texas', site.vertical).palette
   const photo = heroPhotoFor('texas', site.photos, site.crewPhotos)
   const rating = site.badges.find((b) => b.kind === 'rating')
   const score = rating ? badgeScore(rating) : null

@@ -4,10 +4,9 @@ import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
-const palette = presetForVariant('texas').palette
-
 export default function IsServices() {
   const site = useSite()
+  const palette = presetForVariant('texas', site.vertical).palette
   const photos = tilePhotosFor('texas', site.photos, site.detailPhotos)
   return (
     <section id="services" className="is-section is-services">

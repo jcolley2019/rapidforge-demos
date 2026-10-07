@@ -1,0 +1,152 @@
+{
+  "business_name": "Acme Electric",
+  "vertical": "electrical",
+  "tone_descriptors": [
+    "fast",
+    "responsive",
+    "local",
+    "licensed"
+  ],
+  "services": [
+    "Panel upgrades",
+    "Wiring and rewiring",
+    "Lighting design and installation",
+    "EV charger installation",
+    "Standby generators",
+    "Emergency electrical repair"
+  ],
+  "review_quotes": [
+    {
+      "text": "Upgraded our panel to 200 amps and pulled the permit themselves. Inspector passed it first visit. Clean work.",
+      "rating": 5,
+      "author": "Renee K."
+    },
+    {
+      "text": "Installed the EV charger in the garage in an afternoon and explained what our panel could handle. Fair price.",
+      "rating": 5,
+      "author": "Luis A."
+    },
+    {
+      "text": "Solid work on the generator. Took a week to get on the schedule, but the crew was careful and tidy.",
+      "rating": 4
+    }
+  ],
+  "photo_urls": [],
+  "hours": [
+    {
+      "day": "Monday",
+      "open": "7:00 AM",
+      "close": "5:30 PM"
+    },
+    {
+      "day": "Tuesday",
+      "open": "7:00 AM",
+      "close": "5:30 PM"
+    },
+    {
+      "day": "Wednesday",
+      "open": "7:00 AM",
+      "close": "5:30 PM"
+    },
+    {
+      "day": "Thursday",
+      "open": "7:00 AM",
+      "close": "5:30 PM"
+    },
+    {
+      "day": "Friday",
+      "open": "7:00 AM",
+      "close": "5:30 PM"
+    },
+    {
+      "day": "Saturday",
+      "open": "8:00 AM",
+      "close": "1:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "open": null,
+      "close": null
+    }
+  ],
+  "phone": "(208) 555-0193",
+  "address": "4615 W Emerald St, Boise, ID 83706",
+  "primary_cta": {
+    "label": "Book Service",
+    "kind": "booking",
+    "href": "https://example.com/acme-electric/book"
+  },
+  "current_site_problem": "Current site is a four-page brochure from 2016 with a license number that does not match the state record, no mobile layout, and a phone number only in the footer.",
+  "generated_at": "2026-10-07T15:20:00Z",
+  "source": {
+    "audit_id": "audit_acme_electric_0004",
+    "haiku_model": "claude-haiku-4-5-20251001",
+    "template_fallback": false
+  },
+  "service_areas": [
+    "Boise",
+    "Eagle",
+    "Kuna",
+    "Meridian",
+    "Nampa",
+    "Star",
+    "Caldwell",
+    "Garden City"
+  ],
+  "badges": [
+    {
+      "label": "BBB",
+      "kind": "bbb",
+      "value": "A+"
+    },
+    {
+      "label": "Idaho license",
+      "kind": "license",
+      "value": "ELE-C-31907"
+    },
+    {
+      "label": "Generac Dealer",
+      "kind": "dealer"
+    },
+    {
+      "label": "204 Google reviews",
+      "kind": "rating",
+      "value": "4.9"
+    }
+  ],
+  "stats": [
+    {
+      "label": "years in business",
+      "value": "15"
+    },
+    {
+      "label": "panel upgrades",
+      "value": "3,200+"
+    },
+    {
+      "label": "and insured",
+      "value": "Licensed"
+    }
+  ],
+  "offers": [
+    {
+      "title": "$75 off panel work",
+      "detail": "Mention this coupon when you book. One per household.",
+      "kind": "coupon",
+      "expires": "Dec 31, 2026"
+    },
+    {
+      "title": "0% for 12 months",
+      "detail": "Financing on generators, panel upgrades and EV chargers, with approved credit.",
+      "kind": "financing"
+    }
+  ],
+  "founded_year": 2011,
+  "license_number": "ELE-C-31907",
+  "crew_photo_urls": [
+    "https://images.unsplash.com/photo-1679000265956-3bd0f356b2b3?w=1600&q=80",
+    "https://images.unsplash.com/photo-1615774925655-a0e97fc85c14?w=1600&q=80"
+  ],
+  "segment": "residential",
+  "hours_note": "24/7 emergency service"
+}

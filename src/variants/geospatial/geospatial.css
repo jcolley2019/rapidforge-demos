@@ -17,10 +17,12 @@
   --dh-on-ink-muted: #bdbdbd;
   --dh-on-ink-line: rgba(255, 255, 255, 0.16);
   --dh-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dh-font-body: 'DM Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  --dh-font-display: 'DM Sans Variable', 'Segoe UI', system-ui, sans-serif;
 
   background-color: #ffffff;
   color: var(--dh-text);
-  font-family: 'DM Sans Variable', 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--dh-font-body);
   font-size: 1.0625rem;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -61,6 +63,7 @@
 
 /* Type: heavy geometric headings, a red bar under each section heading */
 .dh-display {
+  font-family: var(--dh-font-display);
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1.02;

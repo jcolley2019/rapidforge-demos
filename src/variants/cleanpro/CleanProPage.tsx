@@ -11,6 +11,7 @@ import ServiceAreas from '../../components/ServiceAreas'
 import UtilityBar from '../../components/UtilityBar'
 import { useSite } from '../../brief/site-context'
 import { usePageTitle } from '../usePageTitle'
+import { variantTokens } from '../../presets/tokens'
 import VariantSite from '../VariantSite'
 import ClNav from './ClNav'
 import ClHero from './ClHero'
@@ -36,7 +37,7 @@ export default function CleanProPage() {
 function CleanProBody() {
   const site = useSite()
   return (
-    <div className="cleanpro" id="top">
+    <div className="cleanpro" id="top" style={variantTokens('cleanpro', site.vertical)}>
       <BackToConceptsLink />
       <UtilityBar site={site} wrapClassName="cl-wrap" />
       <ClNav />

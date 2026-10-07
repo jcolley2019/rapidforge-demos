@@ -4,10 +4,9 @@ import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
-const palette = presetForVariant('heritage').palette
-
 export default function PpServices() {
   const site = useSite()
+  const palette = presetForVariant('heritage', site.vertical).palette
   const photos = tilePhotosFor('heritage', site.photos, site.detailPhotos)
   return (
     <section id="services" className="pp-section pp-services">

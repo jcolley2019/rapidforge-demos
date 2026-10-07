@@ -11,6 +11,7 @@ import ServiceAreas from '../../components/ServiceAreas'
 import UtilityBar from '../../components/UtilityBar'
 import { useSite } from '../../brief/site-context'
 import { usePageTitle } from '../usePageTitle'
+import { variantTokens } from '../../presets/tokens'
 import VariantSite from '../VariantSite'
 import PpNav from './PpNav'
 import PpHero from './PpHero'
@@ -33,7 +34,7 @@ export default function HeritagePage() {
 function HeritageBody() {
   const site = useSite()
   return (
-    <div className="heritage" id="top">
+    <div className="heritage" id="top" style={variantTokens('heritage', site.vertical)}>
       <BackToConceptsLink />
       <UtilityBar site={site} wrapClassName="pp-wrap" />
       <PpNav />

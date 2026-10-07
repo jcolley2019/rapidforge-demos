@@ -8,6 +8,7 @@ import ServiceAreas from '../../components/ServiceAreas'
 import UtilityBar from '../../components/UtilityBar'
 import { useSite } from '../../brief/site-context'
 import { usePageTitle } from '../usePageTitle'
+import { variantTokens } from '../../presets/tokens'
 import VariantSite from '../VariantSite'
 import DhNav from './DhNav'
 import DhHero from './DhHero'
@@ -30,7 +31,7 @@ export default function GeospatialPage() {
 function GeospatialBody() {
   const site = useSite()
   return (
-    <div className="geospatial" id="top">
+    <div className="geospatial" id="top" style={variantTokens('geospatial', site.vertical)}>
       <BackToConceptsLink />
       <UtilityBar site={site} wrapClassName="dh-wrap" />
       <DhNav />

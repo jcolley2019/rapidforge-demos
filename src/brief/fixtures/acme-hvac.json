@@ -1,0 +1,152 @@
+{
+  "business_name": "Acme Heating & Air",
+  "vertical": "hvac",
+  "tone_descriptors": [
+    "fast",
+    "emergency",
+    "responsive",
+    "local"
+  ],
+  "services": [
+    "AC repair and replacement",
+    "Furnace repair and installation",
+    "Heat pump installation",
+    "Duct sealing and cleaning",
+    "Seasonal maintenance plans",
+    "Smart thermostat installation"
+  ],
+  "review_quotes": [
+    {
+      "text": "AC went out on the hottest day of July and they had a tech here in two hours. Fixed it the same visit, no upsell.",
+      "rating": 5,
+      "author": "Priya S."
+    },
+    {
+      "text": "Replaced our 20-year-old furnace in one day and walked us through the new thermostat. House has never been this even.",
+      "rating": 5,
+      "author": "Tom B."
+    },
+    {
+      "text": "Good tune-up and honest about what could wait. Scheduling took a few days in the fall rush, but worth it.",
+      "rating": 4
+    }
+  ],
+  "photo_urls": [],
+  "hours": [
+    {
+      "day": "Monday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Tuesday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Wednesday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Thursday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Friday",
+      "open": "7:00 AM",
+      "close": "6:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "open": "8:00 AM",
+      "close": "2:00 PM"
+    },
+    {
+      "day": "Sunday",
+      "open": null,
+      "close": null
+    }
+  ],
+  "phone": "(208) 555-0177",
+  "address": "2210 E Franklin Rd, Meridian, ID 83642",
+  "primary_cta": {
+    "label": "Request Service",
+    "kind": "booking",
+    "href": "https://example.com/acme-hvac/book"
+  },
+  "current_site_problem": "Current site is a dealer template with the manufacturer's stock photos, no phone number above the fold on mobile, and a service request form that posts to a retired email address.",
+  "generated_at": "2026-10-07T15:10:00Z",
+  "source": {
+    "audit_id": "audit_acme_hvac_0003",
+    "haiku_model": "claude-haiku-4-5-20251001",
+    "template_fallback": false
+  },
+  "service_areas": [
+    "Meridian",
+    "Boise",
+    "Nampa",
+    "Eagle",
+    "Kuna",
+    "Star",
+    "Caldwell",
+    "Garden City"
+  ],
+  "badges": [
+    {
+      "label": "BBB",
+      "kind": "bbb",
+      "value": "A+"
+    },
+    {
+      "label": "Idaho license",
+      "kind": "license",
+      "value": "HVC-C-20481"
+    },
+    {
+      "label": "Carrier Dealer",
+      "kind": "dealer"
+    },
+    {
+      "label": "287 Google reviews",
+      "kind": "rating",
+      "value": "4.8"
+    }
+  ],
+  "stats": [
+    {
+      "label": "years in business",
+      "value": "18"
+    },
+    {
+      "label": "systems installed",
+      "value": "6,500+"
+    },
+    {
+      "label": "and insured",
+      "value": "Licensed"
+    }
+  ],
+  "offers": [
+    {
+      "title": "$0 diagnostic fee",
+      "detail": "The diagnostic fee is waived when we do the repair. One per household.",
+      "kind": "coupon",
+      "expires": "Dec 31, 2026"
+    },
+    {
+      "title": "0% for 18 months",
+      "detail": "Financing on new furnaces, AC units and heat pumps, with approved credit.",
+      "kind": "financing"
+    }
+  ],
+  "founded_year": 2008,
+  "license_number": "HVC-C-20481",
+  "crew_photo_urls": [
+    "https://images.unsplash.com/photo-1732395805034-e0bf859665e5?w=1600&q=80",
+    "https://images.unsplash.com/photo-1594581835488-0b95b8b0bacd?w=1600&q=80"
+  ],
+  "segment": "residential",
+  "hours_note": "24/7 emergency service"
+}

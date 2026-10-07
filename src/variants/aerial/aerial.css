@@ -18,10 +18,13 @@
   --ws-on-black-muted: #b8b8b8;
   --ws-on-black-line: rgba(255, 255, 255, 0.16);
   --ws-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ws-font-body: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif;
+  --ws-font-display: 'Rubik Variable', 'Arial Black', system-ui, sans-serif;
+  --ws-h1-scale: 1;
 
   background-color: #ffffff;
   color: var(--ws-text);
-  font-family: 'Manrope Variable', 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--ws-font-body);
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.6;
@@ -63,7 +66,7 @@
 
 /* Type: heavy caps for headlines, a plain grotesk for reading */
 .ws-display {
-  font-family: 'Rubik Variable', 'Arial Black', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: -0.005em;
@@ -89,7 +92,7 @@
   min-height: 2.875rem;
   gap: 0.5rem;
   padding: 0.65rem 1.35rem;
-  font-family: 'Rubik Variable', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-size: 0.9375rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -234,7 +237,7 @@
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
-  font-family: 'Rubik Variable', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-size: 1.125rem;
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -345,7 +348,7 @@
   }
 }
 .ws-hero-h1 {
-  font-size: clamp(2rem, 1.25rem + 3vw, 3.625rem);
+  font-size: calc(clamp(2rem, 1.25rem + 3vw, 3.625rem) * var(--ws-h1-scale));
   max-width: 18ch;
 }
 .ws-hero-sub {
@@ -407,7 +410,7 @@
 }
 .ws-tab .br-stat-value {
   margin: 0;
-  font-family: 'Rubik Variable', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.5rem);
   font-weight: 800;
   line-height: 1;
@@ -501,7 +504,7 @@
   justify-content: center;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
-  font-family: 'Rubik Variable', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-size: 0.75rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -518,7 +521,7 @@
 }
 .aerial .of-title {
   margin: 0;
-  font-family: 'Rubik Variable', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-size: 1.25rem;
   font-weight: 800;
   line-height: 1.05;
@@ -687,7 +690,7 @@
   padding: 1rem 1.1rem 1.25rem;
 }
 .ws-tile-title {
-  font-family: 'Rubik Variable', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-size: 1.125rem;
   font-weight: 800;
   line-height: 1.1;
@@ -767,7 +770,7 @@
   border-radius: 4px;
 }
 .aerial .ww-tile-title {
-  font-family: 'Rubik Variable', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-size: 1.125rem;
   font-weight: 800;
   line-height: 1.1;
@@ -830,7 +833,7 @@
   border-radius: 4px;
   background: var(--ws-red);
   color: #ffffff;
-  font-family: 'Rubik Variable', system-ui, sans-serif;
+  font-family: var(--ws-font-display);
   font-size: 0.875rem;
   font-weight: 800;
   text-transform: uppercase;

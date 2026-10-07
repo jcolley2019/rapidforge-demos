@@ -4,10 +4,9 @@ import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
 import { tilePhotosFor } from '../heroPhoto'
 
-const palette = presetForVariant('aerial').palette
-
 export default function WsServices() {
   const site = useSite()
+  const palette = presetForVariant('aerial', site.vertical).palette
   const photos = tilePhotosFor('aerial', site.photos, site.detailPhotos)
   return (
     <section id="services" className="ws-section ws-services">

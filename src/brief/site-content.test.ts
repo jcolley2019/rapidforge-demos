@@ -13,6 +13,8 @@ import { badgeFace, badgeScore, credentialLines, heroActions, servingHeading } f
 import { TRADE_PHOTOS } from './trade-photos'
 import acme from './fixtures/acme-plumbing.json'
 import commercial from './fixtures/acme-commercial.json'
+import hvac from './fixtures/acme-hvac.json'
+import electric from './fixtures/acme-electric.json'
 import sparse from './fixtures/sparse-electric.json'
 
 const acmeBrief = DesignBriefSchema.parse(acme)
@@ -36,6 +38,32 @@ describe('toSiteContent', () => {
     })
     expect(site.headline.length).toBeGreaterThan(0)
     expect(site.subhead.length).toBeGreaterThan(0)
+  })
+
+  it('carries the brief vertical as given', () => {
+    expect(toSiteContent(acmeBrief).vertical).toBe('plumbing')
+    expect(toSiteContent(sparseBrief).vertical).toBe('electrician')
+  })
+
+  it('maps acme-hvac and acme-electric to their vertical, five or more services and their trade crew set', () => {
+    const cases = [
+      { fixture: hvac, vertical: 'hvac', label: 'Heating & Cooling', city: 'Meridian', crew: TRADE_PHOTOS.hvac.crew },
+      { fixture: electric, vertical: 'electrical', label: 'Electrical', city: 'Boise', crew: TRADE_PHOTOS.electrical.crew },
+    ]
+    for (const { fixture, vertical, label, city, crew } of cases) {
+      const site = toSiteContent(DesignBriefSchema.parse(fixture))
+      expect(site.vertical).toBe(vertical)
+      expect(site.verticalLabel).toBe(label)
+      expect(site.city).toBe(city)
+      expect(site.mode).toBe('residential')
+      expect(site.services.length).toBeGreaterThanOrEqual(5)
+      for (const s of site.services) expect(s.blurb, s.title).not.toBe('')
+      expect(site.crewPhotos).toHaveLength(2)
+      for (const url of site.crewPhotos) expect(crew).toContain(url)
+      expect(site.serviceAreas).toHaveLength(8)
+      expect(site.licenseNumber).not.toBeNull()
+      expect(site.utilityLine).toMatch(/^24\/7 emergency service · Serving /)
+    }
   })
 
   it('maps the sparse-electric fixture without throwing', () => {
