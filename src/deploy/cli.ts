@@ -20,7 +20,7 @@ import {
 import { vercel } from './vercel'
 
 /**
- * `npm run deploy -- --slug <intake slug> [--as <subdomain>] [--check-only]`
+ * `npm run deploy -- --slug <intake slug> [--as <subdomain>] [--edit] [--check-only]`
  *
  * Builds the five-variant site for one intaken lead on this machine and
  * publishes it at <subdomain>.demos.rapidforge.ai. The lead's files are
@@ -30,6 +30,9 @@ import { vercel } from './vercel'
  * output and the output is scanned for their names; any hit aborts. A
  * name the taste vaults mention (public research text in every build) is
  * scanned for by that lead's phone, address and /leads/<slug>/ instead.
+ *
+ * --edit builds with VITE_EDIT=1, so the page mounts webedit-connect.js
+ * when a webedit Viewer frames it with ?edit; without it, it never does.
  *
  * --check-only runs the isolation step alone against the build already in
  * .vercel/output, then stops: no login, link, build, deploy or alias.
@@ -77,11 +80,17 @@ function isolation(slug: string) {
 
 async function main() {
   const { values } = parseArgs({
-    options: { slug: { type: 'string' }, as: { type: 'string' }, 'check-only': { type: 'boolean' } },
+    options: {
+      slug: { type: 'string' },
+      as: { type: 'string' },
+      edit: { type: 'boolean' },
+      'check-only': { type: 'boolean' },
+    },
     strict: true,
   })
   const { slug, sub } = parseDeployArgs(values)
   const alias = aliasFor(sub)
+  const edit = values.edit === true
 
   if (values['check-only']) {
     if (!existsSync(OUTPUT)) fail(`${OUTPUT} not found. Build first: a full \`npm run deploy -- --slug ${slug}\` builds before it scans.`)
@@ -113,12 +122,13 @@ async function main() {
   if (pull.code !== 0) fail('vercel pull failed')
 
   step(`Build with VITE_BRIEF=lead-${slug}`)
-  const build = await run(['build'], buildEnv(process.env, slug))
+  const build = await run(['build'], buildEnv(process.env, slug, { edit }))
   if (build.code !== 0) fail('vercel build failed')
 
   isolation(slug)
 
   step('Deploy')
+  console.log(edit ? '  edit mode: ON — page accepts webedit from localhost when framed with ?edit' : '  edit mode: OFF')
   const deploy = await run(['deploy', '--prebuilt', '--yes'])
   const url = deploymentUrlFrom(`${deploy.stdout}\n${deploy.stderr}`)
   if (deploy.code !== 0 || !url) fail('vercel deploy failed')
