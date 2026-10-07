@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
+import BrandMark from '../../components/BrandMark'
 
 export default function ClNav() {
   const site = useSite()
@@ -8,7 +9,7 @@ export default function ClNav() {
     <header className="cl-nav">
       <div className="cl-wrap cl-nav-inner">
         <a href="#top" className="cl-display cl-brand">
-          {site.shortName}
+          <BrandMark plate />
         </a>
         <nav className="cl-nav-links" aria-label="Page sections">
           {links.map((link) => (

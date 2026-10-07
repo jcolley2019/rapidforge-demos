@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
+import BrandMark from '../../components/BrandMark'
 
 export default function WsNav() {
   const site = useSite()
@@ -8,7 +9,7 @@ export default function WsNav() {
     <header className="ws-nav">
       <div className="ws-wrap ws-nav-inner">
         <a href="#top" className="ws-display ws-brand">
-          {site.shortName}
+          <BrandMark plate />
         </a>
         <nav className="ws-nav-links" aria-label="Page sections">
           {links.map((link) => (

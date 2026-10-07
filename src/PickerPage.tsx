@@ -4,6 +4,7 @@ import './picker.css'
 import { useEffect } from 'react'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { briefName, twinsFor } from './brief/current'
+import CurrentSiteCard from './CurrentSiteCard'
 import { useBriefName, useSite } from './brief/site-context'
 import { presetForVariant, swatchesOf } from './presets/presets'
 import { previewFor } from './presets/previews'
@@ -66,6 +67,8 @@ export default function PickerPage() {
             {commercialShown && ' The pictures show the residential site; each look opens on your commercial one.'}
           </p>
         </header>
+
+        <CurrentSiteCard current={site.currentSite} problem={site.problemLine} />
 
         <ul className="pk-grid">
           {variants.map((variant) => {

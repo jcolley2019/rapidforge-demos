@@ -28,3 +28,8 @@ dist-ssr
 .vercel
 shots/
 vaults/raw/
+
+# RFD.INTAKE.6: per-prospect lead data (npm run intake) never enters git
+/leads/
+src/brief/fixtures/lead-*.json
+public/leads/

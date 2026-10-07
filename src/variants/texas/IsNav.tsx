@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { navLinks } from '../../brief/site-helpers'
+import BrandMark from '../../components/BrandMark'
 
 export default function IsNav() {
   const site = useSite()
@@ -8,7 +9,7 @@ export default function IsNav() {
     <header className="is-nav">
       <div className="is-wrap is-nav-inner">
         <a href="#top" className="is-display is-brand">
-          {site.shortName}
+          <BrandMark plate />
         </a>
         <nav className="is-nav-links" aria-label="Page sections">
           {links.map((link) => (

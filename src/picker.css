@@ -94,6 +94,102 @@
   color: var(--pk-text-dim);
 }
 
+/* Your site today --------------------------------------------------------
+   The prospect's current homepage, desktop and phone at the same height,
+   then a thin rule labelled "Five ways forward" that hands off to the grid.
+   Only rendered when the brief carries current-site screenshots. */
+.pk-now {
+  margin-top: clamp(2.75rem, 6vw, 4.5rem);
+}
+
+.pk-now-title {
+  margin: 0 0 1.125rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--pk-text-faint);
+}
+
+.pk-now-body {
+  display: grid;
+  gap: 1.25rem 2.5rem;
+}
+@media (min-width: 1024px) {
+  .pk-now-body {
+    grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr);
+    align-items: end;
+  }
+}
+
+/* 3.46 : 1 puts a 1440x900 shot and a 390x844 shot at the same height. */
+.pk-now-shots {
+  display: grid;
+  grid-template-columns: minmax(0, 3.46fr) minmax(0, 1fr);
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  align-items: end;
+}
+.pk-now-desktop,
+.pk-now-mobile {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--pk-surface);
+}
+.pk-now-desktop {
+  border: 1px solid var(--pk-line);
+  border-radius: 6px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 14px 30px -20px rgba(0, 0, 0, 0.75);
+}
+.pk-now-mobile {
+  border: 3px solid #0e0f11;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 14px 30px -20px rgba(0, 0, 0, 0.75);
+}
+
+.pk-now-problem {
+  margin: 0;
+  max-width: 34ch;
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--pk-text);
+  text-wrap: pretty;
+}
+
+.pk-now-next {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: clamp(2.5rem, 5vw, 3.5rem) 0 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--pk-mark);
+}
+.pk-now-next::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--pk-line);
+}
+.pk-now-arrow {
+  width: 0.75rem;
+  height: 1rem;
+  flex: none;
+}
+
+/* The label leads straight into the cards. */
+.pk-now + .pk-grid {
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+}
+
 /* Grid ------------------------------------------------------------------
    Five equal cards: one column, then two, then three. A short last row
    sits centred under the full rows instead of stretching. */

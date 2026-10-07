@@ -48,6 +48,13 @@ const OfferSchema = z.object({
   expires: z.string().optional(),
 })
 
+/** Screenshots of the prospect's site as it is, for the picker's "Your site today" card. */
+const CurrentSiteSchema = z.object({
+  desktop_url: z.string(),
+  mobile_url: z.string(),
+  captured_at: z.string(),
+})
+
 export const DesignBriefSchema = z.object({
   business_name: z.string(),
   /** snake_case vertical key, e.g. "plumbing" or "dental_office". */
@@ -77,6 +84,17 @@ export const DesignBriefSchema = z.object({
   segment: z.enum(['residential', 'commercial', 'new_construction', 'mixed']).default('residential'),
   /** e.g. "24/7 emergency service". */
   hours_note: z.string().nullable().default(null),
+  // RFD.INTAKE.6: optional, defaulted, so every earlier brief still parses.
+  /** The prospect's current site, e.g. "https://example.com/". */
+  website_url: z.string().nullable().default(null),
+  /** The prospect's own logo; variant headers show it in place of the text wordmark. */
+  logo_url: z.string().nullable().default(null),
+  /** Brand colors from the current site as lowercase #rrggbb, primary first. Stored only. */
+  brand_colors: z
+    .array(z.string().regex(/^#[0-9a-f]{6}$/, 'brand_colors must be lowercase #rrggbb'))
+    .max(4)
+    .default([]),
+  current_site: CurrentSiteSchema.nullable().default(null),
 })
 
 export type DesignBrief = z.infer<typeof DesignBriefSchema>
