@@ -3,8 +3,9 @@ import { VISION_TIER, describeError, formatFor, parseStructured, type AiClient }
 
 /**
  * Step 4: one ai-core vision call per kept photo, tagging what it shows and
- * how well it would hold up large; then the deterministic mapping from tags
- * to the brief's photo_urls and crew_photo_urls.
+ * how well it would hold up large, except photos whose URL already names a
+ * stock vendor; then the deterministic mapping from tags to the brief's
+ * photo_urls and crew_photo_urls.
  */
 
 export const PHOTO_KINDS = ['building', 'crew', 'van', 'job', 'logo', 'stock', 'other'] as const
@@ -34,6 +35,29 @@ kind:
 - other: anything else
 quality: 1 to 5, how well it would work as a large photo on a professional site (sharpness, light, composition); 1 is unusable.
 note: under 15 words, what the photo shows.`
+
+/**
+ * Stock-library names anywhere in a photo's URL or filename. Substrings,
+ * because site builders prefix them (hibu serves "RSshutterstock_1148345093-1920w.jpg");
+ * "canva" spares "canvas".
+ */
+const STOCK_VENDOR =
+  /shutterstock|istock|gettyimages|adobestock|stock\.adobe|depositphotos|dreamstime|123rf|alamy|pexels|unsplash|pixabay|freepik|canva(?!s)/i
+/** A bare "stock" path segment, e.g. /images/stock/kitchen.jpg. */
+const STOCK_SEGMENT = /(?:^|\/)stock(?:\/|$)/i
+
+/** The stock vendor a photo's URL names, "stock" for a bare /stock/ segment, or null. */
+export function stockVendor(url: string): string | null {
+  const vendor = STOCK_VENDOR.exec(url)
+  if (vendor) return vendor[0].toLowerCase()
+  let path = url
+  try {
+    path = new URL(url).pathname
+  } catch {
+    // A bare filename or path; test it as given.
+  }
+  return STOCK_SEGMENT.test(path) ? 'stock' : null
+}
 
 /** Tags one JPEG. Throws when the call or its JSON fails; `tagPhotos` turns that into an untagged result. */
 export async function tagPhoto(client: AiClient, jpeg: Buffer): Promise<{ tag: PhotoTag; model: string }> {
@@ -65,10 +89,15 @@ export interface Tagged<T> {
   tag: PhotoTag
   /** Why tagging failed, when it did; the photo then counts as "other", quality 1. */
   error?: string
+  /** The stock vendor its URL names, when it did; the photo then counts as "stock", quality 1, with no vision call. */
+  vendor?: string
 }
 
-/** Tags every photo, three calls at a time. A failed call never fails the run. */
-export async function tagPhotos<T extends { jpeg: Buffer }>(
+/**
+ * Tags every photo, three calls at a time. A photo whose URL names a stock
+ * vendor is tagged stock without a call. A failed call never fails the run.
+ */
+export async function tagPhotos<T extends { url: string; jpeg: Buffer }>(
   client: AiClient,
   photos: T[],
 ): Promise<{ tagged: Tagged<T>[]; model: string | null }> {
@@ -78,6 +107,12 @@ export async function tagPhotos<T extends { jpeg: Buffer }>(
   const worker = async () => {
     while (next < photos.length) {
       const i = next++
+      const vendor = stockVendor(photos[i].url)
+      if (vendor) {
+        // Unrated, so it tops up after any stock or other photo vision rated.
+        tagged[i] = { item: photos[i], tag: { kind: 'stock', quality: 1, note: 'vendor URL' }, vendor }
+        continue
+      }
       try {
         const result = await tagPhoto(client, photos[i].jpeg)
         model ??= result.model

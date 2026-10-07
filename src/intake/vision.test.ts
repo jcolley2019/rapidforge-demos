@@ -2,7 +2,7 @@
 import type { CompletionRequest, CompletionResponse } from '@rapidforge/ai-core'
 import { describe, expect, it } from 'vitest'
 import type { AiClient } from './ai'
-import { mapTaggedPhotos, tagPhoto, tagPhotos, type PhotoKind, type PhotoTag } from './vision'
+import { mapTaggedPhotos, stockVendor, tagPhoto, tagPhotos, type PhotoKind, type PhotoTag } from './vision'
 
 let n = 0
 function photo(kind: PhotoKind, quality: number): { id: string; tag: PhotoTag } {
@@ -91,11 +91,68 @@ describe('tagPhotos', () => {
   it('marks a failed call as untagged "other" without failing the run', async () => {
     let calls = 0
     const client = fakeClient(() => (calls++ === 0 ? new Error('overloaded') : JSON.stringify({ kind: 'job', quality: 4, note: 'A repipe' })))
-    const { tagged, model } = await tagPhotos(client, [{ jpeg: Buffer.alloc(4) }, { jpeg: Buffer.alloc(4) }])
+    const { tagged, model } = await tagPhotos(client, [
+      { url: 'https://acme-plumbing.example/a.jpg', jpeg: Buffer.alloc(4) },
+      { url: 'https://acme-plumbing.example/b.jpg', jpeg: Buffer.alloc(4) },
+    ])
     const failed = tagged.filter((t) => t.error)
     expect(failed).toHaveLength(1)
     expect(failed[0].tag).toEqual({ kind: 'other', quality: 1, note: 'untagged' })
     expect(tagged.filter((t) => !t.error).map((t) => t.tag.kind)).toEqual(['job'])
     expect(model).toBe('claude-haiku-4-5')
+  })
+
+  it('tags a shutterstock URL as stock without a vision call; a same-host /images/van.jpg still gets one', async () => {
+    const client = fakeClient(() => JSON.stringify({ kind: 'van', quality: 4, note: 'Branded van' }))
+    const van = Buffer.from('van')
+    const { tagged } = await tagPhotos(client, [
+      {
+        url: 'https://le-cdn.hibuwebsites.com/ec076b480a384d4fa26d347fa2e825a7/dms3rep/multi/opt/RSshutterstock_1148345093-1920w.jpg',
+        jpeg: Buffer.from('stock'),
+      },
+      { url: 'https://acme-plumbing.example/images/van.jpg', jpeg: van },
+    ])
+
+    expect(tagged[0].tag).toEqual({ kind: 'stock', quality: 1, note: 'vendor URL' })
+    expect(tagged[0].vendor).toBe('shutterstock')
+    expect(tagged[1].tag).toEqual({ kind: 'van', quality: 4, note: 'Branded van' })
+    expect(tagged[1].vendor).toBeUndefined()
+    expect(client.requests).toHaveLength(1)
+    const user = client.requests[0].messages.find((m) => m.role === 'user')!
+    expect(user.content).toContainEqual({ type: 'image', mediaType: 'image/jpeg', data: van.toString('base64') })
+  })
+})
+
+describe('stockVendor', () => {
+  it.each([
+    ['https://le-cdn.hibuwebsites.com/x/RSshutterstock_1148345093-1920w.jpg', 'shutterstock'],
+    ['https://acme-plumbing.example/wp-content/uploads/iStock-1201234567.jpg', 'istock'],
+    ['https://acme-plumbing.example/img/GettyImages-123456.jpg', 'gettyimages'],
+    ['https://acme-plumbing.example/img/AdobeStock_123456.jpeg', 'adobestock'],
+    ['https://acme-plumbing.example/img/stock.adobe.com-123456.jpg', 'stock.adobe'],
+    ['https://acme-plumbing.example/img/depositphotos_123-stock-photo.jpg', 'depositphotos'],
+    ['https://acme-plumbing.example/img/dreamstime_xxl_123.jpg', 'dreamstime'],
+    ['https://acme-plumbing.example/img/123RF-plumber.jpg', '123rf'],
+    ['https://acme-plumbing.example/img/alamy-B1C2D3.jpg', 'alamy'],
+    ['https://acme-plumbing.example/img/pexels-photo-123.jpeg', 'pexels'],
+    ['https://acme-plumbing.example/img/UNSPLASH-abc.jpg', 'unsplash'],
+    ['https://acme-plumbing.example/img/pixabay-123.jpg', 'pixabay'],
+    ['https://acme-plumbing.example/img/freepik-plumber.jpg', 'freepik'],
+    ['https://acme-plumbing.example/img/Canva-Plumber.png', 'canva'],
+    ['https://acme-plumbing.example/images/stock/kitchen.jpg', 'stock'],
+    ['https://acme-plumbing.example/images/STOCK/kitchen.jpg', 'stock'],
+    ['shutterstock_99.jpg', 'shutterstock'],
+  ])('%s → %s', (url, vendor) => {
+    expect(stockVendor(url)).toBe(vendor)
+  })
+
+  it.each([
+    'https://acme-plumbing.example/images/van.jpg',
+    'https://acme-plumbing.example/images/canvas-awning.jpg',
+    'https://acme-plumbing.example/images/stockton-office.jpg',
+    'https://acme-plumbing.example/livestock/barn.jpg',
+    'https://acme-plumbing.example/images/in-stock-parts.jpg',
+  ])('%s is not stock', (url) => {
+    expect(stockVendor(url)).toBeNull()
   })
 })
