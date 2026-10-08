@@ -1,0 +1,18 @@
+{
+  /* Vercel's Node builder type-checks api/*.ts (and what they import) with
+     the nearest tsconfig.json. Without this file it took the root one, which
+     has no compilerOptions, and TypeScript 6 includes no @types by default:
+     "Cannot find name 'process'". The options follow tsconfig.deploy.json,
+     which type-checks the same files for `npm run typecheck`, except module:
+     the function ships as Node ESM ("type": "module"), so nodenext, the
+     builder's own default. rootDir is the project root so src/pick is inside it. */
+  "compilerOptions": {
+    "target": "es2023",
+    "lib": ["ES2023", "DOM"],
+    "module": "nodenext",
+    "types": ["node"],
+    "rootDir": "..",
+    "skipLibCheck": true
+  },
+  "include": ["*.ts"]
+}

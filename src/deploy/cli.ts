@@ -1,4 +1,4 @@
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseArgs } from 'node:util'
@@ -17,10 +17,11 @@ import {
   termsFor,
   vaultMentions,
 } from './deploy'
+import { renderLeadPreviews } from './previews'
 import { vercel } from './vercel'
 
 /**
- * `npm run deploy -- --slug <intake slug> [--as <subdomain>] [--edit] [--check-only]`
+ * `npm run deploy -- --slug <intake slug> [--as <subdomain>] [--edit] [--skip-previews] [--check-only]`
  *
  * Builds the five-variant site for one intaken lead on this machine and
  * publishes it at <subdomain>.demos.rapidforge.ai. The lead's files are
@@ -30,6 +31,11 @@ import { vercel } from './vercel'
  * output and the output is scanned for their names; any hit aborts. A
  * name the taste vaults mention (public research text in every build) is
  * scanned for by that lead's phone, address and /leads/<slug>/ instead.
+ *
+ * After the build, the picker's thumbnails are shot from the lead's own
+ * output and written over the Acme ones in it (src/deploy/previews.ts),
+ * before the isolation scan so the scan covers them. --skip-previews
+ * leaves the Acme thumbnails in place; it is for debugging.
  *
  * --edit builds with VITE_EDIT=1, so the page mounts webedit-connect.js
  * when a webedit Viewer frames it with ?edit; without it, it never does.
@@ -78,12 +84,26 @@ function isolation(slug: string) {
   console.log(`  clean: none of ${terms.length} other-lead term(s) from ${others.length} lead(s) appear in the output`)
 }
 
+/** Shoots the lead's picker thumbnails over the Acme ones in the output; a missing or oversized shot exits non-zero. */
+async function previews(fixture: string) {
+  step('Previews')
+  const { vertical } = JSON.parse(readFileSync(fixture, 'utf8')) as { vertical?: string }
+  if (!vertical) fail(`${fixture} has no vertical`)
+  console.log(`  lead vertical "${vertical}"`)
+  try {
+    await renderLeadPreviews({ outputStatic: join(OUTPUT, 'static'), vertical, log: (line) => console.log(`  ${line}`) })
+  } catch (err) {
+    fail(`previews failed: ${err instanceof Error ? err.message : String(err)}; nothing was deployed`)
+  }
+}
+
 async function main() {
   const { values } = parseArgs({
     options: {
       slug: { type: 'string' },
       as: { type: 'string' },
       edit: { type: 'boolean' },
+      'skip-previews': { type: 'boolean' },
       'check-only': { type: 'boolean' },
     },
     strict: true,
@@ -124,6 +144,13 @@ async function main() {
   step(`Build with VITE_BRIEF=lead-${slug}`)
   const build = await run(['build'], buildEnv(process.env, slug, { edit }))
   if (build.code !== 0) fail('vercel build failed')
+
+  if (values['skip-previews']) {
+    step('Previews')
+    console.log('  --skip-previews: skipped; the picker keeps the committed Acme thumbnails')
+  } else {
+    await previews(fixture)
+  }
 
   isolation(slug)
 
