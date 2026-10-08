@@ -4,11 +4,17 @@ import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { presetForVariant } from '../presets/presets'
 import PickModal, { type PickTarget } from './PickModal'
+import LikeThisButton from './LikeThisButton'
 import { pickSlugOf } from '../pick/slug'
+import { SiteContext } from '../brief/site-context'
+import { siteContent } from '../brief/current'
+
+const BUSINESS_ID = 'dff84968-ffa0-4188-84e6-079e1556e3e0'
 
 const target: PickTarget = {
   slug: 'goodson',
   businessName: 'Goodson Plumbing Services',
+  businessId: null,
   preset: presetForVariant('heritage', 'plumbing'),
   variantSlug: 'heritage',
 }
@@ -38,7 +44,7 @@ describe('PickModal', () => {
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: /send my pick/i }))
     })
-    await waitFor(() => expect(screen.getByRole('status').textContent).toContain('Got it — Joey will be in touch.'))
+    await waitFor(() => expect(screen.getByRole('status').textContent).toContain("Got it — we'll be in touch."))
     expect(post).toHaveBeenCalledTimes(1)
     const [url, init] = post.mock.calls[0] as unknown as [string, RequestInit]
     expect(url).toBe('/api/pick')
@@ -55,6 +61,21 @@ describe('PickModal', () => {
       website: '',
     })
     expect(JSON.parse(init.body as string).page_url).toMatch(/^http/)
+    // A fixture has no business id, so the payload is the pre-RFD.PICKS.11 one.
+    expect(JSON.parse(init.body as string)).not.toHaveProperty('businessId')
+  })
+
+  it('sends the business id with the variant and page URL when the build has one', async () => {
+    const post = ok()
+    render(<PickModal target={{ ...target, businessId: BUSINESS_ID }} onClose={() => {}} post={post as unknown as typeof fetch} />)
+    type(/email/i, 'test@example.com')
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /send my pick/i }))
+    })
+    await waitFor(() => expect(screen.getByRole('status').textContent).toContain("Got it — we'll be in touch."))
+    const body = JSON.parse((post.mock.calls[0] as unknown as [string, RequestInit])[1].body as string)
+    expect(body).toMatchObject({ businessId: BUSINESS_ID, variant_slug: 'heritage', preset_id: 'clean-trust', email: 'test@example.com' })
+    expect(body.page_url).toBe(window.location.href)
   })
 
   it('shows the server’s error and stays on the form when the post fails', async () => {
@@ -97,6 +118,30 @@ describe('I like this one, on the pages', () => {
   it('derives the lead slug from the brief name', () => {
     expect(pickSlugOf('lead-robgoodsonplumbing-com')).toBe('robgoodsonplumbing-com')
     expect(pickSlugOf('acme-plumbing')).toBe('acme-plumbing')
+  })
+
+  it('takes the business id from SiteContent into the floating button’s pick', async () => {
+    const post = ok()
+    vi.stubGlobal('fetch', post)
+    try {
+      render(
+        <MemoryRouter initialEntries={['/cleanpro']}>
+          <SiteContext.Provider value={{ ...siteContent, leadBusinessId: BUSINESS_ID }}>
+            <LikeThisButton variantSlug="cleanpro" />
+          </SiteContext.Provider>
+        </MemoryRouter>,
+      )
+      fireEvent.click(screen.getByRole('button', { name: /i like this one/i }))
+      type(/email/i, 'test@example.com')
+      await act(async () => {
+        fireEvent.click(screen.getByRole('button', { name: /send my pick/i }))
+      })
+      await waitFor(() => expect(post).toHaveBeenCalledTimes(1))
+      const body = JSON.parse((post.mock.calls[0] as unknown as [string, RequestInit])[1].body as string)
+      expect(body).toMatchObject({ businessId: BUSINESS_ID, variant_slug: 'cleanpro' })
+    } finally {
+      vi.unstubAllGlobals()
+    }
   })
 
   it('floats on a variant page and opens the modal for that variant’s preset', () => {

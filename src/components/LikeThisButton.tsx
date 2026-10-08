@@ -15,7 +15,7 @@ export default function LikeThisButton({ variantSlug }: { variantSlug: string })
   const briefName = useBriefName()
   const [open, setOpen] = useState(false)
   const preset = presetForVariant(variantSlug, site.vertical)
-  const target: PickTarget = { slug: pickSlugOf(briefName), businessName: site.name, preset, variantSlug }
+  const target: PickTarget = { slug: pickSlugOf(briefName), businessName: site.name, businessId: site.leadBusinessId, preset, variantSlug }
   return (
     <>
       <button type="button" className="pick-fab" style={pickTokens(preset)} onClick={() => setOpen(true)}>

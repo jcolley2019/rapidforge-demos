@@ -123,6 +123,12 @@ describe('toSiteContent', () => {
     ])
   })
 
+  it('carries lead_business_id as leadBusinessId, null for a fixture without one', () => {
+    expect(toSiteContent(acmeBrief).leadBusinessId).toBeNull()
+    const id = 'dff84968-ffa0-4188-84e6-079e1556e3e0'
+    expect(toSiteContent({ ...acmeBrief, lead_business_id: id }).leadBusinessId).toBe(id)
+  })
+
   it('maps every new brief field through', () => {
     const site = toSiteContent(acmeBrief)
     expect(site.serviceAreas).toEqual(acmeBrief.service_areas)

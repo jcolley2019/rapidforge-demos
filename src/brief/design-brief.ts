@@ -95,6 +95,9 @@ export const DesignBriefSchema = z.object({
     .max(4)
     .default([]),
   current_site: CurrentSiteSchema.nullable().default(null),
+  // RFD.PICKS.11: optional, so every earlier brief still parses.
+  /** The leads app's businesses.id; `intake --lead` sets it, and picks are saved against it. */
+  lead_business_id: z.string().uuid().optional(),
 })
 
 export type DesignBrief = z.infer<typeof DesignBriefSchema>

@@ -114,7 +114,13 @@ export default function PickerPage() {
                     type="button"
                     className="pk-like"
                     onClick={() =>
-                      setPick({ slug: pickSlugOf(brief), businessName: site.name, preset, variantSlug: variant.slug })
+                      setPick({
+                        slug: pickSlugOf(brief),
+                        businessName: site.name,
+                        businessId: site.leadBusinessId,
+                        preset,
+                        variantSlug: variant.slug,
+                      })
                     }
                   >
                     I like this

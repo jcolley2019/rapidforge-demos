@@ -126,6 +126,13 @@ describe('DesignBriefSchema', () => {
     expect(DesignBriefSchema.safeParse({ ...acmePlumbing, service_areas: towns(25) }).success).toBe(false)
   })
 
+  it('takes an optional lead_business_id, which must be a uuid', () => {
+    expect(DesignBriefSchema.parse(acmePlumbing).lead_business_id).toBeUndefined()
+    const id = 'dff84968-ffa0-4188-84e6-079e1556e3e0'
+    expect(DesignBriefSchema.parse({ ...acmePlumbing, lead_business_id: id }).lead_business_id).toBe(id)
+    expect(DesignBriefSchema.safeParse({ ...acmePlumbing, lead_business_id: 'goodson' }).success).toBe(false)
+  })
+
   it('rejects an unknown badge kind, segment or offer kind, and too many stats', () => {
     const bad = [
       { badges: [{ label: 'Nextdoor Fave', kind: 'sticker' }] },

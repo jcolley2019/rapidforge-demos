@@ -1,15 +1,24 @@
 import { z } from 'zod'
+import { variants } from '../variants/variants.js'
+
+/** The variant routes a pick can name: /heritage, /geospatial, … */
+export const VARIANT_SLUGS: readonly string[] = variants.map((v) => v.slug)
 
 /**
  * One "I like this one" pick, as the modal posts it to /api/pick. `website`
  * is a honeypot: humans never see the field, so a filled value marks a bot.
+ * `businessId` is the leads app's business id; lead builds send it, fixtures don't.
  */
 export const PickSchema = z.object({
   slug: z.string().trim().min(1).max(80),
   business_name: z.string().trim().min(1).max(200),
+  businessId: z.string().trim().uuid().optional(),
   preset_id: z.string().trim().min(1).max(80),
   preset_name: z.string().trim().min(1).max(120),
-  variant_slug: z.string().trim().min(1).max(80),
+  variant_slug: z
+    .string()
+    .trim()
+    .refine((slug) => VARIANT_SLUGS.includes(slug), { message: `must be one of ${VARIANT_SLUGS.join(', ')}` }),
   page_url: z.string().trim().url().max(2000),
   name: z.string().trim().max(200).default(''),
   email: z.string().trim().max(320).default(''),

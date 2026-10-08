@@ -127,6 +127,13 @@ describe('fetchLeadBrief', () => {
     expect(got.brief.segment).toBe('residential')
   })
 
+  it('sets lead_business_id from the business row, so the built site sends it with a pick', async () => {
+    rows([BUSINESS], [{ id: 'audit-1', design_brief: leadsBrief() }])
+    const got = await fetchLeadBrief(BUSINESS_ID)
+    expect(got.fields.lead_business_id).toBe(BUSINESS_ID)
+    expect(mergeBrief(got.fields, {}).brief.lead_business_id).toBe(BUSINESS_ID)
+  })
+
   it('coerces a vertical our schema would reject, and says so', async () => {
     rows([BUSINESS], [{ id: 'audit-1', design_brief: leadsBrief({ vertical: 'Plumbing Contractor' }) }])
     const got = await fetchLeadBrief(BUSINESS_ID)

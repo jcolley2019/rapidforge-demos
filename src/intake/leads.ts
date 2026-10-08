@@ -77,7 +77,7 @@ export interface LeadBrief {
   business: LeadBusiness
   /** The brief after DesignBriefSchema.parse: complete, with schema defaults, photos as stored. */
   brief: DesignBrief
-  /** Only the fields the leads app set, photo_urls emptied, for mergeBrief (absent stays absent). */
+  /** Only the fields the leads app set, photo_urls emptied, plus lead_business_id, for mergeBrief (absent stays absent). */
   fields: Partial<DesignBrief>
   /** How many worker photo URLs were dropped from fields. */
   skippedPhotos: number
@@ -136,7 +136,8 @@ export async function fetchLeadBrief(businessId: string): Promise<LeadBrief> {
       website_url: typeof business.website_url === 'string' && business.website_url.trim() ? business.website_url.trim() : null,
     },
     brief: parsed.data,
-    fields: parseLeadBrief({ ...candidate, photo_urls: [] }),
+    // The business row's id rides along so the built site's picks are saved against it.
+    fields: { ...parseLeadBrief({ ...candidate, photo_urls: [] }), lead_business_id: business.id },
     skippedPhotos: parsed.data.photo_urls.length,
     coerced,
   }

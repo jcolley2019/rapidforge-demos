@@ -116,6 +116,8 @@ export interface SiteContent {
   logoUrl: string | null
   /** current_site: the picker's "Your site today" card, or null to leave it out. */
   currentSite: SiteCurrentSite | null
+  /** lead_business_id: the leads app's business id, sent with a pick; null for fixtures without one. */
+  leadBusinessId: string | null
 }
 
 export interface SiteCurrentSite {
@@ -349,6 +351,7 @@ export function toSiteContent(brief: DesignBrief): SiteContent {
           capturedAt: brief.current_site.captured_at,
         }
       : null,
+    leadBusinessId: brief.lead_business_id ?? null,
   }
 }
 

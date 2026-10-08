@@ -55,7 +55,7 @@ A failure exits 1. A failed alias is not a failure: the deployment is live at `p
 It needs two keys in `.env` (see `.env.example`), and a one-time `npx vercel login`:
 
 - `LEADS_SUPABASE_URL`: the leads app's Supabase project URL
-- `LEADS_SUPABASE_SERVICE_ROLE_KEY`: that project's service-role key; local only, never pushed
+- `LEADS_SUPABASE_SERVICE_ROLE_KEY`: that project's service-role key; server-side only. `npm run env:push` copies both to Vercel so `/api/pick` can save picks to `demo_picks`
 
 ## Live tweaks with webedit
 

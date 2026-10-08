@@ -4,14 +4,28 @@ import { fileURLToPath } from 'node:url'
 import { vercel } from './vercel'
 
 /**
- * `npm run env:push` — copies the pick-email settings from .env to the
- * Vercel project's preview and production environments. Each key is
- * removed first so a rerun replaces the value instead of failing.
+ * `npm run env:push` — copies /api/pick's server-side settings from .env to
+ * the Vercel project's preview and production environments: the leads
+ * Supabase keys (required; picks are saved to demo_picks) and the Resend
+ * email keys (optional; a blank one is skipped and left as it is on
+ * Vercel). None is VITE_-prefixed, so none reaches the client bundle. Each
+ * key is removed first so a rerun replaces the value instead of failing.
  */
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
-const KEYS = ['RESEND_API_KEY', 'PICK_TO_EMAIL', 'PICK_FROM_EMAIL'] as const
+export const REQUIRED_KEYS = ['LEADS_SUPABASE_URL', 'LEADS_SUPABASE_SERVICE_ROLE_KEY'] as const
+export const OPTIONAL_KEYS = ['RESEND_API_KEY', 'PICK_TO_EMAIL', 'PICK_FROM_EMAIL'] as const
 const TARGETS = ['preview', 'production'] as const
+
+/** Which keys to push, which blank optional ones to skip, and which required ones are missing. */
+export function pushPlan(env: Record<string, string>): { push: string[]; skip: string[]; missing: string[] } {
+  const set = (k: string) => Boolean(env[k]?.trim())
+  return {
+    push: [...REQUIRED_KEYS, ...OPTIONAL_KEYS].filter(set),
+    skip: OPTIONAL_KEYS.filter((k) => !set(k)),
+    missing: REQUIRED_KEYS.filter((k) => !set(k)),
+  }
+}
 
 /** KEY=value lines; `#` comments and blanks skipped; surrounding quotes dropped. */
 export function parseDotenv(text: string): Record<string, string> {
@@ -38,13 +52,14 @@ async function main() {
     process.exit(1)
   }
   const env = parseDotenv(readFileSync(file, 'utf8'))
-  const missing = KEYS.filter((k) => !env[k])
+  const { push, skip, missing } = pushPlan(env)
   if (missing.length > 0) {
     console.error(`Fill ${missing.join(', ')} in .env first.`)
     process.exit(1)
   }
+  for (const key of skip) console.log(`– ${key} skipped (blank in .env)`)
   let failed = false
-  for (const key of KEYS) {
+  for (const key of push) {
     for (const target of TARGETS) {
       // Remove-then-add: `env add` refuses an existing key.
       await vercel(ROOT, ['env', 'rm', key, target, '--yes'], { cwd: ROOT })

@@ -7,7 +7,8 @@ import { pickTokens } from './pickTokens'
 
 /**
  * "I like this one": the prospect names the look they want and leaves a way
- * to reach them; the pick goes to /api/pick, which emails Joey. One modal
+ * to reach them; the pick goes to /api/pick, which saves it to the leads
+ * app when the build carries a business id, and emails Joey. One modal
  * serves the floating button on every variant page and the per-card button
  * on the picker. The `website` field is a honeypot no person sees.
  */
@@ -16,6 +17,8 @@ export interface PickTarget {
   /** The lead's slug (the brief name without `lead-`), or the fixture stem. */
   slug: string
   businessName: string
+  /** The leads app's business id (SiteContent.leadBusinessId); null for fixtures, which then post as before. */
+  businessId: string | null
   preset: Preset
   variantSlug: string
 }
@@ -30,7 +33,7 @@ export interface PickModalProps {
 type Phase = 'form' | 'sending' | 'sent'
 
 export default function PickModal({ target, onClose, post }: PickModalProps) {
-  const { preset, businessName, variantSlug, slug } = target
+  const { preset, businessName, businessId, variantSlug, slug } = target
   const titleId = useId()
   const baseId = useId()
   const firstField = useRef<HTMLInputElement>(null)
@@ -66,6 +69,7 @@ export default function PickModal({ target, onClose, post }: PickModalProps) {
     const body = {
       slug,
       business_name: businessName,
+      ...(businessId ? { businessId } : {}),
       preset_id: preset.id,
       preset_name: preset.name,
       variant_slug: variantSlug,
@@ -106,7 +110,7 @@ export default function PickModal({ target, onClose, post }: PickModalProps) {
               ✓
             </p>
             <h2 className="pick-title" id={titleId}>
-              Got it — Joey will be in touch.
+              Got it — we'll be in touch.
             </h2>
             <p className="pick-sub">
               {preset.name} is marked as the one {businessName} likes.
