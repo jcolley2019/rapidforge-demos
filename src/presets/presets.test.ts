@@ -2,7 +2,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import {
   PRESET_VERTICALS,
   aestheticOf,
@@ -134,7 +134,40 @@ describe('presets.json', () => {
     }
   })
 
-  it('resolves a vertical through its copy family and falls back to plumbing', () => {
+  it.each([
+    ['plumber', 'plumbing'],
+    ['plumbing_contractor', 'plumbing'],
+    ['plumbing', 'plumbing'],
+    ['hvac', 'hvac'],
+    ['hvac_contractor', 'hvac'],
+    ['heating_and_cooling', 'hvac'],
+    ['air_conditioning', 'hvac'],
+    ['electrician', 'electrical'],
+    ['electrical_contractor', 'electrical'],
+    ['electrical', 'electrical'],
+  ])('maps the leads vertical "%s" to the %s presets without a warning', (vertical, expected) => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    try {
+      expect(presetVerticalOf(vertical)).toBe(expected)
+      expect(warn).not.toHaveBeenCalled()
+    } finally {
+      warn.mockRestore()
+    }
+  })
+
+  it('falls back to plumbing for any other vertical, with one stderr line per vertical', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    try {
+      expect(presetVerticalOf('pool_service')).toBe('plumbing')
+      expect(presetVerticalOf('pool_service')).toBe('plumbing')
+      expect(warn).toHaveBeenCalledTimes(1)
+      expect(warn).toHaveBeenCalledWith('presets: vertical "pool_service" has no preset set; using plumbing')
+    } finally {
+      warn.mockRestore()
+    }
+  })
+
+  it('resolves a vertical to its preset set and falls back to plumbing', () => {
     expect(presetVerticalOf('electrician')).toBe('electrical')
     expect(presetVerticalOf('hvac_contractor')).toBe('hvac')
     expect(presetVerticalOf('plumber')).toBe('plumbing')

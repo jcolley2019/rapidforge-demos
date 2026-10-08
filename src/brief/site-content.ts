@@ -201,9 +201,17 @@ export function verticalLabelOf(vertical: string): string {
     .join(' ')
 }
 
+/** A trailing country segment: "USA", "US", "U.S.A.", "United States". */
+const COUNTRY_SEGMENT = /^(?:u\.?s\.?a?\.?|united states(?: of america)?)$/i
+/** A segment that is only a state code, a ZIP, or both: "ID 83686", "ID", "83686". */
+const STATE_ZIP_SEGMENT = /^(?:[A-Z]{2}(?:\s+\d{5}(?:-\d{4})?)?|\d{5}(?:-\d{4})?)$/
+
 /**
- * Pull a city out of a US-style address: the segment before the trailing
- * "ST 12345" segment, or the second segment stripped of state/zip.
+ * Pull a city out of a US-style address: drop a trailing country and any
+ * state/ZIP segments, then take the last segment left with any trailing
+ * "ST 12345" cut off. "3165 E Greenhurst Rd, Nampa, ID 83686, USA" gives
+ * "Nampa". Never a state or a ZIP: null for a one-segment address, or
+ * when what is left has a digit in it (a street or a suite).
  */
 export function cityFromAddress(address: string | null): string | null {
   if (!address) return null
@@ -211,15 +219,11 @@ export function cityFromAddress(address: string | null): string | null {
     .split(',')
     .map((p) => p.trim())
     .filter(Boolean)
-  if (parts.length >= 3) return parts[parts.length - 2] || null
-  if (parts.length === 2) {
-    const city = parts[1]
-      .replace(/\s+[A-Z]{2}\s*\d{5}(?:-\d{4})?$/, '')
-      .replace(/\s+[A-Z]{2}$/, '')
-      .trim()
-    return city || null
-  }
-  return null
+  if (parts.length < 2) return null
+  while (parts.length > 0 && COUNTRY_SEGMENT.test(parts[parts.length - 1])) parts.pop()
+  while (parts.length > 0 && STATE_ZIP_SEGMENT.test(parts[parts.length - 1])) parts.pop()
+  const city = (parts[parts.length - 1] ?? '').replace(/\s+[A-Z]{2}(?:\s+\d{5}(?:-\d{4})?)?$/, '').trim()
+  return city && !/\d/.test(city) ? city : null
 }
 
 export function phoneHrefOf(phone: string | null): string | null {

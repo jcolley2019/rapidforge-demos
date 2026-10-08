@@ -42,6 +42,20 @@ describe('UtilityBar', () => {
     expect(container.querySelector('.ub-call')).not.toBeNull()
   })
 
+  it('shows the phone once when the page action is itself the call (All Plumbing & Sewer)', () => {
+    const site = toSiteContent({
+      ...acmeBrief,
+      primary_cta: { label: `Call ${acmeBrief.phone}`, kind: 'phone', href: 'tel:2085550142' },
+    })
+    for (const s of [site, { ...site, utilityLine: null }]) {
+      const { container } = render(<UtilityBar site={s} />)
+      const links = [...container.querySelectorAll('a')]
+      expect(links.map((a) => a.getAttribute('href'))).toEqual(['tel:2085550142'])
+      expect(container.querySelector('.ub-book')).toBeNull()
+      expect(container.textContent?.split(acmeBrief.phone!).length).toBe(2)
+    }
+  })
+
   it('hides when there is no utility line and no phone, as on the sparse brief', () => {
     expect(render(<UtilityBar site={sparseSite} />).container.innerHTML).toBe('')
   })

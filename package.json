@@ -14,6 +14,7 @@
     "vault": "node scripts/vault-capture.mjs && node scripts/vault-ingest.mjs && node scripts/vault-distill.mjs",
     "intake": "tsx src/intake/cli.ts",
     "deploy": "tsx src/deploy/cli.ts",
+    "demo": "tsx src/demo/cli.ts",
     "env:push": "tsx src/deploy/env-push.ts"
   },
   "dependencies": {

@@ -5,12 +5,15 @@ import type { SiteContent } from '../brief/site-content'
  * and the page's book-or-request action. Renders nothing when the brief has
  * neither a utility line nor a phone. The line's parts after the first carry
  * `ub-more`, so a phone can keep the hours note and drop the towns rather
- * than cut both off mid-word. Structural class names only (ub, ub-line,
- * ub-more, ub-call, ub-book); each variant styles them in its own scope.
+ * than cut both off mid-word. When the page's action already dials the
+ * phone (a brief whose CTA is "Call ..."), only the call link shows, so the
+ * number appears once. Structural class names only (ub, ub-line, ub-more,
+ * ub-call, ub-book); each variant styles them in its own scope.
  */
 export default function UtilityBar({ site, wrapClassName = '' }: { site: SiteContent; wrapClassName?: string }) {
   if (!site.utilityLine && !site.phoneHref) return null
   const parts = site.utilityLine ? site.utilityLine.split(' · ') : []
+  const bookDials = site.phoneHref !== null && site.cta.href === site.phoneHref
   return (
     <div className="ub">
       <div className={`ub-inner ${wrapClassName}`.trim()}>
@@ -30,9 +33,11 @@ export default function UtilityBar({ site, wrapClassName = '' }: { site: SiteCon
               Call {site.phone}
             </a>
           )}
-          <a href={site.cta.href} className="ub-book">
-            {site.navCtaLabel}
-          </a>
+          {!bookDials && (
+            <a href={site.cta.href} className="ub-book">
+              {site.navCtaLabel}
+            </a>
+          )}
         </div>
       </div>
     </div>

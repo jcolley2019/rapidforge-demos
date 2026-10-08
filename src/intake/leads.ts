@@ -14,6 +14,9 @@ export const LEADS_ENV_KEYS = ['LEADS_SUPABASE_URL', 'LEADS_SUPABASE_SERVICE_ROL
 /** Flag text for the intake report when the lead brief's photos are dropped. */
 export const LEAD_PHOTOS_SKIPPED = 'lead photos skipped (worker-only URLs); site photos used'
 
+/** The failure when the business has no completed audit with a design brief: where in the leads app to make one. */
+export const NO_DESIGN_BRIEF = 'No design brief yet — open the lead in RapidForge Leads, Design Brief tab, click Design brief, then rerun.'
+
 interface LeadsEnv {
   url: string
   key: string
@@ -110,11 +113,7 @@ export async function fetchLeadBrief(businessId: string): Promise<LeadBrief> {
     }),
   )
   const audit = audits[0] as { design_brief?: unknown } | undefined
-  if (!audit || !audit.design_brief || typeof audit.design_brief !== 'object') {
-    throw new Error(
-      `leads Supabase: ${typeof business.name === 'string' ? business.name : businessId} has no completed audit with a design brief — run the audit and generate the design brief in the leads dashboard first`,
-    )
-  }
+  if (!audit || !audit.design_brief || typeof audit.design_brief !== 'object') throw new Error(NO_DESIGN_BRIEF)
 
   const candidate = { ...(audit.design_brief as Record<string, unknown>) }
   const coerced: string[] = []

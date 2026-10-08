@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { LEAD_PHOTOS_SKIPPED, fetchLeadBrief } from './leads'
+import { LEAD_PHOTOS_SKIPPED, NO_DESIGN_BRIEF, fetchLeadBrief } from './leads'
 import { mergeBrief } from './merge'
 
 const SUPABASE = 'https://leads-project.supabase.co'
@@ -99,11 +99,10 @@ describe('fetchLeadBrief', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 
-  it('says to run the audit and the design brief when no completed audit has one', async () => {
+  it('says where in the leads app to make the design brief when no completed audit has one', async () => {
     rows([BUSINESS], [])
-    await expect(fetchLeadBrief(BUSINESS_ID)).rejects.toThrow(
-      'no completed audit with a design brief — run the audit and generate the design brief in the leads dashboard first',
-    )
+    await expect(fetchLeadBrief(BUSINESS_ID)).rejects.toThrow(NO_DESIGN_BRIEF)
+    expect(NO_DESIGN_BRIEF).toBe('No design brief yet — open the lead in RapidForge Leads, Design Brief tab, click Design brief, then rerun.')
   })
 
   it('empties photo_urls for the merge, counts what it dropped, and lets the site photos fill in', async () => {

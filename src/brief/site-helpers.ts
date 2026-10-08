@@ -1,8 +1,26 @@
 import type { SiteBadge, SiteContent, SiteHoursRow } from './site-content'
 
-/** "7:00 AM – 6:00 PM", or "Closed" when either side is missing. */
+/**
+ * A clock time as the site shows it, 12-hour: the leads app's "06:00" and
+ * "20:00" read "6:00 AM" and "8:00 PM", and "7:00 am" or "7am" read
+ * "7:00 AM". Anything else comes back as given, trimmed.
+ */
+export function formatTime(value: string): string {
+  const time = value.trim()
+  const h24 = /^([01]?\d|2[0-4]):([0-5]\d)(?::[0-5]\d)?$/.exec(time)
+  if (h24) {
+    const hour = Number(h24[1])
+    if (hour === 24 && h24[2] !== '00') return time
+    return `${hour % 12 || 12}:${h24[2]} ${hour < 12 || hour === 24 ? 'AM' : 'PM'}`
+  }
+  const h12 = /^(1[0-2]|0?[1-9])(?::([0-5]\d))?\s*([ap])\.?\s*m\.?$/i.exec(time)
+  if (h12) return `${Number(h12[1])}:${h12[2] ?? '00'} ${h12[3].toUpperCase()}M`
+  return time
+}
+
+/** "7:00 AM – 6:00 PM" whichever clock the brief used, or "Closed" when either side is missing. */
 export function hoursLabel(row: SiteHoursRow): string {
-  return row.open && row.close ? `${row.open} – ${row.close}` : 'Closed'
+  return row.open && row.close ? `${formatTime(row.open)} – ${formatTime(row.close)}` : 'Closed'
 }
 
 /** True when the Hours/Contact section has anything to show. */

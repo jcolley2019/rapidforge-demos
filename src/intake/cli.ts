@@ -9,7 +9,7 @@ import { DesignBriefSchema, type DesignBrief } from '../brief/design-brief'
 import { VISION_MODEL, createAiClient, describeError } from './ai'
 import { extractSite, type SiteExtract } from './extract'
 import { FETCH_TIMEOUT_MS, USER_AGENT, fetchSite } from './fetch'
-import { LEAD_PHOTOS_SKIPPED, fetchLeadBrief } from './leads'
+import { LEAD_PHOTOS_SKIPPED, fetchLeadBrief, type LeadBrief } from './leads'
 import { isEmpty, mergeBrief, parseLeadBrief, rebaseAssets, type SiteFields } from './merge'
 import { assertLeadPath, defaultSlug, leadPaths, type LeadPaths } from './paths'
 import { collectPhotoUrls, downloadImages, selectPhotos, type KeptPhoto } from './photos'
@@ -28,6 +28,9 @@ import { mapTaggedPhotos, tagPhotos, type PhotoPlan, type Tagged } from './visio
  * RFD.LEADS.10b: `--lead <businessId>` takes the lead brief from the leads
  * Supabase instead of a file (see leads.ts). Its photo_urls are worker-only
  * routes, so they are dropped and the site's own photos fill in.
+ *
+ * RFD.LEADS.10c: the --lead path is exported as runIntake(), which
+ * `npm run demo` calls in-process; importing this file does not run main().
  */
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
@@ -226,14 +229,13 @@ async function main(argv: string[]): Promise<number> {
     return 0
   }
   if (values.lead !== undefined && values.brief !== undefined) {
-    console.error(`--lead and --brief cannot be used together: --lead fetches the brief that --brief would read.\n\n${USAGE}`)
-    return 2
+    throw new IntakeError('brief', '--lead and --brief cannot be used together: --lead fetches the brief that --brief would read.', 2)
   }
-  if (values.dry && values.lead === undefined) {
-    console.error(`--dry only applies with --lead.\n\n${USAGE}`)
-    return 2
+  if (values.dry && values.lead === undefined) throw new IntakeError('brief', '--dry only applies with --lead.', 2)
+  if (values.lead !== undefined) {
+    await runIntake({ lead: values.lead, url: values.url, slug: values.slug, dry: values.dry })
+    return 0
   }
-  if (values.lead !== undefined) return intakeLead(values)
   if (!values.url) {
     console.error(USAGE)
     return 2
@@ -250,66 +252,103 @@ async function main(argv: string[]): Promise<number> {
     }
   }
   const paths = leadPaths(ROOT, values.slug ?? defaultSlug(lead?.business_name, url))
-  return intake({ url, lead, paths })
+  await intake({ url, lead, paths })
+  return 0
+}
+
+export type IntakeStage = 'brief' | 'intake'
+
+/**
+ * Why an intake stopped: at "brief" (reading the lead and finding its
+ * site) or at "intake" (crawl through write). Code 2 is a usage error,
+ * which the CLI prints with USAGE.
+ */
+export class IntakeError extends Error {
+  readonly stage: IntakeStage
+  readonly code: 1 | 2
+
+  constructor(stage: IntakeStage, message: string, code: 1 | 2 = 1) {
+    super(message)
+    this.name = 'IntakeError'
+    this.stage = stage
+    this.code = code
+  }
+}
+
+export interface IntakeLeadOptions {
+  lead: string
+  url?: string
+  slug?: string
+  dry?: boolean
+}
+
+export interface IntakeLeadResult {
+  businessId: string
+  businessName: string
+  /** The lead's folder and fixture name; `npm run deploy -- --slug` takes it. */
+  slug: string
+  url: string
 }
 
 /**
- * --lead: read the business and its brief, find the website (--url, else
+ * --lead: read the business and its brief, find the website (url, else
  * the business record), always keep the raw rows, then the usual intake
- * with that brief as the lead brief, or stop there with --dry.
+ * with that brief as the lead brief, or stop there with dry. Throws
+ * IntakeError with the stage it stopped at.
  */
-async function intakeLead(values: { lead?: string; url?: string; slug?: string; dry?: boolean }): Promise<number> {
-  const businessId = values.lead?.trim() ?? ''
-  if (!businessId) {
-    console.error(`--lead needs a business id.\n\n${USAGE}`)
-    return 2
-  }
+export async function runIntake(opts: IntakeLeadOptions): Promise<IntakeLeadResult> {
+  const businessId = opts.lead.trim()
+  if (!businessId) throw new IntakeError('brief', '--lead needs a business id.', 2)
   loadEnv()
   step(`lead ${businessId}`)
   let url: string
-  let fetched: Awaited<ReturnType<typeof fetchLeadBrief>>
+  let fetched: LeadBrief
   try {
     fetched = await fetchLeadBrief(businessId)
     note(`${fetched.business.name}: design brief read from the leads Supabase`)
-    let website = values.url ?? null
+    let website = opts.url ?? null
     if (!website) {
       if (!fetched.business.website_url) {
-        console.error(`Business ${businessId} has no website_url in the leads app; pass --url https://<prospect site>.\n\n${USAGE}`)
-        return 2
+        throw new IntakeError('brief', `Business ${businessId} has no website_url in the leads app; pass --url https://<prospect site>.`, 2)
       }
       website = fetched.business.website_url
       note(`website ${website} (from the leads app)`)
     }
     url = siteUrl(website)
   } catch (error) {
-    console.error(`\n${describeError(error)}`)
-    return 1
+    throw error instanceof IntakeError ? error : new IntakeError('brief', describeError(error))
   }
   for (const line of fetched.coerced) note(`coerced ${line}`)
   if (fetched.skippedPhotos > 0) note(`${LEAD_PHOTOS_SKIPPED} (${fetched.skippedPhotos} skipped)`)
 
   // Host-based, as a --url-only intake names it, so a lead re-intaken from the API keeps its folder.
-  const paths = leadPaths(ROOT, values.slug ?? defaultSlug(null, url))
-  await writeApiResponse(paths, fetched.raw)
-  note(`leads/${paths.slug}/lead-api-brief.json`)
+  const paths = leadPaths(ROOT, opts.slug ?? defaultSlug(null, url))
+  const result: IntakeLeadResult = { businessId, businessName: fetched.business.name, slug: paths.slug, url }
+  try {
+    await writeApiResponse(paths, fetched.raw)
+    note(`leads/${paths.slug}/lead-api-brief.json`)
 
-  if (values.dry) {
-    const preview = mergeBrief(fetched.fields, {})
-    console.log(`\n${summaryTable(preview.brief, preview.provenance)}`)
-    console.log(`\nDry run: stopped before crawling ${url}. Rerun without --dry to intake it.`)
-    return 0
+    if (opts.dry) {
+      const preview = mergeBrief(fetched.fields, {})
+      console.log(`\n${summaryTable(preview.brief, preview.provenance)}`)
+      console.log(`\nDry run: stopped before crawling ${url}. Rerun without --dry to intake it.`)
+      return result
+    }
+
+    await intake({
+      url,
+      lead: fetched.fields,
+      paths,
+      apiResponse: fetched.raw,
+      flags: [
+        ...fetched.coerced.map((line) => `lead: coerced ${line}`),
+        ...(fetched.skippedPhotos > 0 ? [LEAD_PHOTOS_SKIPPED] : []),
+      ],
+    })
+  } catch (error) {
+    throw error instanceof IntakeError ? error : new IntakeError('intake', `intake failed: ${describeError(error)}`)
   }
-
-  return intake({
-    url,
-    lead: fetched.fields,
-    paths,
-    apiResponse: fetched.raw,
-    flags: [
-      ...fetched.coerced.map((line) => `lead: coerced ${line}`),
-      ...(fetched.skippedPhotos > 0 ? [LEAD_PHOTOS_SKIPPED] : []),
-    ],
-  })
+  return result
 }
 
 async function intake(args: {
@@ -318,7 +357,7 @@ async function intake(args: {
   paths: LeadPaths
   apiResponse?: unknown
   flags?: string[]
-}): Promise<number> {
+}): Promise<void> {
   const { url, lead, paths } = args
   const ai = createAiClient()
   const flags: string[] = [...(args.flags ?? [])]
@@ -389,9 +428,8 @@ async function intake(args: {
     merged = mergeBrief(lead, fields)
     appBrief = DesignBriefSchema.parse(rebaseAssets(merged.brief, paths.publicBase))
   } catch (error) {
-    console.error('\nThe brief does not validate; nothing was written.')
-    console.error(error instanceof ZodError ? JSON.stringify(error.issues, null, 2) : describeError(error))
-    return 1
+    const detail = error instanceof ZodError ? JSON.stringify(error.issues, null, 2) : describeError(error)
+    throw new IntakeError('intake', `The brief does not validate; nothing was written.\n${detail}`)
   }
 
   const use = (t: Tagged<KeptPhoto>): PhotoRow['use'] =>
@@ -414,15 +452,29 @@ async function intake(args: {
   console.log(`\n${summaryTable(merged.brief, merged.provenance)}`)
   if (flags.length > 0) console.log(`\nFlags (also in leads/${paths.slug}/intake-report.md):\n${flags.map((f) => `  - ${f}`).join('\n')}`)
   console.log(`\nRun it:\n  VITE_BRIEF=${paths.briefName} npm run dev\n  http://localhost:5173/?brief=${paths.briefName}`)
-  return 0
 }
 
-main(process.argv.slice(2)).then(
-  (code) => {
-    process.exitCode = code
-  },
-  (error: unknown) => {
-    console.error(`\nintake failed: ${error instanceof Error ? (error.stack ?? error.message) : String(error)}`)
-    process.exitCode = 1
-  },
-)
+/** True when this file is the process entry (`npm run intake`), not imported (`npm run demo`). */
+function isEntry(): boolean {
+  const entry = process.argv[1]
+  if (!entry) return false
+  const same = (p: string) => (process.platform === 'win32' ? p.toLowerCase() : p)
+  return same(resolve(entry)) === same(fileURLToPath(import.meta.url))
+}
+
+if (isEntry()) {
+  main(process.argv.slice(2)).then(
+    (code) => {
+      process.exitCode = code
+    },
+    (error: unknown) => {
+      if (error instanceof IntakeError) {
+        console.error(`\n${error.message}${error.code === 2 ? `\n\n${USAGE}` : ''}`)
+        process.exitCode = error.code
+        return
+      }
+      console.error(`\nintake failed: ${error instanceof Error ? (error.stack ?? error.message) : String(error)}`)
+      process.exitCode = 1
+    },
+  )
+}

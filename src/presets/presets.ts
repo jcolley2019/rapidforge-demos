@@ -1,5 +1,4 @@
 import presetsJson from './presets.json'
-import { copyFamilyFor } from '../brief/copy'
 
 /**
  * Presets: five trade-ready design directions per vertical. Four come from
@@ -64,13 +63,36 @@ for (const set of Object.values(BY_VERTICAL)) {
   if (i >= 0) set[i] = sharedDark
 }
 
+/** The leads app's vertical strings, and ours, by the preset set each renders. */
+const PRESET_VERTICAL_OF = new Map<string, PresetVertical>([
+  ['plumber', 'plumbing'],
+  ['plumbing_contractor', 'plumbing'],
+  ['plumbing', 'plumbing'],
+  ['hvac', 'hvac'],
+  ['hvac_contractor', 'hvac'],
+  ['heating_and_cooling', 'hvac'],
+  ['air_conditioning', 'hvac'],
+  ['electrician', 'electrical'],
+  ['electrical_contractor', 'electrical'],
+  ['electrical', 'electrical'],
+])
+
+const warnedVerticals = new Set<string>()
+
 /**
- * The preset vertical a brief's vertical resolves to: its copy family when
- * that family has presets, else plumbing (so a "roofing" brief still renders).
+ * The preset vertical a brief's vertical resolves to. Anything unmapped
+ * renders the plumbing set (so a "roofing" brief still renders) and says
+ * so once, in one line on stderr.
  */
 export function presetVerticalOf(vertical: string): PresetVertical {
-  const family = copyFamilyFor(vertical)
-  return family in BY_VERTICAL ? (family as PresetVertical) : 'plumbing'
+  const key = vertical.trim().toLowerCase()
+  const known = PRESET_VERTICAL_OF.get(key)
+  if (known) return known
+  if (!warnedVerticals.has(key)) {
+    warnedVerticals.add(key)
+    console.warn(`presets: vertical "${vertical}" has no preset set; using plumbing`)
+  }
+  return 'plumbing'
 }
 
 export function presetsFor(vertical: string): Preset[] {

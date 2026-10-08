@@ -33,3 +33,4 @@ vaults/raw/
 /leads/
 src/brief/fixtures/lead-*.json
 public/leads/
+.env*

@@ -282,4 +282,32 @@ describe('helpers', () => {
     expect(cityFromAddress('Just a street')).toBeNull()
     expect(cityFromAddress(null)).toBeNull()
   })
+
+  it('cityFromAddress takes the city, never the state or ZIP, when the address ends in a country', () => {
+    expect(cityFromAddress('3165 E Greenhurst Rd, Nampa, ID 83686, USA')).toBe('Nampa')
+    expect(cityFromAddress('3165 E Greenhurst Rd, Nampa, ID, 83686')).toBe('Nampa')
+    expect(cityFromAddress('3165 E Greenhurst Rd, Nampa ID 83686, United States')).toBe('Nampa')
+    expect(cityFromAddress('Nampa, ID')).toBe('Nampa')
+    expect(cityFromAddress('3165 E Greenhurst Rd, ID 83686, USA')).toBeNull()
+    expect(cityFromAddress('3165 E Greenhurst Rd, Suite 4, ID 83686')).toBeNull()
+  })
+
+  it('names the city from the address in the hero when the brief has no service areas (All Plumbing & Sewer)', () => {
+    const site = toSiteContent({
+      ...acmeBrief,
+      business_name: 'All Plumbing & Sewer',
+      vertical: 'plumber',
+      address: '3165 E Greenhurst Rd, Nampa, ID 83686, USA',
+      service_areas: [],
+      tone_descriptors: ['dependable'],
+      badges: [],
+      stats: [],
+    })
+    expect(site.city).toBe('Nampa')
+    expect(site.headline).toBe('Nampa plumbers who show up on time.')
+    expect(site.subhead).toContain('across Nampa')
+    expect(site.trust).toContain('Serving Nampa')
+    const copy = [site.headline, site.subhead, ...site.trust, ...Object.values(site.registers).flatMap((r) => [r.headline, r.subhead])]
+    for (const line of copy) expect(line).not.toMatch(/\bID\b|83686/)
+  })
 })
