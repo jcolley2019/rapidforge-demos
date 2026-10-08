@@ -27,7 +27,7 @@ export const variants: VariantMeta[] = [
     slug: 'heritage',
     name: 'Clean Trust',
     description:
-      'Clean and modern: pale blue ground, orange call button, easy to scan.',
+      'Established and trustworthy: navy and blue, with your license and awards out front.',
     palette: ['#EFF6FF', '#FFFFFF', '#1E40AF', '#1E3A8A'],
     brick: 'RFD.PRESETS.2c',
     complete: true,
@@ -36,7 +36,7 @@ export const variants: VariantMeta[] = [
     slug: 'geospatial',
     name: 'Bold Local',
     description:
-      'Bold and direct: big photo, navy blocks, safety-orange call button, condensed headlines.',
+      'Bold and local: your crew in a big photo, one strong red, and your ratings right on it.',
     palette: ['#FFFFFF', '#F1F5F9', '#EA580C', '#0F172A'],
     brick: 'RFD.PRESETS.2c',
     complete: true,
@@ -45,7 +45,7 @@ export const variants: VariantMeta[] = [
     slug: 'cleanpro',
     name: 'Premium Dark',
     description:
-      'Premium and calm: dark background, gold call button, elegant serif headlines.',
+      'Dark and gold on purpose: none of the 36 contractor sites we studied looks like this, so you will not look like anyone else in town.',
     palette: ['#121212', '#1C1917', '#CA8A04', '#FAFAF9'],
     brick: 'RFD.PRESETS.2c',
     complete: true,
@@ -54,7 +54,7 @@ export const variants: VariantMeta[] = [
     slug: 'texas',
     name: 'Friendly Family',
     description:
-      'Friendly and local: rounded corners, soft shadows, family blue with an amber call button.',
+      'Family-owned and friendly: your crew up front, royal blue panels, and coupons right under the photo.',
     palette: ['#F8FAFC', '#FFFFFF', '#2563EB', '#0F172A'],
     brick: 'RFD.PRESETS.2c',
     complete: true,
@@ -63,7 +63,7 @@ export const variants: VariantMeta[] = [
     slug: 'aerial',
     name: 'Modern Minimal',
     description:
-      'Modern and minimal: white space, thin lines, one blue accent, nothing extra.',
+      'Built for the job site: heavy type, black and red, and copy that talks spec and schedule.',
     palette: ['#FFFFFF', '#F8FAFC', '#2563EB', '#1E293B'],
     brick: 'RFD.PRESETS.2c',
     complete: true,

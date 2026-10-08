@@ -37,7 +37,15 @@ describe('resolveStem', () => {
 
 describe('this build (no VITE_BRIEF)', () => {
   it('still resolves the Acme and sparse fixtures', () => {
-    for (const stem of ['acme-plumbing', 'acme-commercial', 'acme-hvac', 'acme-electric', 'sparse-electric']) {
+    for (const stem of [
+      'acme-plumbing',
+      'acme-commercial',
+      'acme-hvac',
+      'acme-hvac-commercial',
+      'acme-electric',
+      'acme-electric-commercial',
+      'sparse-electric',
+    ]) {
       expect(siteContentFor(stem)?.name, stem).toBeTruthy()
     }
   })

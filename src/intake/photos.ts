@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import * as cheerio from 'cheerio'
 import sharp from 'sharp'
+import { FULL_PHOTO_WIDTH, PHOTO_WIDTHS } from '../brief/photo-sizes'
 import { imageSource } from './extract'
 import { FETCH_TIMEOUT_MS, USER_AGENT, absoluteUrl, hostKey, type FetchedPage, type Fetcher } from './fetch'
 
@@ -8,12 +9,12 @@ import { FETCH_TIMEOUT_MS, USER_AGENT, absoluteUrl, hostKey, type FetchedPage, t
  * Step 3: the site's own photos. Collect <img> and og:image URLs on the
  * site's host or an image CDN, drop svg/gif/icons, dedupe, download up to
  * 20, keep those at least 600px on the long edge, and re-encode each as a
- * JPEG no larger than 1600px.
+ * JPEG no larger than 1600px, plus 800 and 1200px copies for the srcset.
  */
 
 export const MAX_DOWNLOADS = 20
 export const MIN_LONG_EDGE = 600
-export const MAX_LONG_EDGE = 1600
+export const MAX_LONG_EDGE = FULL_PHOTO_WIDTH
 const JPEG_QUALITY = 82
 
 const NOT_A_PHOTO_EXT = /\.(?:svg|gif|ico)$/i
@@ -30,9 +31,12 @@ export interface PhotoCandidate {
 export interface KeptPhoto {
   /** Where the photo came from on the prospect's site. */
   url: string
+  /** At most 1600px on the long edge. */
   jpeg: Buffer
   width: number
   height: number
+  /** The srcset's smaller copies, at most `cap` px wide (800, then 1200) and never wider than `jpeg`. */
+  smaller: Array<{ cap: number; jpeg: Buffer }>
 }
 
 export function isSameHostOrCdn(url: string, siteUrl: string): boolean {
@@ -123,7 +127,10 @@ export async function downloadImages(
 /**
  * The candidates worth keeping, in order: deduped by URL and by identical
  * bytes, svg/gif dropped, at least 600px on the long edge, each re-encoded
- * as a JPEG at most 1600px on the long edge. Unreadable files are dropped.
+ * as a JPEG at most 1600px on the long edge, with copies at most 800 and
+ * 1200px wide made from the original for the srcset. A copy is never wider
+ * than the 1600 one, so a narrow or portrait photo's copies can match it.
+ * Unreadable files are dropped.
  */
 export async function selectPhotos(candidates: PhotoCandidate[]): Promise<KeptPhoto[]> {
   const kept: KeptPhoto[] = []
@@ -138,13 +145,20 @@ export async function selectPhotos(candidates: PhotoCandidate[]): Promise<KeptPh
       const meta = await sharp(buffer).metadata()
       if (meta.format === 'svg' || meta.format === 'gif') continue
       if (Math.max(meta.width ?? 0, meta.height ?? 0) < MIN_LONG_EDGE) continue
-      const { data, info } = await sharp(buffer)
-        .rotate()
-        .resize({ width: MAX_LONG_EDGE, height: MAX_LONG_EDGE, fit: 'inside', withoutEnlargement: true })
-        .flatten({ background: '#ffffff' })
-        .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
-        .toBuffer({ resolveWithObject: true })
-      kept.push({ url, jpeg: data, width: info.width, height: info.height })
+      const encode = (box: { width: number; height?: number }) =>
+        sharp(buffer)
+          .rotate()
+          .resize({ ...box, fit: 'inside', withoutEnlargement: true })
+          .flatten({ background: '#ffffff' })
+          .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+          .toBuffer({ resolveWithObject: true })
+      const { data, info } = await encode({ width: MAX_LONG_EDGE, height: MAX_LONG_EDGE })
+      // srcset's w descriptors are widths, so the copies are capped by width.
+      const smaller: KeptPhoto['smaller'] = []
+      for (const cap of PHOTO_WIDTHS) {
+        if (cap < MAX_LONG_EDGE) smaller.push({ cap, jpeg: (await encode({ width: Math.min(cap, info.width) })).data })
+      }
+      kept.push({ url, jpeg: data, width: info.width, height: info.height, smaller })
     } catch {
       // Not an image sharp can read; skip it.
     }

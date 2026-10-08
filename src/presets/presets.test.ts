@@ -191,6 +191,12 @@ describe('presets.json', () => {
   })
 })
 
+describe('variant registry', () => {
+  it('describes each variant with the picker card text of the default build (plumbing)', () => {
+    for (const v of variants) expect(v.description, v.slug).toBe(presetForVariant(v.slug, 'plumbing').description)
+  })
+})
+
 describe('variantTokens', () => {
   it('leaves plumbing (and any vertical that falls back to it) on the stylesheet defaults', () => {
     for (const v of variants) {

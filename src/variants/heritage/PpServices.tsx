@@ -1,4 +1,5 @@
 import { useSite } from '../../brief/site-context'
+import { PHOTO_SIZES } from '../../brief/photo-sizes'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Reveal from '../../components/Reveal'
 import { presetForVariant } from '../../presets/presets'
@@ -24,6 +25,7 @@ export default function PpServices() {
                     aspectRatio="4 / 3"
                     seed={i + 1}
                     loading="lazy"
+                    sizes={PHOTO_SIZES.tile}
                   />
                 </div>
                 <div className="pp-tile-body">

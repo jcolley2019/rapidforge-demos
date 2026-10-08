@@ -1,10 +1,11 @@
 import { useSite } from '../../brief/site-context'
-import { navLinks } from '../../brief/site-helpers'
+import { navLinks, navPhoneHref } from '../../brief/site-helpers'
 import BrandMark from '../../components/BrandMark'
 
 export default function DhNav() {
   const site = useSite()
   const links = navLinks(site, 'Hours & Location')
+  const phoneHref = navPhoneHref(site)
   return (
     <header className="dh-nav">
       <div className="dh-wrap dh-nav-inner">
@@ -19,8 +20,8 @@ export default function DhNav() {
           ))}
         </nav>
         <div className="dh-nav-right">
-          {site.phoneHref && (
-            <a href={site.phoneHref} className="dh-nav-phone dh-num" aria-label={`Call ${site.phone}`}>
+          {phoneHref && (
+            <a href={phoneHref} className="dh-nav-phone dh-num" aria-label={`Call ${site.phone}`}>
               <span className="dh-nav-number">{site.phone}</span>
               <span className="dh-nav-call">Call</span>
             </a>

@@ -1,10 +1,11 @@
 import { useSite } from '../../brief/site-context'
-import { navLinks } from '../../brief/site-helpers'
+import { navLinks, navPhoneHref } from '../../brief/site-helpers'
 import BrandMark from '../../components/BrandMark'
 
 export default function IsNav() {
   const site = useSite()
   const links = navLinks(site, 'Hours & Location')
+  const phoneHref = navPhoneHref(site)
   return (
     <header className="is-nav">
       <div className="is-wrap is-nav-inner">
@@ -19,8 +20,8 @@ export default function IsNav() {
           ))}
         </nav>
         <div className="is-nav-right">
-          {site.phoneHref && (
-            <a href={site.phoneHref} className="is-nav-phone is-num" aria-label={`Call ${site.phone}`}>
+          {phoneHref && (
+            <a href={phoneHref} className="is-nav-phone is-num" aria-label={`Call ${site.phone}`}>
               <span className="is-nav-number">{site.phone}</span>
               <span className="is-nav-call">Call</span>
             </a>

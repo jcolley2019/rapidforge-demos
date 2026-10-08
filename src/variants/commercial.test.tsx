@@ -9,7 +9,11 @@ import { variants } from './variants'
 import AerialPage from './aerial/AerialPage'
 import HeritagePage from './heritage/HeritagePage'
 
-const commercial = siteContentFor('acme-commercial')!
+/** Each trade's commercial twin of its Acme fixture. */
+const COMMERCIAL = ['acme-commercial', 'acme-hvac-commercial', 'acme-electric-commercial'].map((stem) => ({
+  stem,
+  site: siteContentFor(stem)!,
+}))
 const FOLLOWING = Node.DOCUMENT_POSITION_FOLLOWING
 
 function renderRoute(path: string) {
@@ -21,42 +25,44 @@ function renderRoute(path: string) {
 }
 
 /**
- * The segment switch: the acme-commercial fixture renders every variant in
- * commercial mode, with a bid request in the nav, a subhead that names the
- * audience, no offers, and "Who we work with" where the towns would be.
+ * The segment switch: each trade's commercial fixture renders every variant
+ * in commercial mode, with a bid request in the nav, a subhead that names
+ * the audience, no offers, and "Who we work with" where the towns would be.
  */
-describe('variants on the commercial brief', () => {
-  it('is actually a commercial brief', () => {
-    expect(commercial.segment).toBe('commercial')
-    expect(commercial.mode).toBe('commercial')
-  })
-
-  for (const variant of variants) {
-    it(`renders /${variant.slug} (${variant.name}) in commercial mode`, () => {
-      renderRoute(`/${variant.slug}?brief=acme-commercial`)
-      const nav = document.querySelector('header')!
-      const navCta = [...nav.querySelectorAll('a')].find((a) => a.textContent === 'Request a bid')
-      expect(navCta).toBeDefined()
-      expect(document.querySelector('.ub-book')?.textContent).toBe('Request a bid')
-
-      const hero = document.querySelector('section[aria-label="Introduction"]')!
-      expect(hero.textContent).toMatch(/general contractors, property managers and builders/)
-      // The bid request leads; the call follows.
-      const actions = [...hero.querySelectorAll('a[href]')]
-      expect(actions[0].textContent).toBe('Request a bid')
-      expect(actions[1].getAttribute('href')).toBe('tel:2085550142')
-
-      expect(document.querySelector('.of')).toBeNull()
-      expect(document.querySelector('#areas')).toBeNull()
-      const who = document.querySelector('#who')
-      expect(who).not.toBeNull()
-      expect(who!.querySelector('h2')?.textContent).toBe('Who we work with')
-      const tiles = who!.querySelectorAll('.ww-tile')
-      expect(tiles.length).toBeGreaterThanOrEqual(3)
-      expect(tiles.length).toBeLessThanOrEqual(4)
-      // In the slot the service areas take on a residential page.
-      expect(document.querySelector('#services')!.compareDocumentPosition(who!) & FOLLOWING).toBeTruthy()
+describe('variants on the commercial briefs', () => {
+  for (const { stem, site: commercial } of COMMERCIAL) {
+    it(`${stem} is actually a commercial brief`, () => {
+      expect(commercial.segment).toBe('commercial')
+      expect(commercial.mode).toBe('commercial')
     })
+
+    for (const variant of variants) {
+      it(`renders /${variant.slug} (${variant.name}) in commercial mode on ${stem}`, () => {
+        renderRoute(`/${variant.slug}?brief=${stem}`)
+        const nav = document.querySelector('header')!
+        const navCta = [...nav.querySelectorAll('a')].find((a) => a.textContent === 'Request a bid')
+        expect(navCta).toBeDefined()
+        expect(document.querySelector('.ub-book')?.textContent).toBe('Request a bid')
+
+        const hero = document.querySelector('section[aria-label="Introduction"]')!
+        expect(hero.textContent).toMatch(/general contractors, property managers and builders/)
+        // The bid request leads; the call follows.
+        const actions = [...hero.querySelectorAll('a[href]')]
+        expect(actions[0].textContent).toBe('Request a bid')
+        expect(actions[1].getAttribute('href')).toBe(commercial.phoneHref)
+
+        expect(document.querySelector('.of')).toBeNull()
+        expect(document.querySelector('#areas')).toBeNull()
+        const who = document.querySelector('#who')
+        expect(who).not.toBeNull()
+        expect(who!.querySelector('h2')?.textContent).toBe('Who we work with')
+        const tiles = who!.querySelectorAll('.ww-tile')
+        expect(tiles.length).toBeGreaterThanOrEqual(3)
+        expect(tiles.length).toBeLessThanOrEqual(4)
+        // In the slot the service areas take on a residential page.
+        expect(document.querySelector('#services')!.compareDocumentPosition(who!) & FOLLOWING).toBeTruthy()
+      })
+    }
   }
 
   it('switches a mixed brief to commercial in modern-minimal only', () => {

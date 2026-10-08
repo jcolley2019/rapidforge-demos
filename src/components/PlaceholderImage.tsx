@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react'
+import { photoSrcSet } from '../brief/photo-sizes'
 import type { PresetPalette } from '../presets/presets'
 
 export interface PlaceholderImageProps {
@@ -25,13 +26,17 @@ export interface PlaceholderImageProps {
   palette?: PresetPalette
   className?: string
   loading?: 'eager' | 'lazy'
+  /** How wide the slot renders (see PHOTO_SIZES); used when the photo comes in several sizes. */
+  sizes?: string
 }
 
 /**
  * A photo with a quiet gradient behind it. Renders the `<img>` when `src` is
  * given and swaps to the gradient only if the image errors, so a dead URL
  * never leaves a broken-image glyph on the page. Without `src` it is the
- * gradient alone.
+ * gradient alone. A photo that comes in several sizes (an intake photo or
+ * the Unsplash stock) gets a srcset, so a phone or a tile loads the 800 or
+ * 1200 copy instead of the 1600.
  */
 export default function PlaceholderImage({
   src,
@@ -47,12 +52,22 @@ export default function PlaceholderImage({
   palette,
   className = '',
   loading,
+  sizes,
 }: PlaceholderImageProps) {
   const [failed, setFailed] = useState(false)
 
   if (src && !failed) {
+    const srcSet = photoSrcSet(src)
     return (
-      <img src={src} alt={alt} className={className} loading={loading} onError={() => setFailed(true)} />
+      <img
+        src={src}
+        srcSet={srcSet}
+        sizes={srcSet ? sizes : undefined}
+        alt={alt}
+        className={className}
+        loading={loading}
+        onError={() => setFailed(true)}
+      />
     )
   }
 

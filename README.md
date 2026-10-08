@@ -57,6 +57,12 @@ It needs two keys in `.env` (see `.env.example`), and a one-time `npx vercel log
 - `LEADS_SUPABASE_URL`: the leads app's Supabase project URL
 - `LEADS_SUPABASE_SERVICE_ROLE_KEY`: that project's service-role key; server-side only. `npm run env:push` copies both to Vercel so `/api/pick` can save picks to `demo_picks`
 
+### Picker thumbnails
+
+The picker's cards show screenshots of each look. The committed ones in `public/previews/<vertical>/` are of the Acme fixtures, so local dev on a lead (`VITE_BRIEF=lead-<slug> npm run dev`, with or without `?brief=lead-<slug>`) still shows Acme on every card. Only a deploy shoots a lead's own: its Previews step serves the lead's build, shoots each look at 1280x800 and 390x844, and writes the shots over the Acme copies in the build output (`public/previews/` is never touched). A shot at or over 300 KB fails the deploy.
+
+`--skip-previews` (on `npm run demo` or `npm run deploy`) skips that step, so the deployed picker shows the Acme thumbnails too.
+
 ## Live tweaks with webedit
 
 Deploy a lead with the webedit hook switched on:

@@ -77,7 +77,11 @@ export interface SegmentTwins {
   commercial: string
 }
 
-const SEGMENT_TWINS: SegmentTwins[] = [{ residential: 'acme-plumbing', commercial: 'acme-commercial' }]
+const SEGMENT_TWINS: SegmentTwins[] = [
+  { residential: 'acme-plumbing', commercial: 'acme-commercial' },
+  { residential: 'acme-hvac', commercial: 'acme-hvac-commercial' },
+  { residential: 'acme-electric', commercial: 'acme-electric-commercial' },
+]
 
 /** The twin pair a stem belongs to, or null when it has no counterpart. */
 export function twinsFor(stem: string): SegmentTwins | null {

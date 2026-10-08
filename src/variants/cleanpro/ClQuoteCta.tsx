@@ -1,10 +1,10 @@
 import { useSite } from '../../brief/site-context'
-import { heroActions } from '../../brief/site-helpers'
+import { quoteActions } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function ClQuoteCta() {
   const site = useSite()
-  const { primary, secondary } = heroActions(site)
+  const { primary, secondary } = quoteActions(site)
   return (
     <section id="quote" className="cl-plate">
       <div className="cl-wrap cl-section">
@@ -17,16 +17,18 @@ export default function ClQuoteCta() {
             </a>
           )}
           <p className="cl-plate-sub mx-auto mt-5 max-w-xl">{site.subhead}</p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a href={primary.href} className={`cl-btn cl-btn-gold ${primary.call ? 'cl-num' : ''}`.trim()}>
-              {primary.label}
-            </a>
-            {secondary && (
-              <a href={secondary.href} className={`cl-btn cl-btn-outline ${secondary.call ? 'cl-num' : ''}`.trim()}>
-                {secondary.label}
+          {primary && (
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <a href={primary.href} className={`cl-btn cl-btn-gold ${primary.call ? 'cl-num' : ''}`.trim()}>
+                {primary.label}
               </a>
-            )}
-          </div>
+              {secondary && (
+                <a href={secondary.href} className={`cl-btn cl-btn-outline ${secondary.call ? 'cl-num' : ''}`.trim()}>
+                  {secondary.label}
+                </a>
+              )}
+            </div>
+          )}
         </Reveal>
       </div>
     </section>

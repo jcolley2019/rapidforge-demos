@@ -119,4 +119,13 @@ describe('copy house rules', () => {
     expect(a.headline).toBe('Nampa plumbers who show up on time.')
     expect(copyFamilyFor('electrician')).toBe('electrical')
   })
+
+  it("gives the leads app's air_conditioning vertical the HVAC copy, not the generic", () => {
+    expect(copyFamilyFor('air_conditioning')).toBe('hvac')
+    const ctx = contexts[0]
+    const brief = { ...acmeBrief, vertical: 'air_conditioning' }
+    expect(pickCopy(brief, ctx)).toEqual(pickCopy({ ...acmeBrief, vertical: 'hvac' }, ctx))
+    expect(pickCopy(brief, ctx)).not.toEqual(pickCopy({ ...acmeBrief, vertical: 'unmapped_trade' }, ctx))
+    expect(ctaHeadlineFor(copyFamilyFor('air_conditioning'), ctx)).toBe('Need heating or cooling help today?')
+  })
 })

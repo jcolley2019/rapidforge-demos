@@ -9,10 +9,20 @@ import {
   utilityLineOf,
   verticalLabelOf,
 } from './site-content'
-import { badgeFace, badgeScore, credentialLines, heroActions, servingHeading } from './site-helpers'
+import {
+  badgeFace,
+  badgeScore,
+  credentialLines,
+  heroActions,
+  navPhoneHref,
+  quoteActions,
+  servingHeading,
+} from './site-helpers'
 import { TRADE_PHOTOS } from './trade-photos'
 import acme from './fixtures/acme-plumbing.json'
 import commercial from './fixtures/acme-commercial.json'
+import hvacCommercial from './fixtures/acme-hvac-commercial.json'
+import electricCommercial from './fixtures/acme-electric-commercial.json'
 import hvac from './fixtures/acme-hvac.json'
 import electric from './fixtures/acme-electric.json'
 import sparse from './fixtures/sparse-electric.json'
@@ -38,6 +48,27 @@ describe('toSiteContent', () => {
     })
     expect(site.headline.length).toBeGreaterThan(0)
     expect(site.subhead.length).toBeGreaterThan(0)
+  })
+
+  it("maps each trade's commercial twin to the same business, in commercial mode, with a commercial blurb on every service", () => {
+    const twins = [
+      { residential: acme, commercial, vertical: 'plumbing' },
+      { residential: hvac, commercial: hvacCommercial, vertical: 'hvac' },
+      { residential: electric, commercial: electricCommercial, vertical: 'electrical' },
+    ]
+    for (const twin of twins) {
+      const home = toSiteContent(DesignBriefSchema.parse(twin.residential))
+      const site = toSiteContent(DesignBriefSchema.parse(twin.commercial))
+      expect([site.name, site.vertical, site.phone, site.address]).toEqual([home.name, twin.vertical, home.phone, home.address])
+      expect(site.mode).toBe('commercial')
+      expect(site.navCtaLabel).toBe('Request a bid')
+      expect(site.offers).toEqual([])
+      expect(site.services.length).toBeGreaterThanOrEqual(5)
+      for (const s of site.services) {
+        expect(s.blurb, s.title).not.toBe('')
+        expect(s.blurb, s.title).not.toMatch(/your home|your vehicle/)
+      }
+    }
   })
 
   it('carries the brief vertical as given', () => {
@@ -204,6 +235,31 @@ describe('toSiteContent', () => {
     expect(dials).toEqual({ primary: { label: 'Call now', href: 'tel:2085550142', call: true }, secondary: null })
   })
 
+  it('keeps the quote band from pointing at itself', () => {
+    // The sparse brief's only action is "#quote": the band has no button left.
+    expect(quoteActions(toSiteContent(sparseBrief))).toEqual({ primary: null, secondary: null })
+    // With a phone the call stays; the "#quote" action drops.
+    const withPhone = toSiteContent({ ...sparseBrief, phone: '(208) 555-0101' })
+    expect(heroActions(withPhone).secondary?.href).toBe('#quote')
+    expect(quoteActions(withPhone)).toEqual({
+      primary: { label: 'Call (208) 555-0101', href: 'tel:2085550101', call: true },
+      secondary: null,
+    })
+    // Any other brief keeps the hero's two.
+    const acmeSite = toSiteContent(acmeBrief)
+    expect(quoteActions(acmeSite)).toEqual(heroActions(acmeSite))
+  })
+
+  it("drops the nav's own phone link only when its button already dials", () => {
+    expect(navPhoneHref(toSiteContent(acmeBrief))).toBe('tel:2085550142')
+    expect(navPhoneHref(toSiteContent(sparseBrief))).toBeNull()
+    const callFirst = toSiteContent({
+      ...acmeBrief,
+      primary_cta: { label: 'Call (208) 555-0142', kind: 'phone', href: 'tel:2085550142' },
+    })
+    expect(navPhoneHref(callFirst)).toBeNull()
+  })
+
   it('switches a commercial brief: bid request, audience in the subhead, who-we-work-with tiles', () => {
     const site = toSiteContent(commercialBrief)
     expect(site.mode).toBe('commercial')
@@ -275,6 +331,13 @@ describe('helpers', () => {
     expect(shortNameOf('Acme Plumbing')).toBe('Acme Plumbing')
     expect(shortNameOf('Treasure Valley Heating & Air')).toBe('Treasure Valley')
     expect(shortNameOf('Zap')).toBe('Zap')
+  })
+
+  it('shortNameOf keeps an ampersand-joined pair whole', () => {
+    expect(shortNameOf('Brittain & Crawford')).toBe('Brittain & Crawford')
+    expect(shortNameOf('Brittain & Crawford Plumbing')).toBe('Brittain & Crawford')
+    expect(shortNameOf('All Plumbing & Sewer')).toBe('All Plumbing')
+    expect(shortNameOf('Goodson Plumbing Services')).toBe('Goodson Plumbing')
   })
 
   it('verticalLabelOf maps known verticals and title-cases the rest', () => {

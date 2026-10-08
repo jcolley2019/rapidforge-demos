@@ -61,6 +61,18 @@ describe('variants on the sparse brief', () => {
       const img = document.querySelector('section[aria-label="Introduction"] img')
       expect(TRADE_PHOTOS.electrical.hero).toContain(img?.getAttribute('src'))
     })
+
+    it(`never points the quote band at itself on /${variant.slug}`, () => {
+      renderRoute(`/${variant.slug}`)
+      // The brief's only action is "#quote": the hero and nav still go there...
+      expect(document.querySelector('section[aria-label="Introduction"] a[href="#quote"]')).not.toBeNull()
+      // ...but the band it lands on offers no button back to itself, and no empty row.
+      const band = document.querySelector('#quote')!
+      expect(band).not.toBeNull()
+      expect(band.querySelector('a[href="#quote"]')).toBeNull()
+      expect(band.querySelectorAll('a')).toHaveLength(0)
+      expect(band.querySelector('h2')?.textContent).toBeTruthy()
+    })
   }
 
   it('renders the picker without a phone, an address line, or a segment toggle', () => {

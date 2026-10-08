@@ -1,10 +1,11 @@
 import { useSite } from '../../brief/site-context'
-import { navLinks } from '../../brief/site-helpers'
+import { navLinks, navPhoneHref } from '../../brief/site-helpers'
 import BrandMark from '../../components/BrandMark'
 
 export default function PpNav() {
   const site = useSite()
   const links = navLinks(site, 'Hours & Location')
+  const phoneHref = navPhoneHref(site)
   return (
     <header className="pp-nav">
       <div className="pp-wrap pp-nav-inner">
@@ -19,8 +20,8 @@ export default function PpNav() {
           ))}
         </nav>
         <div className="pp-nav-right">
-          {site.phoneHref && (
-            <a href={site.phoneHref} className="pp-nav-phone pp-num" aria-label={`Call ${site.phone}`}>
+          {phoneHref && (
+            <a href={phoneHref} className="pp-nav-phone pp-num" aria-label={`Call ${site.phone}`}>
               <span className="pp-nav-number">{site.phone}</span>
               <span className="pp-nav-call">Call</span>
             </a>

@@ -1,0 +1,116 @@
+{
+  "business_name": "Acme Heating & Air",
+  "vertical": "hvac",
+  "tone_descriptors": [
+    "dependable",
+    "professional",
+    "on-schedule",
+    "local"
+  ],
+  "services": [
+    "Rooftop unit service and replacement",
+    "Tenant improvements",
+    "New construction rough-in and startup",
+    "Chillers and boilers",
+    "Building controls and automation",
+    "Preventive maintenance agreements"
+  ],
+  "review_quotes": [
+    {
+      "text": "Rooftop units for the whole strip center went in over two weekends, and every tenant opened Monday on time.",
+      "rating": 5,
+      "author": "Dale W., general contractor"
+    },
+    {
+      "text": "They run the maintenance agreement on all six of our buildings, and the reports show up before I have to ask.",
+      "rating": 5,
+      "author": "Karen J., property manager"
+    },
+    {
+      "text": "Fair bid and a clean site. Startup slipped two days waiting on a controls part, but they kept us posted.",
+      "rating": 4
+    }
+  ],
+  "photo_urls": [],
+  "hours": [
+    {
+      "day": "Monday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Tuesday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Wednesday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Thursday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Friday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "open": null,
+      "close": null
+    },
+    {
+      "day": "Sunday",
+      "open": null,
+      "close": null
+    }
+  ],
+  "phone": "(208) 555-0177",
+  "address": "2210 E Franklin Rd, Meridian, ID 83642",
+  "primary_cta": {
+    "label": "Request a bid",
+    "kind": "form",
+    "href": "https://example.com/acme-hvac/bid"
+  },
+  "current_site_problem": "The commercial division has no page of its own; facility managers land on the residential furnace-coupon page and call the dispatch line for bids.",
+  "generated_at": "2026-10-07T16:10:00Z",
+  "source": {
+    "audit_id": "audit_acme_hvac_0005",
+    "haiku_model": "claude-haiku-4-5-20251001",
+    "template_fallback": false
+  },
+  "service_areas": [
+    "Meridian",
+    "Boise",
+    "Nampa",
+    "Eagle",
+    "Kuna",
+    "Star",
+    "Caldwell",
+    "Garden City"
+  ],
+  "badges": [
+    {
+      "label": "Idaho license",
+      "kind": "license",
+      "value": "HVC-C-20481"
+    }
+  ],
+  "stats": [
+    {
+      "label": "years in business",
+      "value": "18"
+    },
+    {
+      "label": "commercial projects",
+      "value": "300+"
+    }
+  ],
+  "founded_year": 2008,
+  "license_number": "HVC-C-20481",
+  "segment": "commercial"
+}

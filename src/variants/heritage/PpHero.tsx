@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { heroActions } from '../../brief/site-helpers'
+import { PHOTO_SIZES } from '../../brief/photo-sizes'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import { presetForVariant } from '../../presets/presets'
 import { heroPhotoFor } from '../heroPhoto'
@@ -13,7 +14,7 @@ export default function PpHero() {
   return (
     <section className="pp-hero" aria-label="Introduction">
       <div className="pp-hero-media" aria-hidden="true">
-        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="pp-hero-img" />
+        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="pp-hero-img" sizes={PHOTO_SIZES.fullBleed} />
       </div>
       <div className="pp-wrap pp-hero-inner">
         <div className="pp-hero-copy">

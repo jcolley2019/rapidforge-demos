@@ -1,10 +1,10 @@
 import { useSite } from '../../brief/site-context'
-import { heroActions } from '../../brief/site-helpers'
+import { quoteActions } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function WsQuoteCta() {
   const site = useSite()
-  const { primary, secondary } = heroActions(site)
+  const { primary, secondary } = quoteActions(site)
   return (
     <section id="quote" className="ws-band">
       <div className="ws-wrap ws-section">
@@ -16,16 +16,18 @@ export default function WsQuoteCta() {
             </a>
           )}
           <p className="ws-band-sub mt-5 max-w-xl">{site.subhead}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href={primary.href} className={`ws-btn ws-btn-white ${primary.call ? 'ws-num' : ''}`.trim()}>
-              {primary.label}
-            </a>
-            {secondary && (
-              <a href={secondary.href} className={`ws-btn ws-btn-ghost ${secondary.call ? 'ws-num' : ''}`.trim()}>
-                {secondary.label}
+          {primary && (
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href={primary.href} className={`ws-btn ws-btn-white ${primary.call ? 'ws-num' : ''}`.trim()}>
+                {primary.label}
               </a>
-            )}
-          </div>
+              {secondary && (
+                <a href={secondary.href} className={`ws-btn ws-btn-ghost ${secondary.call ? 'ws-num' : ''}`.trim()}>
+                  {secondary.label}
+                </a>
+              )}
+            </div>
+          )}
         </Reveal>
       </div>
     </section>

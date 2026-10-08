@@ -1,0 +1,116 @@
+{
+  "business_name": "Acme Electric",
+  "vertical": "electrical",
+  "tone_descriptors": [
+    "dependable",
+    "professional",
+    "on-schedule",
+    "local"
+  ],
+  "services": [
+    "Tenant improvements",
+    "New construction rough-in and trim",
+    "Service upgrades and switchgear",
+    "Parking lot and site lighting",
+    "Fire alarm and life safety",
+    "Preventive maintenance plans"
+  ],
+  "review_quotes": [
+    {
+      "text": "Rough-in for the medical office passed inspection the first time, and their foreman kept every trade in the loop.",
+      "rating": 5,
+      "author": "Mike D., general contractor"
+    },
+    {
+      "text": "They handle the fire alarm testing and the lot lights across our properties, and the paperwork is always filed on time.",
+      "rating": 5,
+      "author": "Sandra L., property manager"
+    },
+    {
+      "text": "Fair bid, a clear schedule, and a tidy site. The switchgear lead time pushed us a week, but they planned around it.",
+      "rating": 4
+    }
+  ],
+  "photo_urls": [],
+  "hours": [
+    {
+      "day": "Monday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Tuesday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Wednesday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Thursday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Friday",
+      "open": "7:00 AM",
+      "close": "5:00 PM"
+    },
+    {
+      "day": "Saturday",
+      "open": null,
+      "close": null
+    },
+    {
+      "day": "Sunday",
+      "open": null,
+      "close": null
+    }
+  ],
+  "phone": "(208) 555-0193",
+  "address": "4615 W Emerald St, Boise, ID 83706",
+  "primary_cta": {
+    "label": "Request a bid",
+    "kind": "form",
+    "href": "https://example.com/acme-electric/bid"
+  },
+  "current_site_problem": "The commercial division has no page of its own; general contractors land on the residential generator page and call the dispatch line for bids.",
+  "generated_at": "2026-10-07T16:20:00Z",
+  "source": {
+    "audit_id": "audit_acme_electric_0005",
+    "haiku_model": "claude-haiku-4-5-20251001",
+    "template_fallback": false
+  },
+  "service_areas": [
+    "Boise",
+    "Eagle",
+    "Kuna",
+    "Meridian",
+    "Nampa",
+    "Star",
+    "Caldwell",
+    "Garden City"
+  ],
+  "badges": [
+    {
+      "label": "Idaho license",
+      "kind": "license",
+      "value": "ELE-C-31907"
+    }
+  ],
+  "stats": [
+    {
+      "label": "years in business",
+      "value": "15"
+    },
+    {
+      "label": "commercial projects",
+      "value": "250+"
+    }
+  ],
+  "founded_year": 2011,
+  "license_number": "ELE-C-31907",
+  "segment": "commercial"
+}

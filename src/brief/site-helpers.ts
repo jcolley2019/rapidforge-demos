@@ -48,6 +48,15 @@ export function navLinks(site: SiteContent, contactLabel = 'Contact'): NavLink[]
   return links
 }
 
+/**
+ * The nav's own phone link, or null. A brief whose action already dials
+ * the phone (a CTA of "Call ...") puts the number on the nav's button, so
+ * the bare number beside it would say it twice; the button stays.
+ */
+export function navPhoneHref(site: SiteContent): string | null {
+  return site.phoneHref !== null && site.cta.href !== site.phoneHref ? site.phoneHref : null
+}
+
 /** "Plumbing in Nampa" / "Plumbing" — a short locality line. */
 export function localityLine(site: SiteContent): string {
   return site.city ? `${site.verticalLabel} in ${site.city}` : site.verticalLabel
@@ -102,6 +111,22 @@ export function heroActions(site: SiteContent): { primary: SiteAction; secondary
   const call: SiteAction | null = site.ctaSecondary ? { ...site.ctaSecondary, call: true } : null
   if (!call || own.href === call.href) return { primary: own, secondary: null }
   return site.mode === 'residential' ? { primary: call, secondary: own } : { primary: own, secondary: call }
+}
+
+/** The quote band's id, so "#quote" reaches it. */
+export const QUOTE_HREF = '#quote'
+
+/**
+ * The quote band's actions: the hero's, less any that would point the band
+ * at itself. A brief with no form of its own sends its CTA to "#quote" (the
+ * sparse brief does), which scrolls the hero there but goes nowhere from
+ * inside the band, so the band drops it; with nothing left it shows no
+ * buttons.
+ */
+export function quoteActions(site: SiteContent): { primary: SiteAction | null; secondary: SiteAction | null } {
+  const { primary, secondary } = heroActions(site)
+  const away = [primary, secondary].filter((a): a is SiteAction => a !== null && a.href !== QUOTE_HREF)
+  return { primary: away[0] ?? null, secondary: away[1] ?? null }
 }
 
 /** "Licensed & insured", then the license number and founding year when the brief has them. */

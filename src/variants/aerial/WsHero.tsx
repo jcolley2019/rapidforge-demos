@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { heroActions } from '../../brief/site-helpers'
+import { PHOTO_SIZES } from '../../brief/photo-sizes'
 import BadgeRow from '../../components/BadgeRow'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import { presetForVariant } from '../../presets/presets'
@@ -18,7 +19,7 @@ export default function WsHero() {
   return (
     <section className="ws-hero" aria-label="Introduction">
       <div className="ws-hero-media" aria-hidden="true">
-        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="ws-hero-img" />
+        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="ws-hero-img" sizes={PHOTO_SIZES.fullBleed} />
       </div>
       <div className="ws-wrap ws-hero-inner">
         <div className="ws-hero-copy">

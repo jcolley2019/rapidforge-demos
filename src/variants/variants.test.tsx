@@ -3,6 +3,7 @@ import { fireEvent, render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { siteContent, siteContentFor } from '../brief/current'
+import { photoSrcSet } from '../brief/photo-sizes'
 import { allTradePhotoUrls } from '../brief/trade-photos'
 import { presetForVariant } from '../presets/presets'
 import { previewFor } from '../presets/previews'
@@ -94,6 +95,20 @@ describe('variants', () => {
           expect(document.querySelectorAll('.br-stat').length).toBeGreaterThan(0)
         })
 
+        it(`renders /${variant.slug} with a srcset and sizes on the hero and every service tile photo`, () => {
+          renderRoute(path)
+          const imgs = [
+            ...document.querySelectorAll('section[aria-label="Introduction"] img, #services img'),
+          ]
+          expect(imgs.length).toBeGreaterThan(1)
+          for (const img of imgs) {
+            const src = img.getAttribute('src')!
+            expect(img.getAttribute('srcset'), src).toBe(photoSrcSet(src))
+            expect(img.getAttribute('srcset'), src).toMatch(/ 800w, .* 1200w, .* 1600w$/)
+            expect(img.getAttribute('sizes'), src).toBeTruthy()
+          }
+        })
+
         it(`renders /${variant.slug} with the utility bar, offers under the hero, and towns after services`, () => {
           renderRoute(path)
           const bar = document.querySelector('.ub')
@@ -145,8 +160,8 @@ describe('variants', () => {
           expect(cards[i].querySelector('.pk-desc')?.textContent).toBe(preset.description)
           expect(cards[i].querySelectorAll('.pk-swatch')).toHaveLength(4)
         })
-        // Only plumbing has a commercial twin, so only it gets the segment toggle.
-        expect(document.querySelector('.pk-segment') !== null).toBe(vertical === 'plumbing')
+        // Every trade has a commercial twin, so every picker gets the segment toggle.
+        expect(document.querySelector('.pk-segment')).not.toBeNull()
       })
     })
   }
@@ -183,22 +198,28 @@ describe('variants', () => {
     }
   })
 
-  it('swaps the picker between the residential and commercial fixture at run time', () => {
-    renderRoute('/')
-    const [residential, commercial] = [...document.querySelectorAll('.pk-segment button')]
-    expect(residential.textContent).toBe('Residential')
-    expect(commercial.textContent).toBe('Commercial')
-    expect(residential.getAttribute('aria-pressed')).toBe('true')
-    expect(commercial.getAttribute('aria-pressed')).toBe('false')
+  for (const { stem, query, commercialStem } of [
+    { stem: 'acme-plumbing', query: '', commercialStem: 'acme-commercial' },
+    { stem: 'acme-hvac', query: '?brief=acme-hvac', commercialStem: 'acme-hvac-commercial' },
+    { stem: 'acme-electric', query: '?brief=acme-electric', commercialStem: 'acme-electric-commercial' },
+  ]) {
+    it(`swaps the ${stem} picker between the residential and commercial fixture at run time`, () => {
+      renderRoute(`/${query}`)
+      const [residential, commercial] = [...document.querySelectorAll('.pk-segment button')]
+      expect(residential.textContent).toBe('Residential')
+      expect(commercial.textContent).toBe('Commercial')
+      expect(residential.getAttribute('aria-pressed')).toBe('true')
+      expect(commercial.getAttribute('aria-pressed')).toBe('false')
 
-    fireEvent.click(commercial)
-    expect(commercial.getAttribute('aria-pressed')).toBe('true')
-    const cards = [...document.querySelectorAll('a.pk-card')]
-    variants.forEach((variant, i) => {
-      expect(cards[i].getAttribute('href')).toBe(`/${variant.slug}?brief=acme-commercial`)
+      fireEvent.click(commercial)
+      expect(commercial.getAttribute('aria-pressed')).toBe('true')
+      const cards = [...document.querySelectorAll('a.pk-card')]
+      variants.forEach((variant, i) => {
+        expect(cards[i].getAttribute('href')).toBe(`/${variant.slug}?brief=${commercialStem}`)
+      })
+
+      fireEvent.click(residential)
+      expect(document.querySelector('a.pk-card')?.getAttribute('href')).toBe(`/${variants[0].slug}${query}`)
     })
-
-    fireEvent.click(residential)
-    expect(document.querySelector('a.pk-card')?.getAttribute('href')).toBe(`/${variants[0].slug}`)
-  })
+  }
 })

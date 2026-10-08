@@ -1,10 +1,11 @@
 import { useSite } from '../../brief/site-context'
-import { navLinks } from '../../brief/site-helpers'
+import { navLinks, navPhoneHref } from '../../brief/site-helpers'
 import BrandMark from '../../components/BrandMark'
 
 export default function WsNav() {
   const site = useSite()
   const links = navLinks(site, 'Hours & Location')
+  const phoneHref = navPhoneHref(site)
   return (
     <header className="ws-nav">
       <div className="ws-wrap ws-nav-inner">
@@ -19,8 +20,8 @@ export default function WsNav() {
           ))}
         </nav>
         <div className="ws-nav-right">
-          {site.phoneHref && (
-            <a href={site.phoneHref} className="ws-nav-phone ws-num" aria-label={`Call ${site.phone}`}>
+          {phoneHref && (
+            <a href={phoneHref} className="ws-nav-phone ws-num" aria-label={`Call ${site.phone}`}>
               <span className="ws-nav-number">{site.phone}</span>
               <span className="ws-nav-call">Call</span>
             </a>

@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { badgeScore, heroActions } from '../../brief/site-helpers'
+import { PHOTO_SIZES } from '../../brief/photo-sizes'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import Stars from '../../components/Stars'
 import { presetForVariant } from '../../presets/presets'
@@ -23,7 +24,7 @@ export default function IsHero() {
   return (
     <section className="is-hero" aria-label="Introduction">
       <div className="is-hero-photo" aria-hidden="true">
-        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="is-hero-img" />
+        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="is-hero-img" sizes={PHOTO_SIZES.halfHero} />
       </div>
       <div className="is-wrap is-hero-inner">
         <div className="is-hero-copy">

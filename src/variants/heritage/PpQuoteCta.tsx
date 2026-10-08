@@ -1,11 +1,11 @@
 import { useSite } from '../../brief/site-context'
-import { heroActions } from '../../brief/site-helpers'
+import { quoteActions } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 import PpRidge from './PpRidge'
 
 export default function PpQuoteCta() {
   const site = useSite()
-  const { primary, secondary } = heroActions(site)
+  const { primary, secondary } = quoteActions(site)
   return (
     <section id="quote" className="pp-plate">
       <PpRidge className="pp-ridge-top" />
@@ -22,16 +22,18 @@ export default function PpQuoteCta() {
             </a>
           )}
           <p className="pp-plate-sub mx-auto mt-5 max-w-xl">{site.subhead}</p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a href={primary.href} className={`pp-btn pp-btn-white ${primary.call ? 'pp-num' : ''}`.trim()}>
-              {primary.label}
-            </a>
-            {secondary && (
-              <a href={secondary.href} className={`pp-btn pp-btn-ghost ${secondary.call ? 'pp-num' : ''}`.trim()}>
-                {secondary.label}
+          {primary && (
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <a href={primary.href} className={`pp-btn pp-btn-white ${primary.call ? 'pp-num' : ''}`.trim()}>
+                {primary.label}
               </a>
-            )}
-          </div>
+              {secondary && (
+                <a href={secondary.href} className={`pp-btn pp-btn-ghost ${secondary.call ? 'pp-num' : ''}`.trim()}>
+                  {secondary.label}
+                </a>
+              )}
+            </div>
+          )}
         </Reveal>
       </div>
     </section>

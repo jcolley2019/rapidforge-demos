@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { heroActions } from '../../brief/site-helpers'
+import { PHOTO_SIZES } from '../../brief/photo-sizes'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import { presetForVariant } from '../../presets/presets'
 import { heroPhotoFor } from '../heroPhoto'
@@ -28,7 +29,7 @@ export default function ClHero() {
         </div>
 
         <div className="cl-panel">
-          <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="cl-panel-img" />
+          <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="cl-panel-img" sizes={PHOTO_SIZES.heroPanel} />
           <div className="cl-panel-vignette" aria-hidden="true" />
         </div>
       </div>

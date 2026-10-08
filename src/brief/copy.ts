@@ -251,6 +251,7 @@ const FAMILY_BY_VERTICAL: Record<string, CopyFamily> = {
   hvac: 'hvac',
   hvac_contractor: 'hvac',
   heating_and_cooling: 'hvac',
+  air_conditioning: 'hvac',
   electrician: 'electrical',
   electrical: 'electrical',
   electrical_contractor: 'electrical',

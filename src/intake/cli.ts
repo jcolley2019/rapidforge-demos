@@ -6,6 +6,7 @@ import { loadEnv } from '@rapidforge/ai-core'
 import sharp from 'sharp'
 import { ZodError } from 'zod'
 import { DesignBriefSchema, type DesignBrief } from '../brief/design-brief'
+import { sizedPhotoName } from '../brief/photo-sizes'
 import { VISION_MODEL, createAiClient, describeError } from './ai'
 import { extractSite, type SiteExtract } from './extract'
 import { FETCH_TIMEOUT_MS, USER_AGENT, fetchSite } from './fetch'
@@ -190,7 +191,10 @@ async function writeLead(
   await rm(paths.publicDir, { recursive: true, force: true })
 
   const assets: Array<[file: string, data: Buffer]> = [
-    ...files.kept.map((photo, i): [string, Buffer] => [photoFile(i), photo.jpeg]),
+    ...files.kept.flatMap((photo, i): Array<[string, Buffer]> => [
+      [photoFile(i), photo.jpeg],
+      ...photo.smaller.map(({ cap, jpeg }): [string, Buffer] => [sizedPhotoName(photoFile(i), cap), jpeg]),
+    ]),
     ['current-desktop.jpg', files.shots.desktop],
     ['current-mobile.jpg', files.shots.mobile],
     ...(files.logo ? [[files.logo.file, files.logo.bytes] as [string, Buffer]] : []),

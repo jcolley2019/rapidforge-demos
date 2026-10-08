@@ -57,7 +57,7 @@ export interface SiteCta {
 
 export interface SiteContent {
   name: string
-  /** First two words of the name, or the whole name when it is ≤ 2 words. */
+  /** First two words of the name (three when the second is "&"), or the whole name when it is that short. */
   shortName: string
   /** The brief's vertical key as given, e.g. "plumbing" or "electrician"; presets resolve from it. */
   vertical: string
@@ -167,6 +167,12 @@ const SERVICE_BLURBS: Record<CopyFamily, Array<[keyword: string, blurb: string]>
     ['maintenance', 'Scheduled inspections that catch problems before your tenants do.'],
   ],
   hvac: [
+    // Commercial lines first: "replacement" holds "ac", so a rooftop line would read as home AC.
+    ['rooftop', 'Rooftop units serviced, repaired and replaced, with the crane and permits handled.'],
+    ['tenant', 'Heating and cooling for build-outs and remodels, scheduled around your other trades.'],
+    ['rough-in', 'Ductwork rough-in to startup, built to plan and ready for inspection.'],
+    ['chiller', 'Chillers and boilers serviced and repaired, so the building stays on temperature.'],
+    ['controls', 'Building automation set up so every zone runs on its own schedule.'],
     ['air condition', 'Repair, tune-ups, and new systems sized for your home.'],
     ['ac', 'Repair, tune-ups, and new systems sized for your home.'],
     ['furnace', 'Safe, efficient heat through the coldest months.'],
@@ -176,6 +182,13 @@ const SERVICE_BLURBS: Record<CopyFamily, Array<[keyword: string, blurb: string]>
     ['thermostat', 'Smart controls installed and configured for you.'],
   ],
   electrical: [
+    // Commercial lines first: "Preventive" holds "ev", so a maintenance line would read as EV charging.
+    ['tenant', 'Electrical for build-outs and remodels, scheduled around your other trades.'],
+    ['rough-in', 'Rough-in to trim, built to plan and ready for inspection.'],
+    ['switchgear', 'Service upgrades and switchgear sized for the load and coordinated with the utility.'],
+    ['site lighting', 'Parking lot, pole and building lighting kept on and up to code.'],
+    ['fire alarm', 'Fire alarm and life-safety systems installed, tested and documented for the fire marshal.'],
+    ['maintenance', 'Scheduled inspections and infrared scans that catch problems before your tenants do.'],
     ['panel', 'Upgrades and replacements that bring your service up to code and capacity.'],
     ['wiring', 'New circuits and rewires done neatly and safely.'],
     ['lighting', 'Indoor and outdoor lighting designed, installed, and dimmed just right.'],
@@ -188,9 +201,16 @@ const SERVICE_BLURBS: Record<CopyFamily, Array<[keyword: string, blurb: string]>
   generic: [],
 }
 
+/**
+ * The name cut to its first two words, keeping an ampersand-joined pair
+ * whole: "Goodson Plumbing Services" gives "Goodson Plumbing", "All
+ * Plumbing & Sewer" gives "All Plumbing", and "Brittain & Crawford" stays
+ * itself rather than "Brittain &".
+ */
 export function shortNameOf(name: string): string {
   const words = name.trim().split(/\s+/).filter(Boolean)
-  return words.length <= 2 ? name.trim() : words.slice(0, 2).join(' ')
+  const take = words[1] === '&' ? 3 : 2
+  return words.length <= take ? name.trim() : words.slice(0, take).join(' ')
 }
 
 export function verticalLabelOf(vertical: string): string {

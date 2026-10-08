@@ -1,10 +1,10 @@
 import { useSite } from '../../brief/site-context'
-import { heroActions } from '../../brief/site-helpers'
+import { quoteActions } from '../../brief/site-helpers'
 import Reveal from '../../components/Reveal'
 
 export default function IsQuoteCta() {
   const site = useSite()
-  const { primary, secondary } = heroActions(site)
+  const { primary, secondary } = quoteActions(site)
   return (
     <section id="quote" className="is-band">
       <div className="is-wrap is-section">
@@ -16,16 +16,18 @@ export default function IsQuoteCta() {
             </a>
           )}
           <p className="is-band-sub mx-auto mt-4 max-w-xl">{site.subhead}</p>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            <a href={primary.href} className={`is-btn is-btn-lime ${primary.call ? 'is-num' : ''}`.trim()}>
-              {primary.label}
-            </a>
-            {secondary && (
-              <a href={secondary.href} className={`is-btn is-btn-outline ${secondary.call ? 'is-num' : ''}`.trim()}>
-                {secondary.label}
+          {primary && (
+            <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              <a href={primary.href} className={`is-btn is-btn-lime ${primary.call ? 'is-num' : ''}`.trim()}>
+                {primary.label}
               </a>
-            )}
-          </div>
+              {secondary && (
+                <a href={secondary.href} className={`is-btn is-btn-outline ${secondary.call ? 'is-num' : ''}`.trim()}>
+                  {secondary.label}
+                </a>
+              )}
+            </div>
+          )}
         </Reveal>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import { useSite } from '../../brief/site-context'
 import { heroActions } from '../../brief/site-helpers'
+import { PHOTO_SIZES } from '../../brief/photo-sizes'
 import BadgeRow from '../../components/BadgeRow'
 import PlaceholderImage from '../../components/PlaceholderImage'
 import { presetForVariant } from '../../presets/presets'
@@ -18,7 +19,7 @@ export default function DhHero() {
   return (
     <section className="dh-hero" aria-label="Introduction">
       <div className="dh-hero-media" aria-hidden="true">
-        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="dh-hero-img" />
+        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="dh-hero-img" sizes={PHOTO_SIZES.fullBleed} />
       </div>
       <div className="dh-wrap dh-hero-inner">
         <div className="dh-hero-copy">

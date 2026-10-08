@@ -2,6 +2,7 @@
 import { readFileSync } from 'node:fs'
 import sharp from 'sharp'
 import { describe, expect, it } from 'vitest'
+import { PHOTO_WIDTHS } from '../brief/photo-sizes'
 import { collectPhotoUrls, isSameHostOrCdn, selectPhotos } from './photos'
 
 const HOME = 'https://acme-plumbing.example/'
@@ -38,6 +39,32 @@ describe('selectPhotos', () => {
     expect([tall.width, tall.height]).toEqual([667, 1600])
     const original = kept.find((p) => p.url.endsWith('a.jpg'))!
     expect([original.width, original.height]).toEqual([1200, 800])
+  })
+
+  it("makes the srcset's 800 and 1200px-wide copies of each kept photo, never wider than the 1600 one", async () => {
+    const [wide, tall, edge] = await selectPhotos([
+      { url: `${HOME}wide.jpg`, buffer: await image(2400, 1600, '#336699') },
+      { url: `${HOME}tall.jpg`, buffer: await image(1000, 2400, '#669933') },
+      { url: `${HOME}edge.jpg`, buffer: await image(900, 600, '#445566') },
+    ])
+    const sizesOf = async (photo: typeof wide) =>
+      Promise.all(
+        [...photo.smaller.map((s) => s.jpeg), photo.jpeg].map(async (jpeg) => {
+          const { width, height, format } = await sharp(jpeg).metadata()
+          return { width, height, format }
+        }),
+      )
+
+    expect(wide.smaller.map((s) => s.cap)).toEqual(PHOTO_WIDTHS.filter((w) => w < 1600))
+    expect(await sizesOf(wide)).toEqual([
+      { width: 800, height: 533, format: 'jpeg' },
+      { width: 1200, height: 800, format: 'jpeg' },
+      { width: 1600, height: 1067, format: 'jpeg' },
+    ])
+    // A portrait photo's 1600 is 667 wide, so its copies are too: no blurry 333px tile.
+    expect((await sizesOf(tall)).map((s) => s.width)).toEqual([667, 667, 667])
+    // A 900px photo is not enlarged: its 1200 and 1600 copies stay 900 wide.
+    expect((await sizesOf(edge)).map((s) => s.width)).toEqual([800, 900, 900])
   })
 })
 
