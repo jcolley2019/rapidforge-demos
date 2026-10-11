@@ -34,7 +34,7 @@
     {
       "id": "bold-local",
       "name": "Bold Local",
-      "description": "Bold and local: your crew in a big photo, one strong red, and your ratings right on it.",
+      "description": "Bold and local: a full-screen photo of your crew, one strong red, and your ratings right on it.",
       "lean": "residential",
       "collection": "rfd-vault:plumbing",
       "entryId": "plumbing/F1",
@@ -52,7 +52,7 @@
         "body": "DM Sans Variable",
         "source": "fontsource"
       },
-      "heroTreatment": "Full-bleed crew photo darkened from the left; a heavy white DM Sans headline, a red booking pill and a ghost outlined call button; the badge and stat trust bar runs across the bottom of the photo. Mobile stacks the trust bar under the copy on the same photo.",
+      "heroTreatment": "Full-bleed crew photo filling the first screen (90vh; 70vh on a phone) under a near-black grade that is deepest at the bottom and clears toward the top; bottom-left, a condensed white Oswald caps headline, the subhead, a red pill for the first action and a ghost outlined second; the badge and stat trust bar runs along the bottom edge on a translucent strip. Mobile keeps the same stack on the photo.",
       "neverList": [
         "Hero with no headline or call to action",
         "Thin colored subline over a busy photo",
@@ -65,7 +65,7 @@
     {
       "id": "premium-dark",
       "name": "Premium Dark",
-      "description": "Dark and gold on purpose: none of the 36 contractor sites we studied looks like this, so you will not look like anyone else in town.",
+      "description": "Dark and gold on purpose: a full-screen photo under a deep shade, so you will not look like anyone else in town.",
       "lean": "residential",
       "collection": "ui-ux-pro-max:dark-mode-oled",
       "entryId": "luxury-premium-brand",
@@ -83,7 +83,7 @@
         "body": "Montserrat Variable",
         "source": "fontsource"
       },
-      "heroTreatment": "Dark page. Copy left with a tall serif headline, a gold booking button and an outlined call button; the crew or trade photo right inside a hairline gold frame with a 0.25 black vignette at the lower edge only, no filter. Mobile: framed photo band on top at a short height, copy below.",
+      "heroTreatment": "Full-bleed crew or trade photo filling the first screen (90vh; 70vh on a phone) under a heavy black shade with a soft vignette; centered, a short gold hairline, a tall serif headline, a gold button for the first action and an outlined second; the credentials run along the bottom edge on a translucent strip under a gold hairline.",
       "neverList": [
         "Hidden contact info",
         "No certifications",
@@ -191,7 +191,7 @@
     {
       "id": "bold-local",
       "name": "Bold Local",
-      "description": "Bold and local: your crew in a big photo, one hot red, and your ratings right on it.",
+      "description": "Bold and local: a full-screen photo of your crew, one hot red, and your ratings right on it.",
       "lean": "residential",
       "collection": "rfd-vault:hvac",
       "entryId": "hvac/F3",
@@ -209,7 +209,7 @@
         "body": "Wix Madefor Text Variable",
         "source": "fontsource"
       },
-      "heroTreatment": "Full-bleed crew photo darkened from the left; a heavy white Rubik headline, a red booking pill and a ghost outlined call button; the badge and stat trust bar runs across the bottom of the photo. Mobile stacks the trust bar under the copy on the same photo.",
+      "heroTreatment": "Full-bleed crew photo filling the first screen (90vh; 70vh on a phone) under a near-black grade that is deepest at the bottom and clears toward the top; bottom-left, a condensed white Oswald caps headline, the subhead, a hot-red pill for the first action and a ghost outlined second; the badge and stat trust bar runs along the bottom edge on a translucent strip. Mobile keeps the same stack on the photo.",
       "neverList": [
         "Thin light-weight headline over busy photo",
         "Low-contrast ghost buttons as the main CTA",
@@ -222,7 +222,7 @@
     {
       "id": "premium-dark",
       "name": "Premium Dark",
-      "description": "Dark and gold on purpose: none of the 36 contractor sites we studied looks like this, so you will not look like anyone else in town.",
+      "description": "Dark and gold on purpose: a full-screen photo under a deep shade, so you will not look like anyone else in town.",
       "lean": "residential",
       "collection": "ui-ux-pro-max:dark-mode-oled",
       "entryId": "luxury-premium-brand",
@@ -240,7 +240,7 @@
         "body": "Montserrat Variable",
         "source": "fontsource"
       },
-      "heroTreatment": "Dark page. Copy left with a tall serif headline, a gold booking button and an outlined call button; the crew or trade photo right inside a hairline gold frame with a 0.25 black vignette at the lower edge only, no filter. Mobile: framed photo band on top at a short height, copy below.",
+      "heroTreatment": "Full-bleed crew or trade photo filling the first screen (90vh; 70vh on a phone) under a heavy black shade with a soft vignette; centered, a short gold hairline, a tall serif headline, a gold button for the first action and an outlined second; the credentials run along the bottom edge on a translucent strip under a gold hairline.",
       "neverList": [
         "Hidden contact info",
         "No certifications",
@@ -349,7 +349,7 @@
     {
       "id": "bold-local",
       "name": "Bold Local",
-      "description": "Bold and local: your crew in a big photo, one brick red, and your ratings right on it.",
+      "description": "Bold and local: a full-screen photo of your crew, one brick red, and your ratings right on it.",
       "lean": "residential",
       "collection": "rfd-vault:electrical",
       "entryId": "electrical/F3",
@@ -367,7 +367,7 @@
         "body": "Roboto Variable",
         "source": "fontsource"
       },
-      "heroTreatment": "Full-bleed crew photo darkened from the left; a heavy white Prompt headline, a brick-red booking pill and a ghost outlined call button; the badge and stat trust bar runs across the bottom of the photo. Mobile stacks the trust bar under the copy on the same photo.",
+      "heroTreatment": "Full-bleed crew photo filling the first screen (90vh; 70vh on a phone) under a near-black grade that is deepest at the bottom and clears toward the top; bottom-left, a condensed white Oswald caps headline, the subhead, a brick-red pill for the first action and a ghost outlined second; the badge and stat trust bar runs along the bottom edge on a translucent strip. Mobile keeps the same stack on the photo.",
       "neverList": [
         "Hero with no call or book button",
         "Accent colors that clash with brand red",
@@ -380,7 +380,7 @@
     {
       "id": "premium-dark",
       "name": "Premium Dark",
-      "description": "Dark and gold on purpose: none of the 36 contractor sites we studied looks like this, so you will not look like anyone else in town.",
+      "description": "Dark and gold on purpose: a full-screen photo under a deep shade, so you will not look like anyone else in town.",
       "lean": "residential",
       "collection": "ui-ux-pro-max:dark-mode-oled",
       "entryId": "luxury-premium-brand",
@@ -398,7 +398,7 @@
         "body": "Montserrat Variable",
         "source": "fontsource"
       },
-      "heroTreatment": "Dark page. Copy left with a tall serif headline, a gold booking button and an outlined call button; the crew or trade photo right inside a hairline gold frame with a 0.25 black vignette at the lower edge only, no filter. Mobile: framed photo band on top at a short height, copy below.",
+      "heroTreatment": "Full-bleed crew or trade photo filling the first screen (90vh; 70vh on a phone) under a heavy black shade with a soft vignette; centered, a short gold hairline, a tall serif headline, a gold button for the first action and an outlined second; the credentials run along the bottom edge on a translucent strip under a gold hairline.",
       "neverList": [
         "Hidden contact info",
         "No certifications",

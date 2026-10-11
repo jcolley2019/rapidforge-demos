@@ -1,9 +1,10 @@
 /* Bold Local (preset: bold-local), vault family F1 Red Banner Plumbers:
-   a white page and one saturated red, a crew photo darkened from the left
-   with the stat grid beside the headline and the badge row inside the
-   photo, a specials banner under it, a dark services panel and a dark
-   footer with the license. DM Sans throughout. Class prefix dh- is a
-   namespace carried over from the earlier skin; scoped to .geospatial. */
+   a white page and one saturated red, a full-bleed photo filling the first
+   screen with a condensed Oswald headline and the badge row on a strip
+   along its bottom edge, a specials banner under it, a dark services panel
+   and a dark footer with the license. DM Sans everywhere else. Class
+   prefix dh- is a namespace carried over from the earlier skin; scoped to
+   .geospatial. */
 
 .geospatial {
   --dh-red: #d20001;
@@ -300,72 +301,130 @@
   }
 }
 
-/* Hero: the crew photo darkened from the left, the trust bar inside it */
+/* Hero: full-bleed. One photo fills the first screen (90vh, 70vh on a
+   phone) under a near-black grade that is deepest at the bottom and clears
+   toward the top, where faces and trucks sit; the condensed white headline
+   and both actions sit bottom-left, and the trust row runs along the
+   bottom edge on a translucent strip. The ink ground is the placeholder
+   until the photo lands. Every line of copy keeps at least 4.5:1 against
+   the grade even over a pure-white photo. */
 .dh-hero {
+  --dh-shade: 14, 14, 14;
   position: relative;
   isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 70vh;
   overflow: hidden;
   background: var(--dh-ink);
   color: #ffffff;
+}
+/* 90vh, but never past the first screen: the utility bar and nav above
+   take up to ~7rem, so on a short laptop screen the hero takes what is
+   left and its strip still ends above the fold. */
+@media (min-width: 768px) {
+  .dh-hero {
+    min-height: min(90vh, calc(100vh - 7rem));
+  }
 }
 .dh-hero-media {
   position: absolute;
   inset: 0;
   z-index: -2;
+  background: var(--dh-ink);
 }
 .dh-hero-media > * {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 68% 30%;
+  object-position: 50% 20%;
 }
 .dh-hero::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgba(14, 14, 14, 0.78) 0%, rgba(14, 14, 14, 0.9) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(var(--dh-shade), 0.85) 0%,
+    rgba(var(--dh-shade), 0.45) 30%,
+    rgba(var(--dh-shade), 0.12) 65%,
+    rgba(var(--dh-shade), 0) 100%
+  );
 }
 @media (min-width: 768px) {
   .dh-hero::before {
     background:
-      linear-gradient(0deg, rgba(14, 14, 14, 0.85) 0%, rgba(14, 14, 14, 0) 34%),
+      linear-gradient(90deg, rgba(var(--dh-shade), 0.35) 0%, rgba(var(--dh-shade), 0) 55%),
       linear-gradient(
-        90deg,
-        rgba(14, 14, 14, 0.9) 0%,
-        rgba(14, 14, 14, 0.76) 45%,
-        rgba(14, 14, 14, 0.42) 75%,
-        rgba(14, 14, 14, 0.55) 100%
+        0deg,
+        rgba(var(--dh-shade), 0.85) 0%,
+        rgba(var(--dh-shade), 0.45) 30%,
+        rgba(var(--dh-shade), 0.12) 65%,
+        rgba(var(--dh-shade), 0) 100%
       );
   }
 }
 .dh-hero :focus-visible {
   outline-color: #ffffff;
 }
-.dh-hero-copy {
-  padding-block: 1.5rem 1.25rem;
+/* The scrim: the grade's dark end follows the copy, however tall the
+   headline runs, and fades out 8rem above it, so the copy always reads
+   while the top of the photo stays clear. */
+.dh-hero-inner {
+  position: relative;
+  width: 100%;
 }
-@media (min-width: 1024px) {
+.dh-hero-inner::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -8rem;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  margin-left: -50vw;
+  background: linear-gradient(0deg, rgba(var(--dh-shade), 0.68) calc(100% - 8rem), rgba(var(--dh-shade), 0) 100%);
+  pointer-events: none;
+}
+.dh-hero-copy {
+  padding-block: 2.5rem 1.5rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+@media (min-width: 768px) {
   .dh-hero-copy {
-    max-width: 46rem;
-    padding-block: 2.75rem 2rem;
+    max-width: 48rem;
+    padding-block: 4rem 2.25rem;
   }
 }
 .dh-hero-h1 {
-  font-size: clamp(2.125rem, 1.3rem + 3.2vw, 3.875rem);
-  max-width: 16ch;
+  max-width: 17ch;
+  font-family: 'Oswald Variable', 'Arial Narrow', sans-serif;
+  font-size: clamp(2.5rem, 1.4rem + 4.4vw, 5rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
 }
 .dh-hero-sub {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   max-width: 34rem;
-  color: #e8e8e8;
+  color: #ffffff;
   font-size: clamp(1rem, 0.95rem + 0.3vw, 1.1875rem);
+  font-weight: 500;
 }
 .dh-hero-actions {
-  margin-top: 1.25rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.625rem;
+  gap: 0.75rem;
+  text-shadow: none;
+}
+.dh-hero-btn {
+  min-height: 3.25rem;
+  padding: 0.8rem 1.75rem;
+  font-size: 1.0625rem;
 }
 @media (max-width: 639px) {
   .dh-hero-actions > * {
@@ -375,15 +434,24 @@
   }
 }
 
-/* The trust bar along the bottom of the photo: marks, then the
-   big-number stats, clear of the faces in the crew photo. */
+/* The strip: a translucent band along the bottom edge of the photo */
+.dh-hero-strip {
+  background: rgba(var(--dh-shade), 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--dh-on-ink-line);
+}
+.dh-hero-strip:not(:has(.br, .ts)) {
+  display: none;
+}
+
+/* The trust bar on the strip: marks, then the big-number stats. */
 .geospatial .dh-trustbar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.85rem 2.25rem;
   padding-block: 0.9rem 1.1rem;
-  border-top: 1px solid var(--dh-on-ink-line);
 }
 .dh-trustbar .br-marks {
   display: grid;
@@ -483,7 +551,6 @@
   align-items: center;
   gap: 0.5rem 1rem;
   padding-block: 0.9rem 1.1rem;
-  border-top: 1px solid var(--dh-on-ink-line);
 }
 .geospatial .ts-chips {
   display: flex;

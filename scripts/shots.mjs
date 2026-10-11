@@ -3,7 +3,9 @@
 // for each residential fixture, fails when any page is wider than the phone
 // viewport, fails when the picker's cards are unequal or do not stack at
 // phone width, and fails when a variant's services heading starts below the
-// fold at either size.
+// fold at either size. A full-bleed hero (data-full-bleed: the photo fills
+// the first screen, so Services cannot show) is held instead to its actions
+// and trust strip ending inside the first screen.
 //
 // It also writes the picker's preview images: the top of each variant as
 // public/previews/<vertical>/<slug>.jpg (1280x800) and <slug>-mobile.jpg
@@ -160,21 +162,39 @@ try {
 
           // Fold check: on a variant, the services heading must begin inside
           // the first viewport, so headline, CTA, phone, and trust strip all
-          // sit above it.
+          // sit above it. A full-bleed hero fills that viewport by design, so
+          // there its actions and trust strip must end inside it instead.
           if (route !== '/') {
-            const top = await page.evaluate(() => {
+            const fold = await page.evaluate(() => {
               window.scrollTo(0, 0)
+              const full = document.querySelector('section[aria-label="Introduction"][data-full-bleed]')
+              if (full) {
+                const parts = [...full.querySelectorAll('a[href], .br, .ts')]
+                const strip = full.querySelector('.br, .ts') !== null
+                const bottom = Math.max(...parts.map((el) => el.getBoundingClientRect().bottom))
+                return { kind: 'hero', at: parts.length > 0 ? Math.round(bottom) : null, strip }
+              }
               const h = document.querySelector('#services h2')
-              return h ? Math.round(h.getBoundingClientRect().top) : null
+              return { kind: 'services', at: h ? Math.round(h.getBoundingClientRect().top) : null }
             })
-            if (top === null) {
+            if (fold.kind === 'hero') {
+              if (fold.at === null || !fold.strip) {
+                console.error(`FAIL ${tag} @${vp.width}: full-bleed hero has no ${fold.at === null ? 'actions' : 'trust strip'}`)
+                failures++
+              } else if (fold.at > vp.height) {
+                console.error(`FAIL ${tag} @${vp.width}x${vp.height}: hero actions and trust strip end at ${fold.at} > ${vp.height}`)
+                failures++
+              } else {
+                console.log(`ok   ${tag} @${vp.width}x${vp.height}: full-bleed hero actions and trust strip end at ${fold.at}`)
+              }
+            } else if (fold.at === null) {
               console.error(`FAIL ${tag} @${vp.width}: no #services h2 found`)
               failures++
-            } else if (top >= vp.height) {
-              console.error(`FAIL ${tag} @${vp.width}x${vp.height}: services heading top ${top} >= ${vp.height}`)
+            } else if (fold.at >= vp.height) {
+              console.error(`FAIL ${tag} @${vp.width}x${vp.height}: services heading top ${fold.at} >= ${vp.height}`)
               failures++
             } else {
-              console.log(`ok   ${tag} @${vp.width}x${vp.height}: services heading top ${top}`)
+              console.log(`ok   ${tag} @${vp.width}x${vp.height}: services heading top ${fold.at}`)
             }
 
             // Picker preview: the top of the page, viewport only, without the
@@ -215,5 +235,5 @@ if (failures > 0) {
   process.exit(1)
 }
 console.log(
-  `width check passed at 390px; picker cards equal and stacked at 390px; fold check passed at both sizes; previews under 300 KB; ${FIXTURES.length} fixtures`,
+  `width check passed at 390px; picker cards equal and stacked at 390px; fold check (services heading, or full-bleed hero actions and trust strip) passed at both sizes; previews under 300 KB; ${FIXTURES.length} fixtures`,
 )

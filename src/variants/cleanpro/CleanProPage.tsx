@@ -5,7 +5,6 @@ import './cleanpro.css'
 
 import AudienceStrip from '../../components/AudienceStrip'
 import BackToConceptsLink from '../../components/BackToConceptsLink'
-import BadgeRow from '../../components/BadgeRow'
 import Offers from '../../components/Offers'
 import ServiceAreas from '../../components/ServiceAreas'
 import UtilityBar from '../../components/UtilityBar'
@@ -44,9 +43,6 @@ function CleanProBody() {
       <main>
         <ClHero />
         <Offers site={site} className="cl-offers" wrapClassName="cl-wrap" />
-        <div className="cl-wrap">
-          <BadgeRow site={site} />
-        </div>
         <ClServices />
         <ServiceAreas site={site} className="cl-section cl-areas" wrapClassName="cl-wrap" titleClassName="cl-display cl-h2" />
         <AudienceStrip site={site} className="cl-section cl-who" wrapClassName="cl-wrap" titleClassName="cl-display cl-h2" />

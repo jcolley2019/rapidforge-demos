@@ -129,6 +129,18 @@ describe('toSiteContent', () => {
     expect(withPhotos.detailPhotos).toEqual(TRADE_PHOTOS.plumbing.detail)
   })
 
+  it('picks the best measured landscape intake photo, crew first, for a full-bleed hero', () => {
+    const lead = (n: string) => `/leads/acme/photos/${n}.jpg`
+    const brief = { ...acmeBrief, photo_urls: [lead('01'), lead('02')], crew_photo_urls: [lead('03')] }
+    const wide = { width: 1600, height: 1067 }
+    expect(toSiteContent(brief, { [lead('01')]: wide, [lead('03')]: wide }).landscapePhoto).toBe(lead('03'))
+    expect(toSiteContent(brief, { [lead('01')]: wide, [lead('03')]: { width: 1067, height: 1600 } }).landscapePhoto).toBe(lead('01'))
+    expect(toSiteContent(brief, { [lead('02')]: { width: 1100, height: 700 } }).landscapePhoto).toBeNull()
+    // Unmeasured, or a fixture's remote stock: none is known to be big enough.
+    expect(toSiteContent(brief).landscapePhoto).toBeNull()
+    expect(toSiteContent(acmeBrief, { [acmeBrief.crew_photo_urls[0]]: wide }).landscapePhoto).toBeNull()
+  })
+
   it('falls back to the default trust chips, without inventing a year or license number', () => {
     const withoutProof = toSiteContent({ ...acmeBrief, badges: [], stats: [] })
     expect(withoutProof.trust).toEqual(['Licensed & insured', 'Same-day service', 'Upfront pricing', 'Serving Nampa'])

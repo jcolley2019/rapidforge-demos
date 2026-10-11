@@ -1,4 +1,5 @@
 import '@fontsource-variable/dm-sans'
+import '@fontsource-variable/oswald'
 import './geospatial.css'
 
 import AudienceStrip from '../../components/AudienceStrip'

@@ -36,7 +36,7 @@ export const variants: VariantMeta[] = [
     slug: 'geospatial',
     name: 'Bold Local',
     description:
-      'Bold and local: your crew in a big photo, one strong red, and your ratings right on it.',
+      'Bold and local: a full-screen photo of your crew, one strong red, and your ratings right on it.',
     palette: ['#FFFFFF', '#F1F5F9', '#EA580C', '#0F172A'],
     brick: 'RFD.PRESETS.2c',
     complete: true,
@@ -45,7 +45,7 @@ export const variants: VariantMeta[] = [
     slug: 'cleanpro',
     name: 'Premium Dark',
     description:
-      'Dark and gold on purpose: none of the 36 contractor sites we studied looks like this, so you will not look like anyone else in town.',
+      'Dark and gold on purpose: a full-screen photo under a deep shade, so you will not look like anyone else in town.',
     palette: ['#121212', '#1C1917', '#CA8A04', '#FAFAF9'],
     brick: 'RFD.PRESETS.2c',
     complete: true,

@@ -1,42 +1,45 @@
 import { useSite } from '../../brief/site-context'
 import { heroActions } from '../../brief/site-helpers'
-import { PHOTO_SIZES } from '../../brief/photo-sizes'
 import BadgeRow from '../../components/BadgeRow'
-import PlaceholderImage from '../../components/PlaceholderImage'
+import FullBleedPhoto from '../../components/FullBleedPhoto'
 import { presetForVariant } from '../../presets/presets'
-import { heroPhotoFor } from '../heroPhoto'
+import { fullBleedPhotoFor } from '../heroPhoto'
 
 /**
- * The family's risk, taken the In-Law way: the whole trust bar (marks and
- * big-number stats) runs along the bottom of the darkened photo, clear of
- * the crew's faces.
+ * Full-bleed: one photo fills the first screen under a dark-to-clear grade,
+ * a condensed white headline and both actions sit bottom-left, and the
+ * trust row runs along the bottom edge on a translucent strip.
  */
 export default function DhHero() {
   const site = useSite()
   const palette = presetForVariant('geospatial', site.vertical).palette
-  const photo = heroPhotoFor('geospatial', site.photos, site.crewPhotos)
+  const photo = fullBleedPhotoFor('geospatial', site)
   const { primary, secondary } = heroActions(site)
   return (
-    <section className="dh-hero" aria-label="Introduction">
+    <section className="dh-hero" aria-label="Introduction" data-full-bleed="">
       <div className="dh-hero-media" aria-hidden="true">
-        <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="dh-hero-img" sizes={PHOTO_SIZES.fullBleed} />
+        <FullBleedPhoto src={photo} palette={palette} className="dh-hero-img" />
       </div>
       <div className="dh-wrap dh-hero-inner">
         <div className="dh-hero-copy">
-          <h1 className="dh-display dh-hero-h1">{site.headline}</h1>
+          <h1 className="dh-hero-h1">{site.headline}</h1>
           <p className="dh-hero-sub">{site.subhead}</p>
           <div className="dh-hero-actions">
-            <a href={primary.href} className={`dh-btn dh-btn-red ${primary.call ? 'dh-num' : ''}`.trim()}>
+            <a href={primary.href} className={`dh-btn dh-btn-red dh-hero-btn ${primary.call ? 'dh-num' : ''}`.trim()}>
               {primary.label}
             </a>
             {secondary && (
-              <a href={secondary.href} className={`dh-btn dh-btn-ghost ${secondary.call ? 'dh-num' : ''}`.trim()}>
+              <a href={secondary.href} className={`dh-btn dh-btn-ghost dh-hero-btn ${secondary.call ? 'dh-num' : ''}`.trim()}>
                 {secondary.label}
               </a>
             )}
           </div>
         </div>
-        <BadgeRow site={site} className="dh-trustbar" />
+      </div>
+      <div className="dh-hero-strip">
+        <div className="dh-wrap">
+          <BadgeRow site={site} className="dh-trustbar" />
+        </div>
       </div>
     </section>
   )

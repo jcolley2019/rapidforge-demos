@@ -10,6 +10,7 @@ import {
   type CopyFamily,
   type RegisterCopy,
 } from './copy'
+import { bestLandscapePhoto, isIntakePhoto, type PhotoDims } from './photo-sizes'
 import { TRADE_PHOTOS } from './trade-photos'
 
 /**
@@ -105,6 +106,12 @@ export interface SiteContent {
   licenseNumber: string | null
   /** crew_photo_urls: when present, heroes lead with these instead of trade photos. */
   crewPhotos: string[]
+  /**
+   * The brief's best landscape photo at least 1200px wide (crew first; see
+   * bestLandscapePhoto), from the pixel sizes a lead build measured, or
+   * null. Full-bleed heroes lead with it.
+   */
+  landscapePhoto: string | null
   hoursNote: string | null
   /** One line for the bar above the nav, from hours_note and the first three towns, or null. */
   utilityLine: string | null
@@ -285,7 +292,12 @@ export function utilityLineOf(hoursNote: string | null, areas: string[]): string
 
 const trimmed = (list: string[]) => list.map((s) => s.trim()).filter(Boolean)
 
-export function toSiteContent(brief: DesignBrief): SiteContent {
+/**
+ * `photoSizes` holds the pixel sizes of the brief's intake photos, which a
+ * lead build measures (see lead-brief-plugin.ts); without it no photo is
+ * known to be big enough for a full-bleed hero.
+ */
+export function toSiteContent(brief: DesignBrief, photoSizes: Record<string, PhotoDims> = {}): SiteContent {
   const name = brief.business_name.trim()
   const shortName = shortNameOf(name)
   const verticalLabel = verticalLabelOf(brief.vertical)
@@ -359,6 +371,8 @@ export function toSiteContent(brief: DesignBrief): SiteContent {
     foundedYear: brief.founded_year,
     licenseNumber: brief.license_number?.trim() || null,
     crewPhotos: trimmed(brief.crew_photo_urls),
+    landscapePhoto:
+      bestLandscapePhoto([...trimmed(brief.crew_photo_urls), ...ownPhotos].filter(isIntakePhoto), photoSizes) ?? null,
     hoursNote,
     utilityLine: utilityLineOf(hoursNote, serviceAreas),
     audiences: audiencesFor(commercialFlavor, ctx),

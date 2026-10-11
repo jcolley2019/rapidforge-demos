@@ -26,6 +26,8 @@ export interface PlaceholderImageProps {
   palette?: PresetPalette
   className?: string
   loading?: 'eager' | 'lazy'
+  /** The fetch priority hint; a hero that is the page's largest paint asks for "high". */
+  fetchPriority?: 'high' | 'low' | 'auto'
   /** How wide the slot renders (see PHOTO_SIZES); used when the photo comes in several sizes. */
   sizes?: string
 }
@@ -52,6 +54,7 @@ export default function PlaceholderImage({
   palette,
   className = '',
   loading,
+  fetchPriority,
   sizes,
 }: PlaceholderImageProps) {
   const [failed, setFailed] = useState(false)
@@ -66,6 +69,7 @@ export default function PlaceholderImage({
         alt={alt}
         className={className}
         loading={loading}
+        fetchPriority={fetchPriority}
         onError={() => setFailed(true)}
       />
     )

@@ -1,36 +1,46 @@
 import { useSite } from '../../brief/site-context'
 import { heroActions } from '../../brief/site-helpers'
-import { PHOTO_SIZES } from '../../brief/photo-sizes'
-import PlaceholderImage from '../../components/PlaceholderImage'
+import BadgeRow from '../../components/BadgeRow'
+import FullBleedPhoto from '../../components/FullBleedPhoto'
 import { presetForVariant } from '../../presets/presets'
-import { heroPhotoFor } from '../heroPhoto'
+import { fullBleedPhotoFor } from '../heroPhoto'
 
+/**
+ * Full-bleed, kept calm: one photo fills the first screen under a heavy
+ * dark shade and a soft vignette; a gold hairline, the serif headline and
+ * the actions sit centered; the credentials run along the bottom edge on a
+ * translucent strip.
+ */
 export default function ClHero() {
   const site = useSite()
   const palette = presetForVariant('cleanpro', site.vertical).palette
-  const photo = heroPhotoFor('cleanpro', site.photos, site.crewPhotos)
+  const photo = fullBleedPhotoFor('cleanpro', site)
   const { primary, secondary } = heroActions(site)
   return (
-    <section className="cl-hero" aria-label="Introduction">
-      <div className="cl-wrap cl-hero-grid">
+    <section className="cl-hero" aria-label="Introduction" data-full-bleed="">
+      <div className="cl-hero-media" aria-hidden="true">
+        <FullBleedPhoto src={photo} palette={palette} className="cl-hero-img" />
+      </div>
+      <div className="cl-wrap cl-hero-inner">
         <div className="cl-hero-copy">
+          <span className="cl-hero-rule" aria-hidden="true" />
           <h1 className="cl-display cl-hero-h1">{site.headline}</h1>
           <p className="cl-hero-sub">{site.subhead}</p>
           <div className="cl-hero-actions">
-            <a href={primary.href} className={`cl-btn cl-btn-gold ${primary.call ? 'cl-num' : ''}`.trim()}>
+            <a href={primary.href} className={`cl-btn cl-btn-gold cl-hero-btn ${primary.call ? 'cl-num' : ''}`.trim()}>
               {primary.label}
             </a>
             {secondary && (
-              <a href={secondary.href} className={`cl-btn cl-btn-outline ${secondary.call ? 'cl-num' : ''}`.trim()}>
+              <a href={secondary.href} className={`cl-btn cl-btn-outline cl-hero-btn ${secondary.call ? 'cl-num' : ''}`.trim()}>
                 {secondary.label}
               </a>
             )}
           </div>
         </div>
-
-        <div className="cl-panel">
-          <PlaceholderImage src={photo} palette={palette} aspectRatio="auto" className="cl-panel-img" sizes={PHOTO_SIZES.heroPanel} />
-          <div className="cl-panel-vignette" aria-hidden="true" />
+      </div>
+      <div className="cl-hero-strip">
+        <div className="cl-wrap">
+          <BadgeRow site={site} />
         </div>
       </div>
     </section>

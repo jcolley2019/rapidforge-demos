@@ -4,12 +4,12 @@ import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { siteContent, siteContentFor } from '../brief/current'
 import { photoSrcSet } from '../brief/photo-sizes'
-import { allTradePhotoUrls } from '../brief/trade-photos'
+import { allTradePhotoUrls, PORTRAIT_STOCK, TRADE_PHOTOS } from '../brief/trade-photos'
 import { presetForVariant } from '../presets/presets'
 import { previewFor } from '../presets/previews'
 import { variantTokens } from '../presets/tokens'
 import { variants } from './variants'
-import { heroPhotoFor, tilePhotosFor } from './heroPhoto'
+import { fullBleedPhotoFor, heroPhotoFor, tilePhotosFor } from './heroPhoto'
 
 /**
  * The three residential fixtures, one per preset vertical. The build's own
@@ -83,9 +83,15 @@ describe('variants', () => {
           const img = hero!.querySelector('img')
           expect(img).not.toBeNull()
           expect(allowedHeroSrcs.has(img!.getAttribute('src') ?? '')).toBe(true)
-          // The brief has crew photos, so variant i leads with crew[i % crew.length].
+          // The brief has crew photos, so variant i leads with crew[i % crew.length];
+          // a full-bleed hero picks from the landscape ones only.
           const i = variants.indexOf(variant)
-          expect(img!.getAttribute('src')).toBe(site.crewPhotos[i % site.crewPhotos.length])
+          if (hero!.hasAttribute('data-full-bleed')) {
+            expect(img!.getAttribute('src')).toBe(fullBleedPhotoFor(variant.slug, site))
+            expect(site.crewPhotos).toContain(img!.getAttribute('src'))
+          } else {
+            expect(img!.getAttribute('src')).toBe(site.crewPhotos[i % site.crewPhotos.length])
+          }
 
           // The badge row sits inside the hero or after it, never before.
           const rows = [...document.querySelectorAll('.br')]
@@ -196,6 +202,73 @@ describe('variants', () => {
       expect(tiles.slice(0, detail.length)).toEqual(detail)
       expect(new Set(tiles).size).toBe(tiles.length)
     }
+  })
+
+  describe('full-bleed heroes', () => {
+    const FULL_BLEED = ['geospatial', 'cleanpro']
+
+    it('makes Bold Local and Premium Dark full-bleed and leaves the other three as they were', () => {
+      for (const variant of variants) {
+        const { unmount } = renderRoute(`/${variant.slug}`)
+        const hero = document.querySelector('section[aria-label="Introduction"]')!
+        expect(hero.hasAttribute('data-full-bleed'), variant.slug).toBe(FULL_BLEED.includes(variant.slug))
+        unmount()
+      }
+    })
+
+    for (const slug of FULL_BLEED) {
+      it(`gives /${slug} one eager, high-priority, preloaded photo across the screen, with the trust strip inside`, () => {
+        renderRoute(`/${slug}`)
+        const hero = document.querySelector('section[aria-label="Introduction"]')!
+        const img = hero.querySelector('img')!
+        const src = img.getAttribute('src')!
+        expect(src).toBe(fullBleedPhotoFor(slug, siteContent))
+        expect(img.getAttribute('sizes')).toBe('100vw')
+        expect(img.getAttribute('loading')).toBe('eager')
+        expect(img.getAttribute('fetchpriority')).toBe('high')
+        const srcset = photoSrcSet(src)!
+        const preload = [...document.head.querySelectorAll('link[rel="preload"][as="image"]')].find(
+          (link) => link.getAttribute('imagesrcset') === srcset,
+        )
+        expect(preload).toBeDefined()
+        expect(preload!.getAttribute('imagesizes')).toBe('100vw')
+        expect(preload!.getAttribute('fetchpriority')).toBe('high')
+        expect(hero.querySelector('.br .br-mark')).not.toBeNull()
+        expect(document.querySelectorAll('.br')).toHaveLength(1)
+      })
+    }
+
+    it("leads with the lead's best landscape photo when it has one", () => {
+      const site = { ...siteContent, photos: ['/leads/x/photos/01.jpg'], crewPhotos: [], landscapePhoto: '/leads/x/photos/01.jpg' }
+      for (const slug of FULL_BLEED) expect(fullBleedPhotoFor(slug, site)).toBe('/leads/x/photos/01.jpg')
+    })
+
+    it("falls back to the landscape trade heroes, never the lead's own smaller or portrait photos", () => {
+      const own = ['/leads/x/photos/01.jpg', '/leads/x/photos/02.jpg']
+      const wide = TRADE_PHOTOS.electrical.hero.filter((p) => !PORTRAIT_STOCK.has(p))
+      for (const vertical of ['electrician', 'plumber']) {
+        for (const photos of [own, [...TRADE_PHOTOS[vertical === 'plumber' ? 'plumbing' : 'electrical'].hero]]) {
+          const site = { ...siteContent, vertical, photos, crewPhotos: ['/leads/x/photos/03.jpg'], landscapePhoto: null }
+          for (const slug of FULL_BLEED) {
+            const src = fullBleedPhotoFor(slug, site)!
+            expect(src).toMatch(/^https:\/\/images\.unsplash\.com\//)
+            expect(PORTRAIT_STOCK.has(src), `${vertical} ${slug}`).toBe(false)
+          }
+        }
+      }
+      const site = { ...siteContent, vertical: 'electrician', photos: own, crewPhotos: [], landscapePhoto: null }
+      for (const slug of FULL_BLEED) expect(fullBleedPhotoFor(slug, site)).toBe(heroPhotoFor(slug, wide))
+    })
+
+    it("keeps a fixture's landscape stock crew photos and skips its portrait ones", () => {
+      for (const { site } of FIXTURES) {
+        const wideCrew = site.crewPhotos.filter((p) => !PORTRAIT_STOCK.has(p))
+        expect(wideCrew.length).toBeGreaterThan(0)
+        for (const slug of FULL_BLEED) {
+          expect(fullBleedPhotoFor(slug, site)).toBe(heroPhotoFor(slug, site.photos, wideCrew))
+        }
+      }
+    })
   })
 
   for (const { stem, query, commercialStem } of [

@@ -1,4 +1,4 @@
-import leadBrief, { stem as leadStem } from 'virtual:lead-brief'
+import leadBrief, { photoSizes as leadPhotoSizes, stem as leadStem } from 'virtual:lead-brief'
 import { DesignBriefSchema } from './design-brief'
 import { toSiteContent, type SiteContent } from './site-content'
 
@@ -58,7 +58,8 @@ export function siteContentFor(stem: string): SiteContent | null {
   const cached = parsed.get(stem)
   if (cached) return cached
   if (!briefModules.has(stem)) return null
-  const site = toSiteContent(DesignBriefSchema.parse(briefModules.get(stem)))
+  // Only the built lead's photos were measured; every other brief has none of its own on disk.
+  const site = toSiteContent(DesignBriefSchema.parse(briefModules.get(stem)), stem === leadStem ? leadPhotoSizes : {})
   parsed.set(stem, site)
   return site
 }

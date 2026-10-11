@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { TRADE_PHOTOS, allTradePhotoUrls } from './trade-photos'
+import { PORTRAIT_STOCK, TRADE_PHOTOS, allTradePhotoUrls } from './trade-photos'
 import { hoursSummary } from './site-helpers'
 
 describe('TRADE_PHOTOS', () => {
@@ -15,6 +15,16 @@ describe('TRADE_PHOTOS', () => {
     const all = allTradePhotoUrls()
     expect(all).toHaveLength(44)
     expect(new Set(all).size).toBe(44)
+  })
+})
+
+describe('PORTRAIT_STOCK', () => {
+  it('names only registry hero and crew photos, and leaves every family landscape heroes', () => {
+    const heroAndCrew = new Set(Object.values(TRADE_PHOTOS).flatMap((set) => [...set.hero, ...set.crew]))
+    for (const url of PORTRAIT_STOCK) expect(heroAndCrew.has(url), url).toBe(true)
+    for (const [family, set] of Object.entries(TRADE_PHOTOS)) {
+      expect(set.hero.filter((url) => !PORTRAIT_STOCK.has(url)).length, family).toBeGreaterThanOrEqual(2)
+    }
   })
 })
 

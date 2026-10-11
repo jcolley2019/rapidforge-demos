@@ -102,6 +102,24 @@ export const TRADE_PHOTOS: Record<CopyFamily, TradePhotoSet> = {
   },
 }
 
+/**
+ * The hero and crew photos above that are taller than wide (measured at
+ * Unsplash). A full-bleed hero never leads with one: cropped to a wide
+ * screen it keeps a band of sky or floor and cuts off the subject.
+ */
+export const PORTRAIT_STOCK: ReadonlySet<string> = new Set([
+  u('1624355761500-f00bb5cfb5a1'), // plumbing: white service van on the road
+  u('1746095792963-74106bae8658'), // plumbing: crew repairing a pipe in the ground
+  u('1710058959636-0588a837357e'), // plumbing: loading the back of a work van
+  u('1561400555-786780284b67'), // hvac: technician servicing a unit
+  u('1623412910761-8929605372ce'), // electrical: white service van at a building
+  u('1515948725-edac7b5bb0fc'), // electrical: finished pendant lighting install
+  u('1615774925655-a0e97fc85c14'), // electrical: electrician in a face shield at a panel
+  u('1731168273756-e02cae42265b'), // generic: tradesperson with an angle grinder
+  u('1643509867448-57001e0c333d'), // generic: hands driving a screw with a drill
+  u('1652303518379-c0ef1c9fb2b1'), // generic: two crew members at a trench
+])
+
 /** Every URL in the registry, flattened, for verification scripts and tests. */
 export function allTradePhotoUrls(): string[] {
   return Object.values(TRADE_PHOTOS).flatMap((set) => [...set.hero, ...set.detail, ...set.crew])
