@@ -22,7 +22,7 @@ import { failureLine, subFromName, successLine, type DemoStage } from './demo'
 const USAGE = `Usage: npm run demo -- --lead <businessId> [--as <subdomain>] [--edit] [--skip-previews]
 
   --lead           the business id in the leads app
-  --as             the subdomain under demos.rapidforge.ai; default: the business
+  --as             the subdomain under demos.rapidforgeai.com; default: the business
                    name's first DNS-safe word ("allplumbing" for "All Plumbing & Sewer")
   --edit           build with the webedit hook (see npm run deploy)
   --skip-previews  keep the Acme picker thumbnails

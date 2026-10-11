@@ -24,7 +24,7 @@ import { vercel } from './vercel'
  * `npm run deploy -- --slug <intake slug> [--as <subdomain>] [--edit] [--skip-previews] [--check-only]`
  *
  * Builds the five-variant site for one intaken lead on this machine and
- * publishes it at <subdomain>.demos.rapidforge.ai. The lead's files are
+ * publishes it at <subdomain>.demos.rapidforgeai.com. The lead's files are
  * gitignored, so Vercel's build server never sees them: the build runs
  * here (`vercel build`) and the output ships with `vercel deploy
  * --prebuilt`. Before the deploy, every other lead is pruned from the
@@ -79,7 +79,7 @@ export interface DeployResult {
   sub: string
   /** The vercel.app deployment URL (login-protected). */
   previewUrl: string
-  /** https://<sub>.demos.rapidforge.ai */
+  /** https://<sub>.demos.rapidforgeai.com */
   aliasUrl: string
   /** Whether `vercel alias set` pointed the alias at this deployment. */
   aliasOk: boolean

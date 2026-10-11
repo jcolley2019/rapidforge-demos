@@ -36,7 +36,7 @@ describe('slug and --as validation', () => {
   it('uses the slug as the subdomain unless --as overrides it', () => {
     expect(parseDeployArgs({ slug: 'robgoodsonplumbing-com' })).toEqual({ slug: 'robgoodsonplumbing-com', sub: 'robgoodsonplumbing-com' })
     expect(parseDeployArgs({ slug: 'robgoodsonplumbing-com', as: 'goodson' })).toEqual({ slug: 'robgoodsonplumbing-com', sub: 'goodson' })
-    expect(aliasFor('goodson')).toBe('goodson.demos.rapidforge.ai')
+    expect(aliasFor('goodson')).toBe('goodson.demos.rapidforgeai.com')
   })
 
   it('refuses a missing or malformed slug or --as', () => {

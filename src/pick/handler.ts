@@ -28,7 +28,7 @@ function json(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } })
 }
 
-/** The alias a pick came from: the page URL's origin, e.g. https://goodson.demos.rapidforge.ai. */
+/** The alias a pick came from: the page URL's origin, e.g. https://goodson.demos.rapidforgeai.com. */
 export function aliasOf(pageUrl: string): string {
   try {
     return new URL(pageUrl).origin

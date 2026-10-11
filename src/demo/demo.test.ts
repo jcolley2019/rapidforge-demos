@@ -39,7 +39,7 @@ describe('result lines', () => {
       slug: 'allplumbingsewer-com',
       sub: 'allplumbing',
       previewUrl: 'https://rapidforge-demos-abc.vercel.app',
-      aliasUrl: 'https://allplumbing.demos.rapidforge.ai',
+      aliasUrl: 'https://allplumbing.demos.rapidforgeai.com',
       aliasOk: false,
       durationMs: 1234,
     })

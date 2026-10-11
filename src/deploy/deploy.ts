@@ -9,7 +9,7 @@ import { join, relative, sep } from 'node:path'
 
 export const PROJECT = 'rapidforge-demos'
 export const SCOPE = 'jcolley2019-1571s-projects'
-export const DOMAIN = 'demos.rapidforge.ai'
+export const DOMAIN = 'demos.rapidforgeai.com'
 
 /** A DNS label: lowercase a-z, 0-9 and hyphens, 1–40 characters, not starting or ending in a hyphen. */
 const DNS_LABEL = /^[a-z0-9](?:[a-z0-9-]{0,38}[a-z0-9])?$/

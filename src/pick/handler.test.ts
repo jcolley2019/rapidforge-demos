@@ -13,7 +13,7 @@ const PICK = {
   preset_id: 'clean-trust',
   preset_name: 'Clean Trust',
   variant_slug: 'heritage',
-  page_url: 'https://goodson.demos.rapidforge.ai/heritage',
+  page_url: 'https://goodson.demos.rapidforgeai.com/heritage',
   name: 'Rob',
   email: 'rob@example.com',
   phone: '',
@@ -22,7 +22,7 @@ const PICK = {
 }
 
 function post(body: unknown, method = 'POST') {
-  return new Request('https://goodson.demos.rapidforge.ai/api/pick', {
+  return new Request('https://goodson.demos.rapidforgeai.com/api/pick', {
     method,
     headers: { 'content-type': 'application/json' },
     body: method === 'GET' ? undefined : typeof body === 'string' ? body : JSON.stringify(body),
@@ -106,7 +106,7 @@ describe('POST /api/pick', () => {
       contact_email: 'rob@example.com',
       contact_phone: null,
       note: 'Love the blue.',
-      source_url: 'https://goodson.demos.rapidforge.ai/heritage',
+      source_url: 'https://goodson.demos.rapidforgeai.com/heritage',
     })
   })
 
@@ -177,10 +177,10 @@ describe('POST /api/pick', () => {
     expect(body.to).toEqual(['joey@example.com'])
     expect(body.reply_to).toBe('rob@example.com')
     expect(body.subject).toBe('[Demo pick] Goodson Plumbing Services likes Clean Trust')
-    for (const value of ['robgoodsonplumbing-com', 'Goodson Plumbing Services', 'clean-trust', 'Clean Trust', 'heritage', 'Rob', 'rob@example.com', 'Love the blue.', 'https://goodson.demos.rapidforge.ai/heritage']) {
+    for (const value of ['robgoodsonplumbing-com', 'Goodson Plumbing Services', 'clean-trust', 'Clean Trust', 'heritage', 'Rob', 'rob@example.com', 'Love the blue.', 'https://goodson.demos.rapidforgeai.com/heritage']) {
       expect(body.text).toContain(value)
     }
-    expect(body.text).toContain('Site:          https://goodson.demos.rapidforge.ai')
+    expect(body.text).toContain('Site:          https://goodson.demos.rapidforgeai.com')
   })
 
   it('accepts a phone alone and uses the configured from address', async () => {

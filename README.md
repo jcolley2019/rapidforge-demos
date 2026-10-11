@@ -39,14 +39,14 @@ One command takes a business from the leads app to a deployed five-variant demo:
 npm run demo -- --lead <businessId> [--as <subdomain>] [--edit] [--skip-previews]
 ```
 
-It reads the business and its newest completed audit's design brief straight from the leads Supabase, crawls the business's website to fill the rest (the intake), then builds and deploys that lead and points `<subdomain>.demos.rapidforge.ai` at it (the deploy). `--as` defaults to the business name's first DNS-safe word, e.g. `allplumbing` for "All Plumbing & Sewer". `--edit` and `--skip-previews` pass through to the deploy.
+It reads the business and its newest completed audit's design brief straight from the leads Supabase, crawls the business's website to fill the rest (the intake), then builds and deploys that lead and points `<subdomain>.demos.rapidforgeai.com` at it (the deploy). `--as` defaults to the business name's first DNS-safe word, e.g. `allplumbing` for "All Plumbing & Sewer". `--edit` and `--skip-previews` pass through to the deploy.
 
 If the lead has no design brief yet, it stops at once: open the lead in RapidForge Leads, Design Brief tab, click Design brief, then rerun.
 
 All progress goes to stderr. The last line on stdout is the result as one JSON object, for the leads worker:
 
 ```
-{"ok":true,"businessId":"…","slug":"…","sub":"…","previewUrl":"https://….vercel.app","aliasUrl":"https://<sub>.demos.rapidforge.ai","aliasOk":true,"durationMs":123456}
+{"ok":true,"businessId":"…","slug":"…","sub":"…","previewUrl":"https://….vercel.app","aliasUrl":"https://<sub>.demos.rapidforgeai.com","aliasOk":true,"durationMs":123456}
 {"ok":false,"stage":"brief|intake|build|previews|deploy|alias","error":"…"}
 ```
 
@@ -71,7 +71,7 @@ Deploy a lead with the webedit hook switched on:
 npm run demo -- --lead <businessId> --edit
 ```
 
-Then open the alias in webedit's Viewer with `?edit` on a variant path, e.g. `https://<sub>.demos.rapidforge.ai/cleanpro?edit`. The page loads `webedit-connect.js` only when it was built with `--edit`, is framed, and has `?edit`, and it talks only to webedit on `localhost:5173`/`5174` (or the origins in `VITE_WEBEDIT_ORIGINS`). Without `--edit`, the script never loads.
+Then open the alias in webedit's Viewer with `?edit` on a variant path, e.g. `https://<sub>.demos.rapidforgeai.com/cleanpro?edit`. The page loads `webedit-connect.js` only when it was built with `--edit`, is framed, and has `?edit`, and it talks only to webedit on `localhost:5173`/`5174` (or the origins in `VITE_WEBEDIT_ORIGINS`). Without `--edit`, the script never loads.
 
 The edits are browser-only: nothing changes on the deployed site. What carries over is the brief webedit produces, which gets applied to the real variant.
 
