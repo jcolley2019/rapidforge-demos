@@ -11,6 +11,33 @@
         ],
         "createdAt": "2026-10-07T02:06:19.664Z",
         "reason": "Claude: synthetic HTML parsed by intake extractor tests, never rendered to users"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "files": [
+          "src/test/fixtures/scroll-min/index.html"
+        ],
+        "createdAt": "2026-10-21T01:04:45.955Z",
+        "reason": "Claude: vendored scroll-craft engine default token in a test fixture, engine files are unmodified MIT upstream"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "files": [
+          "src/test/fixtures/scroll-min/index.html"
+        ],
+        "createdAt": "2026-10-21T01:04:46.167Z",
+        "reason": "Claude: vendored scroll-craft engine default token in a test fixture, engine files are unmodified MIT upstream"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "src/test/fixtures/scroll-min/index.html"
+        ],
+        "createdAt": "2026-10-21T01:04:46.383Z",
+        "reason": "Claude: three-screen test fixture for the copy step, not a shipped design; copy sits in var(--sc-gutter) padding"
       }
     ]
   }
