@@ -92,6 +92,24 @@
         ],
         "createdAt": "2026-10-21T06:02:06.123Z",
         "reason": "Claude: the peak's .strip is a camera window onto a wider drawing (.cam); clipping it is the mechanism and nothing inside needs to escape (RFD.SCROLL.15x build)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "files": [
+          "leads/scrollcraft/builds/accurbore-com/index.html"
+        ],
+        "createdAt": "2026-10-21T06:31:23.367Z",
+        "reason": "Claude: vendored scroll-craft engine default token in scrollcraft.css; the page overrides display and text with Source Serif 4 and Barlow (RFD.SCROLL.15x)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "files": [
+          "leads/scrollcraft/builds/accurbore-com/index.html"
+        ],
+        "createdAt": "2026-10-21T06:31:23.611Z",
+        "reason": "Claude: vendored scroll-craft engine default token in scrollcraft.css; the page overrides display, text and mono with Source Serif 4 and Barlow (RFD.SCROLL.15x)"
       }
     ]
   }
