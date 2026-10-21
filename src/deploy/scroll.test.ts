@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { afterEach, describe, expect, it } from 'vitest'
-import { copyScrollBuild, hasScrollBuild, referencedPaths, scrollBuildDir, scrollWorkspace, withBase } from './scroll'
+import { copyScrollBuild, hasScrollBuild, readScrollCard, referencedPaths, scrollBuildDir, scrollWorkspace, withBase } from './scroll'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const FIXTURE = join(ROOT, 'src', 'test', 'fixtures', 'scroll-min')
@@ -124,5 +124,60 @@ describe('copyScrollBuild', () => {
   it('refuses a folder with no index.html', () => {
     const build = scratch()
     expect(() => copyScrollBuild(build, join(scratch(), 'scroll'))).toThrow(/index\.html not found/)
+  })
+})
+
+describe('card.json', () => {
+  const swatches = ['#13110E', '#EFE9DD', '#4DA3FF', '#a79f90']
+
+  function build(card?: string): string {
+    const dir = scratch()
+    put(dir, 'index.html', '<link href="scrollcraft.css"><script src="scrollcraft.js"></script>')
+    put(dir, 'scrollcraft.js')
+    put(dir, 'scrollcraft.css')
+    if (card !== undefined) put(dir, 'card.json', card)
+    return dir
+  }
+
+  it('is optional: no card.json reads as null and ships nothing', () => {
+    const dir = build()
+    expect(readScrollCard(dir)).toBeNull()
+    const dest = join(scratch(), 'scroll')
+    expect(copyScrollBuild(dir, dest).files).toEqual(['index.html', 'scrollcraft.css', 'scrollcraft.js'])
+    expect(existsSync(join(dest, 'card.json'))).toBe(false)
+  })
+
+  it('reads the description, trimmed, and the four swatches, and nothing else', () => {
+    const dir = build(JSON.stringify({ description: '  Drawn like a cross-section.  ', swatches, notes: 'stays behind' }))
+    expect(readScrollCard(dir)).toEqual({ description: 'Drawn like a cross-section.', swatches })
+  })
+
+  it('ships at card.json next to index.html, as read', () => {
+    const dir = build(JSON.stringify({ description: 'Drawn like a cross-section.', swatches, notes: 'stays behind' }))
+    const dest = join(scratch(), 'scroll')
+    const copied = copyScrollBuild(dir, dest)
+    expect(copied.files).toEqual(['card.json', 'index.html', 'scrollcraft.css', 'scrollcraft.js'])
+    expect(JSON.parse(readFileSync(join(dest, 'card.json'), 'utf8'))).toEqual({ description: 'Drawn like a cross-section.', swatches })
+  })
+
+  it('takes a description of up to 140 characters, and #rgb or #rrggbb swatches', () => {
+    expect(readScrollCard(build(JSON.stringify({ description: 'x'.repeat(140), swatches: ['#000', '#fff', '#0b1f3a', '#FF6A1A'] })))?.description).toHaveLength(140)
+  })
+
+  it.each([
+    ['not JSON', '{ description: nope', /card\.json is not valid JSON/],
+    ['not an object', '["#000"]', /must be an object/],
+    ['no description', JSON.stringify({ swatches }), /"description" must be a non-empty string/],
+    ['a blank description', JSON.stringify({ description: '   ', swatches }), /"description" must be a non-empty string/],
+    ['a 141-character description', JSON.stringify({ description: 'x'.repeat(141), swatches }), /"description" is 141 characters; the most is 140/],
+    ['three swatches', JSON.stringify({ description: 'x', swatches: swatches.slice(0, 3) }), /"swatches" must be 4 hex colours/],
+    ['a swatch that is not hex', JSON.stringify({ description: 'x', swatches: ['#13110E', 'navy', '#4DA3FF', 7] }), /not "navy", 7/],
+  ])('fails, and the copy leaves the destination alone, on %s', (_name, text, error) => {
+    const dir = build(text)
+    expect(() => readScrollCard(dir)).toThrow(error)
+    const dest = join(scratch(), 'scroll')
+    put(dest, 'stale.txt')
+    expect(() => copyScrollBuild(dir, dest)).toThrow(error)
+    expect(existsSync(join(dest, 'stale.txt'))).toBe(true)
   })
 })

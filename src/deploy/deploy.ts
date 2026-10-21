@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
+import type { ScrollCard } from '../scroll/card'
 
 /**
  * The deploy's pure parts: argument validation, the other-lead census, the
@@ -43,16 +44,26 @@ export interface BuildOptions {
   edit?: boolean
   /** The lead has a scroll-craft build that ships at /scroll, so the picker shows the Scroll Story card. */
   scroll?: boolean
+  /** That build's card.json (src/deploy/scroll.ts readScrollCard), for the card's blurb and swatches. */
+  scrollCard?: ScrollCard | null
 }
 
 /**
  * The build env: the parent's, plus the brief this build carries, plus
  * VITE_EDIT='1' only with --edit and VITE_SCROLL='1' only with a scroll
  * build. Otherwise each is pinned to '0', because a value in the shell or
- * a .env file would otherwise switch it on.
+ * a .env file would otherwise switch it on. VITE_SCROLL_CARD is the scroll
+ * build's card as JSON, and likewise pinned to '' without one, so the
+ * picker falls back to the default card.
  */
 export function buildEnv(base: NodeJS.ProcessEnv, slug: string, opts: BuildOptions = {}): NodeJS.ProcessEnv {
-  return { ...base, VITE_BRIEF: `lead-${slug}`, VITE_EDIT: opts.edit ? '1' : '0', VITE_SCROLL: opts.scroll ? '1' : '0' }
+  return {
+    ...base,
+    VITE_BRIEF: `lead-${slug}`,
+    VITE_EDIT: opts.edit ? '1' : '0',
+    VITE_SCROLL: opts.scroll ? '1' : '0',
+    VITE_SCROLL_CARD: opts.scroll && opts.scrollCard ? JSON.stringify(opts.scrollCard) : '',
+  }
 }
 
 export interface LeadIdentity {

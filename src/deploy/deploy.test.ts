@@ -67,6 +67,16 @@ describe('build env', () => {
     expect(buildEnv({ PATH: '/usr/bin' }, 'goodson').VITE_SCROLL).toBe('0')
     expect(buildEnv({ VITE_SCROLL: '1' }, 'goodson', { scroll: false }).VITE_SCROLL).toBe('0')
   })
+
+  it('passes the scroll build card.json as VITE_SCROLL_CARD JSON, and pins it empty otherwise', () => {
+    const scrollCard = { description: 'Drawn like a cross-section.', swatches: ['#13110E', '#EFE9DD', '#4DA3FF', '#A79F90'] }
+    expect(JSON.parse(buildEnv({ PATH: '/usr/bin' }, 'accurbore-com', { scroll: true, scrollCard }).VITE_SCROLL_CARD ?? '')).toEqual(scrollCard)
+    const stale = { VITE_SCROLL_CARD: JSON.stringify(scrollCard) }
+    expect(buildEnv(stale, 'goodson', { scroll: true }).VITE_SCROLL_CARD).toBe('')
+    expect(buildEnv(stale, 'goodson', { scroll: true, scrollCard: null }).VITE_SCROLL_CARD).toBe('')
+    expect(buildEnv(stale, 'goodson', { scroll: false, scrollCard }).VITE_SCROLL_CARD).toBe('')
+    expect(buildEnv(stale, 'goodson').VITE_SCROLL_CARD).toBe('')
+  })
 })
 
 describe('isolation', () => {

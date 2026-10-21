@@ -1,4 +1,5 @@
-import type { Preset } from '../presets/presets'
+import { swatchesOf, type Preset } from '../presets/presets'
+import { parseScrollCard, type ScrollCard } from './card'
 
 /**
  * The Scroll Story look: a scroll-craft page shipped at /scroll by the
@@ -28,4 +29,21 @@ export const SCROLL_LOOK: Preset = {
 /** True in a build made with VITE_SCROLL=1 (a deploy that found the lead's scroll build). */
 export function scrollEnabled(env: Record<string, string | boolean | undefined> = import.meta.env): boolean {
   return env.VITE_SCROLL === '1'
+}
+
+/**
+ * What the Scroll Story card shows: the build's own blurb and swatches when
+ * the deploy passed its card.json in as VITE_SCROLL_CARD (src/scroll/card.ts),
+ * else SCROLL_LOOK's. One that does not parse falls back too.
+ */
+export function scrollCard(env: Record<string, string | boolean | undefined> = import.meta.env): ScrollCard {
+  const raw = env.VITE_SCROLL_CARD
+  if (typeof raw === 'string' && raw.trim()) {
+    try {
+      return parseScrollCard(JSON.parse(raw))
+    } catch {
+      // The deploy refuses a malformed card.json, so only a hand-set value lands here.
+    }
+  }
+  return { description: SCROLL_LOOK.description, swatches: swatchesOf(SCROLL_LOOK) }
 }

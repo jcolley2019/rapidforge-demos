@@ -18,7 +18,7 @@ import {
   vaultMentions,
 } from './deploy'
 import { renderLeadPreviews } from './previews'
-import { SCROLL_PATH, copyScrollBuild, hasScrollBuild, scrollBuildDir } from './scroll'
+import { SCROLL_CARD, SCROLL_PATH, copyScrollBuild, hasScrollBuild, readScrollCard, scrollBuildDir } from './scroll'
 import { vercel } from './vercel'
 
 /**
@@ -47,6 +47,12 @@ import { vercel } from './vercel'
  * what it references are copied to static/scroll/ after the build, and
  * the Previews step shoots /scroll/ too. The isolation scan covers it
  * like the rest of the output.
+ *
+ * RFD.SCROLL.14a: when that build also has a card.json, it is checked
+ * before the build and passed in as VITE_SCROLL_CARD, so the card shows
+ * the build's own blurb and swatches, and it ships at /scroll/card.json.
+ * A malformed one stops the deploy; without one the card keeps its
+ * defaults.
  *
  * --check-only runs the isolation step alone against the build already in
  * .vercel/output, then stops: no login, link, build, deploy or alias.
@@ -130,6 +136,15 @@ function isolation(slug: string) {
   console.log(`  clean: none of ${terms.length} other-lead term(s) from ${others.length} lead(s) appear in the output`)
 }
 
+/** The scroll build's card.json, checked, or null without one; a malformed one throws. */
+function scrollCard(buildDir: string) {
+  try {
+    return readScrollCard(buildDir)
+  } catch (err) {
+    throw new DeployError('build', `scroll build: ${err instanceof Error ? err.message : String(err)}; nothing was deployed`)
+  }
+}
+
 /** Copies the lead's scroll-craft build to static/scroll/; a reference the copy cannot satisfy throws. */
 function scrollStory(buildDir: string) {
   step('Scroll Story')
@@ -190,9 +205,17 @@ export async function runDeploy(opts: DeployOptions): Promise<DeployResult> {
 
     const scrollDir = scrollBuildDir(ROOT, slug)
     const scroll = hasScrollBuild(scrollDir)
-    step(`Build with VITE_BRIEF=lead-${slug}${scroll ? ' VITE_SCROLL=1' : ''}`)
+    const card = scroll ? scrollCard(scrollDir) : null
+    step(`Build with VITE_BRIEF=lead-${slug}${scroll ? ' VITE_SCROLL=1' : ''}${card ? ' VITE_SCROLL_CARD' : ''}`)
     console.log(scroll ? `  scroll build found at ${scrollDir}: six looks` : `  no scroll build at ${scrollDir}: five looks`)
-    const build = await run(['build'], buildEnv(env, slug, { edit: opts.edit === true, scroll }))
+    if (scroll) {
+      console.log(
+        card
+          ? `  ${SCROLL_CARD}: "${card.description}" ${card.swatches.join(' ')}`
+          : `  no ${SCROLL_CARD}: the Scroll Story card keeps its default blurb and swatches`,
+      )
+    }
+    const build = await run(['build'], buildEnv(env, slug, { edit: opts.edit === true, scroll, scrollCard: card }))
     if (build.code !== 0) throw new DeployError('build', 'vercel build failed')
     if (scroll) scrollStory(scrollDir)
 

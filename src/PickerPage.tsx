@@ -10,7 +10,7 @@ import PickModal, { type PickTarget } from './components/PickModal'
 import { useBriefName, useSite } from './brief/site-context'
 import { presetForVariant, swatchesOf } from './presets/presets'
 import { previewFor } from './presets/previews'
-import { SCROLL_LOOK, SCROLL_SLUG, scrollEnabled } from './scroll/look'
+import { SCROLL_LOOK, SCROLL_SLUG, scrollCard, scrollEnabled } from './scroll/look'
 import { variants } from './variants/variants'
 
 export default function PickerPage() {
@@ -39,9 +39,11 @@ export default function PickerPage() {
   }
 
   const commercialShown = twins !== null && brief === twins.commercial
-  // The Scroll Story card: a static page the deploy shipped at /scroll, last, only when it did.
+  // The Scroll Story card: a static page the deploy shipped at /scroll, last, only when it did,
+  // with the build's own blurb and swatches when it had a card.json.
   const scroll = scrollEnabled()
   const scrollPreview = previewFor(SCROLL_SLUG, site.vertical)
+  const card = scrollCard()
 
   return (
     <main className="pk">
@@ -143,9 +145,9 @@ export default function PickerPage() {
                     <img className="pk-phone" src={scrollPreview.mobile} alt="" width={390} height={844} loading="lazy" decoding="async" />
                   </div>
                   <h2 className="pk-name">{SCROLL_LOOK.name}</h2>
-                  <p className="pk-desc">{SCROLL_LOOK.description}</p>
+                  <p className="pk-desc">{card.description}</p>
                   <div className="pk-swatches" aria-hidden="true">
-                    {swatchesOf(SCROLL_LOOK).map((color, j) => (
+                    {card.swatches.map((color, j) => (
                       <span key={`${color}-${j}`} className="pk-swatch" style={{ backgroundColor: color }} />
                     ))}
                   </div>
