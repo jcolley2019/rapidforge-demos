@@ -112,5 +112,6 @@
   ],
   "founded_year": 2008,
   "license_number": "HVC-C-20481",
-  "segment": "commercial"
+  "segment": "commercial",
+  "website_url": "https://acme-heating-air.example.com/"
 }

@@ -210,16 +210,28 @@ const SERVICE_BLURBS: Record<CopyFamily, Array<[keyword: string, blurb: string]>
   generic: [],
 }
 
+/** A trailing entity suffix, with an optional comma before it: " LLC", ", Inc.", " L.L.C.". */
+const ENTITY_SUFFIX = /(?:\s*,\s*|\s+)(?:l\.?l\.?c|inc|co|corp|ltd)\.?$/i
+/** Words that join two real words of a name; ’ is folded to ' before the lookup. */
+const CONNECTORS = new Set(['and', '&', 'of', 'the', 'for', "'n'", "n'"])
+const isConnector = (word: string) => CONNECTORS.has(word.toLowerCase().replace(/[‘’]/g, "'"))
+
 /**
- * The name cut to its first two words, keeping an ampersand-joined pair
- * whole: "Goodson Plumbing Services" gives "Goodson Plumbing", "All
- * Plumbing & Sewer" gives "All Plumbing", and "Brittain & Crawford" stays
- * itself rather than "Brittain &".
+ * The name without its entity suffix, cut to its first two real words: a
+ * connector right after the first word does not count, and pulls in the
+ * word after it. "Goodson Plumbing Services" gives "Goodson Plumbing",
+ * "Above and Beyond Plumbing LLC" gives "Above and Beyond", "Smith & Sons
+ * Heating" gives "Smith & Sons", "All Plumbing & Sewer" gives "All
+ * Plumbing", and "Accurbore, Inc." gives "Accurbore". Never empty, and
+ * never ends in a connector.
  */
 export function shortNameOf(name: string): string {
-  const words = name.trim().split(/\s+/).filter(Boolean)
-  const take = words[1] === '&' ? 3 : 2
-  return words.length <= take ? name.trim() : words.slice(0, take).join(' ')
+  const base = name.trim().replace(ENTITY_SUFFIX, '').trim() || name.trim()
+  const words = base.split(/\s+/).filter(Boolean)
+  let next = 1
+  while (next < words.length && isConnector(words[next])) next++
+  const take = next < words.length ? next + 1 : 1
+  return words.length <= take ? base : words.slice(0, take).join(' ')
 }
 
 export function verticalLabelOf(vertical: string): string {

@@ -7,6 +7,10 @@ import { toSiteContent, type SiteContent } from './brief/site-content'
 import PickerPage from './PickerPage'
 import nosite from './test/fixtures/lead-nosite.json'
 
+const FIXTURES = import.meta.glob<{ default: unknown }>(['./brief/fixtures/acme-*.json', './brief/fixtures/sparse-electric.json'], {
+  eager: true,
+})
+
 /** The fictional no-website lead as a brief-only intake leaves it: no current_site, no website_url. */
 const noWebsite = toSiteContent(DesignBriefSchema.parse({ ...nosite.audit.design_brief, photo_urls: [] }))
 
@@ -50,5 +54,19 @@ describe('picker, for a prospect with no website', () => {
     })
     expect(screen.getByRole('heading', { name: 'Your site today' })).toBeTruthy()
     expect(document.querySelector('.pk-none')).toBeNull()
+  })
+})
+
+describe('picker, for the Acme and sparse fixtures', () => {
+  it('finds all seven', () => {
+    expect(Object.keys(FIXTURES)).toHaveLength(7)
+  })
+
+  it.each(Object.entries(FIXTURES))('%s has a website, so no no-website card', (_path, fixture) => {
+    const site = toSiteContent(DesignBriefSchema.parse(fixture.default))
+    expect(site.websiteUrl).toMatch(/^https:\/\/[a-z-]+\.example\.com\/$/)
+    picker(site)
+    expect(document.querySelector('.pk-none')).toBeNull()
+    expect(screen.queryByRole('heading', { name: "You don't have a website yet" })).toBeNull()
   })
 })

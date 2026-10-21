@@ -112,5 +112,6 @@
   ],
   "founded_year": 2004,
   "license_number": "PLB-C-12345",
-  "segment": "commercial"
+  "segment": "commercial",
+  "website_url": "https://acme-plumbing.example.com/"
 }

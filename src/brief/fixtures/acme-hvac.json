@@ -148,5 +148,6 @@
     "https://images.unsplash.com/photo-1594581835488-0b95b8b0bacd?w=1600&q=80"
   ],
   "segment": "residential",
-  "hours_note": "24/7 emergency service"
+  "hours_note": "24/7 emergency service",
+  "website_url": "https://acme-heating-air.example.com/"
 }

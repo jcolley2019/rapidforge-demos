@@ -112,5 +112,6 @@
   ],
   "founded_year": 2011,
   "license_number": "ELE-C-31907",
-  "segment": "commercial"
+  "segment": "commercial",
+  "website_url": "https://acme-electric.example.com/"
 }

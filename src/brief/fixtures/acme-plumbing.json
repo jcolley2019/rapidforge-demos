@@ -148,5 +148,6 @@
     "https://images.unsplash.com/photo-1787672357497-9d9e025f01b3?w=1600&q=80"
   ],
   "segment": "residential",
-  "hours_note": "24/7 emergency service"
+  "hours_note": "24/7 emergency service",
+  "website_url": "https://acme-plumbing.example.com/"
 }

@@ -352,6 +352,32 @@ describe('helpers', () => {
     expect(shortNameOf('Goodson Plumbing Services')).toBe('Goodson Plumbing')
   })
 
+  it('shortNameOf drops the entity suffix and keeps a connector phrase whole', () => {
+    expect(shortNameOf('Above and Beyond Plumbing LLC')).toBe('Above and Beyond')
+    expect(shortNameOf('Smith & Sons Heating')).toBe('Smith & Sons')
+    expect(shortNameOf('All Plumbing & Sewer')).toBe('All Plumbing')
+    expect(shortNameOf('Accurbore, Inc.')).toBe('Accurbore')
+    expect(shortNameOf('Rob Goodson Plumbing')).toBe('Rob Goodson')
+    expect(shortNameOf('A & B')).toBe('A & B')
+    expect(shortNameOf('Accurbore')).toBe('Accurbore')
+  })
+
+  it('shortNameOf knows every suffix and connector, and never ends in a connector', () => {
+    for (const suffix of [' LLC', ', LLC', ' L.L.C.', ' llc', ' Inc', ' Inc.', ', Inc.', ' Co', ' Co.', ' Corp', ', Corp.', ' Ltd', ' Ltd.']) {
+      expect(shortNameOf(`Summit Plumbing Services${suffix}`)).toBe('Summit Plumbing')
+      expect(shortNameOf(`Summit${suffix}`)).toBe('Summit')
+    }
+    expect(shortNameOf('House of Pipes Plumbing')).toBe('House of Pipes')
+    expect(shortNameOf('Pipes for the People')).toBe('Pipes for the People')
+    expect(shortNameOf("Rock 'n' Roll Rooter")).toBe("Rock 'n' Roll")
+    expect(shortNameOf("Rock n' Roll Rooter")).toBe("Rock n' Roll")
+    expect(shortNameOf('Rock ’n’ Roll Rooter')).toBe('Rock ’n’ Roll')
+    expect(shortNameOf('Smith and, LLC')).toBe('Smith')
+    expect(shortNameOf('Smith &')).toBe('Smith')
+    expect(shortNameOf('Bronco Plumbing')).toBe('Bronco Plumbing')
+    expect(shortNameOf('LLC')).toBe('LLC')
+  })
+
   it('verticalLabelOf maps known verticals and title-cases the rest', () => {
     expect(verticalLabelOf('hvac_contractor')).toBe('Heating & Cooling')
     expect(verticalLabelOf('mobile_dog_grooming')).toBe('Mobile Dog Grooming')
