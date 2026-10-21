@@ -18,6 +18,7 @@ import {
   vaultMentions,
 } from './deploy'
 import { renderLeadPreviews } from './previews'
+import { SCROLL_PATH, copyScrollBuild, hasScrollBuild, scrollBuildDir } from './scroll'
 import { vercel } from './vercel'
 
 /**
@@ -39,6 +40,13 @@ import { vercel } from './vercel'
  *
  * --edit builds with VITE_EDIT=1, so the page mounts webedit-connect.js
  * when a webedit Viewer frames it with ?edit; without it, it never does.
+ *
+ * RFD.SCROLL.14: when the lead has a scroll-craft build (leads/scrollcraft/
+ * builds/<slug>/index.html, see src/deploy/scroll.ts) the build runs with
+ * VITE_SCROLL=1 so the picker shows the Scroll Story card, the page and
+ * what it references are copied to static/scroll/ after the build, and
+ * the Previews step shoots /scroll/ too. The isolation scan covers it
+ * like the rest of the output.
  *
  * --check-only runs the isolation step alone against the build already in
  * .vercel/output, then stops: no login, link, build, deploy or alias.
@@ -122,14 +130,25 @@ function isolation(slug: string) {
   console.log(`  clean: none of ${terms.length} other-lead term(s) from ${others.length} lead(s) appear in the output`)
 }
 
+/** Copies the lead's scroll-craft build to static/scroll/; a reference the copy cannot satisfy throws. */
+function scrollStory(buildDir: string) {
+  step('Scroll Story')
+  try {
+    const copied = copyScrollBuild(buildDir, join(OUTPUT, 'static', SCROLL_PATH))
+    console.log(`  ${copied.files.length} file(s), ${Math.round(copied.bytes / 1000)} KB from ${buildDir} → /${SCROLL_PATH}/`)
+  } catch (err) {
+    throw new DeployError('build', `scroll build: ${err instanceof Error ? err.message : String(err)}; nothing was deployed`)
+  }
+}
+
 /** Shoots the lead's picker thumbnails over the Acme ones in the output; a missing or oversized shot throws. */
-async function previews(fixture: string) {
+async function previews(fixture: string, scroll: boolean) {
   step('Previews')
   const { vertical } = JSON.parse(readFileSync(fixture, 'utf8')) as { vertical?: string }
   if (!vertical) throw new DeployError('previews', `${fixture} has no vertical`)
   console.log(`  lead vertical "${vertical}"`)
   try {
-    await renderLeadPreviews({ outputStatic: join(OUTPUT, 'static'), vertical, log: (line) => console.log(`  ${line}`) })
+    await renderLeadPreviews({ outputStatic: join(OUTPUT, 'static'), vertical, scroll, log: (line) => console.log(`  ${line}`) })
   } catch (err) {
     throw new DeployError('previews', `previews failed: ${err instanceof Error ? err.message : String(err)}; nothing was deployed`)
   }
@@ -169,16 +188,20 @@ export async function runDeploy(opts: DeployOptions): Promise<DeployResult> {
     const pull = await run(['pull', '--yes', '--environment=preview'], env)
     if (pull.code !== 0) throw new DeployError('build', 'vercel pull failed')
 
-    step(`Build with VITE_BRIEF=lead-${slug}`)
-    const build = await run(['build'], buildEnv(env, slug, { edit: opts.edit === true }))
+    const scrollDir = scrollBuildDir(ROOT, slug)
+    const scroll = hasScrollBuild(scrollDir)
+    step(`Build with VITE_BRIEF=lead-${slug}${scroll ? ' VITE_SCROLL=1' : ''}`)
+    console.log(scroll ? `  scroll build found at ${scrollDir}: six looks` : `  no scroll build at ${scrollDir}: five looks`)
+    const build = await run(['build'], buildEnv(env, slug, { edit: opts.edit === true, scroll }))
     if (build.code !== 0) throw new DeployError('build', 'vercel build failed')
+    if (scroll) scrollStory(scrollDir)
 
     stage = 'previews'
     if (opts.skipPreviews) {
       step('Previews')
       console.log('  --skip-previews: skipped; the picker keeps the committed Acme thumbnails')
     } else {
-      await previews(fixture)
+      await previews(fixture, scroll)
     }
 
     stage = 'deploy'

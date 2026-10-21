@@ -75,6 +75,14 @@ describe('POST /api/pick', () => {
     expect(fetch).not.toHaveBeenCalled()
   })
 
+  it('accepts variant scroll (the Scroll Story page) and stores it as the row’s variant', async () => {
+    const fetch = routed()
+    const res = await handlePick(post({ ...PICK, businessId: BUSINESS_ID, variant_slug: 'scroll', preset_id: 'scroll-story', preset_name: 'Scroll Story' }), DB_ENV, fetch)
+    expect(res.status).toBe(200)
+    const [, init] = calls(fetch)[0]
+    expect(JSON.parse(init.body as string)).toMatchObject({ variant: 'scroll', preset_id: 'scroll-story' })
+  })
+
   it('drops a honeypot hit silently with a 200', async () => {
     const fetch = routed()
     const res = await handlePick(post({ ...PICK, businessId: BUSINESS_ID, website: 'http://spam.example' }), { ...ENV, ...DB_ENV }, fetch)

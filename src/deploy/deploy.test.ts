@@ -61,6 +61,12 @@ describe('build env', () => {
     expect(buildEnv({ PATH: '/usr/bin' }, 'goodson').VITE_EDIT).toBe('0')
     expect(buildEnv({ VITE_EDIT: '1' }, 'goodson', { edit: false }).VITE_EDIT).toBe('0')
   })
+
+  it('sets VITE_SCROLL=1 only when the lead has a scroll build, whatever the shell says', () => {
+    expect(buildEnv({ PATH: '/usr/bin' }, 'goodson', { scroll: true }).VITE_SCROLL).toBe('1')
+    expect(buildEnv({ PATH: '/usr/bin' }, 'goodson').VITE_SCROLL).toBe('0')
+    expect(buildEnv({ VITE_SCROLL: '1' }, 'goodson', { scroll: false }).VITE_SCROLL).toBe('0')
+  })
 })
 
 describe('isolation', () => {

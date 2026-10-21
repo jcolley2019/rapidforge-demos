@@ -72,6 +72,17 @@ describe('previewShots', () => {
     expect(new Set(paths).size).toBe(10)
   })
 
+  it('adds scroll.jpg and scroll-mobile.jpg, shot from /scroll/, only with a scroll build', () => {
+    const plain = previewShots('out', 'plumber').map((s) => s.path)
+    expect(plain.some((p) => p.includes('scroll'))).toBe(false)
+    const shots = previewShots('out', 'plumber', { scroll: true })
+    expect(shots).toHaveLength(12)
+    const scroll = shots.filter((s) => s.route === 'scroll')
+    expect(scroll.map((s) => s.path)).toEqual(['previews/plumbing/scroll.jpg', 'previews/plumbing/scroll-mobile.jpg'])
+    expect(scroll.map((s) => s.url)).toEqual(['/scroll/', '/scroll/'])
+    expect(shots.find((s) => s.route === 'heritage')!.url).toBe('/heritage')
+  })
+
   it('resolves other lead verticals the way the picker does', () => {
     expect(previewShots('out', 'hvac_contractor')[0].path).toBe('previews/hvac/heritage.jpg')
     expect(previewShots('out', 'electrician')[0].path).toBe('previews/electrical/heritage.jpg')

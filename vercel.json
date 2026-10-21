@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/scroll", "destination": "/scroll/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

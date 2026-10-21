@@ -41,15 +41,18 @@ export function aliasFor(sub: string): string {
 export interface BuildOptions {
   /** Let the build mount webedit-connect.js when framed with ?edit (see src/edit/mount.ts). */
   edit?: boolean
+  /** The lead has a scroll-craft build that ships at /scroll, so the picker shows the Scroll Story card. */
+  scroll?: boolean
 }
 
 /**
  * The build env: the parent's, plus the brief this build carries, plus
- * VITE_EDIT='1' only with --edit. Without it VITE_EDIT is pinned to '0',
- * because a value in the shell or a .env file would otherwise switch it on.
+ * VITE_EDIT='1' only with --edit and VITE_SCROLL='1' only with a scroll
+ * build. Otherwise each is pinned to '0', because a value in the shell or
+ * a .env file would otherwise switch it on.
  */
 export function buildEnv(base: NodeJS.ProcessEnv, slug: string, opts: BuildOptions = {}): NodeJS.ProcessEnv {
-  return { ...base, VITE_BRIEF: `lead-${slug}`, VITE_EDIT: opts.edit ? '1' : '0' }
+  return { ...base, VITE_BRIEF: `lead-${slug}`, VITE_EDIT: opts.edit ? '1' : '0', VITE_SCROLL: opts.scroll ? '1' : '0' }
 }
 
 export interface LeadIdentity {

@@ -63,6 +63,14 @@ The picker's cards show screenshots of each look. The committed ones in `public/
 
 `--skip-previews` (on `npm run demo` or `npm run deploy`) skips that step, so the deployed picker shows the Acme thumbnails too.
 
+### Scroll Story look
+
+A lead can carry a sixth look: a standalone scroll-driven page built with Nate Herk's [scroll-craft](https://github.com/nateherkai/scroll-craft) skill (plugin `nateherk-design`). The skill's workspace is `leads/scrollcraft/` (`.scrollcraft.json` at the repo root), so a lead's build lives at `leads/scrollcraft/builds/<slug>/` (`index.html`, `scrollcraft.js`, `scrollcraft.css`, `assets/`), gitignored with the rest of `leads/`. Building one per lead with the skill is the next brick; this one only publishes it.
+
+`npm run demo` (and `npm run deploy`) publishes the build automatically when that folder has an `index.html`: the site is built with `VITE_SCROLL=1`, so the picker shows the "Scroll Story" card last, with its own "I like this" (variant `scroll`, preset `scroll-story`); the page and only what it references ship at `/scroll` (`index.html`, the engine, and the referenced files under `assets/` and `fonts/`; `BRIEF.md`, verify sheets and the like stay behind, and a reference the copy cannot satisfy fails the deploy); the Previews step shoots `/scroll/` into `scroll.jpg` and `scroll-mobile.jpg` under the same size gate; and the isolation scan covers it. `vercel.json` rewrites `/scroll` to the static page ahead of the React catch-all. Without the folder, nothing of it shows.
+
+`src/test/fixtures/scroll-min/` is a three-screen page on the real engine (MIT, scroll-craft at `75d81f7`) for the tests; copy it to `leads/scrollcraft/builds/<slug>/` to try the look locally or on a deploy.
+
 ## Live tweaks with webedit
 
 Deploy a lead with the webedit hook switched on:

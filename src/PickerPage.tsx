@@ -10,6 +10,7 @@ import PickModal, { type PickTarget } from './components/PickModal'
 import { useBriefName, useSite } from './brief/site-context'
 import { presetForVariant, swatchesOf } from './presets/presets'
 import { previewFor } from './presets/previews'
+import { SCROLL_LOOK, SCROLL_SLUG, scrollEnabled } from './scroll/look'
 import { variants } from './variants/variants'
 
 export default function PickerPage() {
@@ -38,6 +39,9 @@ export default function PickerPage() {
   }
 
   const commercialShown = twins !== null && brief === twins.commercial
+  // The Scroll Story card: a static page the deploy shipped at /scroll, last, only when it did.
+  const scroll = scrollEnabled()
+  const scrollPreview = previewFor(SCROLL_SLUG, site.vertical)
 
   return (
     <main className="pk">
@@ -63,7 +67,7 @@ export default function PickerPage() {
               </button>
             </div>
           )}
-          <h1 className="pk-title">{`${site.name} — five looks, pick one`}</h1>
+          <h1 className="pk-title">{`${site.name} — ${scroll ? 'six' : 'five'} looks, pick one`}</h1>
           <p className="pk-lead">
             Each one is a complete, working site. Open any of them; use the link
             in the corner to come back.
@@ -129,6 +133,41 @@ export default function PickerPage() {
               </li>
             )
           })}
+          {scroll && (
+            <li key={SCROLL_SLUG}>
+              <div className="pk-cell">
+                {/* A plain link: /scroll is a static page outside the React router. */}
+                <a href={`/${SCROLL_SLUG}`} className="pk-card">
+                  <div className="pk-frame">
+                    <img className="pk-shot" src={scrollPreview.desktop} alt="" width={1280} height={800} decoding="async" />
+                    <img className="pk-phone" src={scrollPreview.mobile} alt="" width={390} height={844} loading="lazy" decoding="async" />
+                  </div>
+                  <h2 className="pk-name">{SCROLL_LOOK.name}</h2>
+                  <p className="pk-desc">{SCROLL_LOOK.description}</p>
+                  <div className="pk-swatches" aria-hidden="true">
+                    {swatchesOf(SCROLL_LOOK).map((color, j) => (
+                      <span key={`${color}-${j}`} className="pk-swatch" style={{ backgroundColor: color }} />
+                    ))}
+                  </div>
+                </a>
+                <button
+                  type="button"
+                  className="pk-like"
+                  onClick={() =>
+                    setPick({
+                      slug: pickSlugOf(brief),
+                      businessName: site.name,
+                      businessId: site.leadBusinessId,
+                      preset: SCROLL_LOOK,
+                      variantSlug: SCROLL_SLUG,
+                    })
+                  }
+                >
+                  I like this
+                </button>
+              </div>
+            </li>
+          )}
         </ul>
 
         <footer className="pk-foot">

@@ -1,8 +1,8 @@
 import { z } from 'zod'
 import { variants } from '../variants/variants.js'
 
-/** The variant routes a pick can name: /heritage, /geospatial, … */
-export const VARIANT_SLUGS: readonly string[] = variants.map((v) => v.slug)
+/** The looks a pick can name: the variant routes /heritage, /geospatial, …, and the static /scroll page. */
+export const VARIANT_SLUGS: readonly string[] = [...variants.map((v) => v.slug), 'scroll']
 
 /**
  * One "I like this one" pick, as the modal posts it to /api/pick. `website`

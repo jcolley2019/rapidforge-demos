@@ -4,6 +4,7 @@ import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { presetVerticalOf } from '../presets/presets'
 import { variants } from '../variants/variants'
+import { SCROLL_PATH } from './scroll'
 
 /**
  * The picker's thumbnails for one lead, shot at deploy time. The committed
@@ -37,7 +38,10 @@ export const PREVIEW_VIEWPORTS: PreviewViewport[] = [
 ]
 
 export interface PreviewShot {
+  /** The look's slug, which names the file: heritage, …, scroll. */
   route: string
+  /** The page to shoot, from the server root: /heritage, or /scroll/ for the static page. */
+  url: string
   viewport: PreviewViewport
   /** Path under the output's static dir, "/"-separated: previews/plumbing/heritage.jpg. */
   path: string
@@ -50,13 +54,19 @@ export interface PreviewFile {
   bytes: number
 }
 
-/** Every shot for a lead: each variant route at each viewport, under previews/<preset vertical>/. */
-export function previewShots(outputStatic: string, vertical: string): PreviewShot[] {
+export interface PreviewShotOptions {
+  /** The build ships a scroll-craft page at /scroll/, so shoot it as scroll.jpg too. */
+  scroll?: boolean
+}
+
+/** Every shot for a lead: each variant route (and /scroll/ with a scroll build) at each viewport, under previews/<preset vertical>/. */
+export function previewShots(outputStatic: string, vertical: string, opts: PreviewShotOptions = {}): PreviewShot[] {
   const dir = `previews/${presetVerticalOf(vertical)}`
+  const pages = [...PREVIEW_ROUTES.map((route) => ({ route, url: `/${route}` })), ...(opts.scroll ? [{ route: SCROLL_PATH, url: `/${SCROLL_PATH}/` }] : [])]
   return PREVIEW_VIEWPORTS.flatMap((viewport) =>
-    PREVIEW_ROUTES.map((route) => {
+    pages.map(({ route, url }) => {
       const path = `${dir}/${route}${viewport.suffix}.jpg`
-      return { route, viewport, path, file: join(outputStatic, ...path.split('/')) }
+      return { route, url, viewport, path, file: join(outputStatic, ...path.split('/')) }
     }),
   )
 }
@@ -149,7 +159,7 @@ export const captureWithPlaywright: Capture = async (base, shots) => {
       })
       const page = await context.newPage()
       for (const shot of shots.filter((s) => s.viewport.width === viewport.width && s.viewport.height === viewport.height)) {
-        const url = `${base}/${shot.route}`
+        const url = `${base}${shot.url}`
         const res = await page.goto(url, { waitUntil: 'networkidle' })
         if (!res || !res.ok()) throw new Error(`${url} @${viewport.width}: HTTP ${res ? res.status() : 'no response'}`)
         await page.evaluate(() => document.fonts.ready)
@@ -169,6 +179,8 @@ export interface RenderOptions {
   outputStatic: string
   /** The lead brief's vertical ("plumber"); its preset vertical names the folder. */
   vertical: string
+  /** Also shoot the scroll-craft page at /scroll/ (see previewShots). */
+  scroll?: boolean
   capture?: Capture
   serve?: Serve
   /** Gets one line per file written, with its size. */
@@ -181,9 +193,9 @@ export interface RenderOptions {
  * is at or over PREVIEW_MAX_BYTES; either way the server is stopped.
  */
 export async function renderLeadPreviews(opts: RenderOptions): Promise<PreviewFile[]> {
-  const { outputStatic, vertical, capture = captureWithPlaywright, serve = servePreview, log = () => {} } = opts
+  const { outputStatic, vertical, scroll = false, capture = captureWithPlaywright, serve = servePreview, log = () => {} } = opts
   if (!existsSync(join(outputStatic, 'index.html'))) throw new Error(`${join(outputStatic, 'index.html')} not found; build first`)
-  const shots = previewShots(outputStatic, vertical)
+  const shots = previewShots(outputStatic, vertical, { scroll })
   for (const shot of shots) {
     mkdirSync(dirname(shot.file), { recursive: true })
     // Removed first, so a shot that never lands cannot leave the Acme file in place.
