@@ -103,6 +103,8 @@ npm run intake -- --lead <businessId> [--url https://prospect.com] [--dry]
 
 `--lead` reads the business and its newest completed audit's design brief straight from the leads Supabase, so the leads worker does not need to be running. `--url` is optional when the business has a website in the leads app, `--dry` stops after the read (it still writes `leads/<slug>/lead-api-brief.json`), and `--lead` can't be combined with `--brief`. The brief's photos are worker-only URLs, so the site's own photos are used instead.
 
+Most leads have no website. When the business has no `website_url` and you pass no `--url`, intake runs brief-only: no fetch, extract, photos, vision or screenshot. The lead brief supplies everything as usual, the trade's stock photos (`src/brief/trade-photos.ts`) fill `photo_urls`, and `brand_colors`, `website_url` and `current_site` stay empty, so the preset palettes apply and the segment stays residential. The refine step still runs over the lead's own services and review text, and its wording of the services and tone replaces the lead's raw lists. The slug is the business name in kebab case ("Summit and Sage Plumbing LLC" gives `summit-and-sage-plumbing-llc`), the summary table is headed `no website — brief-only intake`, and `npm run demo -- --lead <businessId>` needs no extra flag. The picker shows "You don't have a website yet" in place of "Your site today", with no screenshots and no problem line.
+
 Then deploy an intaken lead by its slug:
 
 ```

@@ -1,9 +1,16 @@
 // @vitest-environment node
 import { spawnSync } from 'node:child_process'
+import { existsSync, mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import type { DeployOptions } from '../deploy/cli'
 import { isDnsLabel } from '../deploy/deploy'
+import { runIntake } from '../intake/cli'
+import { leadBriefFrom } from '../intake/leads'
+import nosite from '../test/fixtures/lead-nosite.json'
+import { runDemo } from './cli'
 import { failureLine, subFromName, successLine } from './demo'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
@@ -76,4 +83,61 @@ describe('demo CLI', () => {
     expect(result.error).toContain(error)
     expect(run.stderr).toContain(error)
   }, 60_000)
+})
+
+describe('demo for a lead with no website', () => {
+  const roots: string[] = []
+
+  afterEach(() => {
+    for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true })
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
+  })
+
+  it('needs no extra flag: brief-only intake, the deploy of its slug, then one ok:true line', async () => {
+    const root = mkdtempSync(join(tmpdir(), 'rfd-demo-nosite-'))
+    roots.push(root)
+    const fetchMock = vi.fn(async () => {
+      throw new Error('no network in tests')
+    })
+    vi.stubGlobal('fetch', fetchMock)
+    vi.spyOn(console, 'log').mockImplementation(() => {})
+    const deploys: DeployOptions[] = []
+    const lines: string[] = []
+
+    const code = await runDemo(['--lead', nosite.business.id], (line) => lines.push(line), {
+      runIntake: (opts) =>
+        runIntake({
+          ...opts,
+          root,
+          fetchLead: async () => leadBriefFrom(nosite.business, nosite.audit),
+          // The refine call fails, so the lead's own services and tone stand.
+          ai: { complete: async () => Promise.reject(new Error('no model in tests')) },
+        }),
+      runDeploy: async (opts) => {
+        deploys.push(opts)
+        expect(existsSync(join(root, 'src', 'brief', 'fixtures', `lead-${opts.slug}.json`))).toBe(true)
+        return {
+          slug: opts.slug,
+          sub: opts.as ?? opts.slug,
+          previewUrl: 'https://rapidforge-demos-test.vercel.app',
+          aliasUrl: `https://${opts.as}.demos.rapidforgeai.com`,
+          aliasOk: true,
+        }
+      },
+    })
+
+    expect(code).toBe(0)
+    expect(fetchMock).not.toHaveBeenCalled()
+    expect(deploys).toEqual([expect.objectContaining({ slug: 'summit-and-sage-plumbing-llc', as: 'summitandsageplumbingllc' })])
+    expect(lines).toHaveLength(1)
+    expect(JSON.parse(lines[0])).toMatchObject({
+      ok: true,
+      businessId: nosite.business.id,
+      slug: 'summit-and-sage-plumbing-llc',
+      sub: 'summitandsageplumbingllc',
+      aliasUrl: 'https://summitandsageplumbingllc.demos.rapidforgeai.com',
+      aliasOk: true,
+    })
+  })
 })

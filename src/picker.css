@@ -190,6 +190,32 @@
   margin-top: clamp(1.5rem, 3vw, 2rem);
 }
 
+/* No website yet ----------------------------------------------------------
+   In place of "Your site today" when the prospect has no site: a heading
+   and one line, no frames, between a hairline and the cards. */
+.pk-none {
+  margin-top: clamp(2.75rem, 6vw, 4.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid var(--pk-line);
+}
+
+.pk-none-title {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  color: var(--pk-text);
+}
+
+.pk-none-line {
+  margin: 0.5rem 0 0;
+  max-width: 44rem;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  color: var(--pk-text-dim);
+  text-wrap: pretty;
+}
+
 /* Grid ------------------------------------------------------------------
    Five equal cards: one column, then two, then three. A short last row
    sits centred under the full rows instead of stretching. */

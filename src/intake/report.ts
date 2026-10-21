@@ -27,7 +27,8 @@ function photoNote(p: PhotoRow): string {
 
 export interface ReportInput {
   slug: string
-  url: string
+  /** null for a brief-only intake: the business has no website. */
+  url: string | null
   brief: DesignBrief
   provenance: Record<BriefKey, Provenance>
   photos: PhotoRow[]
@@ -70,12 +71,13 @@ function itemText(key: BriefKey, item: unknown): string {
   return String(o.text ?? o.label ?? o.title ?? JSON.stringify(item))
 }
 
-/** The console table: field, status, value. */
-export function summaryTable(brief: DesignBrief, provenance: Record<BriefKey, Provenance>): string {
+/** The console table: field, status, value, under `title` when given. */
+export function summaryTable(brief: DesignBrief, provenance: Record<BriefKey, Provenance>, title?: string): string {
   const rows = BRIEF_FIELDS.map((key) => [key, provenance[key].status, clip(preview(key, brief[key]), 70)])
   const widths = [0, 1].map((col) => Math.max(...rows.map((r) => r[col].length), col === 0 ? 5 : 6))
   const line = (cells: string[]) => `${cells[0].padEnd(widths[0])}  ${cells[1].padEnd(widths[1])}  ${cells[2]}`
-  return [line(['field', 'status', 'value']), line(['-'.repeat(widths[0]), '-'.repeat(widths[1]), '-----']), ...rows.map(line)].join('\n')
+  const table = [line(['field', 'status', 'value']), line(['-'.repeat(widths[0]), '-'.repeat(widths[1]), '-----']), ...rows.map(line)]
+  return [...(title ? [title] : []), ...table].join('\n')
 }
 
 export function intakeReport(input: ReportInput): string {
@@ -85,23 +87,25 @@ export function intakeReport(input: ReportInput): string {
     return `- **${key}** — ${p.status} (${p.how}): ${clip(preview(key, brief[key]), 160)}`
   })
   const photoLines =
-    input.photos.length === 0
-      ? ['No photos passed the size filter.']
-      : [
-          '| File | Kind | Quality | Used as | Note | Source |',
-          '| --- | --- | --- | --- | --- | --- |',
-          ...input.photos.map(
-            (p) =>
-              `| ${p.file} | ${p.tag.kind} | ${p.vendor ? '—' : p.tag.quality} | ${p.use} | ${photoNote(p).replace(/\|/g, '/')} | ${p.source} |`,
-          ),
-        ]
+    input.url === null
+      ? ['No website: photo_urls are stock photos for the trade (src/brief/trade-photos.ts).']
+      : input.photos.length === 0
+        ? ['No photos passed the size filter.']
+        : [
+            '| File | Kind | Quality | Used as | Note | Source |',
+            '| --- | --- | --- | --- | --- | --- |',
+            ...input.photos.map(
+              (p) =>
+                `| ${p.file} | ${p.tag.kind} | ${p.vendor ? '—' : p.tag.quality} | ${p.use} | ${photoNote(p).replace(/\|/g, '/')} | ${p.source} |`,
+            ),
+          ]
   return [
     `# Intake report — ${brief.business_name}`,
     '',
     `- Lead: \`lead-${input.slug}\``,
-    `- Site: ${input.url}`,
+    `- Site: ${input.url ?? 'none (no website — brief-only intake)'}`,
     `- Run: ${brief.generated_at}`,
-    `- Models: vision ${input.models.vision ?? '(no call succeeded)'}, text ${input.models.text ?? '(call failed, deterministic fallback)'}`,
+    `- Models: vision ${input.url === null ? '(not run)' : (input.models.vision ?? '(no call succeeded)')}, text ${input.models.text ?? '(call failed, deterministic fallback)'}`,
     '',
     '## Fields',
     '',

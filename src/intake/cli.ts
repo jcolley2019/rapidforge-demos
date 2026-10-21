@@ -5,14 +5,16 @@ import { parseArgs } from 'node:util'
 import { loadEnv } from '@rapidforge/ai-core'
 import sharp from 'sharp'
 import { ZodError } from 'zod'
+import { copyFamilyFor } from '../brief/copy'
 import { DesignBriefSchema, type DesignBrief } from '../brief/design-brief'
 import { sizedPhotoName } from '../brief/photo-sizes'
-import { VISION_MODEL, createAiClient, describeError } from './ai'
+import { TRADE_PHOTOS } from '../brief/trade-photos'
+import { VISION_MODEL, createAiClient, describeError, type AiClient } from './ai'
 import { extractSite, type SiteExtract } from './extract'
 import { FETCH_TIMEOUT_MS, USER_AGENT, fetchSite } from './fetch'
-import { LEAD_PHOTOS_SKIPPED, fetchLeadBrief, type LeadBrief } from './leads'
+import { LEAD_PHOTOS_SKIPPED, LEAD_PHOTOS_STOCK, NO_WEBSITE, fetchLeadBrief, type LeadBrief } from './leads'
 import { isEmpty, mergeBrief, parseLeadBrief, rebaseAssets, type SiteFields } from './merge'
-import { assertLeadPath, defaultSlug, leadPaths, type LeadPaths } from './paths'
+import { assertLeadPath, defaultSlug, leadPaths, slugify, type LeadPaths } from './paths'
 import { collectPhotoUrls, downloadImages, selectPhotos, type KeptPhoto } from './photos'
 import { refineWithAi, type RefineResult } from './refine'
 import { intakeReport, summaryTable, type PhotoRow } from './report'
@@ -32,6 +34,10 @@ import { mapTaggedPhotos, tagPhotos, type PhotoPlan, type Tagged } from './visio
  *
  * RFD.LEADS.10c: the --lead path is exported as runIntake(), which
  * `npm run demo` calls in-process; importing this file does not run main().
+ *
+ * RFD.INTAKE.16: a --lead business with no website_url, run without --url,
+ * gets a brief-only intake (see briefOnlyIntake): no crawl, the trade's
+ * stock photos, and a slug from the business name.
  */
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
@@ -40,8 +46,9 @@ const USAGE = `Usage: npm run intake -- --url https://prospect.com [--brief path
        npm run intake -- --lead <businessId> [--url https://prospect.com] [--slug name] [--dry]
 
   --lead   read the DesignBrief from the leads Supabase (LEADS_SUPABASE_URL and
-           LEADS_SUPABASE_SERVICE_ROLE_KEY in .env); not with --brief. --url is
-           optional when the business has a website_url in the leads app.
+           LEADS_SUPABASE_SERVICE_ROLE_KEY in .env); not with --brief. Without
+           --url it crawls the business's website_url in the leads app, or, when
+           there is none, runs a brief-only intake (no crawl; stock photos).
   --dry    read, write leads/<slug>/lead-api-brief.json, print the brief; no crawl`
 
 function step(name: string) {
@@ -177,7 +184,8 @@ async function writeLead(
     report: string
     kept: KeptPhoto[]
     logo: Logo | null
-    shots: CurrentSiteShots
+    /** null for a brief-only intake: no site to screenshot. */
+    shots: CurrentSiteShots | null
     apiResponse: unknown
   },
 ): Promise<void> {
@@ -195,8 +203,12 @@ async function writeLead(
       [photoFile(i), photo.jpeg],
       ...photo.smaller.map(({ cap, jpeg }): [string, Buffer] => [sizedPhotoName(photoFile(i), cap), jpeg]),
     ]),
-    ['current-desktop.jpg', files.shots.desktop],
-    ['current-mobile.jpg', files.shots.mobile],
+    ...(files.shots
+      ? [
+          ['current-desktop.jpg', files.shots.desktop] as [string, Buffer],
+          ['current-mobile.jpg', files.shots.mobile] as [string, Buffer],
+        ]
+      : []),
     ...(files.logo ? [[files.logo.file, files.logo.bytes] as [string, Buffer]] : []),
   ]
   for (const [file, data] of assets) {
@@ -284,6 +296,12 @@ export interface IntakeLeadOptions {
   url?: string
   slug?: string
   dry?: boolean
+  /** Where leads/, public/leads/ and the fixture go; the repo root when absent. Tests pass a temp dir. */
+  root?: string
+  /** Reads the lead; fetchLeadBrief when absent. */
+  fetchLead?: (businessId: string) => Promise<LeadBrief>
+  /** The model client; createAiClient() when absent. */
+  ai?: AiClient
 }
 
 export interface IntakeLeadResult {
@@ -291,42 +309,46 @@ export interface IntakeLeadResult {
   businessName: string
   /** The lead's folder and fixture name; `npm run deploy -- --slug` takes it. */
   slug: string
-  url: string
+  /** The site intake crawled, or null for a brief-only intake. */
+  url: string | null
 }
 
 /**
  * --lead: read the business and its brief, find the website (url, else
  * the business record), always keep the raw rows, then the usual intake
- * with that brief as the lead brief, or stop there with dry. Throws
- * IntakeError with the stage it stopped at.
+ * with that brief as the lead brief, or stop there with dry. With no
+ * website at all, the brief-only intake instead. Throws IntakeError with
+ * the stage it stopped at.
  */
 export async function runIntake(opts: IntakeLeadOptions): Promise<IntakeLeadResult> {
   const businessId = opts.lead.trim()
   if (!businessId) throw new IntakeError('brief', '--lead needs a business id.', 2)
   loadEnv()
   step(`lead ${businessId}`)
-  let url: string
+  let url: string | null = null
   let fetched: LeadBrief
   try {
-    fetched = await fetchLeadBrief(businessId)
+    fetched = await (opts.fetchLead ?? fetchLeadBrief)(businessId)
     note(`${fetched.business.name}: design brief read from the leads Supabase`)
     let website = opts.url ?? null
-    if (!website) {
-      if (!fetched.business.website_url) {
-        throw new IntakeError('brief', `Business ${businessId} has no website_url in the leads app; pass --url https://<prospect site>.`, 2)
-      }
+    if (!website && fetched.business.website_url) {
       website = fetched.business.website_url
       note(`website ${website} (from the leads app)`)
     }
-    url = siteUrl(website)
+    if (website) url = siteUrl(website)
+    else note(`${NO_WEBSITE}: no website_url in the leads app and no --url`)
   } catch (error) {
     throw error instanceof IntakeError ? error : new IntakeError('brief', describeError(error))
   }
+  const photosSkipped = url ? LEAD_PHOTOS_SKIPPED : LEAD_PHOTOS_STOCK
   for (const line of fetched.coerced) note(`coerced ${line}`)
-  if (fetched.skippedPhotos > 0) note(`${LEAD_PHOTOS_SKIPPED} (${fetched.skippedPhotos} skipped)`)
+  if (fetched.skippedPhotos > 0) note(`${photosSkipped} (${fetched.skippedPhotos} skipped)`)
 
-  // Host-based, as a --url-only intake names it, so a lead re-intaken from the API keeps its folder.
-  const paths = leadPaths(ROOT, opts.slug ?? defaultSlug(null, url))
+  // Host-based, as a --url-only intake names it, so a lead re-intaken from the API keeps its folder;
+  // with no host, the business name's words.
+  const slug = opts.slug ?? (url ? defaultSlug(null, url) : slugify(fetched.business.name || (fetched.fields.business_name ?? '')))
+  if (!slug) throw new IntakeError('brief', `Business ${businessId} has no name to make a slug from; pass --slug.`, 2)
+  const paths = leadPaths(opts.root ?? ROOT, slug)
   const result: IntakeLeadResult = { businessId, businessName: fetched.business.name, slug: paths.slug, url }
   try {
     await writeApiResponse(paths, fetched.raw)
@@ -334,25 +356,119 @@ export async function runIntake(opts: IntakeLeadOptions): Promise<IntakeLeadResu
 
     if (opts.dry) {
       const preview = mergeBrief(fetched.fields, {})
-      console.log(`\n${summaryTable(preview.brief, preview.provenance)}`)
-      console.log(`\nDry run: stopped before crawling ${url}. Rerun without --dry to intake it.`)
+      console.log(`\n${summaryTable(preview.brief, preview.provenance, url ? undefined : NO_WEBSITE)}`)
+      console.log(
+        url
+          ? `\nDry run: stopped before crawling ${url}. Rerun without --dry to intake it.`
+          : '\nDry run: stopped before the brief-only intake. Rerun without --dry to run it.',
+      )
       return result
     }
 
-    await intake({
-      url,
-      lead: fetched.fields,
-      paths,
-      apiResponse: fetched.raw,
-      flags: [
-        ...fetched.coerced.map((line) => `lead: coerced ${line}`),
-        ...(fetched.skippedPhotos > 0 ? [LEAD_PHOTOS_SKIPPED] : []),
-      ],
-    })
+    const flags = [...fetched.coerced.map((line) => `lead: coerced ${line}`), ...(fetched.skippedPhotos > 0 ? [photosSkipped] : [])]
+    if (url) await intake({ url, lead: fetched.fields, paths, apiResponse: fetched.raw, flags, ai: opts.ai })
+    else await briefOnlyIntake({ lead: fetched.fields, paths, apiResponse: fetched.raw, flags, ai: opts.ai })
   } catch (error) {
     throw error instanceof IntakeError ? error : new IntakeError('intake', `intake failed: ${describeError(error)}`)
   }
   return result
+}
+
+/** The lead brief merged over the site fields, and its app copy with assets under public/; throws IntakeError when it does not validate. */
+function mergeValid(lead: Partial<DesignBrief> | null, fields: SiteFields, paths: LeadPaths) {
+  try {
+    const merged = mergeBrief(lead, fields)
+    return { merged, appBrief: DesignBriefSchema.parse(rebaseAssets(merged.brief, paths.publicBase)) }
+  } catch (error) {
+    const detail = error instanceof ZodError ? JSON.stringify(error.issues, null, 2) : describeError(error)
+    throw new IntakeError('intake', `The brief does not validate; nothing was written.\n${detail}`)
+  }
+}
+
+/** The console summary after a write: the table (under `title` when given), the flags, how to run it. */
+function printSummary(paths: LeadPaths, merged: ReturnType<typeof mergeBrief>, flags: string[], title?: string): void {
+  console.log(`\n${summaryTable(merged.brief, merged.provenance, title)}`)
+  if (flags.length > 0) console.log(`\nFlags (also in leads/${paths.slug}/intake-report.md):\n${flags.map((f) => `  - ${f}`).join('\n')}`)
+  console.log(`\nRun it:\n  VITE_BRIEF=${paths.briefName} npm run dev\n  http://localhost:5173/?brief=${paths.briefName}`)
+}
+
+/**
+ * RFD.INTAKE.16: a lead with no website. No fetch, extract, photos, vision
+ * or screenshot. The lead brief wins as usual; the trade's stock photos
+ * fill photo_urls; brand_colors, website_url and current_site stay empty,
+ * and segment takes the schema default (residential) unless the lead set
+ * one. The refine pass still runs, over the lead's own services and its
+ * review text, and its services and tone take the place of the lead's raw
+ * lists, which they only reword; a field the refine could not do keeps the
+ * lead's words.
+ */
+async function briefOnlyIntake(args: {
+  lead: Partial<DesignBrief>
+  paths: LeadPaths
+  apiResponse?: unknown
+  flags?: string[]
+  ai?: AiClient
+}): Promise<void> {
+  const { paths } = args
+  const ai = args.ai ?? createAiClient()
+  const flags: string[] = [...(args.flags ?? []), `${NO_WEBSITE}: no fetch, extract, photos, vision or screenshot`]
+  const vertical = args.lead.vertical ?? 'general_contractor'
+  const family = copyFamilyFor(vertical)
+  const runAt = new Date().toISOString()
+
+  step('refine')
+  const refined = await refineWithAi(
+    ai,
+    {
+      businessName: args.lead.business_name ?? null,
+      vertical,
+      websiteUrl: null,
+      serviceCandidates: args.lead.services ?? [],
+      hoursText: null,
+      text: (args.lead.review_quotes ?? []).map((q) => q.text).join('\n\n'),
+      signals: null,
+      needsProblem: false,
+    },
+    note,
+  )
+
+  step('merge')
+  const lead: Partial<DesignBrief> = { ...args.lead }
+  const fields: SiteFields = {
+    photo_urls: { value: [...TRADE_PHOTOS[family].hero], status: 'generated', how: `stock photos for the ${family} trade (no website)` },
+    generated_at: { value: runAt, status: 'generated', how: 'intake run time' },
+    source: {
+      value: { audit_id: `intake-${paths.slug}-${runAt.replace(/\D/g, '').slice(0, 12)}`, template_fallback: refined.model === null },
+      status: 'generated',
+      how: 'intake run',
+    },
+  }
+  for (const field of ['services', 'tone_descriptors'] as const) {
+    const fell = refined.fallbacks.find((f) => f.field === field)
+    if (refined.model && !fell) {
+      delete lead[field]
+      fields[field] = { value: refined[field], status: 'inferred', how: `the lead brief's, reworded by ${refined.model}` }
+    } else if (!isEmpty(lead[field])) {
+      flags.push(`refine: ${field} kept the lead brief's words (${fell?.reason ?? 'no model answered'})`)
+    }
+  }
+  const { merged, appBrief } = mergeValid(lead, fields, paths)
+
+  const report = intakeReport({
+    slug: paths.slug,
+    url: null,
+    brief: merged.brief,
+    provenance: merged.provenance,
+    photos: [],
+    segmentReason: merged.provenance.segment.status === 'lead' ? 'from the lead brief' : 'no website to judge it from; the default',
+    models: { vision: null, text: refined.model },
+    flags,
+  })
+
+  step('write')
+  await writeLead(paths, { brief: merged.brief, appBrief, report, kept: [], logo: null, shots: null, apiResponse: args.apiResponse })
+  note(`leads/${paths.slug}/ · src/brief/fixtures/${paths.briefName}.json (no site assets for public/leads/${paths.slug}/)`)
+  printSummary(paths, merged, flags, NO_WEBSITE)
 }
 
 async function intake(args: {
@@ -361,9 +477,10 @@ async function intake(args: {
   paths: LeadPaths
   apiResponse?: unknown
   flags?: string[]
+  ai?: AiClient
 }): Promise<void> {
   const { url, lead, paths } = args
-  const ai = createAiClient()
+  const ai = args.ai ?? createAiClient()
   const flags: string[] = [...(args.flags ?? [])]
 
   step(`fetch ${url}`)
@@ -426,15 +543,7 @@ async function intake(args: {
 
   step('merge')
   const fields = siteFields({ url: site.homeUrl, slug: paths.slug, ex, kept, plan, visionModel: vision.model, refined, logo, shots })
-  let merged: ReturnType<typeof mergeBrief>
-  let appBrief: DesignBrief
-  try {
-    merged = mergeBrief(lead, fields)
-    appBrief = DesignBriefSchema.parse(rebaseAssets(merged.brief, paths.publicBase))
-  } catch (error) {
-    const detail = error instanceof ZodError ? JSON.stringify(error.issues, null, 2) : describeError(error)
-    throw new IntakeError('intake', `The brief does not validate; nothing was written.\n${detail}`)
-  }
+  const { merged, appBrief } = mergeValid(lead, fields, paths)
 
   const use = (t: Tagged<KeptPhoto>): PhotoRow['use'] =>
     plan.fallback.includes(t) ? 'stock fallback' : plan.crew.includes(t) ? 'crew' : plan.photos.includes(t) ? 'photo' : 'unused'
@@ -452,10 +561,7 @@ async function intake(args: {
   step('write')
   await writeLead(paths, { brief: merged.brief, appBrief, report, kept, logo, shots, apiResponse: args.apiResponse })
   note(`leads/${paths.slug}/ · public/leads/${paths.slug}/ · src/brief/fixtures/${paths.briefName}.json`)
-
-  console.log(`\n${summaryTable(merged.brief, merged.provenance)}`)
-  if (flags.length > 0) console.log(`\nFlags (also in leads/${paths.slug}/intake-report.md):\n${flags.map((f) => `  - ${f}`).join('\n')}`)
-  console.log(`\nRun it:\n  VITE_BRIEF=${paths.briefName} npm run dev\n  http://localhost:5173/?brief=${paths.briefName}`)
+  printSummary(paths, merged, flags)
 }
 
 /** True when this file is the process entry (`npm run intake`), not imported (`npm run demo`). */

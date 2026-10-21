@@ -3,17 +3,37 @@ import type { SiteCurrentSite } from './brief/site-content'
 /**
  * "Your site today": the prospect's homepage as it is now, desktop and
  * phone side by side, captioned with what is wrong with it, leading down
- * into the five looks. Renders nothing when the brief has no screenshots,
- * so the picker is unchanged for every brief without a current site.
+ * into the five looks.
+ *
+ * RFD.INTAKE.16: a prospect with no website (no screenshots and no
+ * website_url) gets a short card saying so instead, with no frames and no
+ * problem line. With a website_url but no screenshots it renders nothing.
  */
 export default function CurrentSiteCard({
   current,
   problem,
+  websiteUrl,
+  looks,
 }: {
   current: SiteCurrentSite | null
   problem: string
+  websiteUrl: string | null
+  /** How many looks the picker shows, as a word: "five", or "six" with the Scroll Story. */
+  looks: string
 }) {
-  if (!current) return null
+  if (!current) {
+    if (websiteUrl) return null
+    return (
+      <section className="pk-none" aria-labelledby="pk-none-title">
+        <h2 id="pk-none-title" className="pk-none-title">
+          You don't have a website yet
+        </h2>
+        <p className="pk-none-line">
+          {`Here are ${looks} ways to start — every one is a complete, working site built from your Google listing.`}
+        </p>
+      </section>
+    )
+  }
   return (
     <section className="pk-now" aria-labelledby="pk-now-title">
       <h2 id="pk-now-title" className="pk-now-title">

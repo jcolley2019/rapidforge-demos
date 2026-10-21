@@ -14,6 +14,12 @@ export const LEADS_ENV_KEYS = ['LEADS_SUPABASE_URL', 'LEADS_SUPABASE_SERVICE_ROL
 /** Flag text for the intake report when the lead brief's photos are dropped. */
 export const LEAD_PHOTOS_SKIPPED = 'lead photos skipped (worker-only URLs); site photos used'
 
+/** The same, for a business with no website: stock photos fill in. */
+export const LEAD_PHOTOS_STOCK = 'lead photos skipped (worker-only URLs); stock photos used'
+
+/** RFD.INTAKE.16: the business has no website_url and no --url was given, so intake works from the lead brief alone. */
+export const NO_WEBSITE = 'no website — brief-only intake'
+
 /** The failure when the business has no completed audit with a design brief: where in the leads app to make one. */
 export const NO_DESIGN_BRIEF = 'No design brief yet — open the lead in RapidForge Leads, Design Brief tab, click Design brief, then rerun.'
 
@@ -91,7 +97,7 @@ export interface LeadBrief {
  * leads schema is a strict subset of ours; the one rule ours adds is a
  * snake_case vertical, coerced here and reported. photo_urls are worker
  * routes that need the worker's auth, so fields gets [] and the site's own
- * photos fill in.
+ * photos fill in (stock photos when the business has no website).
  */
 export async function fetchLeadBrief(businessId: string): Promise<LeadBrief> {
   const env = leadsEnv()
@@ -112,7 +118,16 @@ export async function fetchLeadBrief(businessId: string): Promise<LeadBrief> {
       limit: '1',
     }),
   )
-  const audit = audits[0] as { design_brief?: unknown } | undefined
+  return leadBriefFrom({ ...business, id: business.id }, audits[0])
+}
+
+/**
+ * The LeadBrief for a business row and its newest audit row as the leads
+ * Supabase returns them (see fetchLeadBrief). Pure, so a test can build one
+ * from a fixture without a fetch.
+ */
+export function leadBriefFrom(business: { id: string; name?: unknown; website_url?: unknown }, auditRow: unknown): LeadBrief {
+  const audit = auditRow as { design_brief?: unknown } | undefined
   if (!audit || !audit.design_brief || typeof audit.design_brief !== 'object') throw new Error(NO_DESIGN_BRIEF)
 
   const candidate = { ...(audit.design_brief as Record<string, unknown>) }

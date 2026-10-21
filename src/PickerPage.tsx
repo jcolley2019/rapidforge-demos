@@ -44,6 +44,7 @@ export default function PickerPage() {
   const scroll = scrollEnabled()
   const scrollPreview = previewFor(SCROLL_SLUG, site.vertical)
   const card = scrollCard()
+  const looks = scroll ? 'six' : 'five'
 
   return (
     <main className="pk">
@@ -69,7 +70,7 @@ export default function PickerPage() {
               </button>
             </div>
           )}
-          <h1 className="pk-title">{`${site.name} — ${scroll ? 'six' : 'five'} looks, pick one`}</h1>
+          <h1 className="pk-title">{`${site.name} — ${looks} looks, pick one`}</h1>
           <p className="pk-lead">
             Each one is a complete, working site. Open any of them; use the link
             in the corner to come back.
@@ -77,7 +78,7 @@ export default function PickerPage() {
           </p>
         </header>
 
-        <CurrentSiteCard current={site.currentSite} problem={site.problemLine} />
+        <CurrentSiteCard current={site.currentSite} problem={site.problemLine} websiteUrl={site.websiteUrl} looks={looks} />
 
         <ul className="pk-grid">
           {variants.map((variant) => {

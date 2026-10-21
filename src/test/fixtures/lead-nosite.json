@@ -1,0 +1,40 @@
+{
+  "business": {
+    "id": "7a2b3c4d-0000-4000-8000-0000000000f1",
+    "name": "Summit and Sage Plumbing LLC",
+    "website_url": null
+  },
+  "audit": {
+    "id": "audit-nosite",
+    "completed_at": "2026-10-21T15:00:00Z",
+    "design_brief": {
+      "business_name": "Summit and Sage Plumbing LLC",
+      "vertical": "plumber",
+      "tone_descriptors": ["professional", "courteous", "prompt"],
+      "services": ["water heater repair", "drain cleaning service", "water leak detection"],
+      "review_quotes": [
+        {
+          "text": "They found the leak under our slab in an hour and fixed the water heater the same afternoon. Fair price, tidy work.",
+          "rating": 5,
+          "author": "Test Reviewer"
+        }
+      ],
+      "photo_urls": ["/api/places/photo/places%2FChIJtest%2Fphotos%2FAtY1?maxWidthPx=1600", "/api/places/photo/places%2FChIJtest%2Fphotos%2FAtY2?maxWidthPx=1600"],
+      "hours": [
+        { "day": "Monday", "open": "08:00", "close": "17:00" },
+        { "day": "Tuesday", "open": "08:00", "close": "17:00" },
+        { "day": "Wednesday", "open": "08:00", "close": "17:00" },
+        { "day": "Thursday", "open": "08:00", "close": "17:00" },
+        { "day": "Friday", "open": "08:00", "close": "17:00" },
+        { "day": "Saturday", "open": null, "close": null },
+        { "day": "Sunday", "open": null, "close": null }
+      ],
+      "phone": "(555) 010-0142",
+      "address": "120 Example Ave, Testville, ID 83000, USA",
+      "primary_cta": { "label": "Call (555) 010-0142", "kind": "phone", "href": "tel:5550100142" },
+      "current_site_problem": "No website — easiest pitch — No website in Google Places data",
+      "generated_at": "2026-10-21T15:00:00.000Z",
+      "source": { "audit_id": "audit-nosite", "haiku_model": "claude-haiku-4-5-20251001", "template_fallback": false }
+    }
+  }
+}

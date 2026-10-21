@@ -19,12 +19,14 @@ const SEGMENTS = ['residential', 'commercial', 'new_construction', 'mixed'] as c
 export interface RefineInput {
   businessName: string | null
   vertical: string
-  websiteUrl: string
+  /** null for a brief-only intake (no website): the candidates and text then come from the lead brief. */
+  websiteUrl: string | null
   serviceCandidates: string[]
   hoursText: string | null
-  /** Visible site text, homepage first. */
+  /** Visible site text, homepage first; the review text for a brief-only intake. */
   text: string
-  signals: SiteSignals
+  /** null when there is no website. */
+  signals: SiteSignals | null
   /** False when the lead brief already has a current_site_problem. */
   needsProblem: boolean
 }
@@ -130,14 +132,14 @@ export function deterministicRefine(input: RefineInput): Refined {
     tone_descriptors: [...FALLBACK_TONE],
     segment: segment.segment,
     segment_reason: segment.reason,
-    current_site_problem: input.needsProblem ? fallbackProblem(input.signals) : null,
+    current_site_problem: input.needsProblem && input.signals ? fallbackProblem(input.signals) : null,
     hours: null,
   }
 }
 
 // The call ---------------------------------------------------------------
 
-const REFINE_SYSTEM = `You clean up data scraped from a local contractor's website so it can fill a design brief for a redesign demo. Use only what the site supports; never invent services, hours or facts.
+const REFINE_SYSTEM = `You clean up data scraped from a local contractor's website (or, when it has none, taken from its Google listing) so it can fill a design brief for a redesign demo. Use only what the site supports; never invent services, hours or facts.
 Return:
 - services: up to 12 services the business really offers, short title-case names of 2 to 5 words, most important first, drawn from the candidates and the page text. Drop navigation labels, town names, slogans and duplicates.
 - tone_descriptors: 3 to 5 single adjectives for how the business presents itself.
@@ -148,9 +150,9 @@ Return:
 function refinePrompt(input: RefineInput): string {
   return [
     `Business: ${input.businessName ?? '(unknown)'}`,
-    `Website: ${input.websiteUrl}`,
+    `Website: ${input.websiteUrl ?? '(none: the candidates come from its Google listing, the text from its reviews)'}`,
     `Trade: ${verticalLabelOf(input.vertical)}`,
-    `Site signals: ${JSON.stringify(input.signals)}`,
+    `Site signals: ${input.signals ? JSON.stringify(input.signals) : '(no website)'}`,
     `current_site_problem: ${input.needsProblem ? 'write it' : 'not needed, return null'}`,
     '',
     'Service candidates (nav labels and headings):',
@@ -159,7 +161,7 @@ function refinePrompt(input: RefineInput): string {
     'Hours text:',
     input.hoursText ?? '(none found)',
     '',
-    'Page text:',
+    input.websiteUrl ? 'Page text:' : 'Review text:',
     input.text,
   ].join('\n')
 }
