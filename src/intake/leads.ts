@@ -47,18 +47,45 @@ async function select(env: LeadsEnv, table: string, query: URLSearchParams): Pro
   } catch (error) {
     throw new Error(`could not reach the leads Supabase at ${new URL(url).origin} (${error instanceof Error ? error.message : String(error)})`)
   }
-  if (!res.ok) {
-    let detail = ''
-    try {
-      const body = (await res.json()) as { message?: unknown }
-      if (typeof body.message === 'string') detail = `: ${body.message}`
-    } catch {
-      // no JSON body
-    }
-    throw new Error(`leads Supabase: reading ${table} failed (HTTP ${res.status}${detail})`)
-  }
+  if (!res.ok) throw new Error(`leads Supabase: reading ${table} failed (HTTP ${res.status}${await errorDetail(res)})`)
   const rows = (await res.json()) as unknown
   if (!Array.isArray(rows)) throw new Error(`leads Supabase: reading ${table} returned no rows array`)
+  return rows
+}
+
+/** ": <message>" from a PostgREST error body, or "" when it has none. */
+async function errorDetail(res: Response): Promise<string> {
+  try {
+    const body = (await res.json()) as { message?: unknown }
+    if (typeof body.message === 'string') return `: ${body.message}`
+  } catch {
+    // no JSON body
+  }
+  return ''
+}
+
+/** One PostgREST write: PATCH /rest/v1/<table>?<query> with the service-role key, the changed rows back. */
+async function patch(env: LeadsEnv, table: string, query: URLSearchParams, body: object): Promise<unknown[]> {
+  const url = `${env.url}/rest/v1/${table}?${query}`
+  let res: Response
+  try {
+    res = await fetch(url, {
+      method: 'PATCH',
+      headers: {
+        apikey: env.key,
+        Authorization: `Bearer ${env.key}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation',
+      },
+      body: JSON.stringify(body),
+    })
+  } catch (error) {
+    throw new Error(`could not reach the leads Supabase at ${new URL(url).origin} (${error instanceof Error ? error.message : String(error)})`)
+  }
+  if (!res.ok) throw new Error(`leads Supabase: updating ${table} failed (HTTP ${res.status}${await errorDetail(res)})`)
+  const rows = (await res.json()) as unknown
+  if (!Array.isArray(rows)) throw new Error(`leads Supabase: updating ${table} returned no rows array`)
   return rows
 }
 
@@ -156,4 +183,46 @@ export function leadBriefFrom(business: { id: string; name?: unknown; website_ur
     skippedPhotos: parsed.data.photo_urls.length,
     coerced,
   }
+}
+
+/**
+ * RFD.DEMO.17: businesses.demo_*, the columns the leads app's Demo tab
+ * reads. The leads worker writes them around its own `npm run demo`;
+ * the demo CLI now writes them too, so a run from the terminal shows up.
+ * The statuses are the leads app's: building, ready, failed.
+ */
+export type DemoStatus = 'building' | 'ready' | 'failed'
+
+export interface BusinessDemo {
+  id: string
+  name: string
+  /** The subdomain the last recorded demo used; null when none was. */
+  demo_sub: string | null
+}
+
+export interface BusinessDemoPatch {
+  demo_status?: DemoStatus
+  demo_sub?: string
+  demo_url?: string
+  demo_preview_url?: string
+  demo_built_at?: string
+  demo_error?: string | null
+}
+
+/** The business's id, name and demo_sub, for the demo CLI's default subdomain. */
+export async function fetchBusinessDemo(businessId: string): Promise<BusinessDemo> {
+  const businesses = await select(leadsEnv(), 'businesses', new URLSearchParams({ select: 'id,name,demo_sub', id: `eq.${businessId}` }))
+  const business = businesses[0] as { id?: unknown; name?: unknown; demo_sub?: unknown } | undefined
+  if (!business || typeof business.id !== 'string') throw new Error(`leads Supabase: business ${businessId} not found`)
+  return {
+    id: business.id,
+    name: typeof business.name === 'string' ? business.name : '',
+    demo_sub: typeof business.demo_sub === 'string' && business.demo_sub.trim() ? business.demo_sub.trim() : null,
+  }
+}
+
+/** Sets these demo_* columns on the business row; throws when the write fails or matches no row. */
+export async function updateBusinessDemo(businessId: string, demo: BusinessDemoPatch): Promise<void> {
+  const rows = await patch(leadsEnv(), 'businesses', new URLSearchParams({ id: `eq.${businessId}`, select: 'id' }), demo)
+  if (rows.length === 0) throw new Error(`leads Supabase: business ${businessId} not found`)
 }

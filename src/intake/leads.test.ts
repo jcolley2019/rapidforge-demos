@@ -1,6 +1,6 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { LEAD_PHOTOS_SKIPPED, NO_DESIGN_BRIEF, fetchLeadBrief } from './leads'
+import { LEAD_PHOTOS_SKIPPED, NO_DESIGN_BRIEF, fetchBusinessDemo, fetchLeadBrief, updateBusinessDemo } from './leads'
 import { mergeBrief } from './merge'
 
 const SUPABASE = 'https://leads-project.supabase.co'
@@ -167,5 +167,65 @@ describe('fetchLeadBrief', () => {
       '--lead reads the leads Supabase directly: set LEADS_SUPABASE_URL and LEADS_SUPABASE_SERVICE_ROLE_KEY in .env (missing: LEADS_SUPABASE_SERVICE_ROLE_KEY)',
     )
     expect(fetchMock).not.toHaveBeenCalled()
+  })
+})
+
+describe('fetchBusinessDemo', () => {
+  it('reads the business id, name and demo_sub', async () => {
+    rows([{ id: BUSINESS_ID, name: 'Landers Home Services', demo_sub: 'landers' }])
+    expect(await fetchBusinessDemo(BUSINESS_ID)).toEqual({ id: BUSINESS_ID, name: 'Landers Home Services', demo_sub: 'landers' })
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(call(0)).toMatchObject({ path: '/rest/v1/businesses', query: { select: 'id,name,demo_sub', id: `eq.${BUSINESS_ID}` } })
+    expect(call(0).headers).toMatchObject({ apikey: KEY, Authorization: `Bearer ${KEY}` })
+  })
+
+  it('reads a missing or blank demo_sub as null', async () => {
+    rows([{ id: BUSINESS_ID, name: 'Landers Home Services', demo_sub: null }])
+    expect((await fetchBusinessDemo(BUSINESS_ID)).demo_sub).toBeNull()
+    rows([{ id: BUSINESS_ID, name: 'Landers Home Services', demo_sub: ' ' }])
+    expect((await fetchBusinessDemo(BUSINESS_ID)).demo_sub).toBeNull()
+  })
+
+  it('says the business was not found', async () => {
+    rows([])
+    await expect(fetchBusinessDemo(BUSINESS_ID)).rejects.toThrow(`business ${BUSINESS_ID} not found`)
+  })
+})
+
+describe('updateBusinessDemo', () => {
+  function patchCall(i: number) {
+    const [url, init] = fetchMock.mock.calls[i] as [string, RequestInit]
+    const parsed = new URL(url)
+    return { path: parsed.pathname, query: Object.fromEntries(parsed.searchParams), method: init.method, headers: init.headers, body: JSON.parse(String(init.body)) as unknown }
+  }
+
+  it('PATCHes only the given demo_* columns on the business row, with the service-role key', async () => {
+    fetchMock.mockResolvedValueOnce(json(200, [{ id: BUSINESS_ID }]))
+    await updateBusinessDemo(BUSINESS_ID, { demo_status: 'building', demo_error: null })
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(patchCall(0)).toEqual({
+      path: '/rest/v1/businesses',
+      query: { id: `eq.${BUSINESS_ID}`, select: 'id' },
+      method: 'PATCH',
+      headers: expect.objectContaining({ apikey: KEY, Authorization: `Bearer ${KEY}`, 'Content-Type': 'application/json', Prefer: 'return=representation' }),
+      body: { demo_status: 'building', demo_error: null },
+    })
+  })
+
+  it('throws when the PATCH matched no row', async () => {
+    fetchMock.mockResolvedValueOnce(json(200, []))
+    await expect(updateBusinessDemo(BUSINESS_ID, { demo_status: 'ready' })).rejects.toThrow(`business ${BUSINESS_ID} not found`)
+  })
+
+  it('passes on what PostgREST says when the write fails', async () => {
+    fetchMock.mockResolvedValueOnce(json(400, { code: '22P02', message: 'invalid input syntax for type uuid: "nope"' }))
+    await expect(updateBusinessDemo('nope', { demo_status: 'failed', demo_error: 'brief: x' })).rejects.toThrow(
+      'updating businesses failed (HTTP 400: invalid input syntax for type uuid: "nope")',
+    )
+  })
+
+  it('says it could not reach the leads Supabase when the fetch itself fails', async () => {
+    fetchMock.mockRejectedValueOnce(new Error('ECONNREFUSED'))
+    await expect(updateBusinessDemo(BUSINESS_ID, { demo_status: 'building' })).rejects.toThrow(`could not reach the leads Supabase at ${SUPABASE} (ECONNREFUSED)`)
   })
 })

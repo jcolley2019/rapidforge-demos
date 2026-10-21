@@ -39,18 +39,20 @@ One command takes a business from the leads app to a deployed five-variant demo:
 npm run demo -- --lead <businessId> [--as <subdomain>] [--edit] [--skip-previews]
 ```
 
-It reads the business and its newest completed audit's design brief straight from the leads Supabase, crawls the business's website to fill the rest (the intake), then builds and deploys that lead and points `<subdomain>.demos.rapidforgeai.com` at it (the deploy). `--as` defaults to the business name's first DNS-safe word, e.g. `allplumbing` for "All Plumbing & Sewer". `--edit` and `--skip-previews` pass through to the deploy.
+It reads the business and its newest completed audit's design brief straight from the leads Supabase, crawls the business's website to fill the rest (the intake), then builds and deploys that lead and points `<subdomain>.demos.rapidforgeai.com` at it (the deploy). `--as` defaults to the subdomain recorded for the business (see below), else the business name up to its first symbol with the spaces taken out (`allplumbing` for "All Plumbing & Sewer"), else the slug; the run prints which one it used. `--edit` and `--skip-previews` pass through to the deploy.
 
 If the lead has no design brief yet, it stops at once: open the lead in RapidForge Leads, Design Brief tab, click Design brief, then rerun.
 
 All progress goes to stderr. The last line on stdout is the result as one JSON object, for the leads worker:
 
 ```
-{"ok":true,"businessId":"…","slug":"…","sub":"…","previewUrl":"https://….vercel.app","aliasUrl":"https://<sub>.demos.rapidforgeai.com","aliasOk":true,"durationMs":123456}
-{"ok":false,"stage":"brief|intake|build|previews|deploy|alias","error":"…"}
+{"ok":true,"businessId":"…","slug":"…","sub":"…","previewUrl":"https://….vercel.app","aliasUrl":"https://<sub>.demos.rapidforgeai.com","aliasOk":true,"durationMs":123456,"dbRecorded":true}
+{"ok":false,"stage":"brief|intake|build|previews|deploy|alias","error":"…","dbRecorded":true}
 ```
 
 A failure exits 1. A failed alias is not a failure: the deployment is live at `previewUrl` (login-protected) either way, so it reports `"aliasOk":false`.
+
+Every run records itself on the business row in the leads Supabase, the same columns the leads worker writes, so a demo built from the terminal shows in the leads app's Demo tab too. Once the business is read, `demo_status` is `building` (and `demo_error` cleared). On success it is `ready`, with `demo_sub`, `demo_url` (the alias URL), `demo_preview_url` and `demo_built_at`; on failure it is `failed`, with `demo_error` set to `<stage>: <message>` (at most 500 characters). Because `demo_sub` is read back as the default `--as`, the subdomain sticks: a rerun without `--as` lands on the URL already in use, and an `--as` run moves it. A failed write never changes the outcome: it is logged to stderr and the JSON says `"dbRecorded":false`. A run that stops before the business is read (bad arguments, unknown id) records nothing.
 
 It needs two keys in `.env` (see `.env.example`), and a one-time `npx vercel login`:
 
