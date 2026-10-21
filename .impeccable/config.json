@@ -38,6 +38,15 @@
         ],
         "createdAt": "2026-10-21T01:04:46.383Z",
         "reason": "Claude: three-screen test fixture for the copy step, not a shipped design; copy sits in var(--sc-gutter) padding"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "leads/scrollcraft/builds/allplumbingsewer-com/index.html"
+        ],
+        "createdAt": "2026-10-21T01:21:30.925Z",
+        "reason": "split-stage mechanism: each side is a clip-path layer by design; nothing inside needs to escape it (RFD.SCROLL.15 build)"
       }
     ]
   }
