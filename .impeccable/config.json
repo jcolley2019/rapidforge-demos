@@ -83,6 +83,15 @@
         ],
         "createdAt": "2026-10-21T01:46:37.343Z",
         "reason": "display headlines and quote pull-lines only (engine leading-none 0.94 and 1.12 on display sizes per taste.md); body text is 1.62 (RFD.SCROLL.15)"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "leads/scrollcraft/builds/accurbore-com/index.html"
+        ],
+        "createdAt": "2026-10-21T06:02:06.123Z",
+        "reason": "Claude: the peak's .strip is a camera window onto a wider drawing (.cam); clipping it is the mechanism and nothing inside needs to escape (RFD.SCROLL.15x build)"
       }
     ]
   }
