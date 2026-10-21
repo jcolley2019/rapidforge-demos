@@ -114,3 +114,9 @@ npm run deploy -- --slug <lead slug> [--as <subdomain>] [--edit] [--skip-preview
 ```
 
 `--check-only` runs only the leak scan against the build already in `.vercel/output`.
+
+## Root page
+
+`demos.rapidforgeai.com`, `rapidforge-demos.vercel.app` and every `*.demos.rapidforgeai.com` host without an alias serve the production deployment, which is `root-site/index.html`: one static page with no lead data, served for every path by `root-site/vercel.json`.
+`npm run deploy:root` publishes it (`vercel deploy root-site --prod --yes`), first copying `.vercel/project.json` into `root-site/.vercel/` so the subfolder deploys to the same linked project.
+Nothing else replaces it: lead deploys are preview deployments plus an alias and refuse `--prod`, and the root `vercel.json` turns off Git deployments of `main`, so a push deploys nothing.

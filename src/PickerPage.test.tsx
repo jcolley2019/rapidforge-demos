@@ -6,10 +6,9 @@ import { SiteContext } from './brief/site-context'
 import { toSiteContent, type SiteContent } from './brief/site-content'
 import PickerPage from './PickerPage'
 import nosite from './test/fixtures/lead-nosite.json'
+import sparse from './brief/fixtures/sparse-electric.json'
 
-const FIXTURES = import.meta.glob<{ default: unknown }>(['./brief/fixtures/acme-*.json', './brief/fixtures/sparse-electric.json'], {
-  eager: true,
-})
+const ACME = import.meta.glob<{ default: unknown }>('./brief/fixtures/acme-*.json', { eager: true })
 
 /** The fictional no-website lead as a brief-only intake leaves it: no current_site, no website_url. */
 const noWebsite = toSiteContent(DesignBriefSchema.parse({ ...nosite.audit.design_brief, photo_urls: [] }))
@@ -58,15 +57,25 @@ describe('picker, for a prospect with no website', () => {
 })
 
 describe('picker, for the Acme and sparse fixtures', () => {
-  it('finds all seven', () => {
-    expect(Object.keys(FIXTURES)).toHaveLength(7)
+  it('finds all six Acme fixtures', () => {
+    expect(Object.keys(ACME)).toHaveLength(6)
   })
 
-  it.each(Object.entries(FIXTURES))('%s has a website, so no no-website card', (_path, fixture) => {
+  it.each(Object.entries(ACME))('%s has a website, so no no-website card', (_path, fixture) => {
     const site = toSiteContent(DesignBriefSchema.parse(fixture.default))
     expect(site.websiteUrl).toMatch(/^https:\/\/[a-z-]+\.example\.com\/$/)
     picker(site)
     expect(document.querySelector('.pk-none')).toBeNull()
     expect(screen.queryByRole('heading', { name: "You don't have a website yet" })).toBeNull()
+  })
+
+  it('sparse-electric has no website and no screenshots, so it gets the no-website card', () => {
+    const site = toSiteContent(DesignBriefSchema.parse(sparse))
+    expect(site.websiteUrl).toBeNull()
+    expect(site.currentSite).toBeNull()
+    picker(site)
+    expect(screen.getByRole('heading', { name: "You don't have a website yet" })).toBeTruthy()
+    expect(screen.queryByRole('heading', { name: 'Your site today' })).toBeNull()
+    expect(document.querySelector('.pk-none')).not.toBeNull()
   })
 })

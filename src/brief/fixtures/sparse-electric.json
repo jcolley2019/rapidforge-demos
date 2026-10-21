@@ -19,5 +19,6 @@
     "audit_id": "audit_sparse_electric_0002",
     "template_fallback": true
   },
-  "website_url": "https://sparse-electric.example.com/"
+  "website_url": null,
+  "current_site": null
 }

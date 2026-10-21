@@ -39,6 +39,29 @@ export function aliasFor(sub: string): string {
   return `${sub}.${DOMAIN}`
 }
 
+/**
+ * Throws when `argv` asks for a production deployment: --prod, or --target
+ * production. A lead deploy is a preview deployment plus an alias, never
+ * production, because production is what every host without an alias
+ * serves (demos.rapidforgeai.com, *.demos.rapidforgeai.com,
+ * rapidforge-demos.vercel.app): the neutral root page, root-site/, which
+ * only `npm run deploy:root` publishes.
+ */
+export function refuseProd(argv: readonly string[]): void {
+  const prod = argv.some(
+    (arg, i) =>
+      arg === '--prod' ||
+      arg.startsWith('--prod=') ||
+      arg === '--target=production' ||
+      (arg === '--target' && argv[i + 1] === 'production'),
+  )
+  if (prod) {
+    throw new Error(
+      'a lead deploy is a preview deployment plus an alias, never --prod: production serves the neutral root page (npm run deploy:root); nothing was deployed',
+    )
+  }
+}
+
 export interface BuildOptions {
   /** Let the build mount webedit-connect.js when framed with ?edit (see src/edit/mount.ts). */
   edit?: boolean

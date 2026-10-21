@@ -176,7 +176,7 @@ const SERVICE_BLURBS: Record<CopyFamily, Array<[keyword: string, blurb: string]>
     ['maintenance', 'Scheduled inspections that catch problems before your tenants do.'],
   ],
   hvac: [
-    // Commercial lines first: "replacement" holds "ac", so a rooftop line would read as home AC.
+    // Commercial lines first, so "Rooftop AC replacement" reads as a rooftop unit, not home AC.
     ['rooftop', 'Rooftop units serviced, repaired and replaced, with the crane and permits handled.'],
     ['tenant', 'Heating and cooling for build-outs and remodels, scheduled around your other trades.'],
     ['rough-in', 'Ductwork rough-in to startup, built to plan and ready for inspection.'],
@@ -191,7 +191,7 @@ const SERVICE_BLURBS: Record<CopyFamily, Array<[keyword: string, blurb: string]>
     ['thermostat', 'Smart controls installed and configured for you.'],
   ],
   electrical: [
-    // Commercial lines first: "Preventive" holds "ev", so a maintenance line would read as EV charging.
+    // Commercial lines first, so "Tenant improvement wiring" reads as a build-out, not a rewire.
     ['tenant', 'Electrical for build-outs and remodels, scheduled around your other trades.'],
     ['rough-in', 'Rough-in to trim, built to plan and ready for inspection.'],
     ['switchgear', 'Service upgrades and switchgear sized for the load and coordinated with the utility.'],
@@ -199,7 +199,10 @@ const SERVICE_BLURBS: Record<CopyFamily, Array<[keyword: string, blurb: string]>
     ['fire alarm', 'Fire alarm and life-safety systems installed, tested and documented for the fire marshal.'],
     ['maintenance', 'Scheduled inspections and infrared scans that catch problems before your tenants do.'],
     ['panel', 'Upgrades and replacements that bring your service up to code and capacity.'],
+    // Keywords match from the start of a word, so these compounds get their own lines.
+    ['subpanel', 'Upgrades and replacements that bring your service up to code and capacity.'],
     ['wiring', 'New circuits and rewires done neatly and safely.'],
+    ['rewiring', 'New circuits and rewires done neatly and safely.'],
     ['lighting', 'Indoor and outdoor lighting designed, installed, and dimmed just right.'],
     ['ev', 'Home charging installed for your vehicle and your panel.'],
     ['generator', 'Standby power sized and wired for when the grid goes down.'],
@@ -275,10 +278,24 @@ export function phoneHrefOf(phone: string | null): string | null {
   return digits ? `tel:${digits}` : null
 }
 
+/**
+ * Whether a service title holds a keyword, case-insensitively and on word
+ * boundaries. The keyword must start a word, so "ac" is never read inside
+ * "Furnace" or "HVAC"; a short one (three letters or fewer, like "ac" and
+ * "ev") must be the whole word or its plural, so "ev" is not "Every". A
+ * longer keyword is a stem and may run on: "air condition" holds "Air
+ * Conditioning", "duct" holds "Ductwork". A pair of single letters split
+ * by a slash or a dot reads as one word, so "A/C" and "A.C." hold "ac".
+ */
+export function matchesKeyword(title: string, keyword: string): boolean {
+  const text = title.replace(/\b([a-z])[./]([a-z])\b/gi, '$1$2')
+  const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp(`\\b${escaped}${keyword.length <= 3 ? 's?\\b' : ''}`, 'i').test(text)
+}
+
 function blurbFor(family: CopyFamily, title: string): string {
-  const key = title.toLowerCase()
   for (const [keyword, blurb] of SERVICE_BLURBS[family]) {
-    if (key.includes(keyword)) return blurb
+    if (matchesKeyword(title, keyword)) return blurb
   }
   return ''
 }

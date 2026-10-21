@@ -16,6 +16,7 @@ import {
   phoneForms,
   pruneOtherLeads,
   referencesIn,
+  refuseProd,
   scanForLeaks,
   vaultMentions,
 } from './deploy'
@@ -43,6 +44,20 @@ describe('slug and --as validation', () => {
     expect(() => parseDeployArgs({})).toThrow(/--slug is required/)
     expect(() => parseDeployArgs({ slug: 'Rob Goodson' })).toThrow(/--slug/)
     expect(() => parseDeployArgs({ slug: 'goodson', as: 'Goodson.Plumbing' })).toThrow(/--as/)
+  })
+})
+
+describe('production guard', () => {
+  it('refuses a lead deploy whose argv asks for production', () => {
+    for (const argv of [['--slug', 'goodson', '--prod'], ['--prod'], ['--prod=true'], ['--target', 'production'], ['--target=production']]) {
+      expect(() => refuseProd(argv), argv.join(' ')).toThrow(/never --prod.*nothing was deployed/)
+    }
+  })
+
+  it('lets a preview deploy through, whatever the slug or subdomain is called', () => {
+    for (const argv of [[], ['--slug', 'goodson', '--edit'], ['--slug', 'production', '--as', 'prod'], ['--target', 'preview'], ['deploy', '--prebuilt', '--yes']]) {
+      expect(() => refuseProd(argv), argv.join(' ')).not.toThrow()
+    }
   })
 })
 

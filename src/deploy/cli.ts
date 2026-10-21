@@ -13,6 +13,7 @@ import {
   otherLeads,
   parseDeployArgs,
   pruneOtherLeads,
+  refuseProd,
   scanForLeaks,
   termsFor,
   vaultMentions,
@@ -60,6 +61,12 @@ import { vercel } from './vercel'
  * RFD.LEADS.10c: everything but --check-only is exported as runDeploy(),
  * which `npm run demo` calls in-process; importing this file does not run
  * main().
+ *
+ * RFD.POLISH.18: a lead deploy is a preview deployment plus an alias,
+ * never production. --prod (or --target production) in this process's
+ * argv stops it before anything runs, here and in runDeploy(): production
+ * is the neutral root page every unaliased host serves (root-site/,
+ * `npm run deploy:root`).
  */
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..')
@@ -178,6 +185,8 @@ async function previews(fixture: string, scroll: boolean) {
 export async function runDeploy(opts: DeployOptions): Promise<DeployResult> {
   let stage: DeployStage = 'build'
   try {
+    // In-process callers too (`npm run demo`): this process's argv must not ask for production.
+    refuseProd(process.argv.slice(2))
     const { slug, sub } = parseDeployArgs({ slug: opts.slug, as: opts.as })
     const alias = aliasFor(sub)
     const env = opts.env ?? process.env
@@ -246,6 +255,8 @@ export async function runDeploy(opts: DeployOptions): Promise<DeployResult> {
 }
 
 async function main() {
+  // Before parseArgs, so --prod gets this refusal rather than "Unknown option".
+  refuseProd(process.argv.slice(2))
   const { values } = parseArgs({
     options: {
       slug: { type: 'string' },

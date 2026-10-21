@@ -3,6 +3,7 @@ import { DesignBriefSchema } from './design-brief'
 import {
   cityFromAddress,
   forLean,
+  matchesKeyword,
   servingList,
   shortNameOf,
   toSiteContent,
@@ -95,6 +96,37 @@ describe('toSiteContent', () => {
       expect(site.licenseNumber).not.toBeNull()
       expect(site.utilityLine).toMatch(/^24\/7 emergency service · Serving /)
     }
+  })
+
+  it('puts "Furnace Repair" and "AC Tune-up" in their own buckets', () => {
+    const site = toSiteContent({ ...DesignBriefSchema.parse(hvac), services: ['Furnace Repair', 'AC Tune-up'] })
+    expect(site.services).toEqual([
+      { title: 'Furnace Repair', blurb: 'Safe, efficient heat through the coldest months.' },
+      { title: 'AC Tune-up', blurb: 'Repair, tune-ups, and new systems sized for your home.' },
+    ])
+  })
+
+  it('keeps the blurbs of titles a keyword used to match inside: Air Conditioning, Ductwork, Rewiring, Subpanel', () => {
+    const blurbs = (fixture: unknown, services: string[]) =>
+      toSiteContent({ ...DesignBriefSchema.parse(fixture), services }).services.map((s) => s.blurb)
+    const [conditioning, ac, ductwork, duct, hvacPlan, plan] = blurbs(hvac, [
+      'Air Conditioning',
+      'AC repair',
+      'Ductwork',
+      'Duct cleaning',
+      'HVAC maintenance',
+      'Maintenance plans',
+    ])
+    expect([conditioning, ductwork, hvacPlan]).toEqual([ac, duct, plan])
+    const [rewiring, wiring, subpanel, panel, evaluation] = blurbs(electric, [
+      'Whole-home rewiring',
+      'Wiring',
+      'Subpanel installation',
+      'Panel upgrades',
+      'Electrical evaluation',
+    ])
+    expect([rewiring, subpanel]).toEqual([wiring, panel])
+    expect(evaluation).toBe('')
   })
 
   it('maps the sparse-electric fixture without throwing', () => {
@@ -376,6 +408,26 @@ describe('helpers', () => {
     expect(shortNameOf('Smith &')).toBe('Smith')
     expect(shortNameOf('Bronco Plumbing')).toBe('Bronco Plumbing')
     expect(shortNameOf('LLC')).toBe('LLC')
+  })
+
+  it('matchesKeyword reads a keyword as a word, case-insensitively, and a short one as the whole word', () => {
+    for (const title of ['AC Tune-up', 'ac repair', 'A/C installation', 'A.C. service', 'Emergency AC', 'Two ACs']) {
+      expect(matchesKeyword(title, 'ac'), title).toBe(true)
+    }
+    for (const title of ['Furnace Repair', 'HVAC maintenance', 'Rooftop unit replacement', 'Accessories']) {
+      expect(matchesKeyword(title, 'ac'), title).toBe(false)
+    }
+    expect(matchesKeyword('EV charger installation', 'ev')).toBe(true)
+    for (const title of ['Preventive maintenance', 'Electrical evaluation', 'Every job inspected', 'Level 2 chargers']) {
+      expect(matchesKeyword(title, 'ev'), title).toBe(false)
+    }
+    // A longer keyword starts a word and may run on.
+    expect(matchesKeyword('Air Conditioning', 'air condition')).toBe(true)
+    expect(matchesKeyword('Standby Generators', 'generator')).toBe(true)
+    expect(matchesKeyword('Ductwork', 'duct')).toBe(true)
+    expect(matchesKeyword('Product installs', 'duct')).toBe(false)
+    expect(matchesKeyword('Rewiring', 'wiring')).toBe(false)
+    expect(matchesKeyword('New construction rough-in', 'rough-in')).toBe(true)
   })
 
   it('verticalLabelOf maps known verticals and title-cases the rest', () => {
