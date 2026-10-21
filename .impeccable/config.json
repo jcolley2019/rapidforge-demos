@@ -146,6 +146,33 @@
         ],
         "createdAt": "2026-10-21T17:53:25.232Z",
         "reason": "Claude: vendored scroll-craft engine default token in scrollcraft.css; the page overrides display, text and mono with Big Shoulders Display and Hanken Grotesk (RFD.SCROLL.15y)"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "leads/scrollcraft/builds/above-and-beyond-plumbing-llc/index.html"
+        ],
+        "createdAt": "2026-10-21T20:31:30.159Z",
+        "reason": "Claude: static scan reads the dial's sticky full-viewport stage as flush; the dial copy sits inside the page gutter and is centred in the stage, and the rendered scans (detect http://127.0.0.1:4521/ at 1280x800 and 390x844) report nothing (RFD.SCROLL.15z build)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "files": [
+          "leads/scrollcraft/builds/above-and-beyond-plumbing-llc/index.html"
+        ],
+        "createdAt": "2026-10-21T20:31:30.537Z",
+        "reason": "Claude: vendored scroll-craft engine default token in scrollcraft.css; the page overrides display and text with Bricolage Grotesque (RFD.SCROLL.15z)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "files": [
+          "leads/scrollcraft/builds/above-and-beyond-plumbing-llc/index.html"
+        ],
+        "createdAt": "2026-10-21T20:31:30.852Z",
+        "reason": "Claude: vendored scroll-craft engine default token in scrollcraft.css; the page overrides display, text and mono with Bricolage Grotesque (RFD.SCROLL.15z)"
       }
     ]
   }
