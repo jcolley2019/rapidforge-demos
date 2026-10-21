@@ -189,6 +189,9 @@ const SERVICE_BLURBS: Record<CopyFamily, Array<[keyword: string, blurb: string]>
     ['duct', 'Sealed and balanced ductwork for even temperatures room to room.'],
     ['maintenance', 'Seasonal checkups that catch small problems early.'],
     ['thermostat', 'Smart controls installed and configured for you.'],
+    // Same blurb as "ac", listed last: "ac" no longer reads inside "HVAC", so a plain "HVAC Repair" falls
+    // through to here, while "HVAC maintenance" or "HVAC duct cleaning" keep their own lines above.
+    ['hvac', 'Repair, tune-ups, and new systems sized for your home.'],
   ],
   electrical: [
     // Commercial lines first, so "Tenant improvement wiring" reads as a build-out, not a rewire.

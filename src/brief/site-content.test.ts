@@ -106,6 +106,19 @@ describe('toSiteContent', () => {
     ])
   })
 
+  it('gives "HVAC Repair" and "HVAC Tune-up" the AC blurb, and leaves "HVAC maintenance" its own', () => {
+    const site = toSiteContent({
+      ...DesignBriefSchema.parse(hvac),
+      services: ['HVAC Repair', 'HVAC Tune-up', 'HVAC maintenance', 'AC Tune-up'],
+    })
+    const [repair, tuneUp, maintenance, ac] = site.services.map((s) => s.blurb)
+    expect(repair).toBe(ac)
+    expect(tuneUp).toBe(ac)
+    expect(maintenance).not.toBe(ac)
+    expect(matchesKeyword('HVAC Repair', 'hvac')).toBe(true)
+    expect(matchesKeyword('Chvac', 'hvac')).toBe(false)
+  })
+
   it('keeps the blurbs of titles a keyword used to match inside: Air Conditioning, Ductwork, Rewiring, Subpanel', () => {
     const blurbs = (fixture: unknown, services: string[]) =>
       toSiteContent({ ...DesignBriefSchema.parse(fixture), services }).services.map((s) => s.blurb)
