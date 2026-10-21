@@ -47,6 +47,42 @@
         ],
         "createdAt": "2026-10-21T01:21:30.925Z",
         "reason": "split-stage mechanism: each side is a clip-path layer by design; nothing inside needs to escape it (RFD.SCROLL.15 build)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "files": [
+          "leads/scrollcraft/builds/allplumbingsewer-com/index.html"
+        ],
+        "createdAt": "2026-10-21T01:46:36.324Z",
+        "reason": "vendored scroll-craft engine default token in scrollcraft.css; the page overrides display/text with Archivo and Public Sans (RFD.SCROLL.15)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "files": [
+          "leads/scrollcraft/builds/allplumbingsewer-com/index.html"
+        ],
+        "createdAt": "2026-10-21T01:46:36.671Z",
+        "reason": "vendored scroll-craft engine default token in scrollcraft.css; the page overrides display/text with Archivo and Public Sans (RFD.SCROLL.15)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist mono",
+        "files": [
+          "leads/scrollcraft/builds/allplumbingsewer-com/index.html"
+        ],
+        "createdAt": "2026-10-21T01:46:37.017Z",
+        "reason": "vendored scroll-craft engine default token in scrollcraft.css; the page overrides display/text with Archivo and Public Sans (RFD.SCROLL.15)"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "leads/scrollcraft/builds/allplumbingsewer-com/index.html"
+        ],
+        "createdAt": "2026-10-21T01:46:37.343Z",
+        "reason": "display headlines and quote pull-lines only (engine leading-none 0.94 and 1.12 on display sizes per taste.md); body text is 1.62 (RFD.SCROLL.15)"
       }
     ]
   }
