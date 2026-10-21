@@ -1,3 +1,4 @@
+import type { Ref } from 'react'
 import { useSite } from '../../brief/site-context'
 import { heroActions } from '../../brief/site-helpers'
 import BadgeRow from '../../components/BadgeRow'
@@ -9,15 +10,16 @@ import { fullBleedPhotoFor } from '../heroPhoto'
  * Full-bleed, kept calm: one photo fills the first screen under a heavy
  * dark shade and a soft vignette; a gold hairline, the serif headline and
  * the actions sit centered; the credentials run along the bottom edge on a
- * translucent strip.
+ * translucent strip. The page's OverlayHeader floats over its top and
+ * watches it through `ref`.
  */
-export default function ClHero() {
+export default function ClHero({ ref }: { ref?: Ref<HTMLElement> }) {
   const site = useSite()
   const palette = presetForVariant('cleanpro', site.vertical).palette
   const photo = fullBleedPhotoFor('cleanpro', site)
   const { primary, secondary } = heroActions(site)
   return (
-    <section className="cl-hero" aria-label="Introduction" data-full-bleed="">
+    <section ref={ref} className="cl-hero" aria-label="Introduction" data-full-bleed="">
       <div className="cl-hero-media" aria-hidden="true">
         <FullBleedPhoto src={photo} palette={palette} className="cl-hero-img" />
       </div>

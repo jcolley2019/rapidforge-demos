@@ -1,0 +1,45 @@
+/* The header of a full-bleed page (OverlayHeader). Out of flow in every
+   mode, so switching modes never moves the page: absolute over the top of
+   the hero, then fixed once the hero has scrolled away. The variant styles
+   its utility bar and nav for `oh-over`; the solid modes are its usual nav,
+   so the utility bar, which scrolls away on every other page, stays away. */
+
+.oh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+}
+.oh-solid,
+.oh-leaving {
+  position: fixed;
+}
+.oh-solid {
+  animation: oh-fade-in 0.2s ease-out both;
+}
+.oh-leaving {
+  animation: oh-fade-out 0.2s ease-in both;
+  pointer-events: none;
+}
+.oh-solid .ub,
+.oh-leaving .ub {
+  display: none;
+}
+
+@keyframes oh-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes oh-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

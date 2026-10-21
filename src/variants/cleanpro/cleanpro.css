@@ -16,6 +16,8 @@
   --cl-line: rgba(250, 250, 249, 0.14);
   --cl-line-strong: rgba(250, 250, 249, 0.3);
   --cl-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* The utility bar and nav together, which float over the hero's top. */
+  --cl-head: 6.5rem;
 
   color-scheme: dark;
   background-color: var(--cl-bg);
@@ -222,29 +224,62 @@
   }
 }
 
-/* Hero: full-bleed and calm. One photo fills the first screen (90vh, 70vh
-   on a phone) under a heavy near-black shade and a soft vignette that
-   closes the edges; a short gold hairline, the serif headline and the
-   actions sit centered; the credentials run along the bottom edge on a
-   translucent strip. The black ground is the placeholder until the photo
-   lands. Every line of copy keeps at least 4.5:1 against the shade even
-   over a pure-white photo. */
+/* Over the hero (OverlayHeader's oh-over): no ground of its own, white
+   type on the hero's shade, the gold kept for the button. Once the hero
+   has scrolled away the nav is fixed and solid, as above. */
+.cleanpro .oh-over .ub,
+.cleanpro .oh-over .cl-nav {
+  background: transparent;
+}
+.cleanpro .oh-over .cl-nav {
+  border-bottom-color: transparent;
+}
+.cleanpro .oh-over .ub,
+.cleanpro .oh-over .ub-call,
+.cleanpro .oh-over .ub-book,
+.cleanpro .oh-over .cl-brand,
+.cleanpro .oh-over .cl-navlink,
+.cleanpro .oh-over .cl-nav-phone {
+  color: #ffffff;
+}
+.cleanpro .oh-over .ub-call:hover,
+.cleanpro .oh-over .ub-book:hover,
+.cleanpro .oh-over .cl-navlink:hover,
+.cleanpro .oh-over .cl-navlink:focus-visible,
+.cleanpro .oh-over .cl-nav-phone:hover,
+.cleanpro .oh-over .cl-nav-phone:focus-visible {
+  color: var(--cl-gold-2);
+}
+@media (max-width: 479px) {
+  .cleanpro .oh-over .cl-nav-phone {
+    border-color: rgba(250, 250, 249, 0.55);
+  }
+}
+
+/* Hero: full-bleed and calm. One photo fills the first screen from the
+   top edge (100vh; the small viewport on a phone, so browser chrome never
+   hides the strip) under a heavy near-black shade, a soft vignette that
+   closes the edges and a black shade at the top for the header floating
+   there; a short gold hairline, the serif headline and the actions sit
+   centered in the space below the header; the credentials run along the
+   bottom edge on a translucent strip. The black ground is the placeholder
+   until the photo lands. Every line of copy, the header's included, keeps
+   at least 4.5:1 against the shade even over a pure-white photo. */
 .cl-hero {
   --cl-shade: 12, 12, 12;
   position: relative;
   isolation: isolate;
   display: flex;
   flex-direction: column;
-  min-height: 70vh;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: var(--cl-head);
   overflow: hidden;
   background: var(--cl-bg);
 }
-/* 90vh, but never past the first screen: the utility bar and nav above
-   take up to ~7rem, so on a short laptop screen the hero takes what is
-   left and its strip still ends above the fold. */
 @media (min-width: 768px) {
   .cl-hero {
-    min-height: min(90vh, calc(100vh - 7rem));
+    min-height: 100vh;
   }
 }
 .cl-hero-media {
@@ -265,6 +300,7 @@
   inset: 0;
   z-index: -1;
   background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0, rgba(0, 0, 0, 0.55) 5.5rem, rgba(0, 0, 0, 0.2) 8rem, rgba(0, 0, 0, 0) 10rem),
     radial-gradient(ellipse 80% 70% at 50% 45%, rgba(var(--cl-shade), 0) 40%, rgba(var(--cl-shade), 0.6) 100%),
     linear-gradient(rgba(var(--cl-shade), 0.7), rgba(var(--cl-shade), 0.7));
 }

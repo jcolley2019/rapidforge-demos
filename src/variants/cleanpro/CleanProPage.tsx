@@ -1,11 +1,13 @@
 import '@fontsource-variable/cormorant'
 import '@fontsource-variable/cormorant/wght-italic.css'
 import '@fontsource-variable/montserrat'
+import { useRef } from 'react'
 import './cleanpro.css'
 
 import AudienceStrip from '../../components/AudienceStrip'
 import BackToConceptsLink from '../../components/BackToConceptsLink'
 import Offers from '../../components/Offers'
+import OverlayHeader from '../../components/OverlayHeader'
 import ServiceAreas from '../../components/ServiceAreas'
 import UtilityBar from '../../components/UtilityBar'
 import { useSite } from '../../brief/site-context'
@@ -35,13 +37,16 @@ export default function CleanProPage() {
 
 function CleanProBody() {
   const site = useSite()
+  const hero = useRef<HTMLElement>(null)
   return (
     <div className="cleanpro" id="top" style={variantTokens('cleanpro', site.vertical)}>
       <BackToConceptsLink />
-      <UtilityBar site={site} wrapClassName="cl-wrap" />
-      <ClNav />
+      <OverlayHeader hero={hero}>
+        <UtilityBar site={site} wrapClassName="cl-wrap" />
+        <ClNav />
+      </OverlayHeader>
       <main>
-        <ClHero />
+        <ClHero ref={hero} />
         <Offers site={site} className="cl-offers" wrapClassName="cl-wrap" />
         <ClServices />
         <ServiceAreas site={site} className="cl-section cl-areas" wrapClassName="cl-wrap" titleClassName="cl-display cl-h2" />

@@ -4,8 +4,11 @@
 // viewport, fails when the picker's cards are unequal or do not stack at
 // phone width, and fails when a variant's services heading starts below the
 // fold at either size. A full-bleed hero (data-full-bleed: the photo fills
-// the first screen, so Services cannot show) is held instead to its actions
-// and trust strip ending inside the first screen.
+// the first screen, so Services cannot show) is held instead to starting at
+// the top edge and filling the first screen, its floating header ending
+// above the headline, its actions and trust strip ending inside the first
+// screen, and its header turning fixed past the hero and floating again
+// back at the top.
 //
 // It also writes the picker's preview images: the top of each variant as
 // public/previews/<vertical>/<slug>.jpg (1280x800) and <slug>-mobile.jpg
@@ -162,8 +165,10 @@ try {
 
           // Fold check: on a variant, the services heading must begin inside
           // the first viewport, so headline, CTA, phone, and trust strip all
-          // sit above it. A full-bleed hero fills that viewport by design, so
-          // there its actions and trust strip must end inside it instead.
+          // sit above it. A full-bleed hero fills that viewport by design, from
+          // its top edge with the header floating over it, so there the header
+          // must end above the headline and the actions and trust strip must
+          // end inside the viewport instead.
           if (route !== '/') {
             const fold = await page.evaluate(() => {
               window.scrollTo(0, 0)
@@ -172,7 +177,18 @@ try {
                 const parts = [...full.querySelectorAll('a[href], .br, .ts')]
                 const strip = full.querySelector('.br, .ts') !== null
                 const bottom = Math.max(...parts.map((el) => el.getBoundingClientRect().bottom))
-                return { kind: 'hero', at: parts.length > 0 ? Math.round(bottom) : null, strip }
+                const box = full.getBoundingClientRect()
+                const head = document.querySelector('[data-overlay-header]')
+                const h1 = full.querySelector('h1')
+                return {
+                  kind: 'hero',
+                  at: parts.length > 0 ? Math.round(bottom) : null,
+                  strip,
+                  top: Math.round(box.top),
+                  height: Math.round(box.height),
+                  head: head ? Math.round(head.getBoundingClientRect().bottom) : null,
+                  copy: h1 ? Math.round(h1.getBoundingClientRect().top) : null,
+                }
               }
               const h = document.querySelector('#services h2')
               return { kind: 'services', at: h ? Math.round(h.getBoundingClientRect().top) : null }
@@ -181,11 +197,44 @@ try {
               if (fold.at === null || !fold.strip) {
                 console.error(`FAIL ${tag} @${vp.width}: full-bleed hero has no ${fold.at === null ? 'actions' : 'trust strip'}`)
                 failures++
+              } else if (fold.top !== 0 || fold.height < vp.height) {
+                console.error(`FAIL ${tag} @${vp.width}x${vp.height}: full-bleed hero spans ${fold.top}..${fold.top + fold.height}, not 0..>=${vp.height}`)
+                failures++
+              } else if (fold.head === null || fold.copy === null || fold.head > fold.copy) {
+                console.error(`FAIL ${tag} @${vp.width}: overlay header ends at ${fold.head}, headline starts at ${fold.copy}`)
+                failures++
               } else if (fold.at > vp.height) {
                 console.error(`FAIL ${tag} @${vp.width}x${vp.height}: hero actions and trust strip end at ${fold.at} > ${vp.height}`)
                 failures++
               } else {
-                console.log(`ok   ${tag} @${vp.width}x${vp.height}: full-bleed hero actions and trust strip end at ${fold.at}`)
+                console.log(
+                  `ok   ${tag} @${vp.width}x${vp.height}: full-bleed hero 0..${fold.height}, header ends at ${fold.head} above headline at ${fold.copy}, actions and trust strip end at ${fold.at}`,
+                )
+              }
+
+              // The header turns fixed once the hero has scrolled away and
+              // floats over the hero again back at the top.
+              try {
+                await page.evaluate(() => {
+                  const hero = document.querySelector('section[aria-label="Introduction"][data-full-bleed]')
+                  window.scrollTo({ top: hero.getBoundingClientRect().bottom + window.scrollY + 200, behavior: 'instant' })
+                })
+                await page.waitForSelector('[data-overlay-header="solid"]', { timeout: 3000 })
+                const solid = await page.evaluate(() => {
+                  const head = document.querySelector('[data-overlay-header]')
+                  return { top: Math.round(head.getBoundingClientRect().top), position: getComputedStyle(head).position }
+                })
+                await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
+                await page.waitForSelector('[data-overlay-header="over"]', { timeout: 3000 })
+                if (solid.top !== 0 || solid.position !== 'fixed') {
+                  console.error(`FAIL ${tag} @${vp.width}: past the hero the header is ${solid.position} at ${solid.top}`)
+                  failures++
+                } else {
+                  console.log(`ok   ${tag} @${vp.width}: header fixed at 0 past the hero, floating again at the top`)
+                }
+              } catch (err) {
+                console.error(`FAIL ${tag} @${vp.width}: overlay header did not switch modes (${err.message.split('\n')[0]})`)
+                failures++
               }
             } else if (fold.at === null) {
               console.error(`FAIL ${tag} @${vp.width}: no #services h2 found`)
@@ -235,5 +284,5 @@ if (failures > 0) {
   process.exit(1)
 }
 console.log(
-  `width check passed at 390px; picker cards equal and stacked at 390px; fold check (services heading, or full-bleed hero actions and trust strip) passed at both sizes; previews under 300 KB; ${FIXTURES.length} fixtures`,
+  `width check passed at 390px; picker cards equal and stacked at 390px; fold check (services heading, or full-bleed hero from the top edge with its header above the headline and its actions and trust strip on screen, header fixed past it) passed at both sizes; previews under 300 KB; ${FIXTURES.length} fixtures`,
 )

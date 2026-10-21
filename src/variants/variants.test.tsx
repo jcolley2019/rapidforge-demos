@@ -216,6 +216,23 @@ describe('variants', () => {
       }
     })
 
+    it('floats the utility bar and nav over the hero on the full-bleed routes only', () => {
+      for (const variant of variants) {
+        const { unmount } = renderRoute(`/${variant.slug}`)
+        const overlay = document.querySelector('[data-overlay-header]')
+        if (FULL_BLEED.includes(variant.slug)) {
+          expect(overlay?.getAttribute('data-overlay-header'), variant.slug).toBe('over')
+          expect(overlay!.querySelector('.ub'), variant.slug).not.toBeNull()
+          expect(overlay!.querySelector('header'), variant.slug).not.toBeNull()
+          expect(overlay!.nextElementSibling?.tagName, variant.slug).toBe('MAIN')
+          expect(overlay!.nextElementSibling!.firstElementChild!.hasAttribute('data-full-bleed'), variant.slug).toBe(true)
+        } else {
+          expect(overlay, variant.slug).toBeNull()
+        }
+        unmount()
+      }
+    })
+
     for (const slug of FULL_BLEED) {
       it(`gives /${slug} one eager, high-priority, preloaded photo across the screen, with the trust strip inside`, () => {
         renderRoute(`/${slug}`)

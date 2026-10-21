@@ -1,10 +1,10 @@
 /* Bold Local (preset: bold-local), vault family F1 Red Banner Plumbers:
    a white page and one saturated red, a full-bleed photo filling the first
-   screen with a condensed Oswald headline and the badge row on a strip
-   along its bottom edge, a specials banner under it, a dark services panel
-   and a dark footer with the license. DM Sans everywhere else. Class
-   prefix dh- is a namespace carried over from the earlier skin; scoped to
-   .geospatial. */
+   screen from the top edge with the header floating over it in white, a
+   condensed Oswald headline and the badge row on a strip along its bottom
+   edge, a specials banner under it, a dark services panel and a dark
+   footer with the license. DM Sans everywhere else. Class prefix dh- is a
+   namespace carried over from the earlier skin; scoped to .geospatial. */
 
 .geospatial {
   --dh-red: #d20001;
@@ -18,6 +18,8 @@
   --dh-on-ink-muted: #bdbdbd;
   --dh-on-ink-line: rgba(255, 255, 255, 0.16);
   --dh-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* The utility bar and nav together, which float over the hero's top. */
+  --dh-head: 6.25rem;
   --dh-font-body: 'DM Sans Variable', 'Segoe UI', system-ui, sans-serif;
   --dh-font-display: 'DM Sans Variable', 'Segoe UI', system-ui, sans-serif;
 
@@ -301,13 +303,51 @@
   }
 }
 
-/* Hero: full-bleed. One photo fills the first screen (90vh, 70vh on a
-   phone) under a near-black grade that is deepest at the bottom and clears
-   toward the top, where faces and trucks sit; the condensed white headline
-   and both actions sit bottom-left, and the trust row runs along the
-   bottom edge on a translucent strip. The ink ground is the placeholder
-   until the photo lands. Every line of copy keeps at least 4.5:1 against
-   the grade even over a pure-white photo. */
+/* Over the hero (OverlayHeader's oh-over): no ground of its own, white
+   type on the hero's top shade, a white chip under a logo drawn for a
+   white header. The pills keep their own grounds. Once the hero has
+   scrolled away the nav is fixed and solid, as above. */
+.geospatial .oh-over .ub {
+  background: transparent;
+  color: #ffffff;
+}
+.geospatial .oh-over .dh-nav {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+.geospatial .oh-over .ub-line,
+.geospatial .oh-over .dh-brand,
+.geospatial .oh-over .dh-navlink {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+.geospatial .oh-over .dh-navlink:hover,
+.geospatial .oh-over .dh-navlink:focus-visible {
+  color: #ffffff;
+  text-decoration: underline;
+  text-decoration-color: var(--dh-red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.geospatial .oh-over :focus-visible {
+  outline-color: #ffffff;
+}
+.geospatial .oh-over .brand-logo {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+/* Hero: full-bleed. One photo fills the first screen from the top edge
+   (100vh; the small viewport on a phone, so browser chrome never hides the
+   strip), the header floating over its top on a black shade; below that a
+   near-black grade is deepest at the bottom and clears toward the top,
+   where faces and trucks sit; the condensed white headline and both
+   actions sit bottom-left, clear of the header, and the trust row runs
+   along the bottom edge on a translucent strip. The ink ground is the
+   placeholder until the photo lands. Every line of copy, the header's
+   included, keeps at least 4.5:1 against its shade even over a pure-white
+   photo. */
 .dh-hero {
   --dh-shade: 14, 14, 14;
   position: relative;
@@ -315,17 +355,16 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 70vh;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: var(--dh-head);
   overflow: hidden;
   background: var(--dh-ink);
   color: #ffffff;
 }
-/* 90vh, but never past the first screen: the utility bar and nav above
-   take up to ~7rem, so on a short laptop screen the hero takes what is
-   left and its strip still ends above the fold. */
 @media (min-width: 768px) {
   .dh-hero {
-    min-height: min(90vh, calc(100vh - 7rem));
+    min-height: 100vh;
   }
 }
 .dh-hero-media {
@@ -340,22 +379,35 @@
   object-fit: cover;
   object-position: 50% 20%;
 }
+/* The header's shade: black at .55 down through the header's type (a
+   straight ramp would leave the nav at ~2:1 over a white photo), then
+   clear by 10rem. */
 .dh-hero::before {
+  --dh-head-shade: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0,
+    rgba(0, 0, 0, 0.55) 5.5rem,
+    rgba(0, 0, 0, 0.2) 8rem,
+    rgba(0, 0, 0, 0) 10rem
+  );
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    0deg,
-    rgba(var(--dh-shade), 0.85) 0%,
-    rgba(var(--dh-shade), 0.45) 30%,
-    rgba(var(--dh-shade), 0.12) 65%,
-    rgba(var(--dh-shade), 0) 100%
-  );
+  background:
+    var(--dh-head-shade),
+    linear-gradient(
+      0deg,
+      rgba(var(--dh-shade), 0.85) 0%,
+      rgba(var(--dh-shade), 0.45) 30%,
+      rgba(var(--dh-shade), 0.12) 65%,
+      rgba(var(--dh-shade), 0) 100%
+    );
 }
 @media (min-width: 768px) {
   .dh-hero::before {
     background:
+      var(--dh-head-shade),
       linear-gradient(90deg, rgba(var(--dh-shade), 0.35) 0%, rgba(var(--dh-shade), 0) 55%),
       linear-gradient(
         0deg,

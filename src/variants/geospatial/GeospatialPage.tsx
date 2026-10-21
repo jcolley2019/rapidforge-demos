@@ -1,10 +1,12 @@
 import '@fontsource-variable/dm-sans'
 import '@fontsource-variable/oswald'
+import { useRef } from 'react'
 import './geospatial.css'
 
 import AudienceStrip from '../../components/AudienceStrip'
 import BackToConceptsLink from '../../components/BackToConceptsLink'
 import Offers from '../../components/Offers'
+import OverlayHeader from '../../components/OverlayHeader'
 import ServiceAreas from '../../components/ServiceAreas'
 import UtilityBar from '../../components/UtilityBar'
 import { useSite } from '../../brief/site-context'
@@ -31,13 +33,16 @@ export default function GeospatialPage() {
 
 function GeospatialBody() {
   const site = useSite()
+  const hero = useRef<HTMLElement>(null)
   return (
     <div className="geospatial" id="top" style={variantTokens('geospatial', site.vertical)}>
       <BackToConceptsLink />
-      <UtilityBar site={site} wrapClassName="dh-wrap" />
-      <DhNav />
+      <OverlayHeader hero={hero}>
+        <UtilityBar site={site} wrapClassName="dh-wrap" />
+        <DhNav />
+      </OverlayHeader>
       <main>
-        <DhHero />
+        <DhHero ref={hero} />
         <Offers site={site} className="dh-specials" wrapClassName="dh-wrap" />
         <DhServices />
         <ServiceAreas site={site} className="dh-section dh-areas" wrapClassName="dh-wrap" titleClassName="dh-display dh-h2" />
