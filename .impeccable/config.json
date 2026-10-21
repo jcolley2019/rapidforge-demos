@@ -110,6 +110,42 @@
         ],
         "createdAt": "2026-10-21T06:31:23.611Z",
         "reason": "Claude: vendored scroll-craft engine default token in scrollcraft.css; the page overrides display, text and mono with Source Serif 4 and Barlow (RFD.SCROLL.15x)"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "leads/scrollcraft/builds/landershomeservices-com/index.html"
+        ],
+        "createdAt": "2026-10-21T17:53:24.598Z",
+        "reason": "Claude: the doorway hero's hall, door and room planes scale past the stage as you walk through the door; clipping them is the mechanism and nothing inside needs to escape (RFD.SCROLL.15y build)"
+      },
+      {
+        "rule": "content-hidden-at-rest",
+        "value": "*",
+        "files": [
+          "leads/scrollcraft/builds/landershomeservices-com/index.html"
+        ],
+        "createdAt": "2026-10-21T17:53:24.812Z",
+        "reason": "Claude: scroll-cued copy (the work act's customer quotes, the closing work order, the doorway's second line, the fixed ticket) waits at opacity 0 for its scroll position under the scroll-craft engine's cues; every cue reaches full opacity in the verify harness (RFD.SCROLL.15y)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "instrument sans",
+        "files": [
+          "leads/scrollcraft/builds/landershomeservices-com/index.html"
+        ],
+        "createdAt": "2026-10-21T17:53:25.034Z",
+        "reason": "Claude: vendored scroll-craft engine default token in scrollcraft.css; the page overrides display and text with Big Shoulders Display and Hanken Grotesk (RFD.SCROLL.15y)"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist",
+        "files": [
+          "leads/scrollcraft/builds/landershomeservices-com/index.html"
+        ],
+        "createdAt": "2026-10-21T17:53:25.232Z",
+        "reason": "Claude: vendored scroll-craft engine default token in scrollcraft.css; the page overrides display, text and mono with Big Shoulders Display and Hanken Grotesk (RFD.SCROLL.15y)"
       }
     ]
   }
