@@ -94,6 +94,7 @@ export function bodyFor(pick: Pick): string {
     `${pick.business_name} picked ${pick.preset_name} (${pick.preset_id}, /${pick.variant_slug}).`,
     '',
     `Site:          ${aliasOf(pick.page_url)}`,
+    `Look:          ${aliasOf(pick.page_url)}/${pick.variant_slug}`,
     `Page:          ${pick.page_url}`,
     `Lead slug:     ${pick.slug}`,
     `Business:      ${pick.business_name}`,
@@ -120,8 +121,14 @@ export function resendPayload(pick: Pick, env: PickEnv) {
 
 const EMAIL_OK = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-/** The page link a confirmation may carry: https on a *.demos.rapidforgeai.com alias, no credentials, port, query or hash; else null. */
-export function confirmableUrl(pageUrl: string): string | null {
+/**
+ * The link a confirmation may carry: the chosen look's page, i.e. the page
+ * URL's origin plus `/<variant_slug>` (PickSchema holds the slug to the
+ * variant routes or "scroll"). Only https on a *.demos.rapidforgeai.com
+ * alias with no credentials or port; the page's own path, query and hash
+ * never pass through. Else null.
+ */
+export function confirmableUrl(pageUrl: string, variantSlug: string): string | null {
   let url: URL
   try {
     url = new URL(pageUrl)
@@ -129,7 +136,7 @@ export function confirmableUrl(pageUrl: string): string | null {
     return null
   }
   if (url.protocol !== 'https:' || !ALIAS_HOST.test(url.host) || url.username || url.password) return null
-  return `${url.origin}${url.pathname}`
+  return `${url.origin}/${variantSlug}`
 }
 
 /** The picker's name as a confirmation may use it: letters, spaces, ' and - only, at most 60 characters. */
@@ -279,7 +286,7 @@ async function confirmPick(pick: Pick, env: PickEnv, db: { url: string; key: str
   if (!EMAIL_OK.test(pick.email)) return
   const skip = (reason: string) => console.log(`pick: confirmation skipped (${reason})`)
   if (!saved || !db || !pick.businessId) return skip('the pick was not saved to demo_picks')
-  const pageUrl = confirmableUrl(pick.page_url)
+  const pageUrl = confirmableUrl(pick.page_url, pick.variant_slug)
   if (!pageUrl) return skip('page_url is not https on a *.demos.rapidforgeai.com alias')
   const business = await businessNameOf(db, pick.businessId, fetchImpl)
   if ('reason' in business) return skip(business.reason)

@@ -217,6 +217,11 @@ describe('POST /api/pick', () => {
       expect(body.text).toContain(value)
     }
     expect(body.text).toContain('Site:          https://goodson.demos.rapidforgeai.com')
+    expect(body.text).toContain('Look:          https://goodson.demos.rapidforgeai.com/heritage')
+    // The notice's look link follows the variant, whatever page the pick was made from.
+    const fromPicker = await handlePick(post({ ...PICK, page_url: 'https://goodson.demos.rapidforgeai.com/?brief=x', variant_slug: 'scroll' }), { ...ENV, PICK_FROM_EMAIL: '' }, fetch)
+    expect(fromPicker.status).toBe(200)
+    expect(JSON.parse((fetch.mock.calls[1] as unknown as [string, RequestInit])[1].body as string).text).toContain('Look:          https://goodson.demos.rapidforgeai.com/scroll')
   })
 
   it('accepts a phone alone and uses the configured from address', async () => {
@@ -281,9 +286,12 @@ describe('the picker’s confirmation', () => {
     expect(payload.text.split('\n')[0]).toBe('Hi Rob a hrefhttpsevilexample,')
   })
 
-  it('links only an https page on a *.demos.rapidforgeai.com alias, without its query or hash', () => {
-    expect(confirmableUrl(PAGE)).toBe(PAGE)
-    expect(confirmableUrl('https://goodson.demos.rapidforgeai.com/scroll?x=1#top')).toBe('https://goodson.demos.rapidforgeai.com/scroll')
+  it('links the chosen look on the alias, whatever page the pick came from, and only on a *.demos.rapidforgeai.com https alias', () => {
+    expect(confirmableUrl(PAGE, 'heritage')).toBe(PAGE)
+    // From the picker (or any path, with query and hash), the link is still the look's own page.
+    expect(confirmableUrl('https://goodson.demos.rapidforgeai.com/', 'cleanpro')).toBe('https://goodson.demos.rapidforgeai.com/cleanpro')
+    expect(confirmableUrl('https://goodson.demos.rapidforgeai.com/?brief=x#top', 'scroll')).toBe('https://goodson.demos.rapidforgeai.com/scroll')
+    expect(confirmableUrl('https://goodson.demos.rapidforgeai.com/heritage?x=1', 'texas')).toBe('https://goodson.demos.rapidforgeai.com/texas')
     for (const foreign of [
       'https://evil.example.com/heritage',
       'http://goodson.demos.rapidforgeai.com/heritage',
@@ -294,7 +302,21 @@ describe('the picker’s confirmation', () => {
       'https://user:pw@goodson.demos.rapidforgeai.com/',
       'not a url',
     ]) {
-      expect(confirmableUrl(foreign)).toBeNull()
+      expect(confirmableUrl(foreign, 'heritage')).toBeNull()
+    }
+  })
+
+  it('sends the look’s page in a live pick: a variant from the picker, and the Scroll Story', async () => {
+    for (const [variant, path] of [
+      ['cleanpro', '/cleanpro'],
+      ['scroll', '/scroll'],
+    ] as const) {
+      const fetch = routed()
+      const res = await handlePick(post({ ...SAVED, variant_slug: variant, preset_name: variant === 'scroll' ? 'Scroll Story' : 'Premium Dark', page_url: 'https://goodson.demos.rapidforgeai.com/?brief=x' }), BOTH, fetch)
+      expect(res.status).toBe(200)
+      const confirmation = JSON.parse(calls(fetch)[3][1].body as string)
+      expect(confirmation.text).toContain(`You can revisit it here:\nhttps://goodson.demos.rapidforgeai.com${path}\n`)
+      expect(confirmation.text).not.toContain('brief=x')
     }
   })
 
