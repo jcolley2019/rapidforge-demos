@@ -4,7 +4,8 @@ import { PickSchema, reachable, type Pick } from './schema.js'
  * POST /api/pick: validates a pick, saves it as a demo_picks row in the
  * leads Supabase (when the pick carries a businessId and the service-role
  * env is set), then emails it to Joey through Resend's REST API (no SDK)
- * when Resend is configured. Either channel alone is enough. The Vercel
+ * when Resend is configured, and sends the picker a confirmation when they
+ * left a valid email. Either channel alone is enough. The Vercel
  * function in api/pick.ts is a one-line adapter over `handlePick`, which
  * takes its env and fetch as arguments so the tests run without a network.
  */
@@ -72,6 +73,35 @@ export function resendPayload(pick: Pick, env: PickEnv) {
 
 const EMAIL_OK = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+export function confirmationSubjectFor(pick: Pick): string {
+  return `Your pick for ${pick.business_name} is in`
+}
+
+export function confirmationBodyFor(pick: Pick): string {
+  const lines = [
+    pick.name ? `Hi ${pick.name},` : 'Hi,',
+    '',
+    `Thanks for choosing the ${pick.preset_name} look for ${pick.business_name}. Joey at RapidForge will be in touch.`,
+    '',
+    'You can revisit it here:',
+    pick.page_url,
+    '',
+    'If you have a question in the meantime, you can reply to this email.',
+  ]
+  return lines.join('\n')
+}
+
+/** The Resend request body for the picker's confirmation; replies go to Joey. */
+export function confirmationPayload(pick: Pick, env: PickEnv) {
+  return {
+    from: env.PICK_FROM_EMAIL?.trim() || DEFAULT_FROM,
+    to: [pick.email],
+    reply_to: env.PICK_TO_EMAIL!.trim(),
+    subject: confirmationSubjectFor(pick),
+    text: confirmationBodyFor(pick),
+  }
+}
+
 /** The demo_picks row for a pick; blank contact fields are stored as null. */
 export function pickRow(pick: Pick, businessId: string) {
   const orNull = (value: string) => value || null
@@ -124,14 +154,14 @@ async function savePick(db: { url: string; key: string }, row: ReturnType<typeof
   return `The pick was not saved (HTTP ${res.status})`
 }
 
-/** Send the pick email; null on success, else Resend's error. */
-async function emailPick(pick: Pick, env: PickEnv, fetchImpl: Fetch): Promise<string | null> {
+/** Send one pick email (Joey's notice or the picker's confirmation); null on success, else Resend's error. */
+async function emailPick(payload: ReturnType<typeof resendPayload | typeof confirmationPayload>, env: PickEnv, fetchImpl: Fetch): Promise<string | null> {
   let res: Response
   try {
     res = await fetchImpl(RESEND_URL, {
       method: 'POST',
       headers: { authorization: `Bearer ${env.RESEND_API_KEY!.trim()}`, 'content-type': 'application/json' },
-      body: JSON.stringify(resendPayload(pick, env)),
+      body: JSON.stringify(payload),
     })
   } catch (err) {
     return `Resend unreachable: ${err instanceof Error ? err.message : String(err)}`
@@ -183,11 +213,16 @@ export async function handlePick(req: Request, env: PickEnv, fetchImpl: Fetch): 
   }
   let emailed = false
   if (mailing) {
-    const failure = await emailPick(pick, env, fetchImpl)
+    const failure = await emailPick(resendPayload(pick, env), env, fetchImpl)
     // With the row saved the pick is safe; an email-only pick that fails went nowhere.
     if (failure && !saving) return json(502, { ok: false, error: failure })
     if (failure) console.error(`pick: saved, but the email failed (${failure})`)
     emailed = failure === null
+    // The picker's confirmation goes after Joey's notice; its failure is logged and changes nothing.
+    if (EMAIL_OK.test(pick.email)) {
+      const unconfirmed = await emailPick(confirmationPayload(pick, env), env, fetchImpl)
+      if (unconfirmed) console.error(`pick: the picker's confirmation failed (${unconfirmed})`)
+    }
   }
   return json(200, { saved: saving, emailed })
 }

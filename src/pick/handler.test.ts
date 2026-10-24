@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { DEFAULT_FROM, NOT_CONFIGURED, RESEND_URL, handlePick } from './handler'
+import { DEFAULT_FROM, NOT_CONFIGURED, RESEND_URL, confirmationPayload, handlePick } from './handler'
+import { PickSchema } from './schema'
 
 const ENV = { RESEND_API_KEY: 're_test', PICK_TO_EMAIL: 'joey@example.com' }
 const DB_ENV = { LEADS_SUPABASE_URL: 'https://leads.supabase.co/', LEADS_SUPABASE_SERVICE_ROLE_KEY: 'service-role-secret' }
@@ -123,7 +124,8 @@ describe('POST /api/pick', () => {
     const res = await handlePick(post({ ...PICK, businessId: BUSINESS_ID }), { ...ENV, ...DB_ENV }, fetch)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ saved: true, emailed: true })
-    expect(calls(fetch).map(([url]) => url)).toEqual([PICKS_URL, RESEND_URL])
+    // Joey's notice, then the picker's confirmation.
+    expect(calls(fetch).map(([url]) => url)).toEqual([PICKS_URL, RESEND_URL, RESEND_URL])
   })
 
   it('still answers saved when the row went in but the email failed', async () => {
@@ -167,7 +169,7 @@ describe('POST /api/pick', () => {
     const res = await handlePick(post(PICK), { ...ENV, ...DB_ENV }, fetch)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ saved: false, emailed: true })
-    expect(calls(fetch).map(([url]) => url)).toEqual([RESEND_URL])
+    expect(calls(fetch).map(([url]) => url)).toEqual([RESEND_URL, RESEND_URL])
   })
 
   it('sends the right Resend payload on the happy path', async () => {
@@ -175,7 +177,8 @@ describe('POST /api/pick', () => {
     const res = await handlePick(post(PICK), { ...ENV, PICK_FROM_EMAIL: '' }, fetch)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ saved: false, emailed: true })
-    expect(fetch).toHaveBeenCalledTimes(1)
+    // Joey's notice is the first of two sends; the second is the picker's confirmation.
+    expect(fetch).toHaveBeenCalledTimes(2)
     const [url, init] = fetch.mock.calls[0] as unknown as [string, RequestInit]
     expect(url).toBe(RESEND_URL)
     expect(init.method).toBe('POST')
@@ -205,5 +208,67 @@ describe('POST /api/pick', () => {
     const res = await handlePick(post(PICK), ENV, failing)
     expect(res.status).toBe(502)
     expect(await res.json()).toEqual({ ok: false, error: 'Invalid `to` address' })
+    // The pick went nowhere, so the picker is not told it is in.
+    expect(failing).toHaveBeenCalledTimes(1)
+  })
+})
+
+describe('the picker’s confirmation', () => {
+  it('is a plain-text note from the pick sender to the picker, with replies going to Joey', () => {
+    const pick = PickSchema.parse(PICK)
+    const payload = confirmationPayload(pick, { ...ENV, PICK_FROM_EMAIL: '' })
+    expect(payload.from).toBe(DEFAULT_FROM)
+    expect(payload.to).toEqual(['rob@example.com'])
+    expect(payload.reply_to).toBe('joey@example.com')
+    expect(payload.subject).toBe('Your pick for Goodson Plumbing Services is in')
+    expect(payload).not.toHaveProperty('html')
+    expect(payload.text.split('\n')[0]).toBe('Hi Rob,')
+    for (const value of ['Clean Trust look for Goodson Plumbing Services', 'Joey at RapidForge will be in touch', 'https://goodson.demos.rapidforgeai.com/heritage', 'reply to this email']) {
+      expect(payload.text).toContain(value)
+    }
+    expect(confirmationPayload(pick, { ...ENV, PICK_FROM_EMAIL: ' picks@rapidforge.ai ' }).from).toBe('picks@rapidforge.ai')
+    expect(confirmationPayload(PickSchema.parse({ ...PICK, name: '' }), ENV).text.split('\n')[0]).toBe('Hi,')
+  })
+
+  it('goes after Joey’s notice, to the address the picker left', async () => {
+    const fetch = resendOk()
+    await handlePick(post(PICK), ENV, fetch)
+    const [notice, confirmation] = calls(fetch).map(([, init]) => JSON.parse(init.body as string))
+    expect(notice.to).toEqual(['joey@example.com'])
+    expect(confirmation).toEqual(confirmationPayload(PickSchema.parse(PICK), ENV))
+  })
+
+  it('is not sent when the email is blank or invalid', async () => {
+    for (const email of ['', 'rob@example', 'rob example.com']) {
+      const fetch = resendOk()
+      const res = await handlePick(post({ ...PICK, email, phone: '(208) 555-0100' }), ENV, fetch)
+      expect(res.status).toBe(200)
+      expect(calls(fetch)).toHaveLength(1)
+      expect(JSON.parse(calls(fetch)[0][1].body as string).to).toEqual(['joey@example.com'])
+    }
+  })
+
+  it('failing with a 500 still answers ok, after Joey’s notice went out, and never logs the key', async () => {
+    const logged = vi.spyOn(console, 'error').mockImplementation(() => {})
+    const fetch = vi.fn(async (url: string, init?: RequestInit) => {
+      if (url !== RESEND_URL) return new Response(null, { status: 201 })
+      const to = JSON.parse(init!.body as string).to as string[]
+      return to.includes('joey@example.com')
+        ? new Response(JSON.stringify({ id: 'em_1' }), { status: 200 })
+        : new Response(JSON.stringify({ message: 'Internal server error' }), { status: 500 })
+    })
+    const emailOnly = await handlePick(post(PICK), ENV, fetch)
+    expect(emailOnly.status).toBe(200)
+    expect(await emailOnly.json()).toEqual({ saved: false, emailed: true })
+    const saved = await handlePick(post({ ...PICK, businessId: BUSINESS_ID }), { ...ENV, ...DB_ENV }, fetch)
+    expect(saved.status).toBe(200)
+    expect(await saved.json()).toEqual({ saved: true, emailed: true })
+    const tos = calls(fetch)
+      .filter(([url]) => url === RESEND_URL)
+      .map(([, init]) => JSON.parse(init.body as string).to)
+    expect(tos).toEqual([['joey@example.com'], ['rob@example.com'], ['joey@example.com'], ['rob@example.com']])
+    expect(logged).toHaveBeenCalledTimes(2)
+    expect(JSON.stringify(logged.mock.calls)).toContain('confirmation failed')
+    expect(JSON.stringify(logged.mock.calls)).not.toContain('re_test')
   })
 })

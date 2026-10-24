@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState, type FormEvent } from 'react'
 import './PickModal.css'
 
 import type { Preset } from '../presets/presets'
-import { reachable } from '../pick/schema'
+import { EMAIL, reachable } from '../pick/schema'
 import { pickTokens } from './pickTokens'
 
 /**
@@ -39,6 +39,8 @@ export default function PickModal({ target, onClose, post }: PickModalProps) {
   const firstField = useRef<HTMLInputElement>(null)
   const [phase, setPhase] = useState<Phase>('form')
   const [error, setError] = useState<string | null>(null)
+  /** The address /api/pick sends the picker's confirmation to, when they left a valid one. */
+  const [confirmTo, setConfirmTo] = useState<string | null>(null)
 
   useEffect(() => {
     firstField.current?.focus()
@@ -90,6 +92,7 @@ export default function PickModal({ target, onClose, post }: PickModalProps) {
         const data = (await res.json().catch(() => null)) as { error?: string } | null
         throw new Error(data?.error || `The pick did not send (HTTP ${res.status}).`)
       }
+      setConfirmTo(EMAIL.test(email) ? email : null)
       setPhase('sent')
     } catch (err) {
       setPhase('form')
@@ -115,6 +118,7 @@ export default function PickModal({ target, onClose, post }: PickModalProps) {
             <p className="pick-sub">
               {preset.name} is marked as the one {businessName} likes.
             </p>
+            {confirmTo && <p className="pick-sub">A confirmation is on its way to {confirmTo}.</p>}
             <button type="button" className="pick-send" onClick={onClose}>
               Back to the site
             </button>

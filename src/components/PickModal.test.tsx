@@ -78,6 +78,25 @@ describe('PickModal', () => {
     expect(body.page_url).toBe(window.location.href)
   })
 
+  it('says a confirmation is on its way only when the picker left a valid email', async () => {
+    const first = render(<PickModal target={target} onClose={() => {}} post={ok() as unknown as typeof fetch} />)
+    type(/email/i, 'rob@example.com')
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /send my pick/i }))
+    })
+    await waitFor(() => expect(screen.getByRole('status').textContent).toContain('A confirmation is on its way to rob@example.com.'))
+    first.unmount()
+
+    render(<PickModal target={target} onClose={() => {}} post={ok() as unknown as typeof fetch} />)
+    type(/email/i, 'rob@example')
+    type(/phone/i, '(208) 629-4278')
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /send my pick/i }))
+    })
+    await waitFor(() => expect(screen.getByRole('status').textContent).toContain("Got it — we'll be in touch."))
+    expect(screen.getByRole('status').textContent).not.toContain('confirmation')
+  })
+
   it('shows the server’s error and stays on the form when the post fails', async () => {
     const post = vi.fn(async () => new Response(JSON.stringify({ ok: false, error: 'Email is not configured' }), { status: 502 }))
     render(<PickModal target={target} onClose={() => {}} post={post as unknown as typeof fetch} />)
