@@ -4,10 +4,13 @@ import { PickSchema, reachable, type Pick } from './schema.js'
  * POST /api/pick: validates a pick, saves it as a demo_picks row in the
  * leads Supabase (when the pick carries a businessId and the service-role
  * env is set), then emails it to Joey through Resend's REST API (no SDK)
- * when Resend is configured, and sends the picker a confirmation when they
- * left a valid email. Either channel alone is enough. The Vercel
- * function in api/pick.ts is a one-line adapter over `handlePick`, which
- * takes its env and fetch as arguments so the tests run without a network.
+ * when Resend is configured. Either channel alone is enough. A saved pick
+ * from a *.demos.rapidforgeai.com page whose picker left a valid email
+ * also gets a confirmation, built from the leads DB's business name and
+ * checked fields only (see confirmPick). More than PICK_LIMIT picks a
+ * minute from one IP get a 429. The Vercel function in api/pick.ts is a
+ * one-line adapter over `handlePick`, which takes its env and fetch as
+ * arguments so the tests run without a network.
  */
 
 export interface PickEnv {
@@ -22,11 +25,55 @@ export const DEFAULT_FROM = 'onboarding@resend.dev'
 export const RESEND_URL = 'https://api.resend.com/emails'
 export const PICKS_TABLE = 'demo_picks'
 export const NOT_CONFIGURED = 'Pick storage is not configured'
+export const BUSINESSES_TABLE = 'businesses'
+export const PICK_LIMIT = 5
+export const PICK_WINDOW_MS = 60_000
+export const TOO_MANY = 'Too many picks from here. Try again in a minute.'
+
+/**
+ * The look names a confirmation may carry: the presets' and the Scroll
+ * Story's. A list here, not read from presets.json, so the Vercel function
+ * imports no JSON; a test holds it to the presets.
+ */
+export const LOOK_NAMES: readonly string[] = ['Clean Trust', 'Bold Local', 'Premium Dark', 'Friendly Family', 'Modern Minimal', 'Scroll Story']
+
+const ALIAS_HOST = /^[a-z0-9-]+\.demos\.rapidforgeai\.com$/
 
 type Fetch = (input: string, init?: RequestInit) => Promise<Response>
 
-function json(status: number, body: unknown): Response {
-  return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } })
+function json(status: number, body: unknown, headers: Record<string, string> = {}): Response {
+  return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', ...headers } })
+}
+
+/**
+ * Best-effort and per instance (a cold start or a second instance counts
+ * afresh): `allow` refuses an IP that already made `limit` picks in the
+ * last `windowMs`.
+ */
+export function createPickLimiter(limit = PICK_LIMIT, windowMs = PICK_WINDOW_MS) {
+  const hits = new Map<string, number[]>()
+  return {
+    allow(ip: string, now = Date.now()): boolean {
+      const recent = (hits.get(ip) ?? []).filter((t) => now - t < windowMs)
+      const allowed = recent.length < limit
+      if (allowed) recent.push(now)
+      hits.set(ip, recent)
+      if (hits.size > 10_000) {
+        for (const [key, times] of hits) if (times.every((t) => now - t >= windowMs)) hits.delete(key)
+      }
+      return allowed
+    },
+    clear() {
+      hits.clear()
+    },
+  }
+}
+
+export const pickLimiter = createPickLimiter()
+
+/** The client's IP: x-forwarded-for's first hop (Vercel sets the header), else one shared "unknown". */
+function clientIp(req: Request): string {
+  return req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
 }
 
 /** The alias a pick came from: the page URL's origin, e.g. https://goodson.demos.rapidforgeai.com. */
@@ -73,32 +120,78 @@ export function resendPayload(pick: Pick, env: PickEnv) {
 
 const EMAIL_OK = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-export function confirmationSubjectFor(pick: Pick): string {
-  return `Your pick for ${pick.business_name} is in`
+/** The page link a confirmation may carry: https on a *.demos.rapidforgeai.com alias, no credentials, port, query or hash; else null. */
+export function confirmableUrl(pageUrl: string): string | null {
+  let url: URL
+  try {
+    url = new URL(pageUrl)
+  } catch {
+    return null
+  }
+  if (url.protocol !== 'https:' || !ALIAS_HOST.test(url.host) || url.username || url.password) return null
+  return `${url.origin}${url.pathname}`
 }
 
-export function confirmationBodyFor(pick: Pick): string {
+/** The picker's name as a confirmation may use it: letters, spaces, ' and - only, at most 60 characters. */
+export function cleanName(name: string): string {
+  return name
+    .normalize('NFC')
+    .replace(/\s+/g, ' ')
+    .replace(/[^\p{L} '-]/gu, '')
+    .replace(/ {2,}/g, ' ')
+    .trim()
+    .slice(0, 60)
+    .trim()
+}
+
+/** The look a confirmation names: one of LOOK_NAMES, else null (the body then says "a look"). */
+export function lookNameOf(presetName: string): string | null {
+  return LOOK_NAMES.includes(presetName) ? presetName : null
+}
+
+/** Everything a confirmation says, each already checked: no other request text reaches it. */
+export interface Confirmation {
+  /** cleanName of the picker's name; blank greets without one. */
+  name: string
+  /** lookNameOf the preset name. */
+  look: string | null
+  /** The leads DB's name for the business, never the request's. */
+  businessName: string
+  /** confirmableUrl of the page URL. */
+  pageUrl: string
+}
+
+export function confirmationSubjectFor(businessName: string): string {
+  return `Your pick for ${businessName} is in`
+}
+
+export function confirmationBodyFor(c: Confirmation): string {
   const lines = [
-    pick.name ? `Hi ${pick.name},` : 'Hi,',
+    c.name ? `Hi ${c.name},` : 'Hi,',
     '',
-    `Thanks for choosing the ${pick.preset_name} look for ${pick.business_name}. Joey at RapidForge will be in touch.`,
+    `Thanks for choosing ${c.look ? `the ${c.look} look` : 'a look'} for ${c.businessName}. Joey at RapidForge will be in touch.`,
     '',
     'You can revisit it here:',
-    pick.page_url,
+    c.pageUrl,
     '',
     'If you have a question in the meantime, you can reply to this email.',
   ]
   return lines.join('\n')
 }
 
-/** The Resend request body for the picker's confirmation; replies go to Joey. */
-export function confirmationPayload(pick: Pick, env: PickEnv) {
+/**
+ * The Resend request body for the picker's confirmation; replies go to Joey.
+ * From the pick it takes only the email (as the recipient), the name
+ * (cleaned) and the preset name (when it is a known look).
+ */
+export function confirmationPayload(pick: Pick, env: PickEnv, businessName: string, pageUrl: string) {
+  const c: Confirmation = { name: cleanName(pick.name), look: lookNameOf(pick.preset_name), businessName, pageUrl }
   return {
     from: env.PICK_FROM_EMAIL?.trim() || DEFAULT_FROM,
     to: [pick.email],
     reply_to: env.PICK_TO_EMAIL!.trim(),
-    subject: confirmationSubjectFor(pick),
-    text: confirmationBodyFor(pick),
+    subject: confirmationSubjectFor(businessName),
+    text: confirmationBodyFor(c),
   }
 }
 
@@ -154,6 +247,47 @@ async function savePick(db: { url: string; key: string }, row: ReturnType<typeof
   return `The pick was not saved (HTTP ${res.status})`
 }
 
+/** The business's name as the leads DB has it, or why it could not be read. Logs never carry the key. */
+async function businessNameOf(db: { url: string; key: string }, businessId: string, fetchImpl: Fetch): Promise<{ name: string } | { reason: string }> {
+  let res: Response
+  try {
+    res = await fetchImpl(`${db.url}/rest/v1/${BUSINESSES_TABLE}?id=eq.${encodeURIComponent(businessId)}&select=name`, {
+      headers: { apikey: db.key, authorization: `Bearer ${db.key}`, accept: 'application/json' },
+    })
+  } catch (err) {
+    return { reason: `business lookup unreachable: ${err instanceof Error ? err.message : String(err)}` }
+  }
+  if (!res.ok) return { reason: `business lookup failed (HTTP ${res.status})` }
+  let rows: unknown
+  try {
+    rows = await res.json()
+  } catch {
+    return { reason: 'business lookup answered with no JSON' }
+  }
+  const name = Array.isArray(rows) ? (rows[0] as { name?: unknown } | undefined)?.name : undefined
+  return typeof name === 'string' && name.trim() ? { name: name.trim() } : { reason: 'business not found' }
+}
+
+/**
+ * The picker's confirmation, after Joey's notice. It goes only to a valid
+ * email, only for a saved pick (fixture and URL-intake builds have no
+ * businessId, so never), only from a *.demos.rapidforgeai.com page, and
+ * names the business as the leads DB does. A skip or a failed send is
+ * logged and changes nothing else.
+ */
+async function confirmPick(pick: Pick, env: PickEnv, db: { url: string; key: string } | null, saved: boolean, fetchImpl: Fetch): Promise<void> {
+  if (!EMAIL_OK.test(pick.email)) return
+  const skip = (reason: string) => console.log(`pick: confirmation skipped (${reason})`)
+  if (!saved || !db || !pick.businessId) return skip('the pick was not saved to demo_picks')
+  const pageUrl = confirmableUrl(pick.page_url)
+  if (!pageUrl) return skip('page_url is not https on a *.demos.rapidforgeai.com alias')
+  const business = await businessNameOf(db, pick.businessId, fetchImpl)
+  if ('reason' in business) return skip(business.reason)
+  const failure = await emailPick(confirmationPayload(pick, env, business.name, pageUrl), env, fetchImpl)
+  if (failure) console.error(`pick: the picker's confirmation failed (${failure})`)
+  else console.log('pick: confirmation sent')
+}
+
 /** Send one pick email (Joey's notice or the picker's confirmation); null on success, else Resend's error. */
 async function emailPick(payload: ReturnType<typeof resendPayload | typeof confirmationPayload>, env: PickEnv, fetchImpl: Fetch): Promise<string | null> {
   let res: Response
@@ -180,6 +314,10 @@ async function emailPick(payload: ReturnType<typeof resendPayload | typeof confi
 export async function handlePick(req: Request, env: PickEnv, fetchImpl: Fetch): Promise<Response> {
   if (req.method !== 'POST') {
     return json(405, { ok: false, error: 'Method not allowed' })
+  }
+  // Before the body is read, so a flood never reaches the database or Resend.
+  if (!pickLimiter.allow(clientIp(req))) {
+    return json(429, { ok: false, error: TOO_MANY }, { 'retry-after': String(PICK_WINDOW_MS / 1000) })
   }
   let raw: unknown
   try {
@@ -217,12 +355,9 @@ export async function handlePick(req: Request, env: PickEnv, fetchImpl: Fetch): 
     // With the row saved the pick is safe; an email-only pick that fails went nowhere.
     if (failure && !saving) return json(502, { ok: false, error: failure })
     if (failure) console.error(`pick: saved, but the email failed (${failure})`)
+    else console.log('pick: notice sent')
     emailed = failure === null
-    // The picker's confirmation goes after Joey's notice; its failure is logged and changes nothing.
-    if (EMAIL_OK.test(pick.email)) {
-      const unconfirmed = await emailPick(confirmationPayload(pick, env), env, fetchImpl)
-      if (unconfirmed) console.error(`pick: the picker's confirmation failed (${unconfirmed})`)
-    }
+    await confirmPick(pick, env, db, saving, fetchImpl)
   }
   return json(200, { saved: saving, emailed })
 }

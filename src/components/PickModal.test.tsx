@@ -79,7 +79,7 @@ describe('PickModal', () => {
   })
 
   it('says a confirmation is on its way only when the picker left a valid email', async () => {
-    const first = render(<PickModal target={target} onClose={() => {}} post={ok() as unknown as typeof fetch} />)
+    const first = render(<PickModal target={{ ...target, businessId: BUSINESS_ID }} onClose={() => {}} post={ok() as unknown as typeof fetch} />)
     type(/email/i, 'rob@example.com')
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: /send my pick/i }))
@@ -87,9 +87,19 @@ describe('PickModal', () => {
     await waitFor(() => expect(screen.getByRole('status').textContent).toContain('A confirmation is on its way to rob@example.com.'))
     first.unmount()
 
-    render(<PickModal target={target} onClose={() => {}} post={ok() as unknown as typeof fetch} />)
+    render(<PickModal target={{ ...target, businessId: BUSINESS_ID }} onClose={() => {}} post={ok() as unknown as typeof fetch} />)
     type(/email/i, 'rob@example')
     type(/phone/i, '(208) 629-4278')
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: /send my pick/i }))
+    })
+    await waitFor(() => expect(screen.getByRole('status').textContent).toContain("Got it — we'll be in touch."))
+    expect(screen.getByRole('status').textContent).not.toContain('confirmation')
+  })
+
+  it('promises no confirmation on a build without a business id, which /api/pick never confirms', async () => {
+    render(<PickModal target={target} onClose={() => {}} post={ok() as unknown as typeof fetch} />)
+    type(/email/i, 'rob@example.com')
     await act(async () => {
       fireEvent.click(screen.getByRole('button', { name: /send my pick/i }))
     })

@@ -39,7 +39,7 @@ export default function PickModal({ target, onClose, post }: PickModalProps) {
   const firstField = useRef<HTMLInputElement>(null)
   const [phase, setPhase] = useState<Phase>('form')
   const [error, setError] = useState<string | null>(null)
-  /** The address /api/pick sends the picker's confirmation to, when they left a valid one. */
+  /** The address /api/pick confirms to: a valid one, on a build with a business id (only a saved pick is confirmed). */
   const [confirmTo, setConfirmTo] = useState<string | null>(null)
 
   useEffect(() => {
@@ -92,7 +92,7 @@ export default function PickModal({ target, onClose, post }: PickModalProps) {
         const data = (await res.json().catch(() => null)) as { error?: string } | null
         throw new Error(data?.error || `The pick did not send (HTTP ${res.status}).`)
       }
-      setConfirmTo(EMAIL.test(email) ? email : null)
+      setConfirmTo(businessId && EMAIL.test(email) ? email : null)
       setPhase('sent')
     } catch (err) {
       setPhase('form')

@@ -3,7 +3,8 @@ import { fireEvent, render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { siteContentFor } from '../brief/current'
-import { swatchesOf } from '../presets/presets'
+import { PRESET_VERTICALS, presetsFor, swatchesOf } from '../presets/presets'
+import { LOOK_NAMES } from '../pick/handler'
 import { previewFor } from '../presets/previews'
 import { variants } from '../variants/variants'
 import { SCROLL_LOOK, SCROLL_SLUG, scrollCard, scrollEnabled } from './look'
@@ -123,5 +124,12 @@ describe('Scroll Story card content', () => {
     ['a swatch that is not hex', JSON.stringify({ ...BUILD_CARD, swatches: ['navy', '#EFE9DD', '#4DA3FF', '#A79F90'] })],
   ])('falls back to the defaults on %s', (_name, value) => {
     expect(scrollCard({ VITE_SCROLL_CARD: value })).toEqual(DEFAULTS)
+  })
+})
+
+describe('the looks a pick confirmation may name', () => {
+  it('are the presets’ names and the Scroll Story’s, no more and no fewer', () => {
+    const names = new Set([...PRESET_VERTICALS.flatMap((v) => presetsFor(v).map((p) => p.name)), SCROLL_LOOK.name])
+    expect([...LOOK_NAMES].sort()).toEqual([...names].sort())
   })
 })

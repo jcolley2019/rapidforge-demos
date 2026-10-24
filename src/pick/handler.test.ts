@@ -1,12 +1,26 @@
 // @vitest-environment node
-import { afterEach, describe, expect, it, vi } from 'vitest'
-import { DEFAULT_FROM, NOT_CONFIGURED, RESEND_URL, confirmationPayload, handlePick } from './handler'
+import { afterEach, beforeEach, describe, expect, it, vi, type MockInstance } from 'vitest'
+import {
+  DEFAULT_FROM,
+  NOT_CONFIGURED,
+  RESEND_URL,
+  TOO_MANY,
+  cleanName,
+  confirmableUrl,
+  confirmationPayload,
+  createPickLimiter,
+  handlePick,
+  pickLimiter,
+} from './handler'
 import { PickSchema } from './schema'
 
 const ENV = { RESEND_API_KEY: 're_test', PICK_TO_EMAIL: 'joey@example.com' }
 const DB_ENV = { LEADS_SUPABASE_URL: 'https://leads.supabase.co/', LEADS_SUPABASE_SERVICE_ROLE_KEY: 'service-role-secret' }
 const BUSINESS_ID = 'dff84968-ffa0-4188-84e6-079e1556e3e0'
 const PICKS_URL = 'https://leads.supabase.co/rest/v1/demo_picks'
+const BUSINESS_URL = `https://leads.supabase.co/rest/v1/businesses?id=eq.${BUSINESS_ID}&select=name`
+/** The leads DB's name, unlike the request's business_name, so a test can tell which one a confirmation used. */
+const DB_NAME = 'Goodson Plumbing Services LLC'
 
 const PICK = {
   slug: 'robgoodsonplumbing-com',
@@ -22,27 +36,39 @@ const PICK = {
   website: '',
 }
 
-function post(body: unknown, method = 'POST') {
+function post(body: unknown, method = 'POST', ip?: string) {
   return new Request('https://goodson.demos.rapidforgeai.com/api/pick', {
     method,
-    headers: { 'content-type': 'application/json' },
+    headers: { 'content-type': 'application/json', ...(ip ? { 'x-forwarded-for': ip } : {}) },
     body: method === 'GET' ? undefined : typeof body === 'string' ? body : JSON.stringify(body),
   })
 }
 
 const resendOk = () => vi.fn(async () => new Response(JSON.stringify({ id: 'em_1' }), { status: 200 }))
 
-/** Answers the demo_picks insert with 201 (or `dbStatus`) and Resend with 200. */
-const routed = (dbStatus = 201) =>
+const named = () => new Response(JSON.stringify([{ name: DB_NAME }]), { status: 200 })
+
+/** Answers the demo_picks insert with 201 (or `dbStatus`), the businesses lookup with `lookup`, and Resend with 200. */
+const routed = (dbStatus = 201, lookup: () => Response = named) =>
   vi.fn(async (url: string) =>
     url === RESEND_URL
       ? new Response(JSON.stringify({ id: 'em_1' }), { status: 200 })
-      : dbStatus < 300
-        ? new Response(null, { status: dbStatus })
-        : new Response(JSON.stringify({ code: '23503', message: 'insert or update on table "demo_picks" violates foreign key constraint' }), { status: dbStatus }),
+      : url === BUSINESS_URL
+        ? lookup()
+        : dbStatus < 300
+          ? new Response(null, { status: dbStatus })
+          : new Response(JSON.stringify({ code: '23503', message: 'insert or update on table "demo_picks" violates foreign key constraint' }), { status: dbStatus }),
   )
 
 const calls = (fetch: ReturnType<typeof vi.fn>) => fetch.mock.calls as unknown as Array<[string, RequestInit]>
+
+let info: MockInstance<typeof console.log>
+
+beforeEach(() => {
+  // Every test posts from the same (absent) IP; the limiter's own tests fill it on purpose.
+  pickLimiter.clear()
+  info = vi.spyOn(console, 'log').mockImplementation(() => {})
+})
 
 afterEach(() => {
   vi.restoreAllMocks()
@@ -124,8 +150,8 @@ describe('POST /api/pick', () => {
     const res = await handlePick(post({ ...PICK, businessId: BUSINESS_ID }), { ...ENV, ...DB_ENV }, fetch)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ saved: true, emailed: true })
-    // Joey's notice, then the picker's confirmation.
-    expect(calls(fetch).map(([url]) => url)).toEqual([PICKS_URL, RESEND_URL, RESEND_URL])
+    // Joey's notice, then the business name for the picker's confirmation, then that.
+    expect(calls(fetch).map(([url]) => url)).toEqual([PICKS_URL, RESEND_URL, BUSINESS_URL, RESEND_URL])
   })
 
   it('still answers saved when the row went in but the email failed', async () => {
@@ -169,7 +195,7 @@ describe('POST /api/pick', () => {
     const res = await handlePick(post(PICK), { ...ENV, ...DB_ENV }, fetch)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ saved: false, emailed: true })
-    expect(calls(fetch).map(([url]) => url)).toEqual([RESEND_URL, RESEND_URL])
+    expect(calls(fetch).map(([url]) => url)).toEqual([RESEND_URL])
   })
 
   it('sends the right Resend payload on the happy path', async () => {
@@ -177,8 +203,7 @@ describe('POST /api/pick', () => {
     const res = await handlePick(post(PICK), { ...ENV, PICK_FROM_EMAIL: '' }, fetch)
     expect(res.status).toBe(200)
     expect(await res.json()).toEqual({ saved: false, emailed: true })
-    // Joey's notice is the first of two sends; the second is the picker's confirmation.
-    expect(fetch).toHaveBeenCalledTimes(2)
+    expect(fetch).toHaveBeenCalledTimes(1)
     const [url, init] = fetch.mock.calls[0] as unknown as [string, RequestInit]
     expect(url).toBe(RESEND_URL)
     expect(init.method).toBe('POST')
@@ -214,61 +239,168 @@ describe('POST /api/pick', () => {
 })
 
 describe('the picker’s confirmation', () => {
+  const BOTH = { ...ENV, ...DB_ENV }
+  const SAVED = { ...PICK, businessId: BUSINESS_ID }
+  const PAGE = 'https://goodson.demos.rapidforgeai.com/heritage'
+  const skipped = () => JSON.stringify(info.mock.calls)
+
   it('is a plain-text note from the pick sender to the picker, with replies going to Joey', () => {
-    const pick = PickSchema.parse(PICK)
-    const payload = confirmationPayload(pick, { ...ENV, PICK_FROM_EMAIL: '' })
+    const pick = PickSchema.parse(SAVED)
+    const payload = confirmationPayload(pick, { ...ENV, PICK_FROM_EMAIL: '' }, DB_NAME, PAGE)
     expect(payload.from).toBe(DEFAULT_FROM)
     expect(payload.to).toEqual(['rob@example.com'])
     expect(payload.reply_to).toBe('joey@example.com')
-    expect(payload.subject).toBe('Your pick for Goodson Plumbing Services is in')
+    expect(payload.subject).toBe(`Your pick for ${DB_NAME} is in`)
     expect(payload).not.toHaveProperty('html')
     expect(payload.text.split('\n')[0]).toBe('Hi Rob,')
-    for (const value of ['Clean Trust look for Goodson Plumbing Services', 'Joey at RapidForge will be in touch', 'https://goodson.demos.rapidforgeai.com/heritage', 'reply to this email']) {
+    for (const value of [`the Clean Trust look for ${DB_NAME}.`, 'Joey at RapidForge will be in touch', PAGE, 'reply to this email']) {
       expect(payload.text).toContain(value)
     }
-    expect(confirmationPayload(pick, { ...ENV, PICK_FROM_EMAIL: ' picks@rapidforge.ai ' }).from).toBe('picks@rapidforge.ai')
-    expect(confirmationPayload(PickSchema.parse({ ...PICK, name: '' }), ENV).text.split('\n')[0]).toBe('Hi,')
+    expect(confirmationPayload(pick, { ...ENV, PICK_FROM_EMAIL: ' picks@rapidforge.ai ' }, DB_NAME, PAGE).from).toBe('picks@rapidforge.ai')
+    expect(confirmationPayload(PickSchema.parse({ ...PICK, name: '' }), ENV, DB_NAME, PAGE).text.split('\n')[0]).toBe('Hi,')
   })
 
-  it('goes after Joey’s notice, to the address the picker left', async () => {
-    const fetch = resendOk()
-    await handlePick(post(PICK), ENV, fetch)
-    const [notice, confirmation] = calls(fetch).map(([, init]) => JSON.parse(init.body as string))
+  it('carries none of the request’s own text: not its business name, note, slug, phone or an unknown look name', () => {
+    const pick = PickSchema.parse({ ...SAVED, business_name: 'Totally Real Bank', preset_name: 'Click here to claim', phone: '(208) 555-0100' })
+    const { subject, text } = confirmationPayload(pick, ENV, DB_NAME, PAGE)
+    for (const leaked of ['Totally Real Bank', 'Click here', 'Love the blue.', 'robgoodsonplumbing-com', '555-0100', 'clean-trust']) {
+      expect(subject + text).not.toContain(leaked)
+    }
+    expect(text).toContain(`Thanks for choosing a look for ${DB_NAME}.`)
+  })
+
+  it('reduces the picker’s name to letters, spaces, apostrophes and hyphens, 60 at most', () => {
+    expect(cleanName('Rob')).toBe('Rob')
+    expect(cleanName("  Mary-Jane  O'Brien ")).toBe("Mary-Jane O'Brien")
+    expect(cleanName('José Zoë')).toBe('José Zoë')
+    expect(cleanName('Rob\nVisit https://evil.example/win now!')).toBe('Rob Visit httpsevilexamplewin now')
+    expect(cleanName('<b>Rob</b> 2')).toBe('bRobb')
+    expect(cleanName('a'.repeat(80))).toHaveLength(60)
+    expect(cleanName('123 456')).toBe('')
+    const payload = confirmationPayload(PickSchema.parse({ ...SAVED, name: 'Rob <a href="https://evil.example">' }), ENV, DB_NAME, PAGE)
+    expect(payload.text.split('\n')[0]).toBe('Hi Rob a hrefhttpsevilexample,')
+  })
+
+  it('links only an https page on a *.demos.rapidforgeai.com alias, without its query or hash', () => {
+    expect(confirmableUrl(PAGE)).toBe(PAGE)
+    expect(confirmableUrl('https://goodson.demos.rapidforgeai.com/scroll?x=1#top')).toBe('https://goodson.demos.rapidforgeai.com/scroll')
+    for (const foreign of [
+      'https://evil.example.com/heritage',
+      'http://goodson.demos.rapidforgeai.com/heritage',
+      'https://goodson.demos.rapidforgeai.com.evil.example/heritage',
+      'https://a.b.demos.rapidforgeai.com/',
+      'https://demos.rapidforgeai.com/',
+      'https://goodson.demos.rapidforgeai.com:8443/',
+      'https://user:pw@goodson.demos.rapidforgeai.com/',
+      'not a url',
+    ]) {
+      expect(confirmableUrl(foreign)).toBeNull()
+    }
+  })
+
+  it('goes after Joey’s notice, to the address the picker left, naming the business as the leads DB does', async () => {
+    const fetch = routed()
+    const res = await handlePick(post(SAVED), BOTH, fetch)
+    expect(await res.json()).toEqual({ saved: true, emailed: true })
+    expect(calls(fetch).map(([url]) => url)).toEqual([PICKS_URL, RESEND_URL, BUSINESS_URL, RESEND_URL])
+    const [, lookup] = calls(fetch)[2]
+    expect(lookup.headers).toMatchObject({ apikey: 'service-role-secret', authorization: 'Bearer service-role-secret' })
+    const notice = JSON.parse(calls(fetch)[1][1].body as string)
+    const confirmation = JSON.parse(calls(fetch)[3][1].body as string)
     expect(notice.to).toEqual(['joey@example.com'])
-    expect(confirmation).toEqual(confirmationPayload(PickSchema.parse(PICK), ENV))
+    expect(confirmation).toEqual(confirmationPayload(PickSchema.parse(SAVED), BOTH, DB_NAME, PAGE))
+    expect(skipped()).toContain('confirmation sent')
   })
 
   it('is not sent when the email is blank or invalid', async () => {
     for (const email of ['', 'rob@example', 'rob example.com']) {
-      const fetch = resendOk()
-      const res = await handlePick(post({ ...PICK, email, phone: '(208) 555-0100' }), ENV, fetch)
+      const fetch = routed()
+      const res = await handlePick(post({ ...SAVED, email, phone: '(208) 555-0100' }), BOTH, fetch)
       expect(res.status).toBe(200)
-      expect(calls(fetch)).toHaveLength(1)
-      expect(JSON.parse(calls(fetch)[0][1].body as string).to).toEqual(['joey@example.com'])
+      expect(calls(fetch).map(([url]) => url)).toEqual([PICKS_URL, RESEND_URL])
     }
   })
 
-  it('failing with a 500 still answers ok, after Joey’s notice went out, and never logs the key', async () => {
+  it('is not sent for a fixture or URL-intake pick, which has no businessId and so no saved row', async () => {
+    const fetch = routed()
+    const res = await handlePick(post(PICK), BOTH, fetch)
+    expect(await res.json()).toEqual({ saved: false, emailed: true })
+    expect(calls(fetch).map(([url]) => url)).toEqual([RESEND_URL])
+    expect(skipped()).toContain('confirmation skipped (the pick was not saved')
+  })
+
+  it('is not sent for a page on a foreign host, though the pick is saved and Joey told', async () => {
+    const fetch = routed()
+    const res = await handlePick(post({ ...SAVED, page_url: 'https://evil.example.com/heritage' }), BOTH, fetch)
+    expect(res.status).toBe(200)
+    expect(await res.json()).toEqual({ saved: true, emailed: true })
+    expect(calls(fetch).map(([url]) => url)).toEqual([PICKS_URL, RESEND_URL])
+    expect(skipped()).toContain('confirmation skipped (page_url is not https on a *.demos.rapidforgeai.com alias)')
+  })
+
+  it('is not sent when the business lookup 404s or finds no business, and the pick still answers ok', async () => {
+    for (const [lookup, reason] of [
+      [() => new Response(JSON.stringify({ message: 'relation "businesses" does not exist' }), { status: 404 }), 'business lookup failed (HTTP 404)'],
+      [() => new Response('[]', { status: 200 }), 'business not found'],
+    ] as const) {
+      info.mockClear()
+      const fetch = routed(201, lookup)
+      const res = await handlePick(post(SAVED), BOTH, fetch)
+      expect(res.status).toBe(200)
+      expect(await res.json()).toEqual({ saved: true, emailed: true })
+      expect(calls(fetch).map(([url]) => url)).toEqual([PICKS_URL, RESEND_URL, BUSINESS_URL])
+      expect(skipped()).toContain(`confirmation skipped (${reason})`)
+    }
+  })
+
+  it('failing with a 500 still answers ok, after Joey’s notice went out, and never logs a key', async () => {
     const logged = vi.spyOn(console, 'error').mockImplementation(() => {})
     const fetch = vi.fn(async (url: string, init?: RequestInit) => {
+      if (url === BUSINESS_URL) return named()
       if (url !== RESEND_URL) return new Response(null, { status: 201 })
       const to = JSON.parse(init!.body as string).to as string[]
       return to.includes('joey@example.com')
         ? new Response(JSON.stringify({ id: 'em_1' }), { status: 200 })
         : new Response(JSON.stringify({ message: 'Internal server error' }), { status: 500 })
     })
-    const emailOnly = await handlePick(post(PICK), ENV, fetch)
-    expect(emailOnly.status).toBe(200)
-    expect(await emailOnly.json()).toEqual({ saved: false, emailed: true })
-    const saved = await handlePick(post({ ...PICK, businessId: BUSINESS_ID }), { ...ENV, ...DB_ENV }, fetch)
-    expect(saved.status).toBe(200)
-    expect(await saved.json()).toEqual({ saved: true, emailed: true })
+    const res = await handlePick(post(SAVED), BOTH, fetch)
+    expect(res.status).toBe(200)
+    expect(await res.json()).toEqual({ saved: true, emailed: true })
     const tos = calls(fetch)
       .filter(([url]) => url === RESEND_URL)
       .map(([, init]) => JSON.parse(init.body as string).to)
-    expect(tos).toEqual([['joey@example.com'], ['rob@example.com'], ['joey@example.com'], ['rob@example.com']])
-    expect(logged).toHaveBeenCalledTimes(2)
-    expect(JSON.stringify(logged.mock.calls)).toContain('confirmation failed')
-    expect(JSON.stringify(logged.mock.calls)).not.toContain('re_test')
+    expect(tos).toEqual([['joey@example.com'], ['rob@example.com']])
+    expect(logged).toHaveBeenCalledTimes(1)
+    const logs = JSON.stringify([logged.mock.calls, info.mock.calls])
+    expect(logs).toContain('confirmation failed')
+    expect(logs).not.toContain('re_test')
+    expect(logs).not.toContain('service-role-secret')
+  })
+})
+
+describe('the per-IP pick limit', () => {
+  it('429s the sixth pick in a minute from one IP before any database or email call', async () => {
+    const fetch = routed()
+    const env = { ...ENV, ...DB_ENV }
+    for (let i = 0; i < 5; i++) {
+      expect((await handlePick(post(PICK, 'POST', '203.0.113.7, 10.0.0.1'), env, fetch)).status).toBe(200)
+    }
+    const before = calls(fetch).length
+    const sixth = await handlePick(post(PICK, 'POST', '203.0.113.7'), env, fetch)
+    expect(sixth.status).toBe(429)
+    expect(sixth.headers.get('retry-after')).toBe('60')
+    expect(await sixth.json()).toEqual({ ok: false, error: TOO_MANY })
+    expect(calls(fetch)).toHaveLength(before)
+    // Another IP has its own count.
+    expect((await handlePick(post(PICK, 'POST', '198.51.100.2'), env, fetch)).status).toBe(200)
+  })
+
+  it('lets an IP back in once its oldest pick is a minute old', () => {
+    const limiter = createPickLimiter(5, 60_000)
+    for (let t = 0; t < 5; t++) expect(limiter.allow('203.0.113.7', t * 1000)).toBe(true)
+    expect(limiter.allow('203.0.113.7', 30_000)).toBe(false)
+    expect(limiter.allow('203.0.113.7', 59_999)).toBe(false)
+    expect(limiter.allow('203.0.113.7', 60_000)).toBe(true)
+    expect(limiter.allow('203.0.113.7', 60_001)).toBe(false)
   })
 })
